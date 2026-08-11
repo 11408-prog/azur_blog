@@ -57,7 +57,7 @@ favicon: /img/favicon.ico
 
 avatar:
   img: /img/avatar.png
-  effect: true
+  effect: false
 
 # Disable all banner images
 disable_top_img: false
@@ -284,7 +284,7 @@ aside:
     category: true
   card_author:
     enable: true
-    description: 数据科学与大数据技术专业学生，喜欢代码和碧蓝航线
+    description: 喜欢代码和碧蓝航线
     button:
       enable: false
       icon: fab fa-github
@@ -292,7 +292,7 @@ aside:
       link: https://github.com/xxxxxx
   card_announcement:
     enable: true
-    content: 欢迎来到我的博客，这里记录学习、生活与热爱。
+    content: 记录学习、生活与热爱。
   card_recent_post:
     enable: true
     # If set 0 will show all
