@@ -7,7 +7,7 @@
     var recentPosts = document.getElementById('recent-posts');
     if (!recentPosts) return;
 
-    fetch('/carousel-list.json')
+    fetch('/azur_blog/carousel-list.json')   
       .then(function (r) { return r.json(); })
       .then(function (data) {
         var imgs = (data && data.images) || [];
