@@ -619,3 +619,43 @@
 [data-theme="dark"] #aside-content .card-announcement .announcement-content {
   color: #cbd5e0 !important;
 }
+
+/* 天气城市输入框 */
+.weather-city-input {
+  margin-top: 10px;
+  text-align: center;
+}
+
+.weather-city-input input {
+  width: 85%;
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(91, 155, 213, 0.3);
+  border-radius: 8px;
+  padding: 5px 10px;
+  font-size: 0.85rem;
+  color: #2d3748;
+  outline: none;
+  text-align: center;
+  transition: all 0.3s;
+}
+
+.weather-city-input input:focus {
+  border-color: #5B9BD5;
+  background: rgba(255, 255, 255, 0.85);
+}
+
+.weather-city-input input::placeholder {
+  color: #a0aec0;
+  font-size: 0.8rem;
+}
+
+[data-theme="dark"] .weather-city-input input {
+  background: rgba(40, 40, 45, 0.6);
+  color: #e2e8f0;
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="dark"] .weather-city-input input:focus {
+  background: rgba(40, 40, 45, 0.85);
+  border-color: #5B9BD5;
+}
