@@ -1,6 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>css常见调参函数</title>
+    <url>/azur_blog/2026/08/14/css%E5%B8%B8%E8%A7%81%E8%B0%83%E5%8F%82%E5%87%BD%E6%95%B0/</url>
+    <content><![CDATA[<h2 id="reba-红绿蓝透明度"><a href="#reba-红绿蓝透明度" class="headerlink" title="reba &#x2F; 红绿蓝透明度"></a>reba &#x2F; 红绿蓝透明度</h2><p>用法：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">reba(红色，绿色，蓝色，不透明度)&lt;br&gt;</span><br></pre></td></tr></table></figure>
+<p>前三者都是0 ~ 255 ，数越大越接近白色。不透明度是越低越透明。<br></p>
+<h2 id="backdrop-filter-对元素背后的区域采用滤镜效果"><a href="#backdrop-filter-对元素背后的区域采用滤镜效果" class="headerlink" title="backdrop-filter &#x2F; 对元素背后的区域采用滤镜效果"></a>backdrop-filter &#x2F; 对元素背后的区域采用滤镜效果</h2><p>用法:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">backdrop-filter: blur(12px)</span><br></pre></td></tr></table></figure>
+<p>模糊半径（xxpx）越大内容越糊<br></p>
+]]></content>
+      <categories>
+        <category>学习</category>
+      </categories>
+      <tags>
+        <tag>css</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>企业的皮肤和情人节台词汇总</title>
     <url>/azur_blog/2026/08/14/%E4%BC%81%E4%B8%9A%E7%9A%84%E7%9A%AE%E8%82%A4%E5%92%8C%E6%83%85%E4%BA%BA%E8%8A%82%E5%8F%B0%E8%AF%8D%E6%B1%87%E6%80%BB/</url>
     <content><![CDATA[<h3 id="初始"><a href="#初始" class="headerlink" title="初始"></a>初始</h3><p>登录界面	<br>碧蓝航线！</p>
@@ -157,23 +174,6 @@
       </tags>
   </entry>
   <entry>
-    <title>css常见调参函数</title>
-    <url>/azur_blog/2026/08/14/css%E5%B8%B8%E8%A7%81%E8%B0%83%E5%8F%82%E5%87%BD%E6%95%B0/</url>
-    <content><![CDATA[<h2 id="reba-红绿蓝透明度"><a href="#reba-红绿蓝透明度" class="headerlink" title="reba &#x2F; 红绿蓝透明度"></a>reba &#x2F; 红绿蓝透明度</h2><p>用法：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">reba(红色，绿色，蓝色，不透明度)&lt;br&gt;</span><br></pre></td></tr></table></figure>
-<p>前三者都是0 ~ 255 ，数越大越接近白色。不透明度是越低越透明。<br></p>
-<h2 id="backdrop-filter-对元素背后的区域采用滤镜效果"><a href="#backdrop-filter-对元素背后的区域采用滤镜效果" class="headerlink" title="backdrop-filter &#x2F; 对元素背后的区域采用滤镜效果"></a>backdrop-filter &#x2F; 对元素背后的区域采用滤镜效果</h2><p>用法:</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">backdrop-filter: blur(12px)</span><br></pre></td></tr></table></figure>
-<p>模糊半径（xxpx）越大内容越糊<br></p>
-]]></content>
-      <categories>
-        <category>学习</category>
-      </categories>
-      <tags>
-        <tag>css</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>博客制作注意事项</title>
     <url>/azur_blog/2026/08/11/%E5%8D%9A%E5%AE%A2%E5%88%B6%E4%BD%9C%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/</url>
     <content><![CDATA[<h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>今天尝试搭建好了博客的环境，并制作了一个大概的样子。在开发过程中遇到了如下两个问题：</p>
@@ -188,23 +188,6 @@
       <tags>
         <tag>js</tag>
         <tag>开发</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>开发遇到的问题以及对策</title>
-    <url>/azur_blog/2026/08/11/%E5%BC%80%E5%8F%91%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98%E4%BB%A5%E5%8F%8A%E5%AF%B9%E7%AD%96/</url>
-    <content><![CDATA[<p><strong>Q: tags和categories有什么区别</strong><br><br>A:tags表示关键词和特征，categories表示大方向和目录。tags不需要事先定义，但是categoties需要事先定义</p>
-<p><strong>Q: forwards和infinite有什么区别</strong><br><br>A:前者会使动画停在最后一帧，后者会使动画无限播放<br>对比：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">/* 只播放一次，结束后停在最后一帧 */</span><br><span class="line">animation-name: welcome-reveal;</span><br><span class="line">animation-duration: 6s;</span><br><span class="line">animation-timing-function: ease-in-out;</span><br><span class="line">animation-fill-mode: forwards;</span><br><span class="line"></span><br><span class="line">/* 无限循环播放 */</span><br><span class="line">animation-name: welcome-reveal;</span><br><span class="line">animation-duration: 6s;</span><br><span class="line">animation-timing-function: ease-in-out;</span><br><span class="line">animation-iteration-count: infinite;</span><br></pre></td></tr></table></figure>
-
-<p><strong>Q:有时会出现tags: 或者其它类似物下一行明明是空行却报错，该怎么办</strong><br><br>A:记得：之后要空格</p>
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>开发</tag>
-        <tag>注意事项</tag>
       </tags>
   </entry>
   <entry>
@@ -230,6 +213,23 @@
       </categories>
       <tags>
         <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>开发遇到的问题以及对策</title>
+    <url>/azur_blog/2026/08/11/%E5%BC%80%E5%8F%91%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98%E4%BB%A5%E5%8F%8A%E5%AF%B9%E7%AD%96/</url>
+    <content><![CDATA[<p><strong>Q: tags和categories有什么区别</strong><br><br>A:tags表示关键词和特征，categories表示大方向和目录。tags不需要事先定义，但是categoties需要事先定义</p>
+<p><strong>Q: forwards和infinite有什么区别</strong><br><br>A:前者会使动画停在最后一帧，后者会使动画无限播放<br>对比：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">/* 只播放一次，结束后停在最后一帧 */</span><br><span class="line">animation-name: welcome-reveal;</span><br><span class="line">animation-duration: 6s;</span><br><span class="line">animation-timing-function: ease-in-out;</span><br><span class="line">animation-fill-mode: forwards;</span><br><span class="line"></span><br><span class="line">/* 无限循环播放 */</span><br><span class="line">animation-name: welcome-reveal;</span><br><span class="line">animation-duration: 6s;</span><br><span class="line">animation-timing-function: ease-in-out;</span><br><span class="line">animation-iteration-count: infinite;</span><br></pre></td></tr></table></figure>
+
+<p><strong>Q:有时会出现tags: 或者其它类似物下一行明明是空行却报错，该怎么办</strong><br><br>A:记得：之后要空格</p>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>开发</tag>
+        <tag>注意事项</tag>
       </tags>
   </entry>
   <entry>
