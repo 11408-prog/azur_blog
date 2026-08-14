@@ -21,7 +21,7 @@ hexo.extend.generator.register('carousel-images', function () {
     // 目录不存在时返回空列表
   }
 
-  const images = files.map((f) => '/carousel/' + f);
+  const images = files.map((f) => '/azur_blog/carousel/' + f);
 
   return {
     path: 'carousel-list.json',
