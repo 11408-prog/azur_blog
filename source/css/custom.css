@@ -1,0 +1,621 @@
+/* 运行时间显示样式 */
+#runtime {
+  font-size: 0.85rem;
+  color: #999;
+  margin-top: 8px;
+}
+
+/* ========== 天气卡片 ========== */
+#weather-panel {
+  padding: 4px;
+}
+
+#weather-panel .weather-main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 8px 0 4px;
+}
+
+#weather-panel .weather-icon {
+  font-size: 2.8rem;
+  line-height: 1;
+  filter: drop-shadow(0 2px 4px rgba(91, 155, 213, 0.3));
+  animation: weather-float 3s ease-in-out infinite;
+}
+
+@keyframes weather-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+#weather-panel .weather-temp {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #2d3748;
+  letter-spacing: -1px;
+}
+
+#weather-panel .weather-temp::after {
+  content: 'C';
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #8A97A5;
+  margin-left: 1px;
+}
+
+#weather-panel .weather-desc {
+  text-align: center;
+  color: #5B9BD5;
+  font-size: 0.95rem;
+  font-weight: 500;
+  margin-top: 6px;
+  letter-spacing: 0.5px;
+}
+
+#weather-panel .weather-place {
+  text-align: center;
+  color: #a0aec0;
+  font-size: 0.8rem;
+  margin-top: 2px;
+}
+
+#weather-panel .weather-clock {
+  margin-top: 14px;
+  padding: 10px 14px;
+  background: rgba(91, 155, 213, 0.08);
+  border-radius: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-size: 0.9rem;
+  gap: 8px;
+}
+
+#weather-panel .weather-clock #weather-time {
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  color: #5B9BD5;
+  font-weight: 700;
+  font-size: 1.05rem;
+}
+
+#weather-panel .weather-clock #weather-date {
+  color: #8A97A5;
+  font-size: 0.8rem;
+}
+
+/* 暗色模式 */
+[data-theme="dark"] #weather-panel .weather-temp {
+  color: #e2e8f0;
+}
+[data-theme="dark"] #weather-panel .weather-temp::after {
+  color: #a0aec0;
+}
+[data-theme="dark"] #weather-panel .weather-desc {
+  color: #90cdf4;
+}
+[data-theme="dark"] #weather-panel .weather-place {
+  color: #718096;
+}
+[data-theme="dark"] #weather-panel .weather-clock {
+  background: rgba(91, 155, 213, 0.12);
+}
+[data-theme="dark"] #weather-panel .weather-clock #weather-time {
+  color: #90cdf4;
+}
+
+/* ========== 轮播图 ========== */
+.carousel {
+  position: relative;
+  overflow: hidden;
+  border-radius: 16px;
+  margin-bottom: 24px;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  max-height: 420px;
+  box-shadow: 0 8px 28px rgba(30, 58, 95, 0.18);
+  transition: box-shadow 0.4s ease;
+}
+
+.carousel:hover {
+  box-shadow: 0 12px 40px rgba(30, 58, 95, 0.26);
+}
+
+.carousel-track {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.carousel-slide {
+  flex: 0 0 100%;
+  height: 100%;
+  width: 100%;
+}
+
+.carousel-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* 小圆点 */
+.carousel-dots {
+  position: absolute;
+  bottom: 16px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  z-index: 2;
+}
+
+.carousel-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.4);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.carousel-dot.active {
+  background: #fff;
+  width: 24px;
+  border-radius: 5px;
+}
+
+/* 箭头：默认隐藏，hover 显示 */
+.carousel-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  width: 42px;
+  height: 42px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(30, 58, 95, 0.45);
+  color: #fff;
+  font-size: 18px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.35s ease, background 0.3s ease, transform 0.3s ease;
+}
+
+.carousel:hover .carousel-arrow {
+  opacity: 1;
+}
+
+.carousel-arrow.prev { left: 16px; }
+.carousel-arrow.next { right: 16px; }
+
+.carousel-arrow:hover {
+  background: rgba(30, 58, 95, 0.7);
+  transform: translateY(-50%) scale(1.08);
+}
+
+/* 页脚毛玻璃虚化 */
+#footer {
+  background: rgba(73, 177, 245, 0.4);         /* 半透明主题蓝 */
+  backdrop-filter: blur(10px) saturate(160%);
+  -webkit-backdrop-filter: blur(10px) saturate(160%); /* Safari */
+}
+[data-theme='dark'] #footer {
+  background: rgba(0, 0, 0, 0.35);              /* 暗色下用深色半透明 */
+}
+
+/* ========== 文章卡片美化 ========== */
+#recent-posts > .recent-post-item {
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(30, 58, 95, 0.06);
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+  border: 1px solid rgba(91, 155, 213, 0.08);
+}
+
+#recent-posts > .recent-post-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 32px rgba(30, 58, 95, 0.14);
+}
+
+/* 封面图 hover 微放大 */
+#recent-posts > .recent-post-item .post-cover img {
+  transition: transform 0.6s ease;
+}
+
+#recent-posts > .recent-post-item:hover .post-cover img {
+  transform: scale(1.05);
+}
+
+/* 标题 hover 变蓝 */
+#recent-posts > .recent-post-item .article-title {
+  color: #2d3748;
+  transition: color 0.3s;
+}
+
+#recent-posts > .recent-post-item:hover .article-title {
+  color: #5B9BD5;
+}
+
+/* 分类/标签胶囊 */
+.article-meta__tags .article-meta__tag,
+.article-meta__categories .article-meta__category {
+  display: inline-block;
+  background: rgba(91, 155, 213, 0.1);
+  color: #4A90C4;
+  border-radius: 20px;
+  padding: 2px 10px;
+  font-size: 0.85rem;
+  margin-right: 6px;
+  transition: all 0.3s;
+}
+
+.article-meta__tags .article-meta__tag:hover,
+.article-meta__categories .article-meta__category:hover {
+  background: #5B9BD5;
+  color: #fff;
+}
+
+/* 暗色模式适配 */
+[data-theme="dark"] #recent-posts > .recent-post-item {
+  background: rgba(40, 40, 45, 0.7);
+  border-color: rgba(255, 255, 255, 0.05);
+}
+
+[data-theme="dark"] #recent-posts > .recent-post-item .article-title {
+  color: #e2e8f0;
+}
+
+[data-theme="dark"] .article-meta__tags .article-meta__tag,
+[data-theme="dark"] .article-meta__categories .article-meta__category {
+  background: rgba(91, 155, 213, 0.15);
+  color: #90cdf4;
+}
+
+/* ========== 侧边栏美化 ========== */
+
+/* 卡片统一 */
+#aside-content .card-widget {
+  border-radius: 16px;
+  box-shadow: 0 2px 12px rgba(30, 58, 95, 0.06);
+  border: 1px solid rgba(91, 155, 213, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden;
+}
+
+#aside-content .card-widget:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(30, 58, 95, 0.1);
+}
+
+/* 卡片标题左侧蓝线 */
+#aside-content .card-widget .item-headline {
+  border-left: 4px solid #5B9BD5;
+  padding-left: 10px;
+  font-weight: 600;
+  color: #2d3748;
+  margin-bottom: 12px;
+}
+
+
+
+/* 作者名字 */
+#aside-content .card-info .author-info__name {
+  font-weight: 700;
+  color: #1e3a5f;
+  margin-top: 8px;
+}
+
+/* 统计数字 */
+#aside-content .card-info .author-info__num {
+  font-weight: 600;
+  color: #5B9BD5;
+}
+
+/* 最新文章列表 */
+#aside-content .card-recent-post .aside-list-item {
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(91, 155, 213, 0.06);
+  transition: background 0.3s ease, padding-left 0.3s ease;
+  border-radius: 6px;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#aside-content .card-recent-post .aside-list-item:last-child {
+  border-bottom: none;
+}
+
+#aside-content .card-recent-post .aside-list-item:hover {
+  background: rgba(91, 155, 213, 0.06);
+  padding-left: 10px;
+}
+
+#aside-content .card-recent-post .aside-list-item .content a {
+  color: #2d3748;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+#aside-content .card-recent-post .aside-list-item:hover .content a {
+  color: #5B9BD5;
+}
+
+#aside-content .card-recent-post .aside-list-item .content time {
+  color: #a0aec0;
+  font-size: 0.8rem;
+}
+
+/* 标签云 */
+#aside-content .card-tag-cloud a {
+  display: inline-block;
+  background: rgba(91, 155, 213, 0.08);
+  color: #4A90C4;
+  border-radius: 20px;
+  padding: 3px 12px;
+  font-size: 0.85rem;
+  margin: 3px 4px 3px 0;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(91, 155, 213, 0.1);
+  text-decoration: none;
+}
+
+#aside-content .card-tag-cloud a:hover {
+  background: #5B9BD5;
+  color: #fff;
+  border-color: #5B9BD5;
+  transform: translateY(-1px);
+}
+
+/* 公告内容 */
+#aside-content .card-announcement .announcement-content {
+  color: #4A5568;
+  line-height: 1.7;
+  font-size: 0.95rem;
+}
+
+/* ==================== 暗色模式适配 ==================== */
+[data-theme="dark"] #aside-content .card-widget {
+  background: rgba(40, 40, 45, 0.7);
+  border-color: rgba(255, 255, 255, 0.05);
+}
+
+[data-theme="dark"] #aside-content .card-widget .item-headline {
+  color: #e2e8f0;
+}
+
+[data-theme="dark"] #aside-content .card-info .author-info__name {
+  color: #e2e8f0;
+}
+
+[data-theme="dark"] #aside-content .card-recent-post .aside-list-item .content a {
+  color: #e2e8f0;
+}
+
+[data-theme="dark"] #aside-content .card-recent-post .aside-list-item:hover .content a {
+  color: #90cdf4;
+}
+
+[data-theme="dark"] #aside-content .card-tag-cloud a {
+  background: rgba(91, 155, 213, 0.12);
+  color: #90cdf4;
+  border-color: rgba(91, 155, 213, 0.2);
+}
+
+[data-theme="dark"] #aside-content .card-announcement .announcement-content {
+  color: #a0aec0;
+}
+
+/* 隐藏原来的红星 */
+#aside-content .card-announcement .item-headline i {
+  display: none;
+}
+
+/* 在标题文本前插入静态 Font Awesome 指南针 */
+#aside-content .card-announcement .item-headline::before {
+  content: '\f14e';
+  color: #5B9BD5;
+  font-family: 'Font Awesome 5 Free', 'Font Awesome 6 Free';
+  font-weight: 900;
+  font-size: 1.1rem;
+  margin-right: 8px;
+  display: inline-block;
+}
+
+/* ========== 首页磁贴（学习 / 生活 / 热爱） ========== */
+.tiles-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.tile {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  min-height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 背景图 */
+.tile-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  z-index: 0;
+  transition: transform 0.6s ease;
+}
+
+/* 遮罩 */
+.tile-mask {
+  position: absolute;
+  inset: 0;
+  background: rgba(30, 58, 95, 0.5);
+  z-index: 1;
+  transition: background 0.35s ease;
+}
+
+/* 标题 */
+.tile-title {
+  position: relative;
+  z-index: 2;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #fff;
+  text-shadow: 0 2px 6px rgba(0,0,0,0.5);
+  letter-spacing: 3px;
+}
+
+/* hover 效果 */
+.tile:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(30, 58, 95, 0.22);
+}
+
+.tile:hover .tile-bg {
+  transform: scale(1.08);
+}
+
+.tile:hover .tile-mask {
+  background: rgba(30, 58, 95, 0.3);
+}
+
+/* 暗色模式 */
+[data-theme="dark"] .tile-mask {
+  background: rgba(30, 58, 95, 0.6);
+}
+[data-theme="dark"] .tile:hover .tile-mask {
+  background: rgba(30, 58, 95, 0.4);
+}
+
+/* 移动端 */
+@media (max-width: 768px) {
+  .tiles-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+  .tile {
+    min-height: 100px;
+  }
+  .tile-title {
+    font-size: 1.2rem;
+  }
+}
+@media (max-width: 480px) {
+  .tiles-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ========== 侧边栏卡片半透明毛玻璃 ========== */
+#aside-content .card-widget {
+  background: rgba(255, 255, 255, 0.64) !important;
+  backdrop-filter: blur(0px) saturate(160%);
+  -webkit-backdrop-filter: blur(12px) saturate(160%);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 0 4px 20px rgba(30, 58, 95, 0.08);
+}
+
+/* 暗色模式 */
+[data-theme="dark"] #aside-content .card-widget {
+  background: rgba(30, 30, 35, 0.64) !important;
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+/* ========== 侧边栏文字可读性优化 ========== */
+
+/* 卡片标题 */
+#aside-content .card-widget .item-headline {
+  color: #1a202c !important;
+}
+
+/* 最新文章：标题 */
+#aside-content .card-recent-post .aside-list-item .content a {
+  color: #2d3748 !important;
+  font-weight: 500;
+}
+
+/* 最新文章：日期 */
+#aside-content .card-recent-post .aside-list-item .content time {
+  color: #4a5568 !important;
+}
+
+/* 标签云 */
+#aside-content .card-tag-cloud a {
+  color: #2d3748 !important;
+  background: rgba(91, 155, 213, 0.15) !important;
+}
+
+#aside-content .card-tag-cloud a:hover {
+  color: #fff !important;
+}
+
+/* 作者信息 */
+#aside-content .card-info .author-info__name {
+  color: #1a202c !important;
+}
+
+#aside-content .card-info .author-info__description {
+  color: #4a5568 !important;
+}
+
+/* 统计数字标签 */
+#aside-content .card-info .author-info__num-name {
+  color: #718096 !important;
+}
+
+/* 公告内容 */
+#aside-content .card-announcement .announcement-content {
+  color: #2d3748 !important;
+}
+
+/* 天气面板（补漏） */
+#weather-panel .weather-temp {
+  color: #1a202c !important;
+}
+#weather-panel .weather-desc {
+  color: #2d3748 !important;
+}
+#weather-panel .weather-place,
+#weather-panel .weather-clock #weather-date {
+  color: #4a5568 !important;
+}
+
+/* ==================== 暗色模式 ==================== */
+[data-theme="dark"] #aside-content .card-widget .item-headline,
+[data-theme="dark"] #aside-content .card-recent-post .aside-list-item .content a,
+[data-theme="dark"] #aside-content .card-tag-cloud a,
+[data-theme="dark"] #aside-content .card-info .author-info__name,
+[data-theme="dark"] #weather-panel .weather-temp {
+  color: #e2e8f0 !important;
+}
+
+[data-theme="dark"] #aside-content .card-recent-post .aside-list-item .content time,
+[data-theme="dark"] #aside-content .card-info .author-info__description,
+[data-theme="dark"] #aside-content .card-info .author-info__num-name,
+[data-theme="dark"] #weather-panel .weather-place,
+[data-theme="dark"] #weather-panel .weather-clock #weather-date {
+  color: #a0aec0 !important;
+}
+
+[data-theme="dark"] #aside-content .card-announcement .announcement-content {
+  color: #cbd5e0 !important;
+}

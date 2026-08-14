@@ -1,0 +1,84 @@
+/* 彻底隐藏主题默认标题 */
+#page-header .site-title,
+#site-info .site-title,
+#site-title,
+.site-title {
+  display: none !important;
+}
+
+/* 欢迎区域整体居中 */
+.welcome-wrapper {
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  z-index: 10;
+  width: 90%;
+  max-width: 800px;
+}
+
+/* 装饰性小标题：灰色幽灵 */
+.welcome-title {
+  font-size: 0.85rem !important;
+  font-weight: 400 !important;
+  color: rgba(236, 225, 225, 0.4) !important;
+  letter-spacing: 8px !important;
+  text-transform: uppercase !important;
+  margin-bottom: 20px !important;
+  animation: welcome-reveal 6s ease-in-out infinite;
+}
+
+/* 循环显现-消失 */
+@keyframes welcome-reveal {
+  0% {
+    clip-path: inset(0 100% 0 0);
+    opacity: 1;
+  }
+  40% {
+    clip-path: inset(0 0 0 0);
+    opacity: 1;
+  }
+  60% {
+    clip-path: inset(0 0 0 0);
+    opacity: 1;
+  }
+  100% {
+    clip-path: inset(0 0 0 100%);
+    opacity: 0;
+  }
+}
+
+/* 打字机区域 */
+.typewriter-line {
+  font-size: 1.15rem;
+  color: rgba(236, 225, 225, 0.85);
+  letter-spacing: 2px;
+  min-height: 1.6em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+/* 光标 */
+.typewriter-line::after {
+  content: '';
+  display: inline-block;
+  width: 2px;
+  height: 1.1em;
+  background: rgba(236, 225, 225, 0.85);
+  margin-left: 4px;
+  animation: cursor-blink 1s step-end infinite;
+  vertical-align: text-bottom;
+}
+
+@keyframes cursor-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* 兜底：隐藏旧的 welcome-text */
+.welcome-text {
+  display: none !important;
+}

@@ -3,7 +3,7 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: azur blog
+title: 灰色幽灵
 subtitle: '记录学习、生活与热爱'
 description: '一个分享技术、生活、学习的个人博客'
 keywords: 博客, 技术, 学习, 生活, 碧蓝航线, vibe coding
@@ -101,4 +101,13 @@ theme: butterfly
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
-  type: ''
+  type: git
+  repo: https://github.com/11408-prog/azur_blog
+  branch: gh-pages
+
+
+search:
+  path: search.xml
+  field: post
+  content: true
+  format: html
