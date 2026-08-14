@@ -1,0 +1,22 @@
+# 侧栏自定义卡片（Butterfly 官方扩展点）
+# card_top_self.pug / card_bottom_self.pug 读取 site.data.widget
+# top: 在公告卡片下方显示（所有页面）
+# bottom: 在侧栏最底部显示
+top:
+  - class_name: card-weather
+    id_name: weather
+    icon: fas fa-cloud-sun
+    name: 天气
+    html: |
+      <div id="weather-panel">
+        <div class="weather-main">
+          <span class="weather-icon" id="weather-icon">🌡️</span>
+          <span class="weather-temp" id="weather-temp">--°</span>
+          <span class="weather-desc" id="weather-desc">定位中…</span>
+        </div>
+        <div class="weather-place" id="weather-place"></div>
+        <div class="weather-clock">
+          <span id="weather-time">--:--:--</span>
+          <span id="weather-date"></span>
+        </div>
+      </div>
