@@ -144,10 +144,9 @@
     grid.className = 'tiles-grid';
 
     var items = [
-      { title: '学习', bg: '/img/study.jpg', link: '/categories/学习/' },
-      { title: '生活', bg: '/img/life.jpg', link: '/categories/生活/' },
-      { title: '热爱', bg: '/img/love.jpg', link: '/categories/热爱/' }
-    ];
+{ title: '学习', bg: '/azur_blog/img/study.jpg', link: '/azur_blog/categories/学习/' },
+{ title: '生活', bg: '/azur_blog/img/life.jpg', link: '/azur_blog/categories/生活/' },
+{ title: '热爱', bg: '/azur_blog/img/love.jpg', link: '/azur_blog/categories/热爱/' }    ];
 
     items.forEach(function (item) {
       var el = document.createElement('a');

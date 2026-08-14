@@ -1,10 +1,9 @@
 (function(){
 
 const covers = [
-    /*"/img/covers/enterprise_4.jpg",*/
-    "/img/covers/enterprise_2.jpg",
-    "/img/covers/enterprise_3.jpg",
-    "/img/covers/enterprise_1.jpg"
+    "/azur_blog/img/covers/enterprise_2.jpg",
+    "/azur_blog/img/covers/enterprise_3.jpg",
+    "/azur_blog/img/covers/enterprise_1.jpg"
 ];
 
 
