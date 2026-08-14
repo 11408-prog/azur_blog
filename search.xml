@@ -2,7 +2,7 @@
 <search>
   <entry>
     <title>css常见调参函数</title>
-    <url>/2026/08/14/css%E5%B8%B8%E8%A7%81%E8%B0%83%E5%8F%82%E5%87%BD%E6%95%B0/</url>
+    <url>/azur_blog/2026/08/14/css%E5%B8%B8%E8%A7%81%E8%B0%83%E5%8F%82%E5%87%BD%E6%95%B0/</url>
     <content><![CDATA[<h2 id="reba-红绿蓝透明度"><a href="#reba-红绿蓝透明度" class="headerlink" title="reba &#x2F; 红绿蓝透明度"></a>reba &#x2F; 红绿蓝透明度</h2><p>用法：</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">reba(红色，绿色，蓝色，不透明度)&lt;br&gt;</span><br></pre></td></tr></table></figure>
 <p>前三者都是0 ~ 255 ，数越大越接近白色。不透明度是越低越透明。<br></p>
@@ -19,7 +19,7 @@
   </entry>
   <entry>
     <title>企业的皮肤和情人节台词汇总</title>
-    <url>/2026/08/14/%E4%BC%81%E4%B8%9A%E7%9A%84%E7%9A%AE%E8%82%A4%E5%92%8C%E6%83%85%E4%BA%BA%E8%8A%82%E5%8F%B0%E8%AF%8D%E6%B1%87%E6%80%BB/</url>
+    <url>/azur_blog/2026/08/14/%E4%BC%81%E4%B8%9A%E7%9A%84%E7%9A%AE%E8%82%A4%E5%92%8C%E6%83%85%E4%BA%BA%E8%8A%82%E5%8F%B0%E8%AF%8D%E6%B1%87%E6%80%BB/</url>
     <content><![CDATA[<h3 id="初始"><a href="#初始" class="headerlink" title="初始"></a>初始</h3><p>登录界面	<br>碧蓝航线！</p>
 <p>舰船型号	<br>约克城级航空母舰2号舰—企业，舷号CV-6</p>
 <p>自我介绍	<br>我是约克城级航空母舰的企业。灰色幽灵是我众多绰号之一。 身上这浸满鲜血的战衣无时无刻的在提醒着我沉重的使命，不过我将继续胜利，直到战争的尽头</p>
@@ -175,7 +175,7 @@
   </entry>
   <entry>
     <title>博客制作注意事项</title>
-    <url>/2026/08/11/%E5%8D%9A%E5%AE%A2%E5%88%B6%E4%BD%9C%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/</url>
+    <url>/azur_blog/2026/08/11/%E5%8D%9A%E5%AE%A2%E5%88%B6%E4%BD%9C%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/</url>
     <content><![CDATA[<h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>今天尝试搭建好了博客的环境，并制作了一个大概的样子。在开发过程中遇到了如下两个问题：</p>
 <h2 id="1-欢迎动画无法循环播放"><a href="#1-欢迎动画无法循环播放" class="headerlink" title="1.欢迎动画无法循环播放"></a>1.欢迎动画无法循环播放</h2><p>在css动画属性中用了forwards,应该改为infinite<br>最后的效果如下：</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">.welcome-text.animate &#123;</span><br><span class="line">  animation: welcome-reveal 6s ease-in-out infinite;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -191,17 +191,8 @@
       </tags>
   </entry>
   <entry>
-    <title>我的第一篇博客</title>
-    <url>/2026/08/11/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/</url>
-    <content><![CDATA[<p>这个网站打算用来记录一些自己的学习，vibe coding、日常，或者一些很随意的东西。</p>
-<span id="more"></span>
-
-<h1 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h1><p>博客这个东西是我在网上无意中看到的，感觉很有意思，于是打算自己做一下。我本人是浙江一个财经大学数据科学与大数据技术专业的学生，很喜欢代码和碧蓝航线中一个叫企业的角色，因此尝试做了一些东西。不过大部分是 vibe coding 出来的。因此，这个博客我打算全部自己动手做，也算是一个练手的机会。希望能打造出一个碧蓝航线风格的博客，也能用来记录自己提升的过程。</p>
-]]></content>
-  </entry>
-  <entry>
     <title>常用指令</title>
-    <url>/2026/08/11/%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4/</url>
+    <url>/azur_blog/2026/08/11/%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4/</url>
     <content><![CDATA[<h1 id="hexo"><a href="#hexo" class="headerlink" title="hexo"></a>hexo</h1><p>创建文章： </p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo new <span class="string">&quot;标题&quot;</span></span><br></pre></td></tr></table></figure>
 
@@ -221,8 +212,17 @@
       </tags>
   </entry>
   <entry>
+    <title>我的第一篇博客</title>
+    <url>/azur_blog/2026/08/11/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/</url>
+    <content><![CDATA[<p>这个网站打算用来记录一些自己的学习，vibe coding、日常，或者一些很随意的东西。</p>
+<span id="more"></span>
+
+<h1 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h1><p>博客这个东西是我在网上无意中看到的，感觉很有意思，于是打算自己做一下。我本人是浙江一个财经大学数据科学与大数据技术专业的学生，很喜欢代码和碧蓝航线中一个叫企业的角色，因此尝试做了一些东西。不过大部分是 vibe coding 出来的。因此，这个博客我打算全部自己动手做，也算是一个练手的机会。希望能打造出一个碧蓝航线风格的博客，也能用来记录自己提升的过程。</p>
+]]></content>
+  </entry>
+  <entry>
     <title>开发遇到的问题以及对策</title>
-    <url>/2026/08/11/%E5%BC%80%E5%8F%91%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98%E4%BB%A5%E5%8F%8A%E5%AF%B9%E7%AD%96/</url>
+    <url>/azur_blog/2026/08/11/%E5%BC%80%E5%8F%91%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98%E4%BB%A5%E5%8F%8A%E5%AF%B9%E7%AD%96/</url>
     <content><![CDATA[<p><strong>Q: tags和categories有什么区别</strong><br><br>A:tags表示关键词和特征，categories表示大方向和目录。tags不需要事先定义，但是categoties需要事先定义</p>
 <p><strong>Q: forwards和infinite有什么区别</strong><br><br>A:前者会使动画停在最后一帧，后者会使动画无限播放<br>对比：</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">/* 只播放一次，结束后停在最后一帧 */</span><br><span class="line">animation-name: welcome-reveal;</span><br><span class="line">animation-duration: 6s;</span><br><span class="line">animation-timing-function: ease-in-out;</span><br><span class="line">animation-fill-mode: forwards;</span><br><span class="line"></span><br><span class="line">/* 无限循环播放 */</span><br><span class="line">animation-name: welcome-reveal;</span><br><span class="line">animation-duration: 6s;</span><br><span class="line">animation-timing-function: ease-in-out;</span><br><span class="line">animation-iteration-count: infinite;</span><br></pre></td></tr></table></figure>
