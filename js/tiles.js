@@ -28,10 +28,9 @@
     grid.className = 'tiles-grid';
 
     var items = [
-      { icon: '📚', title: '学习', desc: '记录技术成长', bg: '/img/study.jpg', link: '#' },
-      { icon: '☕', title: '生活', desc: '日常点滴', bg: '/img/life.jpg', link: '#' },
-      { icon: '⚓', title: '热爱', desc: '碧蓝航线与企业', bg: '/img/love.jpg', link: '#' }
-    ];
+{ icon: '📚', title: '学习', desc: '记录技术成长', bg: '/azur_blog/img/study.jpg', link: '#' },
+{ icon: '☕', title: '生活', desc: '日常点滴', bg: '/azur_blog/img/life.jpg', link: '#' },
+{ icon: '⚓', title: '热爱', desc: '碧蓝航线与企业', bg: '/azur_blog/img/love.jpg', link: '#' }   ];
 
     items.forEach(function (item) {
       var el = document.createElement('a');
