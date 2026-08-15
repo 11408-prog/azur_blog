@@ -15,10 +15,15 @@ hexo.extend.generator.register('carousel-images', function () {
   try {
     files = fs
       .readdirSync(dir)
-      .filter((f) => /\.(jpe?g|png|gif|webp|avif)$/i.test(f))
-      .sort();
+      .filter((f) => /\.(jpe?g|png|gif|webp|avif)$/i.test(f));
   } catch (e) {
     // 目录不存在时返回空列表
+  }
+
+  // 构建时随机打乱顺序：每次部署顺序换新，一次部署内保持稳定
+  for (let i = files.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [files[i], files[j]] = [files[j], files[i]];
   }
 
   const images = files.map((f) => '/azur_blog/carousel/' + f);

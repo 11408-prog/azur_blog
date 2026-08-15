@@ -10,13 +10,9 @@ top:
     html: |
       <div id="weather-panel">
         <div class="weather-main">
-          <span class="weather-icon" id="weather-icon">🌡️</span>
+          <i class="weather-icon fa-solid fa-cloud-sun" id="weather-icon"></i>
           <span class="weather-temp" id="weather-temp">--°</span>
-          <span class="weather-desc" id="weather-desc">定位中…</span>
+          <span class="weather-desc" id="weather-desc">加载中…</span>
         </div>
         <div class="weather-place" id="weather-place"></div>
-        <div class="weather-clock">
-          <span id="weather-time">--:--:--</span>
-          <span id="weather-date"></span>
-        </div>
       </div>

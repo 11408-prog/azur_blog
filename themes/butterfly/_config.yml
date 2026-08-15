@@ -48,7 +48,6 @@ code_blocks:
 social:
   fab fa-github: https://github.com/11408-prog || Github
   fab fa-qq: tencent://message/?uin=3036248429 || QQ
-  fab fa-weixin: /img/wechat.jpg || x18137810541
 
 # --------------------------------------
 # Image Settings
@@ -64,10 +63,10 @@ avatar:
 disable_top_img: false
 
 # If the banner of page not setting, it will show the default_top_img
-default_top_img:
+default_top_img: /img/covers/enterprise_2.jpg
 
 # The banner image of index page
-index_img:
+index_img: /img/covers/enterprise_2.jpg
 
 # The banner image of archive page
 archive_img:
@@ -112,8 +111,8 @@ error_img:
 
 # A simple 404 page
 error_404:
-  enable: false
-  subtitle: 'Page Not Found'
+  enable: true
+  subtitle: '页面不存在'
   background: /img/error-page.png
 
 post_meta:
@@ -286,7 +285,7 @@ aside:
       text: Follow Me
       link: https://github.com/xxxxxx
   card_announcement:
-    enable: true
+    enable: false
     content: 记录学习、生活与热爱。
   card_recent_post:
     enable: true
@@ -751,19 +750,19 @@ site_verification:
 
 theme_color:
   enable: true
-  main: "#5B9BD5"
-  paginator: "#4A90C4"
-  button_hover: "#3E7FB0"
+  main: "#1E3A5F"
+  paginator: "#1E3A5F"
+  button_hover: "#162B47"
   text_selection: "#A8D8EA"
-  link_color: "#4A90C4"
-  meta_color: "#8A97A5"
-  hr_color: "#C6DCEF"
-  code_foreground: "#3E7FB0"
-  code_background: "rgba(91, 155, 213, .06)"
-  toc_color: "#5B9BD5"
-  blockquote_padding_color: "#5B9BD5"
-  blockquote_background_color: "#5B9BD5"
-  scrollbar_color: "#5B9BD5"
+  link_color: "#2B5A8F"
+  meta_color: "#718096"
+  hr_color: "#A8D8EA"
+  code_foreground: "#2B5A8F"
+  code_background: "rgba(43, 90, 143, .06)"
+  toc_color: "#2B5A8F"
+  blockquote_padding_color: "#C9A227"
+  blockquote_background_color: "rgba(43, 90, 143, .05)"
+  scrollbar_color: "#2B5A8F"
   meta_theme_color_light: "#ffffff"
   meta_theme_color_dark: "#0d0d0d"
 
@@ -1050,8 +1049,6 @@ inject:
    - <link rel="stylesheet" href="/azur_blog/css/custom.css?v=1.1">
   bottom:
    - <script src="/azur_blog/js/welcome_animation.js?v=1.1"></script>
-   - <script src="/azur_blog/js/random_cover.js?v=1.1"></script>
-   - <script src="/azur_blog/js/runtime.js?v=1.1"></script>
    - <script src="/azur_blog/js/weather.js?v=1.1"></script>
    - <script src="/azur_blog/js/carousel.js?v=1.1"></script>
     
