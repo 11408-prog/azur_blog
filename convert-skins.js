@@ -1,7 +1,11 @@
 /**
  * 皮肤立绘批量转换脚本：PNG/JPG -> WebP
  * ------------------------------------------------------------
- * 用法：node scripts/convert-skins.js
+ * 用法：node convert-skins.js
+ *
+ * !!! 重要警告：这个文件必须放在项目根目录（和 compress-images.js 同级），
+ *     绝对不能放进 scripts/ 目录！Hexo 会自动加载并执行 scripts/ 下的
+ *     每个 JS 文件，那样每次 hexo generate 都会运行本脚本、把图片反复转换。
  *
  * 做的事：
  *   - 把 source/img/汇总-立绘/ 下所有 PNG/JPG 转成 WebP（quality 90）
