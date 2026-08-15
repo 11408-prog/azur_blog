@@ -18,6 +18,23 @@
       </tags>
   </entry>
   <entry>
+    <title>博客制作注意事项</title>
+    <url>/azur_blog/2026/08/11/%E5%8D%9A%E5%AE%A2%E5%88%B6%E4%BD%9C%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/</url>
+    <content><![CDATA[<h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>今天尝试搭建好了博客的环境，并制作了一个大概的样子。在开发过程中遇到了如下两个问题：</p>
+<h2 id="1-欢迎动画无法循环播放"><a href="#1-欢迎动画无法循环播放" class="headerlink" title="1.欢迎动画无法循环播放"></a>1.欢迎动画无法循环播放</h2><p>在css动画属性中用了forwards,应该改为infinite<br>最后的效果如下：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">.welcome-text.animate &#123;</span><br><span class="line">  animation: welcome-reveal 6s ease-in-out infinite;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="2-将路径或者一些文件弄混"><a href="#2-将路径或者一些文件弄混" class="headerlink" title="2.将路径或者一些文件弄混"></a>2.将路径或者一些文件弄混</h2><p>目前的结构有点像是一个嵌套的结构，因此一定要记录好架构，目前的架构为<br></p>
+<p>  blog&#x2F;                                    ← 整个博客项目<br>  ├── _config.yml                          ← ① 站点配置（博客”本体”的设置）<br>  ├── package.json                         ← Node 依赖清单（hexo<br>  本体、渲染插件）<br>  ├── package-lock.json                    ← 依赖锁定文件（不用管）<br>  ├── node_modules&#x2F;                        ← 已安装的依赖（不用管，别删）<br>  │<br>  ├── scaffolds&#x2F;                           ← 新建文章&#x2F;页面的”模板”<br>  │   ├── post.md                         （新建文章时套用）<br>  │   ├── page.md                         （新建页面时套用）<br>  │   └── draft.md                        （新建草稿时套用）<br>  │<br>  ├── source&#x2F;                              ← ② 你的”原料”都在这里<br>  │   ├── _posts&#x2F;                         ← ★ 你的文章（Markdown 文件）<br>  │   │   └── 我的第一篇博客.md<br>  │   ├── img&#x2F;                            ← 你的图片（avatar.png 头像在这）<br>  │   ├── tags&#x2F;index.md                   ← “标签”页面<br>  │   ├── categories&#x2F;index.md             ← “分类”页面<br>  │   └── _data&#x2F;butterfly.yml             ← 主题备用配置（目前是空文件）<br>  │<br>  ├── themes&#x2F;                              ← ③ 主题（决定网站长什么样）<br>  │   └── butterfly&#x2F;<br>  │       ├── _config.yml                 ← ★★ 主题配置（最常改的）<br>  │       ├── layout&#x2F;                     ← 页面模板（Pug，一般不用动）<br>  │       ├── source&#x2F;                     ← 主题自己的 CSS&#x2F;JS&#x2F;默认图<br>  │       └── scripts&#x2F;                    ← 主题辅助脚本<br>  │<br>  ├── public&#x2F;                              ← ④<br>  生成出的”成品网站”（自动生成，别手动改）<br>  ├── db.json                              ← 缓存（不用管）<br>  ├── .git&#x2F;                                ← 版本控制（上次已 init 并提交）<br>  └── .github&#x2F;                             ← GitHub 自动更新依赖的配置</p>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>js</tag>
+        <tag>开发</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>企业的皮肤和情人节台词汇总</title>
     <url>/azur_blog/2026/08/14/%E4%BC%81%E4%B8%9A%E7%9A%84%E7%9A%AE%E8%82%A4%E5%92%8C%E6%83%85%E4%BA%BA%E8%8A%82%E5%8F%B0%E8%AF%8D%E6%B1%87%E6%80%BB/</url>
     <content><![CDATA[<h3 id="初始"><a href="#初始" class="headerlink" title="初始"></a>初始</h3><p>登录界面	<br>碧蓝航线！</p>
@@ -174,21 +191,30 @@
       </tags>
   </entry>
   <entry>
-    <title>博客制作注意事项</title>
-    <url>/azur_blog/2026/08/11/%E5%8D%9A%E5%AE%A2%E5%88%B6%E4%BD%9C%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/</url>
-    <content><![CDATA[<h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>今天尝试搭建好了博客的环境，并制作了一个大概的样子。在开发过程中遇到了如下两个问题：</p>
-<h2 id="1-欢迎动画无法循环播放"><a href="#1-欢迎动画无法循环播放" class="headerlink" title="1.欢迎动画无法循环播放"></a>1.欢迎动画无法循环播放</h2><p>在css动画属性中用了forwards,应该改为infinite<br>最后的效果如下：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">.welcome-text.animate &#123;</span><br><span class="line">  animation: welcome-reveal 6s ease-in-out infinite;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="2-将路径或者一些文件弄混"><a href="#2-将路径或者一些文件弄混" class="headerlink" title="2.将路径或者一些文件弄混"></a>2.将路径或者一些文件弄混</h2><p>目前的结构有点像是一个嵌套的结构，因此一定要记录好架构，目前的架构为<br></p>
-<p>  blog&#x2F;                                    ← 整个博客项目<br>  ├── _config.yml                          ← ① 站点配置（博客”本体”的设置）<br>  ├── package.json                         ← Node 依赖清单（hexo<br>  本体、渲染插件）<br>  ├── package-lock.json                    ← 依赖锁定文件（不用管）<br>  ├── node_modules&#x2F;                        ← 已安装的依赖（不用管，别删）<br>  │<br>  ├── scaffolds&#x2F;                           ← 新建文章&#x2F;页面的”模板”<br>  │   ├── post.md                         （新建文章时套用）<br>  │   ├── page.md                         （新建页面时套用）<br>  │   └── draft.md                        （新建草稿时套用）<br>  │<br>  ├── source&#x2F;                              ← ② 你的”原料”都在这里<br>  │   ├── _posts&#x2F;                         ← ★ 你的文章（Markdown 文件）<br>  │   │   └── 我的第一篇博客.md<br>  │   ├── img&#x2F;                            ← 你的图片（avatar.png 头像在这）<br>  │   ├── tags&#x2F;index.md                   ← “标签”页面<br>  │   ├── categories&#x2F;index.md             ← “分类”页面<br>  │   └── _data&#x2F;butterfly.yml             ← 主题备用配置（目前是空文件）<br>  │<br>  ├── themes&#x2F;                              ← ③ 主题（决定网站长什么样）<br>  │   └── butterfly&#x2F;<br>  │       ├── _config.yml                 ← ★★ 主题配置（最常改的）<br>  │       ├── layout&#x2F;                     ← 页面模板（Pug，一般不用动）<br>  │       ├── source&#x2F;                     ← 主题自己的 CSS&#x2F;JS&#x2F;默认图<br>  │       └── scripts&#x2F;                    ← 主题辅助脚本<br>  │<br>  ├── public&#x2F;                              ← ④<br>  生成出的”成品网站”（自动生成，别手动改）<br>  ├── db.json                              ← 缓存（不用管）<br>  ├── .git&#x2F;                                ← 版本控制（上次已 init 并提交）<br>  └── .github&#x2F;                             ← GitHub 自动更新依赖的配置</p>
+    <title>开发遇到的问题以及对策</title>
+    <url>/azur_blog/2026/08/11/%E5%BC%80%E5%8F%91%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98%E4%BB%A5%E5%8F%8A%E5%AF%B9%E7%AD%96/</url>
+    <content><![CDATA[<p><strong>Q: tags和categories有什么区别</strong><br><br>A:tags表示关键词和特征，categories表示大方向和目录。tags不需要事先定义，但是categoties需要事先定义</p>
+<p><strong>Q: forwards和infinite有什么区别</strong><br><br>A:前者会使动画停在最后一帧，后者会使动画无限播放<br>对比：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">/* 只播放一次，结束后停在最后一帧 */</span><br><span class="line">animation-name: welcome-reveal;</span><br><span class="line">animation-duration: 6s;</span><br><span class="line">animation-timing-function: ease-in-out;</span><br><span class="line">animation-fill-mode: forwards;</span><br><span class="line"></span><br><span class="line">/* 无限循环播放 */</span><br><span class="line">animation-name: welcome-reveal;</span><br><span class="line">animation-duration: 6s;</span><br><span class="line">animation-timing-function: ease-in-out;</span><br><span class="line">animation-iteration-count: infinite;</span><br></pre></td></tr></table></figure>
+
+<p><strong>Q:有时会出现tags: 或者其它类似物下一行明明是空行却报错，该怎么办</strong><br><br>A:记得：之后要空格</p>
 ]]></content>
       <categories>
         <category>技术</category>
       </categories>
       <tags>
-        <tag>js</tag>
         <tag>开发</tag>
+        <tag>注意事项</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>我的第一篇博客</title>
+    <url>/azur_blog/2026/08/11/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/</url>
+    <content><![CDATA[<p>这个网站打算用来记录一些自己的学习，vibe coding、日常，或者一些很随意的东西。</p>
+<span id="more"></span>
+
+<h1 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h1><p>博客这个东西是我在网上无意中看到的，感觉很有意思，于是打算自己做一下。我本人是浙江一个财经大学数据科学与大数据技术专业的学生，很喜欢代码和碧蓝航线中一个叫企业的角色，因此尝试做了一些东西。不过大部分是 vibe coding 出来的。因此，这个博客我打算全部自己动手做，也算是一个练手的机会。希望能打造出一个碧蓝航线风格的博客，也能用来记录自己提升的过程。</p>
+]]></content>
   </entry>
   <entry>
     <title>常用指令</title>
@@ -214,31 +240,5 @@
       <tags>
         <tag>hexo</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>开发遇到的问题以及对策</title>
-    <url>/azur_blog/2026/08/11/%E5%BC%80%E5%8F%91%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98%E4%BB%A5%E5%8F%8A%E5%AF%B9%E7%AD%96/</url>
-    <content><![CDATA[<p><strong>Q: tags和categories有什么区别</strong><br><br>A:tags表示关键词和特征，categories表示大方向和目录。tags不需要事先定义，但是categoties需要事先定义</p>
-<p><strong>Q: forwards和infinite有什么区别</strong><br><br>A:前者会使动画停在最后一帧，后者会使动画无限播放<br>对比：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">/* 只播放一次，结束后停在最后一帧 */</span><br><span class="line">animation-name: welcome-reveal;</span><br><span class="line">animation-duration: 6s;</span><br><span class="line">animation-timing-function: ease-in-out;</span><br><span class="line">animation-fill-mode: forwards;</span><br><span class="line"></span><br><span class="line">/* 无限循环播放 */</span><br><span class="line">animation-name: welcome-reveal;</span><br><span class="line">animation-duration: 6s;</span><br><span class="line">animation-timing-function: ease-in-out;</span><br><span class="line">animation-iteration-count: infinite;</span><br></pre></td></tr></table></figure>
-
-<p><strong>Q:有时会出现tags: 或者其它类似物下一行明明是空行却报错，该怎么办</strong><br><br>A:记得：之后要空格</p>
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>开发</tag>
-        <tag>注意事项</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>我的第一篇博客</title>
-    <url>/azur_blog/2026/08/11/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/</url>
-    <content><![CDATA[<p>这个网站打算用来记录一些自己的学习，vibe coding、日常，或者一些很随意的东西。</p>
-<span id="more"></span>
-
-<h1 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h1><p>博客这个东西是我在网上无意中看到的，感觉很有意思，于是打算自己做一下。我本人是浙江一个财经大学数据科学与大数据技术专业的学生，很喜欢代码和碧蓝航线中一个叫企业的角色，因此尝试做了一些东西。不过大部分是 vibe coding 出来的。因此，这个博客我打算全部自己动手做，也算是一个练手的机会。希望能打造出一个碧蓝航线风格的博客，也能用来记录自己提升的过程。</p>
-]]></content>
   </entry>
 </search>
