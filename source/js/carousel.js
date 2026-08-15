@@ -27,8 +27,6 @@
   function buildCarousel(imgs) {
     var cur = 0;
     var pos = 1;
-    var INTERVAL = 4000;
-    var timer = null;
     var isTransitioning = false;
 
     var wrap = document.createElement('div');
@@ -116,12 +114,6 @@
       }
     });
 
-    function tick() { if (!isTransitioning) go((cur + 1) % imgs.length); }
-    timer = setInterval(tick, INTERVAL);
-
-    wrap.addEventListener('mouseenter', function () { clearInterval(timer); });
-    wrap.addEventListener('mouseleave', function () { clearInterval(timer); timer = setInterval(tick, INTERVAL); });
-
     return wrap;
   }
 
@@ -145,7 +137,6 @@
 
     var items = [
 { title: '学习', bg: '/azur_blog/img/study.jpg', link: '/azur_blog/categories/学习/' },
-{ title: '生活', bg: '/azur_blog/img/life.jpg', link: '/azur_blog/categories/生活/' },
 { title: '热爱', bg: '/azur_blog/img/love.jpg', link: '/azur_blog/categories/热爱/' }    ];
 
     items.forEach(function (item) {

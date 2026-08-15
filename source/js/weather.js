@@ -1,27 +1,21 @@
-/* 天气面板 - 手动输入城市，不获取位置权限 */
+/* 天气面板 - 固定显示郑州天气 */
 (function () {
   'use strict';
 
-  var STORAGE_KEY = 'azur_weather_city';
-  var DEFAULT_CITY = 'Beijing';
+  var CITY = 'Zhengzhou';
 
-  function getSavedCity() {
-    try { return localStorage.getItem(STORAGE_KEY) || DEFAULT_CITY; } catch (e) { return DEFAULT_CITY; }
-  }
-
-  function saveCity(name) {
-    try { localStorage.setItem(STORAGE_KEY, name); } catch (e) {}
-  }
-
+  // Font Awesome 6 免费版天气图标（实心字形，线条风由 CSS 描边实现）
   function iconFor(code) {
     var map = {
-      113: '☀️', 116: '⛅', 119: '☁️', 122: '☁️', 143: '🌫️',
-      176: '🌦️', 179: '🌨️', 182: '🌨️', 185: '🌨️', 200: '⛈️',
-      227: '🌨️', 230: '❄️', 248: '🌫️', 260: '🌫️', 263: '🌦️',
-      266: '🌧️', 281: '🌧️', 284: '🌧️', 293: '🌧️', 296: '🌧️',
-      299: '🌧️', 302: '🌧️', 305: '🌧️', 308: '🌧️', 311: '🌧️'
+      113: 'fa-sun', 116: 'fa-cloud-sun', 119: 'fa-cloud', 122: 'fa-cloud',
+      143: 'fa-smog', 176: 'fa-cloud-rain', 179: 'fa-snowflake', 182: 'fa-snowflake',
+      185: 'fa-cloud-rain', 200: 'fa-cloud-bolt', 227: 'fa-snowflake', 230: 'fa-snowflake',
+      248: 'fa-smog', 260: 'fa-smog', 263: 'fa-cloud-rain', 266: 'fa-cloud-rain',
+      281: 'fa-cloud-rain', 284: 'fa-cloud-rain', 293: 'fa-cloud-rain',
+      296: 'fa-cloud-rain', 299: 'fa-cloud-showers-heavy', 302: 'fa-cloud-showers-heavy',
+      305: 'fa-cloud-showers-heavy', 308: 'fa-cloud-showers-heavy', 311: 'fa-cloud-rain'
     };
-    return map[code] || '☁️';
+    return map[code] || 'fa-cloud';
   }
 
   function translateDesc(raw) {
@@ -36,7 +30,7 @@
     return map[raw] || raw;
   }
 
-  function render(data, cityName) {
+  function render(data) {
     var cur = data.current_condition[0];
     var temp = cur.temp_C;
     var desc = translateDesc(cur.weatherDesc[0].value);
@@ -47,55 +41,11 @@
 
     panel.innerHTML = '' +
       '<div class="weather-main">' +
-        '<div class="weather-icon">' + icon + '</div>' +
+        '<i class="weather-icon fa-solid ' + icon + '"></i>' +
         '<div class="weather-temp">' + temp + '°C</div>' +
         '<div class="weather-desc">' + desc + '</div>' +
       '</div>' +
-      '<div class="weather-place">' + (cityName || '未知城市') + '</div>' +
-      '<div class="weather-clock">' +
-        '<span id="weather-time">--:--:--</span>' +
-        '<span id="weather-date">----/--/--</span>' +
-      '</div>' +
-      '<div class="weather-city-input">' +
-        '<input type="text" id="weather-city" placeholder="输入城市 (如 Beijing)" value="' + (cityName || '') + '">' +
-      '</div>';
-
-    var input = document.getElementById('weather-city');
-    if (input) {
-      input.addEventListener('keydown', function (e) {
-        if (e.key === 'Enter') {
-          var val = this.value.trim();
-          if (val) {
-            saveCity(val);
-            fetchWeather(val);
-          }
-        }
-      });
-      input.addEventListener('blur', function () {
-        var val = this.value.trim();
-        if (val && val !== cityName) {
-          saveCity(val);
-          fetchWeather(val);
-        }
-      });
-    }
-
-    function tick() {
-      var now = new Date();
-      var h = String(now.getHours()).padStart(2, '0');
-      var m = String(now.getMinutes()).padStart(2, '0');
-      var s = String(now.getSeconds()).padStart(2, '0');
-      var y = now.getFullYear();
-      var mo = String(now.getMonth() + 1).padStart(2, '0');
-      var d = String(now.getDate()).padStart(2, '0');
-      var timeEl = document.getElementById('weather-time');
-      var dateEl = document.getElementById('weather-date');
-      if (timeEl) timeEl.textContent = h + ':' + m + ':' + s;
-      if (dateEl) dateEl.textContent = y + '年' + mo + '月' + d + '日';
-    }
-    tick();
-    if (window._weatherClock) clearInterval(window._weatherClock);
-    window._weatherClock = setInterval(tick, 1000);
+      '<div class="weather-place">' + CITY + '</div>';
   }
 
   function fetchWeather(city) {
@@ -105,18 +55,13 @@
         return r.json();
       })
       .then(function (data) {
-        // wttr.in 对无效城市会返回默认位置，通过 nearest_area 判断
-        var area = data.nearest_area[0];
-        var returnedName = area.areaName[0].value;
-        // 如果返回的城市和输入差异极大，可能是 fallback
-        render(data, city);
+        render(data);
       })
       .catch(function () {
         var panel = document.getElementById('weather-panel');
-        if (panel) panel.innerHTML = '<div style="text-align:center;color:#999;padding:10px;">查询失败，请检查城市名</div>';
+        if (panel) panel.innerHTML = '<div style="text-align:center;color:#999;padding:10px;">天气加载失败</div>';
       });
   }
 
-  var saved = getSavedCity();
-  fetchWeather(saved);
+  fetchWeather(CITY);
 })();
