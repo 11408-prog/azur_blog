@@ -18,34 +18,10 @@
       </tags>
   </entry>
   <entry>
-    <title>常用指令</title>
-    <url>/azur_blog/2026/08/11/%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4/</url>
-    <content><![CDATA[<h1 id="hexo"><a href="#hexo" class="headerlink" title="hexo"></a>hexo</h1><p>创建文章： </p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo new <span class="string">&quot;标题&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>更新网站： </p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git add .</span><br><span class="line"></span><br><span class="line">git commit -m <span class="string">&quot;更新&quot;</span></span><br><span class="line"></span><br><span class="line">git push origin main</span><br><span class="line"></span><br><span class="line">hexo clean</span><br><span class="line"></span><br><span class="line">hexo generate</span><br><span class="line"></span><br><span class="line">hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>创建一个独立页面：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo new page 页面名称</span><br></pre></td></tr></table></figure>
-
-<p>列出所有文章（可以替换成页面，路由，标签，分类）:</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo list post</span><br></pre></td></tr></table></figure>
-
-<h1 id="windows"><a href="#windows" class="headerlink" title="windows"></a>windows</h1><p>强制刷新网页：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ctrl + shift + r</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>学习</category>
-      </categories>
-      <tags>
-        <tag>hexo</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>企业的皮肤和情人节台词汇总</title>
     <url>/azur_blog/2026/08/14/%E4%BC%81%E4%B8%9A%E7%9A%84%E7%9A%AE%E8%82%A4%E5%92%8C%E6%83%85%E4%BA%BA%E8%8A%82%E5%8F%B0%E8%AF%8D%E6%B1%87%E6%80%BB/</url>
-    <content><![CDATA[<h3 id="初始"><a href="#初始" class="headerlink" title="初始"></a>初始</h3><p>登录界面	<br>碧蓝航线！</p>
+    <content><![CDATA[<p>企业作为碧蓝航线中一位实力强大且美丽的舰娘，自然拥有很多的皮肤以及台词。截止至雨霁于心晴之时，企业已经拥有11件换装（包括原皮），144句台词（包括皮肤，情人节情书）。立绘出自碧蓝海事局。</p>
+<h3 id="初始"><a href="#初始" class="headerlink" title="初始"></a>初始</h3><p><img src="/azur_blog/img/%E6%B1%87%E6%80%BB-%E7%AB%8B%E7%BB%98/%E5%8E%9F%E7%9A%AE.webp" alt="初始"><br>登录界面	<br>碧蓝航线！</p>
 <p>舰船型号	<br>约克城级航空母舰2号舰—企业，舷号CV-6</p>
 <p>自我介绍	<br>我是约克城级航空母舰的企业。灰色幽灵是我众多绰号之一。 身上这浸满鲜血的战衣无时无刻的在提醒着我沉重的使命，不过我将继续胜利，直到战争的尽头</p>
 <p>获取台词	<br>约克城级二号舰企业，报到。对于敌人，我不会同情也不会手下留情，只会全力迎战，这就是我的风格</p>
@@ -74,18 +50,18 @@
 <p>失败台词	<br>全力而败，也没什么怨言</p>
 <p>技能台词	<br>结束了</p>
 <p>血量告急	<br>这才有意思不是吗！</p>
-<h3 id="驯鹿之主"><a href="#驯鹿之主" class="headerlink" title="驯鹿之主"></a>驯鹿之主</h3><p>皮肤描述	<br>圣诞快乐，指挥官！现在的我是圣诞老人！所以，平安夜就寝之前，记得把袜子挂在壁炉上哦</p>
+<h3 id="驯鹿之主"><a href="#驯鹿之主" class="headerlink" title="驯鹿之主"></a>驯鹿之主</h3><p><img src="/azur_blog/img/%E6%B1%87%E6%80%BB-%E7%AB%8B%E7%BB%98/%E5%9C%A3%E8%AF%9E%E7%9A%AE.webp" alt="初始"><br>皮肤描述	<br>圣诞快乐，指挥官！现在的我是圣诞老人！所以，平安夜就寝之前，记得把袜子挂在壁炉上哦</p>
 <p>查看详情	<br>我将牢记过去，并为未来考虑</p>
 <p>主界面	<br>圣诞快乐，你想要什么圣诞礼物？</p>
 <p>圣诞老人是真实存在的哦，她现在正站在你的面前</p>
 <p>雪飘的圣诞节，真漂亮啊……欸？等等，女灶神，别拖我回去，我不冷！——我真的不冷啦！</p>
 <p>触摸台词	<br>尽情欢笑吧，这些美丽的回忆都将成为战斗的动力！</p>
-<h3 id="誓约的星光"><a href="#誓约的星光" class="headerlink" title="誓约的星光"></a>誓约的星光</h3><p>获取台词	<br>怎、怎么样？会不会有些奇怪…不，我当然不讨厌，不如说，不论谁都憧憬过披上它的那天吧，只是……</p>
+<h3 id="誓约的星光"><a href="#誓约的星光" class="headerlink" title="誓约的星光"></a>誓约的星光</h3><p><img src="/azur_blog/img/%E6%B1%87%E6%80%BB-%E7%AB%8B%E7%BB%98/%E5%A9%9A%E7%BA%B1.webp" alt="誓约的星光"><br>获取台词	<br>怎、怎么样？会不会有些奇怪…不，我当然不讨厌，不如说，不论谁都憧憬过披上它的那天吧，只是……</p>
 <p>查看详情	<br>只要有你在身边，无论经受多少残酷的战斗，面临多少痛苦的分离，我都一定能够满怀希望地走下去吧</p>
 <p>主界面	<br>今晚要不要尝尝我的厨艺？女灶神说我已经尽得她的真传了……我可不是那种除战斗外一无所长的存在</p>
 <p>因为你，我开始相信了，终会没有战争，人们都能真心欢笑的那一天</p>
 <p>触摸台词	<br>唔，这孩子也很中意你呢</p>
-<h3 id="傲春之牡丹"><a href="#傲春之牡丹" class="headerlink" title="傲春之牡丹"></a>傲春之牡丹</h3><p>皮肤描述	<br>这就是东煌的服装吗?…穿起来意外地合身啊。哦?还有特制的弓箭吗…有趣，就让我看看东煌的弓能射的多远吧！</p>
+<h3 id="傲春之牡丹"><a href="#傲春之牡丹" class="headerlink" title="傲春之牡丹"></a>傲春之牡丹</h3><p><img src="/azur_blog/img/%E6%B1%87%E6%80%BB-%E7%AB%8B%E7%BB%98/%E6%98%A5%E8%8A%82%E7%9A%AE.webp" alt="傲春之牡丹"><br>皮肤描述	<br>这就是东煌的服装吗?…穿起来意外地合身啊。哦?还有特制的弓箭吗…有趣，就让我看看东煌的弓能射的多远吧！</p>
 <p>登录台词	<br>灯笼…应该是这么挂的吗?啊，指挥官你来了啊。听说东煌的新年要挂上灯笼，我就试了一下…你觉得如何?有节庆的氛围不?</p>
 <p>查看详情	<br>能够像这样享受安稳祥和的节日气氛，也是多亏了指挥官和港区所有人的不断努力呢…嗯</p>
 <p>主界面	<br>飞行甲板也是东煌风格的限定涂装啊…这种代表着幸福与喜悦的颜色，也挺不错的</p>
@@ -93,7 +69,7 @@
 <p>听说东煌的新年有“发红包”的习俗，我要不要也给白鹰的孩子们准备些红包呢……</p>
 <p>触摸台词	<br>指挥官，这件大衣，貌似能容纳两个人呢。要来感受一下这件大衣的温度吗?</p>
 <p>回港台词	<br>在下一场战斗开始之前，稍微放松一下也无妨吧，指挥官?</p>
-<h3 id="anniversary-drive"><a href="#anniversary-drive" class="headerlink" title="anniversary drive"></a>anniversary drive</h3><p>皮肤描述	<br>「Happy anniversary」……指挥官，今天就尽情庆祝吧，然后一起祈愿吧，祈愿我们能一直胜利下去——</p>
+<h3 id="anniversary-drive"><a href="#anniversary-drive" class="headerlink" title="anniversary drive"></a>anniversary drive</h3><p><img src="/azur_blog/img/%E6%B1%87%E6%80%BB-%E7%AB%8B%E7%BB%98/%E5%B8%B8%E6%9C%8D.webp" alt="anniversary drive"><br>皮肤描述	<br>「Happy anniversary」……指挥官，今天就尽情庆祝吧，然后一起祈愿吧，祈愿我们能一直胜利下去——</p>
 <p>登录台词	<br>来了吗。我已经做好出发准备了。啊，别忘了戴上安全帽哦</p>
 <p>查看详情	<br>指挥官，感觉还好吗？…“生生不息，繁荣昌盛！”呵呵</p>
 <p>主界面	<br>指挥官？…最近开始觉得自己是不是有一天甚至能够在天际飞翔…嗯，果然还是太勉强了。抱歉，就当做没听到吧</p>
@@ -107,7 +83,7 @@
 <p>旗舰开战	<br>Enterprise，engage！</p>
 <p>胜利台词	<br>我会继续战斗下去，为了碧蓝色的自由意志——</p>
 <p>失败台词	<br>人生…有时真的可能有解不开的死局啊…  </p>
-<h3 id="翱翔的在自由之翼"><a href="#翱翔的在自由之翼" class="headerlink" title="翱翔的在自由之翼"></a>翱翔的在自由之翼</h3><p>皮肤描述	<br>对于为战争而生这件事我并没有疑问。为了碧蓝航路的自由——企业，出击！</p>
+<h3 id="翱翔的在自由之翼"><a href="#翱翔的在自由之翼" class="headerlink" title="翱翔的在自由之翼"></a>翱翔的在自由之翼</h3><p><img src="/azur_blog/img/%E6%B1%87%E6%80%BB-%E7%AB%8B%E7%BB%98/%E7%89%B9%E5%85%B8.webp" alt="翱翔的自由之翼"><br>皮肤描述	<br>对于为战争而生这件事我并没有疑问。为了碧蓝航路的自由——企业，出击！</p>
 <p>登录台词	<br>早安指挥官。距离作战会议开始还有点时间。趁着还能放松的时候好好放松一下吧</p>
 <p>查看详情	<br>只要是为了正义就不惜付诸武力，伤害她人…我不认为这样是正确的</p>
 <p>主界面	<br>皇家女仆队还真是各种令人惊讶啊。对于战斗之外的各种工作也十分得心应手呢</p>
@@ -121,7 +97,7 @@
 <p>旗舰开战	<br>企业，前进！粉碎敌人！</p>
 <p>胜利台词	<br>似乎这边以些微的优势胜利了呢</p>
 <p>失败台词	<br>还是太勉强了…吗……</p>
-<h3 id="英雄的礼服"><a href="#英雄的礼服" class="headerlink" title="英雄的礼服"></a>英雄的礼服</h3><p>皮肤描述	<br>宴会礼服吗…平时没什么机会穿这样的衣服，意外地花了不少时间。啊，让我们赶紧去会场吧，让大家久等了可不好</p>
+<h3 id="英雄的礼服"><a href="#英雄的礼服" class="headerlink" title="英雄的礼服"></a>英雄的礼服</h3><p><img src="/azur_blog/img/%E6%B1%87%E6%80%BB-%E7%AB%8B%E7%BB%98/%E7%A4%BC%E6%9C%8D.webp" alt="英雄的礼服"><br>皮肤描述	<br>宴会礼服吗…平时没什么机会穿这样的衣服，意外地花了不少时间。啊，让我们赶紧去会场吧，让大家久等了可不好</p>
 <p>登录台词	<br>我是白鹰的企业，列席参加本次的宴会</p>
 <p>查看详情	<br>说起来，刚才急急忙忙忘了问…指挥官，觉得我这一身怎么样？大黄蜂评价和指挥官的评价，我都想听听看呢</p>
 <p>主界面	<br>原来如此，这个不错啊。下次学学怎么做好了……嗯？我是在说这个冰淇淋，指挥官也要来点吗？</p>
@@ -130,7 +106,7 @@
 <p>回港台词	<br>指挥官，不要勉强自己…——这句话应该对我说…吗？明白了…</p>
 <p>委托完成	<br>委托组回来了吗，那打招呼就先缓缓，先去迎接她们吧</p>
 <p>胜利台词	<br>希望这场胜利能成为节目的一丝点缀</p>
-<h3 id="wind-catcher"><a href="#wind-catcher" class="headerlink" title="wind catcher"></a>wind catcher</h3><p>获取台词	<br>指挥官也来观战了吗？其实比起这样站着，我更想一起参赛呢。这种仿佛能抓住风的感觉……不觉得赛车和航海其实是一样的吗？</p>
+<h3 id="wind-catcher"><a href="#wind-catcher" class="headerlink" title="wind catcher"></a>wind catcher</h3><p><img src="/azur_blog/img/%E6%B1%87%E6%80%BB-%E7%AB%8B%E7%BB%98/%E8%B5%9B%E8%BD%A6%E7%9A%AE.webp" alt="wind catcher"><br>获取台词	<br>指挥官也来观战了吗？其实比起这样站着，我更想一起参赛呢。这种仿佛能抓住风的感觉……不觉得赛车和航海其实是一样的吗？</p>
 <p>登录台词	<br>今天也加油吧。我已经做好应援的准备了。</p>
 <p>查看详情	<br>啊，指挥官，我想听听你的意见…这个姿势…怎么样？我得努努力…至少不给指挥官抹黑才行。</p>
 <p>主界面	<br>那是…瑞鹤？衣服还挺夸张的啊…不过…我也没什么资格说别人的样子呢。</p>
@@ -142,7 +118,7 @@
 <p>委托完成	<br>委托组的伙伴们回来了啊。抱歉，能麻烦你去迎接么？</p>
 <p>旗舰开战	<br>上吧，引擎全开！</p>
 <p>胜利台词	<br>第一名吗。虽然没什么实感，不过既然是比赛还是开香槟庆祝一下吧。</p>
-<h3 id="旅行的启程"><a href="#旅行的启程" class="headerlink" title="旅行的启程"></a>旅行的启程</h3><p>皮肤描述	<br>为了旅行请了这么长的假期，真的合适吗……为了能更好的工作，休息也是必要的…？好吧，那就…为了指挥官，让我们好好享受旅途吧！</p>
+<h3 id="旅行的启程"><a href="#旅行的启程" class="headerlink" title="旅行的启程"></a>旅行的启程</h3><p><img src="/azur_blog/img/%E6%B1%87%E6%80%BB-%E7%AB%8B%E7%BB%98/%E6%97%85%E8%A1%8C.webp" alt="旅行的启程"><br>皮肤描述	<br>为了旅行请了这么长的假期，真的合适吗……为了能更好的工作，休息也是必要的…？好吧，那就…为了指挥官，让我们好好享受旅途吧！</p>
 <p>登录台词	<br>你来了？我这边也做好准备了，随时都能出发。</p>
 <p>查看详情	<br>多亏指挥官，我得以从战斗的喧嚣中抽身，明白了身处安静悠长时光中的意义。力量…就是为了这样的东西而存在的吧。</p>
 <p>主界面	<br>美术馆也好、建筑物也好，都无愧于此处“艺术之都”的美称。要是有机会还想再一起来呢。</p>
@@ -157,7 +133,7 @@
 <p>旗舰开战	<br>无论身处何方，都要彻底击溃敌人！</p>
 <p>胜利台词	<br>为了庆祝胜利，晚上吃豪华套餐吗…挺期待的。</p>
 <p>失败台词	<br>在旅途中兴奋过了头的缘故么…</p>
-<h3 id="天际的潜水者"><a href="#天际的潜水者" class="headerlink" title="天际的潜水者"></a>天际的潜水者</h3><p>皮肤描述	<br>……呼！指挥官，还能继续吗？在海上时，无论面对何种战斗我都不曾退缩，可一旦潜下水，心中还是难免会觉得不放心……</p>
+<h3 id="天际的潜水者"><a href="#天际的潜水者" class="headerlink" title="天际的潜水者"></a>天际的潜水者</h3><p><img src="/azur_blog/img/%E6%B1%87%E6%80%BB-%E7%AB%8B%E7%BB%98/%E6%B3%B3%E8%A3%85.webp" alt="天际的潜水者"><br>皮肤描述	<br>……呼！指挥官，还能继续吗？在海上时，无论面对何种战斗我都不曾退缩，可一旦潜下水，心中还是难免会觉得不放心……</p>
 <p>登录台词	<br>…呼，稍微适应些了。指挥官还好吗？很高兴你能陪着我，就是嗯…希望你不要太勉强自己。</p>
 <p>查看详情	<br>潜水服有点破损？我之后还是去修补一下吧，免得让女灶神她们担心…指挥官，谢谢你的提醒。</p>
 <p>主界面	<br>潜水时规定需要有一个潜伴，想来的确合理。万一发生什么状况，有伙伴在身边真的很令人安心。</p>
@@ -171,7 +147,7 @@
 <p>委托完成	<br>委托组的孩子们回来了。怎么办？先上岸吗？</p>
 <p>旗舰开战	<br>攻击队，准备起飞！</p>
 <p>胜利台词	<br>好，总算能正常战斗了。</p>
-<h3 id="雨霁于心晴之时"><a href="#雨霁于心晴之时" class="headerlink" title="雨霁于心晴之时"></a>雨霁于心晴之时</h3><p>皮肤描述	<br>指挥官，你来了？抱歉，刚刚泡得太热了，我还有点晕，只能这样见你了……嗯？你身上有青草的气味，闻起来很舒服呢。</p>
+<h3 id="雨霁于心晴之时"><a href="#雨霁于心晴之时" class="headerlink" title="雨霁于心晴之时"></a>雨霁于心晴之时</h3><p><img src="/azur_blog/img/%E6%B1%87%E6%80%BB-%E7%AB%8B%E7%BB%98/%E6%B8%A9%E6%B3%89.webp" alt="雨霁于心晴之时"><br>皮肤描述	<br>指挥官，你来了？抱歉，刚刚泡得太热了，我还有点晕，只能这样见你了……嗯？你身上有青草的气味，闻起来很舒服呢。</p>
 <p>登录台词	<br>偶尔在林间泡一下温泉，感觉身体和精神都放松了不少……欸？糟糕……绳子、散开了……！？</p>
 <p>查看详情	<br>温泉泡了太久有点懒懒的……唔，这样惬意的时光很难得，或许我一直努力的意义……就是为了这样的温馨时刻。</p>
 <p>主界面	<br>听说橙子的香气能缓解晕眩，这样清新的味道让人感到很安心。欸，原来是指挥官准备的吗……谢谢你。</p>
@@ -181,7 +157,7 @@
 <p>特殊触摸	<br>指挥官~！好、好像……又升温了……</p>
 <p>回港台词	<br>雨后的林间散发着清新的气息，令人心情舒畅。指挥官，一会我们一起去散步吧？</p>
 <p>好感度-爱	<br>原来，这样的生活是真实存在啊。像这样舒服地泡着温泉，让身心都放松下来的场合，仅会存在于你的身边吧……仅仅是明确了这件事，就足以让我继续坚守下去了。</p>
-<h3 id="情人节"><a href="#情人节" class="headerlink" title="情人节"></a>情人节</h3><p>2018年	<br>这盒情人节巧克力也是我的全力，相信不会输给别的孩子。指挥官绝对要尝尝。</p>
+<h3 id="情人节"><a href="#情人节" class="headerlink" title="情人节"></a>情人节</h3><p><img src="/azur_blog/img/%E6%B1%87%E6%80%BB-%E7%AB%8B%E7%BB%98/%E6%83%85%E4%BA%BA%E8%8A%82.webp" alt="情人节"><br>2018年	<br>这盒情人节巧克力也是我的全力，相信不会输给别的孩子。指挥官绝对要尝尝。</p>
 <p>2019年	<br>多亏了你带来的和平，我才能够像这样做巧克力。指挥官，谢谢你。请收下我的感谢，以及……我的感情。</p>
 <p>2020年	<br>像这样送巧克力给指挥官，说实话…有点害羞啊…不，没什么。这个巧克力包含着我的心意，还有舰队里的同伴们的鼓励和建议。指挥官，能收下吗？</p>
 <p>2021年	<br>终于有点习惯给指挥官巧克力了。并不是说我不害羞了，只是我更想把我的心意告诉你。指挥官，让我今后也一直与你一同进步吧——</p>
@@ -189,6 +165,7 @@
 <p>2023年	<br>我不能一个人独占指挥官。巧克力吃的话之后就行，现在先去与大家同享节日吧。没关系。在指挥官享受情人节的期间，我会守护好港区的。你说还不如一起巡逻……呵呵，也是呢，如果这是指挥官所希望的话——</p>
 <p>2024年	<br>能够和指挥官共度这样和平而甜蜜的日子，偶尔会让我觉得像是在做梦一样呢。虽然感觉闲下来有些不习惯，但毕竟指挥官是这样希望的，所以我也会好好和你一起享受这个充满着幸福的节日。</p>
 <p>2025年	<br>不是我独占指挥官，而是作为情人节礼物，让指挥官独占我一整天吗……虽说我本来就已经完全属于指挥官了，不过如果指挥官的意思是，让我今天只能思考关于你的事的话……为了完成这一目标，所选用的手段可以由我来决定吗？</p>
+<p>作为一个已经出场了9年之久的角色，这些丰富的换装和台词无疑塑造出了一个优秀的形象，也形成了一段令人印象深刻的弧光。从一开始久经沙场的老兵到如今指挥官身边最亲近的爱人，企业毫无疑问是碧蓝航线塑造最成功的角色之一，也是我最喜欢的角色。她就像一个温暖的港湾，为我提供心灵的归宿。</p>
 ]]></content>
       <categories>
         <category>热爱</category>
@@ -197,6 +174,40 @@
         <tag>企业</tag>
         <tag>碧蓝航线</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>常用指令</title>
+    <url>/azur_blog/2026/08/11/%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4/</url>
+    <content><![CDATA[<h1 id="hexo"><a href="#hexo" class="headerlink" title="hexo"></a>hexo</h1><p>创建文章： </p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo new <span class="string">&quot;标题&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>更新网站： </p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git add .</span><br><span class="line"></span><br><span class="line">git commit -m <span class="string">&quot;更新&quot;</span></span><br><span class="line"></span><br><span class="line">git push origin main</span><br><span class="line"></span><br><span class="line">hexo clean</span><br><span class="line"></span><br><span class="line">hexo generate</span><br><span class="line"></span><br><span class="line">hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>创建一个独立页面：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo new page 页面名称</span><br></pre></td></tr></table></figure>
+
+<p>列出所有文章（可以替换成页面，路由，标签，分类）:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo list post</span><br></pre></td></tr></table></figure>
+
+<h1 id="windows"><a href="#windows" class="headerlink" title="windows"></a>windows</h1><p>强制刷新网页：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ctrl + shift + r</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>学习</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>我的第一篇博客</title>
+    <url>/azur_blog/2026/08/11/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/</url>
+    <content><![CDATA[<p>这个网站打算用来记录一些自己的学习，vibe coding、日常，或者一些很随意的东西。</p>
+<span id="more"></span>
+
+<h1 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h1><p>博客这个东西是我在网上无意中看到的，感觉很有意思，于是打算自己做一下。我本人是浙江一个财经大学数据科学与大数据技术专业的学生，很喜欢代码和碧蓝航线中一个叫企业的角色，因此尝试做了一些东西。不过大部分是 vibe coding 出来的。因此，这个博客我打算全部自己动手做，也算是一个练手的机会。希望能打造出一个碧蓝航线风格的博客，也能用来记录自己提升的过程。</p>
+]]></content>
   </entry>
   <entry>
     <title>开发遇到的问题以及对策</title>
@@ -231,14 +242,5 @@
         <tag>开发</tag>
         <tag>js</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>我的第一篇博客</title>
-    <url>/azur_blog/2026/08/11/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/</url>
-    <content><![CDATA[<p>这个网站打算用来记录一些自己的学习，vibe coding、日常，或者一些很随意的东西。</p>
-<span id="more"></span>
-
-<h1 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h1><p>博客这个东西是我在网上无意中看到的，感觉很有意思，于是打算自己做一下。我本人是浙江一个财经大学数据科学与大数据技术专业的学生，很喜欢代码和碧蓝航线中一个叫企业的角色，因此尝试做了一些东西。不过大部分是 vibe coding 出来的。因此，这个博客我打算全部自己动手做，也算是一个练手的机会。希望能打造出一个碧蓝航线风格的博客，也能用来记录自己提升的过程。</p>
-]]></content>
   </entry>
 </search>
