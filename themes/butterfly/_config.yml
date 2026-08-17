@@ -22,6 +22,7 @@ menu:
   归档: /archives/ || fas fa-archive
   标签: /tags/ || fas fa-tags
   分类: /categories/ || fas fa-folder-open
+  活跃度: /activity/ || fas fa-chart-line
 
 # --------------------------------------
 # Code Blocks Settings
@@ -1053,6 +1054,8 @@ inject:
    - <script src="/azur_blog/js/welcome_animation.js?v=1.1"></script>
    - <script src="/azur_blog/js/weather.js?v=1.1"></script>
    - <script src="/azur_blog/js/carousel.js?v=1.1"></script>
+   - <script src="/azur_blog/js/activity.js?v=1.1"></script>
+   - <script src="/azur_blog/js/random_posts.js?v=1.1"></script>
     
 
 # CDN Settings

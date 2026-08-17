@@ -62,8 +62,8 @@ prismjs:
 # order_by: Posts order. (Order by date descending by default)
 index_generator:
   path: ''
-  per_page: 10
-  order_by: -date
+  per_page: 6
+  # 不设 order_by：用 Hexo 默认排序（sticky 置顶优先，其余按日期倒序）
 
 # Category & Tag
 default_category: uncategorized

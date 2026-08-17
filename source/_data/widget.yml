@@ -16,3 +16,10 @@ top:
         </div>
         <div class="weather-place" id="weather-place"></div>
       </div>
+bottom:
+  - class_name: card-activity
+    id_name: activity
+    icon: fas fa-chart-simple
+    name: 本月活跃
+    html: |
+      <div id="activity-month"></div>
