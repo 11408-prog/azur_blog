@@ -20,7 +20,7 @@
   <entry>
     <title>企业的皮肤和情人节台词汇总</title>
     <url>/azur_blog/2026/08/14/%E4%BC%81%E4%B8%9A%E7%9A%84%E7%9A%AE%E8%82%A4%E5%92%8C%E6%83%85%E4%BA%BA%E8%8A%82%E5%8F%B0%E8%AF%8D%E6%B1%87%E6%80%BB/</url>
-    <content><![CDATA[<p>企业作为碧蓝航线中一位实力强大且美丽的舰娘，自然拥有很多的皮肤以及台词。截止至雨霁于心晴之时，企业已经拥有11件换装（包括原皮），144句台词（包括皮肤，情人节情书）。立绘出自碧蓝海事局。</p>
+    <content><![CDATA[<p>企业作为碧蓝航线中一位实力强大且美丽的舰娘，自然拥有很多的皮肤以及台词。截止至雨霁于心晴之时，企业已经拥有11件换装（包括原皮），144句台词（包括皮肤，情人节情书）。博客封面就采用了企业的所有台词进行随机输出。</p>
 <h3 id="初始"><a href="#初始" class="headerlink" title="初始"></a>初始</h3><p><img src="/azur_blog/img/%E6%B1%87%E6%80%BB-%E7%AB%8B%E7%BB%98/%E5%8E%9F%E7%9A%AE.jpg" alt="初始"><br>登录界面	<br>碧蓝航线！</p>
 <p>舰船型号	<br>约克城级航空母舰2号舰—企业，舷号CV-6</p>
 <p>自我介绍	<br>我是约克城级航空母舰的企业。灰色幽灵是我众多绰号之一。 身上这浸满鲜血的战衣无时无刻的在提醒着我沉重的使命，不过我将继续胜利，直到战争的尽头</p>
@@ -193,27 +193,145 @@
       </tags>
   </entry>
   <entry>
+    <title>基于小额投资纳斯达克和标普的算法</title>
+    <url>/azur_blog/2026/08/17/%E5%9F%BA%E4%BA%8E%E5%B0%8F%E9%A2%9D%E6%8A%95%E8%B5%84%E7%BA%B3%E6%96%AF%E8%BE%BE%E5%85%8B%E5%92%8C%E6%A0%87%E6%99%AE%E7%9A%84%E7%AE%97%E6%B3%95/</url>
+    <content><![CDATA[<h2 id="一，背景"><a href="#一，背景" class="headerlink" title="一，背景"></a>一，背景</h2><p>该算法基于的背景是每月投资一百五十元左右的纳指和标普基金而设计的。*** 旨在降低投资风险，避免单年出现过高亏损。**</p>
+<h2 id="二，算法"><a href="#二，算法" class="headerlink" title="二，算法"></a>二，算法</h2><h3 id="理论基础"><a href="#理论基础" class="headerlink" title="理论基础"></a>理论基础</h3><p>以下是和该算法相关的一些指标</p>
+<table>
+<thead>
+<tr>
+<th>指标</th>
+<th>公式</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>MA20 &#x2F; MA60</td>
+<td>最近 20 &#x2F; 60 日收盘价均值</td>
+<td>短期&#x2F;中期持仓成本线</td>
+</tr>
+<tr>
+<td>趋势</td>
+<td>MA20 &gt; MA60 → 多头排列，否则空头排列</td>
+<td>中期趋势方向</td>
+</tr>
+<tr>
+<td>回撤 DD</td>
+<td>(现价 − 近120日最高) ÷ 近120日最高 × 100%</td>
+<td>相对近期高点的下跌深度</td>
+</tr>
+<tr>
+<td>修复进度</td>
+<td>(现价 − 近60日最低) ÷ (近60日最高 − 近60日最低)</td>
+<td>从坑底爬回的比例（0~1）</td>
+</tr>
+<tr>
+<td>回撤持续时间</td>
+<td>距最近一次创”运行新高”（全部历史最高）的交易日数</td>
+<td>市场多久没创新高了，区分 V 型急跌 vs L 型阴跌</td>
+</tr>
+</tbody></table>
+<h3 id="决策选择"><a href="#决策选择" class="headerlink" title="决策选择"></a>决策选择</h3><table>
+<thead>
+<tr>
+<th>回撤 DD</th>
+<th>档位</th>
+<th>信号</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>DD ≥ 0%</td>
+<td>-1</td>
+<td>高位不追，持有</td>
+</tr>
+<tr>
+<td>-5% ≤ DD &lt; 0%</td>
+<td>0</td>
+<td>观望</td>
+</tr>
+<tr>
+<td>-10% ≤ DD &lt; -5%</td>
+<td>1</td>
+<td>建议加仓1档</td>
+</tr>
+<tr>
+<td>-15% ≤ DD &lt; -10%</td>
+<td>2</td>
+<td>建议加仓2档</td>
+</tr>
+<tr>
+<td>DD &lt; -15%</td>
+<td>3</td>
+<td>建议加仓3档</td>
+</tr>
+</tbody></table>
+<p><strong>② 趋势过滤（防接飞刀）</strong>：档位 ≥1 且空头排列（MA20&lt;MA60）→ <strong>档位降 1</strong>，提示”趋势未企稳，建议分批”。</p>
+<p><strong>③ 修复确认（右侧辅助）</strong>：修复进度 ≥0.6 且 回撤 ≤-5% → 追加提示”企稳修复确认，可右侧加仓”。</p>
+<p><strong>④ 长回撤暂停（防 L 型阴跌）</strong>：回撤持续时间 ≥ 120 个交易日（约半年）<strong>且</strong>趋势空头 → <strong>暂停额外加仓</strong>（C类不买，A类定投照常）。依据：市场长时间不创新高 + 空头排列，更可能反映结构性下行（2022 式阴跌）而非临时回调；用可观测的”持续时间”替代不可靠的”预计修复周期”。<code>--pause-days</code> 可调（0&#x3D;关闭，250≈一年）。</p>
+<h3 id="执行"><a href="#执行" class="headerlink" title="执行"></a>执行</h3><table>
+<thead>
+<tr>
+<th>规则</th>
+<th>默认值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>A类</td>
+<td>每基金 10（或 3） 元</td>
+<td>默认定投照常，长期持有，不看信号</td>
+</tr>
+<tr>
+<td>C类买入</td>
+<td>档位 ≥ 2 时买 10（或 3） 元</td>
+<td>“大规模加仓”&#x3D; 动用 C 类额度；7 天内刚买过则跳过</td>
+</tr>
+<tr>
+<td>C类止盈</td>
+<td>回撤修复至 -2%以内（接近新高）且 MA20 &gt; MA60 时</td>
+<td>建议卖出；不足 7 天提示”赎回费 1.5%，别卖”</td>
+</tr>
+<tr>
+<td>赎回费</td>
+<td>&lt;7天 1.5% &#x2F; 7~29天 0.5% &#x2F; ≥30天 0%</td>
+<td>决定卖出时机的硬约束</td>
+</tr>
+</tbody></table>
+<h2 id="三，效果验证"><a href="#三，效果验证" class="headerlink" title="三，效果验证"></a>三，效果验证</h2><p>分别使用纳斯达克和标普500收益最差的一年的数据来模拟，分别为2022和2008年。从收益率和预测效果来验证。</p>
+<h3 id="收益率"><a href="#收益率" class="headerlink" title="收益率"></a>收益率</h3><p>2022年纳斯达克100的全年跌幅为-33.0%，如果使用该算法定投全年收益率为-14.8%。<br>2008年标普500的全年跌幅为-38.5%，如果使用该算法定投全年收益率为-24.9%。</p>
+<h3 id="预测效果"><a href="#预测效果" class="headerlink" title="预测效果"></a>预测效果</h3><p>指数	年份	1档信号后60日	2档信号后60日	3档信号后60日<br>纳指100	2022	-9.5%	        -2.2%	            -2.2%<br>标普500	2008	-12.6%	        -8.4%	              —</p>
+<h2 id="四，优点"><a href="#四，优点" class="headerlink" title="四，优点"></a>四，优点</h2><h3 id="1-实现起来简单"><a href="#1-实现起来简单" class="headerlink" title="1.实现起来简单"></a>1.实现起来简单</h3><p>该算法本质上是一种简单的低买高卖结合上一些if else决策。不管是自己写还是用ai来完成都很容易。数据可以从新浪美股上获得。</p>
+<h3 id="2-帮助减少亏损效果显著"><a href="#2-帮助减少亏损效果显著" class="headerlink" title="2.帮助减少亏损效果显著"></a>2.帮助减少亏损效果显著</h3><p>由实验数据可知该算法不会出现追涨杀跌的情况，能够有效减少亏损。</p>
+<h2 id="五，缺陷"><a href="#五，缺陷" class="headerlink" title="五，缺陷"></a>五，缺陷</h2><h3 id="1-该算法本质上还是依赖定投的效果，策略并没有特别大的创新"><a href="#1-该算法本质上还是依赖定投的效果，策略并没有特别大的创新" class="headerlink" title="1.该算法本质上还是依赖定投的效果，策略并没有特别大的创新"></a>1.该算法本质上还是依赖定投的效果，策略并没有特别大的创新</h3><h3 id="2-实验不严谨"><a href="#2-实验不严谨" class="headerlink" title="2.实验不严谨"></a>2.实验不严谨</h3><p>仅仅验证了最差时候的效果，没有对于每一年的数据进行对比。而且没有和纯定投进行对比，无法证明选择性加仓定投确实优于纯定投。</p>
+<h3 id="3-策略过于保守"><a href="#3-策略过于保守" class="headerlink" title="3.策略过于保守"></a>3.策略过于保守</h3><p>如果当年是牛市，这种谨慎的策略显然会错过很多机会。</p>
+<h2 id="六，总结"><a href="#六，总结" class="headerlink" title="六，总结"></a>六，总结</h2><p>接下来应该就会以该策略来进行投资，同时会再做一些实验来验证和优化。同时也可以尝试其他方案，比如每天投5元（广发纳斯达克）,根据算法运行结果来判断当天是否额外买入。对于卖出这一块其实可以看个人，如果卖出过快可能会错过一些机会。希望这篇文章可以为读者以及后续阅读的自己提供一些灵感。</p>
+]]></content>
+      <categories>
+        <category>学习</category>
+      </categories>
+      <tags>
+        <tag>算法，投资，纳斯达克，标普</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>常用指令</title>
     <url>/azur_blog/2026/08/11/%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4/</url>
-    <content><![CDATA[<h1 id="hexo"><a href="#hexo" class="headerlink" title="hexo"></a>hexo</h1><p>创建文章： </p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo new <span class="string">&quot;标题&quot;</span></span><br></pre></td></tr></table></figure>
+    <content><![CDATA[<h1 id="hexo"><a href="#hexo" class="headerlink" title="hexo"></a>hexo</h1><h2 id="创建文章"><a href="#创建文章" class="headerlink" title="创建文章"></a>创建文章</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo new <span class="string">&quot;标题&quot;</span></span><br></pre></td></tr></table></figure>
 
-<p>更新网站： </p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git add .</span><br><span class="line"></span><br><span class="line">git commit -m <span class="string">&quot;更新&quot;</span></span><br><span class="line"></span><br><span class="line">git push origin main</span><br><span class="line"></span><br><span class="line">hexo clean</span><br><span class="line"></span><br><span class="line">hexo generate</span><br><span class="line"></span><br><span class="line">hexo deploy</span><br></pre></td></tr></table></figure>
+<h2 id="更新网站"><a href="#更新网站" class="headerlink" title="更新网站"></a>更新网站</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git add .</span><br><span class="line"></span><br><span class="line">git commit -m <span class="string">&quot;更新&quot;</span></span><br><span class="line"></span><br><span class="line">git push origin main</span><br><span class="line"></span><br><span class="line">hexo clean</span><br><span class="line"></span><br><span class="line">hexo generate</span><br><span class="line"></span><br><span class="line">hexo deploy</span><br></pre></td></tr></table></figure>
 
-<p>创建一个独立页面：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo new page 页面名称</span><br></pre></td></tr></table></figure>
+<h2 id="创建一个独立页面"><a href="#创建一个独立页面" class="headerlink" title="创建一个独立页面"></a>创建一个独立页面</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo new page 页面名称</span><br></pre></td></tr></table></figure>
 
-<p>列出所有文章（可以替换成页面，路由，标签，分类）:</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo list post</span><br></pre></td></tr></table></figure>
+<h2 id="列出所有文章（可以替换成页面，路由，标签，分类）"><a href="#列出所有文章（可以替换成页面，路由，标签，分类）" class="headerlink" title="列出所有文章（可以替换成页面，路由，标签，分类）"></a>列出所有文章（可以替换成页面，路由，标签，分类）</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo list post</span><br></pre></td></tr></table></figure>
 
-<h1 id="deepseek"><a href="#deepseek" class="headerlink" title="deepseek"></a>deepseek</h1><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">dsh web </span><br></pre></td></tr></table></figure>
+<h1 id="deepseek"><a href="#deepseek" class="headerlink" title="deepseek"></a>deepseek</h1><h2 id="启动deepseek-harness"><a href="#启动deepseek-harness" class="headerlink" title="启动deepseek harness"></a>启动deepseek harness</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">dsh web </span><br></pre></td></tr></table></figure>
 
 <p>如果未安装可以先输入</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">nvm install 24.11.1 </span><br><span class="line">nvm use 24.11.1</span><br><span class="line">npm install -g @deepseek-ai/dsh</span><br></pre></td></tr></table></figure>
 <p>再执行上面的命令</p>
-<h1 id="windows"><a href="#windows" class="headerlink" title="windows"></a>windows</h1><p>强制刷新网页：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ctrl + shift + r</span><br></pre></td></tr></table></figure>
+<h1 id="windows"><a href="#windows" class="headerlink" title="windows"></a>windows</h1><h2 id="强制刷新网页："><a href="#强制刷新网页：" class="headerlink" title="强制刷新网页："></a>强制刷新网页：</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ctrl + shift + r</span><br></pre></td></tr></table></figure>
+
+<h1 id="博客制作"><a href="#博客制作" class="headerlink" title="博客制作"></a>博客制作</h1><h2 id="将文章置顶"><a href="#将文章置顶" class="headerlink" title="将文章置顶"></a>将文章置顶</h2><p>在文章front matter 加入 sticky: 1</p>
 ]]></content>
       <categories>
         <category>学习</category>
