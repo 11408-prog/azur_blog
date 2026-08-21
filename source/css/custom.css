@@ -651,3 +651,18 @@
   grid-auto-flow: column;
   gap: 3px;
 }
+
+/* ========== 阅读模式：文章页侧栏只留目录（宽度保持默认） ========== */
+#body-wrap.post #aside-content .card-widget:not(#card-toc) {
+  display: none;
+}
+
+/* ========== 文章正文字号：默认 14px → 16px ========== */
+#article-container {
+  font-size: 16px;
+}
+
+/* ========== 阅读模式：滚动时导航栏不弹出（回到顶部才显示） ========== */
+#body-wrap.post #page-header.nav-visible:not(.fixed) #nav {
+  transform: none;
+}
