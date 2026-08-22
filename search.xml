@@ -1,6 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>cookbook第二章笔记</title>
+    <url>/azur_blog/2026/08/21/cookbook%E7%AC%AC%E4%BA%8C%E7%AB%A0%E7%AC%94%E8%AE%B0/</url>
+    <content><![CDATA[<p>本章讲述了如何高效、优雅地处理现实世界中“不规矩”的文本数据</p>
+<h2 id="名词解释"><a href="#名词解释" class="headerlink" title="名词解释"></a>名词解释</h2><h2 id="2-1-使用多个界定字符分割字符串"><a href="#2-1-使用多个界定字符分割字符串" class="headerlink" title="2.1 使用多个界定字符分割字符串"></a>2.1 使用多个界定字符分割字符串</h2><p>split()方法不允许有多个分割符或者不确定的空格。建议使用re.split()。</p>
+]]></content>
+      <categories>
+        <category>学习</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+        <tag>字符串文本</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>cookbook第一章笔记</title>
     <url>/azur_blog/2026/08/19/cookbook%E7%AC%AC%E4%B8%80%E7%AB%A0%E7%AC%94%E8%AE%B0/</url>
     <content><![CDATA[<pre><code>数据结构与算法，讲述一些对于序列和字典的操作。主要借助collections来实现。
@@ -75,27 +89,10 @@
         <category>学习</category>
       </categories>
       <tags>
-        <tag>数据结构</tag>
         <tag>python</tag>
+        <tag>数据结构</tag>
         <tag>字典</tag>
         <tag>堆</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>css常见调参函数</title>
-    <url>/azur_blog/2026/08/14/css%E5%B8%B8%E8%A7%81%E8%B0%83%E5%8F%82%E5%87%BD%E6%95%B0/</url>
-    <content><![CDATA[<h2 id="reba-红绿蓝透明度"><a href="#reba-红绿蓝透明度" class="headerlink" title="reba &#x2F; 红绿蓝透明度"></a>reba &#x2F; 红绿蓝透明度</h2><p>用法：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">reba(红色，绿色，蓝色，不透明度)</span><br></pre></td></tr></table></figure>
-<p>前三者都是0 ~ 255 ，数越大越接近白色。不透明度是越低越透明。</p>
-<h2 id="backdrop-filter-对元素背后的区域采用滤镜效果"><a href="#backdrop-filter-对元素背后的区域采用滤镜效果" class="headerlink" title="backdrop-filter &#x2F; 对元素背后的区域采用滤镜效果"></a>backdrop-filter &#x2F; 对元素背后的区域采用滤镜效果</h2><p>用法:</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">backdrop-filter: blur(12px)</span><br></pre></td></tr></table></figure>
-<p>模糊半径（xxpx）越大内容越糊</p>
-]]></content>
-      <categories>
-        <category>学习</category>
-      </categories>
-      <tags>
-        <tag>css</tag>
       </tags>
   </entry>
   <entry>
@@ -153,7 +150,7 @@
 <h2 id="设计理念"><a href="#设计理念" class="headerlink" title="设计理念"></a>设计理念</h2><h3 id="技能-1"><a href="#技能-1" class="headerlink" title="技能"></a>技能</h3><h4 id="幸运眷顾的幽灵"><a href="#幸运眷顾的幽灵" class="headerlink" title="幸运眷顾的幽灵"></a>幸运眷顾的幽灵</h4><p>由于原版中企业仅有Lucky E 一个技能，而且收益不稳定。因此我将原本一个技能的两个收益解耦，确保每次发动技能都有稳定收益。将两个状态分别命名为灰色幽灵和Lucky E++，前者是因为日军曾多次宣称击沉企业号，但她始终奇迹般地出现在战场上。后者是对于Lucky E的致敬，这里其实也参考了c++，因为c++的理念是打造为c的超集，但实际上和c的差异很大，这里亦是如此。状态的反复变化体现了命运对于企业的无常，也寓意着无论处于什么状态，企业始终会全力以赴击败敌人。</p>
 <h4 id="身经百战的战士"><a href="#身经百战的战士" class="headerlink" title="身经百战的战士"></a>身经百战的战士</h4><p>在历史上，企业不止参加过一些大型战役，也执行过一些护航任务(如1942年1月11日，企业号所在的特混舰队执行了保护前往萨摩亚群岛的运输船队的任务)，企业不止是一位战士，也是一位守护者。所以企业的应用场景不应该局限于boss战，应当在道中战也有发挥空间。但是如果只是一味地增加特殊弹幕难免有些俗套，因此这里设计为派出F6F发动攻击或者“乘胜追击”，同时附带一点属性加成作为添头，具有角色自身的特色，更符合企业对于敌人不会同情也不会手下留情的人设。</p>
 <h4 id="照亮黑暗的灯塔"><a href="#照亮黑暗的灯塔" class="headerlink" title="照亮黑暗的灯塔"></a>照亮黑暗的灯塔</h4><p>企业对于太平洋战争乃至反法西斯战争做出了巨大贡献，是美国海军在太平洋战争中不屈不挠精神的象征。这个技能增强了企业的团队收益，无论是道中还是boss战都是万金油的存在。</p>
-<h3 id="台词-1"><a href="#台词-1" class="headerlink" title="台词"></a>台词</h3><h4 id="主界面-1-1"><a href="#主界面-1-1" class="headerlink" title="主界面-1"></a>主界面-1</h4><p>这里致敬了《迪迦奥特曼》中奥特之星那一集的经典台词：“我们需要一个英雄，金城，英雄是有必要的”。企业和迪迦都是正义的象征，因此想到了参考这句话。这里想体现的是企业在天平洋战争中精神支柱的作用。也可以指指挥官在港区起到的重要作用之一。</p>
+<h3 id="台词-1"><a href="#台词-1" class="headerlink" title="台词"></a>台词</h3><h4 id="主界面-1-1"><a href="#主界面-1-1" class="headerlink" title="主界面-1"></a>主界面-1</h4><p>这里致敬了《迪迦奥特曼》中奥特之星那一集的经典台词：“我们需要一个英雄，金城，英雄是有必要的”。企业和迪迦都是正义的象征，因此想到了参考这句话。这里想体现的是企业在太平洋战争中精神支柱的作用。也可以指指挥官在港区起到的重要作用之一。</p>
 <h4 id="主界面-2-1"><a href="#主界面-2-1" class="headerlink" title="主界面-2"></a>主界面-2</h4><p>企业原皮的主界面台词提到过希望将运气分给姐姐一部分。因此这里加了一个有些唯心的设定：企业可以给同伴带来好运。不过在历史上也是有体现的。</p>
 <h4 id="主界面-3-1"><a href="#主界面-3-1" class="headerlink" title="主界面-3"></a>主界面-3</h4><p>企业在22年23年的情人节台词提到过，不希望独占指挥官。而且约克城和大黄蜂等舰娘的台词透露着对于企业的关心。所以企业希望指挥官也能多照顾她们是合情合理的。</p>
 <h4 id="主界面-4-1"><a href="#主界面-4-1" class="headerlink" title="主界面-4"></a>主界面-4</h4><p>这一句是希望能完善一下企业的形象，企业在婚纱那件皮肤说过她并不是除了战斗一无是处的存在，可是其它皮肤并没有过多的展示企业的兴趣爱好。因此我希望给企业加上一个喜欢看书学习的设定（身为那么强大的存在，善于学习肯定是必要的）。</p>
@@ -170,6 +167,147 @@
         <tag>企业</tag>
         <tag>碧蓝航线</tag>
         <tag>舰娘</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>css常见调参函数</title>
+    <url>/azur_blog/2026/08/14/css%E5%B8%B8%E8%A7%81%E8%B0%83%E5%8F%82%E5%87%BD%E6%95%B0/</url>
+    <content><![CDATA[<h2 id="reba-红绿蓝透明度"><a href="#reba-红绿蓝透明度" class="headerlink" title="reba &#x2F; 红绿蓝透明度"></a>reba &#x2F; 红绿蓝透明度</h2><p>用法：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">reba(红色，绿色，蓝色，不透明度)</span><br></pre></td></tr></table></figure>
+<p>前三者都是0 ~ 255 ，数越大越接近白色。不透明度是越低越透明。</p>
+<h2 id="backdrop-filter-对元素背后的区域采用滤镜效果"><a href="#backdrop-filter-对元素背后的区域采用滤镜效果" class="headerlink" title="backdrop-filter &#x2F; 对元素背后的区域采用滤镜效果"></a>backdrop-filter &#x2F; 对元素背后的区域采用滤镜效果</h2><p>用法:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">backdrop-filter: blur(12px)</span><br></pre></td></tr></table></figure>
+<p>模糊半径（xxpx）越大内容越糊</p>
+]]></content>
+      <categories>
+        <category>学习</category>
+      </categories>
+      <tags>
+        <tag>css</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>基于小额投资纳斯达克和标普的算法</title>
+    <url>/azur_blog/2026/08/17/%E5%9F%BA%E4%BA%8E%E5%B0%8F%E9%A2%9D%E6%8A%95%E8%B5%84%E7%BA%B3%E6%96%AF%E8%BE%BE%E5%85%8B%E5%92%8C%E6%A0%87%E6%99%AE%E7%9A%84%E7%AE%97%E6%B3%95/</url>
+    <content><![CDATA[<h2 id="一，背景"><a href="#一，背景" class="headerlink" title="一，背景"></a>一，背景</h2><p>该算法基于的背景是每月投资一百五十元左右的纳指和标普基金而设计的。<em>旨在降低投资风险，避免单年出现过高亏损。</em></p>
+<h2 id="二，算法"><a href="#二，算法" class="headerlink" title="二，算法"></a>二，算法</h2><h3 id="理论基础"><a href="#理论基础" class="headerlink" title="理论基础"></a>理论基础</h3><p>以下是和该算法相关的一些指标</p>
+<table>
+<thead>
+<tr>
+<th>指标</th>
+<th>公式</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>MA20 &#x2F; MA60</td>
+<td>最近 20 &#x2F; 60 日收盘价均值</td>
+<td>短期&#x2F;中期持仓成本线</td>
+</tr>
+<tr>
+<td>趋势</td>
+<td>MA20 &gt; MA60 → 多头排列，否则空头排列</td>
+<td>中期趋势方向</td>
+</tr>
+<tr>
+<td>回撤 DD</td>
+<td>(现价 − 近120日最高) ÷ 近120日最高 × 100%</td>
+<td>相对近期高点的下跌深度</td>
+</tr>
+<tr>
+<td>修复进度</td>
+<td>(现价 − 近60日最低) ÷ (近60日最高 − 近60日最低)</td>
+<td>从坑底爬回的比例（0~1）</td>
+</tr>
+<tr>
+<td>回撤持续时间</td>
+<td>距最近一次创”运行新高”（全部历史最高）的交易日数</td>
+<td>市场多久没创新高了，区分 V 型急跌 vs L 型阴跌</td>
+</tr>
+</tbody></table>
+<h3 id="决策选择"><a href="#决策选择" class="headerlink" title="决策选择"></a>决策选择</h3><table>
+<thead>
+<tr>
+<th>回撤 DD</th>
+<th>档位</th>
+<th>信号</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>DD ≥ 0%</td>
+<td>-1</td>
+<td>高位不追，持有</td>
+</tr>
+<tr>
+<td>-5% ≤ DD &lt; 0%</td>
+<td>0</td>
+<td>观望</td>
+</tr>
+<tr>
+<td>-10% ≤ DD &lt; -5%</td>
+<td>1</td>
+<td>建议加仓1档</td>
+</tr>
+<tr>
+<td>-15% ≤ DD &lt; -10%</td>
+<td>2</td>
+<td>建议加仓2档</td>
+</tr>
+<tr>
+<td>DD &lt; -15%</td>
+<td>3</td>
+<td>建议加仓3档</td>
+</tr>
+</tbody></table>
+<p><strong>② 趋势过滤（防接飞刀）</strong>：档位 ≥1 且空头排列（MA20&lt;MA60）→ <strong>档位降 1</strong>，提示”趋势未企稳，建议分批”。</p>
+<p><strong>③ 修复确认（右侧辅助）</strong>：修复进度 ≥0.6 且 回撤 ≤-5% → 追加提示”企稳修复确认，可右侧加仓”。</p>
+<p><strong>④ 长回撤暂停（防 L 型阴跌）</strong>：回撤持续时间 ≥ 120 个交易日（约半年）<strong>且</strong>趋势空头 → <strong>暂停额外加仓</strong>（C类不买，A类定投照常）。依据：市场长时间不创新高 + 空头排列，更可能反映结构性下行（2022 式阴跌）而非临时回调；用可观测的”持续时间”替代不可靠的”预计修复周期”。<code>--pause-days</code> 可调（0&#x3D;关闭，250≈一年）。</p>
+<h3 id="执行"><a href="#执行" class="headerlink" title="执行"></a>执行</h3><table>
+<thead>
+<tr>
+<th>规则</th>
+<th>默认值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>A类</td>
+<td>每基金 10（或 3） 元</td>
+<td>默认定投照常，长期持有，不看信号</td>
+</tr>
+<tr>
+<td>C类买入</td>
+<td>档位 ≥ 2 时买 10（或 3） 元</td>
+<td>“大规模加仓”&#x3D; 动用 C 类额度；7 天内刚买过则跳过</td>
+</tr>
+<tr>
+<td>C类止盈</td>
+<td>回撤修复至 -2%以内（接近新高）且 MA20 &gt; MA60 时</td>
+<td>建议卖出；不足 7 天提示”赎回费 1.5%，别卖”</td>
+</tr>
+<tr>
+<td>赎回费</td>
+<td>&lt;7天 1.5% &#x2F; 7~29天 0.5% &#x2F; ≥30天 0%</td>
+<td>决定卖出时机的硬约束</td>
+</tr>
+</tbody></table>
+<h2 id="三，效果验证"><a href="#三，效果验证" class="headerlink" title="三，效果验证"></a>三，效果验证</h2><p>分别使用纳斯达克和标普500收益最差的一年的数据来模拟，分别为2022和2008年。从收益率和预测效果来验证。</p>
+<h3 id="收益率"><a href="#收益率" class="headerlink" title="收益率"></a>收益率</h3><p>2022年纳斯达克100的全年跌幅为-33.0%，如果使用该算法定投全年收益率为-14.8%。<br>2008年标普500的全年跌幅为-38.5%，如果使用该算法定投全年收益率为-24.9%。</p>
+<h3 id="预测效果"><a href="#预测效果" class="headerlink" title="预测效果"></a>预测效果</h3><p>指数	年份	1档信号后60日	2档信号后60日	3档信号后60日<br>纳指100	2022	-9.5%	        -2.2%	            -2.2%<br>标普500	2008	-12.6%	        -8.4%	              —</p>
+<h2 id="四，优点"><a href="#四，优点" class="headerlink" title="四，优点"></a>四，优点</h2><h3 id="1-实现起来简单"><a href="#1-实现起来简单" class="headerlink" title="1.实现起来简单"></a>1.实现起来简单</h3><p>该算法本质上是一种简单的低买高卖结合上一些if else决策。不管是自己写还是用ai来完成都很容易。数据可以从新浪美股上获得。</p>
+<h3 id="2-帮助减少亏损效果显著"><a href="#2-帮助减少亏损效果显著" class="headerlink" title="2.帮助减少亏损效果显著"></a>2.帮助减少亏损效果显著</h3><p>由实验数据可知该算法不会出现追涨杀跌的情况，能够有效减少亏损。</p>
+<h2 id="五，缺陷"><a href="#五，缺陷" class="headerlink" title="五，缺陷"></a>五，缺陷</h2><h3 id="1-该算法本质上还是依赖定投的效果，策略并没有特别大的创新"><a href="#1-该算法本质上还是依赖定投的效果，策略并没有特别大的创新" class="headerlink" title="1.该算法本质上还是依赖定投的效果，策略并没有特别大的创新"></a>1.该算法本质上还是依赖定投的效果，策略并没有特别大的创新</h3><h3 id="2-实验不严谨"><a href="#2-实验不严谨" class="headerlink" title="2.实验不严谨"></a>2.实验不严谨</h3><p>仅仅验证了最差时候的效果，没有对于每一年的数据进行对比。而且没有和纯定投进行对比，无法证明选择性加仓定投确实优于纯定投。</p>
+<h3 id="3-策略过于保守"><a href="#3-策略过于保守" class="headerlink" title="3.策略过于保守"></a>3.策略过于保守</h3><p>加仓与否完全取决于是否是在回撤，如果当年是牛市，这种谨慎的策略显然会错过很多机会。</p>
+<h2 id="六，总结"><a href="#六，总结" class="headerlink" title="六，总结"></a>六，总结</h2><p>接下来应该就会以该策略来进行投资，同时会再做一些实验来验证和优化。同时也可以尝试其他方案，比如每天投5元（广发纳斯达克）,根据算法运行结果来判断当天是否额外买入。对于卖出这一块其实可以看个人，如果卖出过快可能会错过一些机会。希望这篇文章可以为读者以及后续阅读的自己提供一些灵感。</p>
+]]></content>
+      <categories>
+        <category>学习</category>
+      </categories>
+      <tags>
+        <tag>算法</tag>
+        <tag>投资</tag>
+        <tag>纳斯达克</tag>
+        <tag>标普</tag>
       </tags>
   </entry>
   <entry>
@@ -331,130 +469,6 @@
       </tags>
   </entry>
   <entry>
-    <title>基于小额投资纳斯达克和标普的算法</title>
-    <url>/azur_blog/2026/08/17/%E5%9F%BA%E4%BA%8E%E5%B0%8F%E9%A2%9D%E6%8A%95%E8%B5%84%E7%BA%B3%E6%96%AF%E8%BE%BE%E5%85%8B%E5%92%8C%E6%A0%87%E6%99%AE%E7%9A%84%E7%AE%97%E6%B3%95/</url>
-    <content><![CDATA[<h2 id="一，背景"><a href="#一，背景" class="headerlink" title="一，背景"></a>一，背景</h2><p>该算法基于的背景是每月投资一百五十元左右的纳指和标普基金而设计的。<em>旨在降低投资风险，避免单年出现过高亏损。</em></p>
-<h2 id="二，算法"><a href="#二，算法" class="headerlink" title="二，算法"></a>二，算法</h2><h3 id="理论基础"><a href="#理论基础" class="headerlink" title="理论基础"></a>理论基础</h3><p>以下是和该算法相关的一些指标</p>
-<table>
-<thead>
-<tr>
-<th>指标</th>
-<th>公式</th>
-<th>含义</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>MA20 &#x2F; MA60</td>
-<td>最近 20 &#x2F; 60 日收盘价均值</td>
-<td>短期&#x2F;中期持仓成本线</td>
-</tr>
-<tr>
-<td>趋势</td>
-<td>MA20 &gt; MA60 → 多头排列，否则空头排列</td>
-<td>中期趋势方向</td>
-</tr>
-<tr>
-<td>回撤 DD</td>
-<td>(现价 − 近120日最高) ÷ 近120日最高 × 100%</td>
-<td>相对近期高点的下跌深度</td>
-</tr>
-<tr>
-<td>修复进度</td>
-<td>(现价 − 近60日最低) ÷ (近60日最高 − 近60日最低)</td>
-<td>从坑底爬回的比例（0~1）</td>
-</tr>
-<tr>
-<td>回撤持续时间</td>
-<td>距最近一次创”运行新高”（全部历史最高）的交易日数</td>
-<td>市场多久没创新高了，区分 V 型急跌 vs L 型阴跌</td>
-</tr>
-</tbody></table>
-<h3 id="决策选择"><a href="#决策选择" class="headerlink" title="决策选择"></a>决策选择</h3><table>
-<thead>
-<tr>
-<th>回撤 DD</th>
-<th>档位</th>
-<th>信号</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>DD ≥ 0%</td>
-<td>-1</td>
-<td>高位不追，持有</td>
-</tr>
-<tr>
-<td>-5% ≤ DD &lt; 0%</td>
-<td>0</td>
-<td>观望</td>
-</tr>
-<tr>
-<td>-10% ≤ DD &lt; -5%</td>
-<td>1</td>
-<td>建议加仓1档</td>
-</tr>
-<tr>
-<td>-15% ≤ DD &lt; -10%</td>
-<td>2</td>
-<td>建议加仓2档</td>
-</tr>
-<tr>
-<td>DD &lt; -15%</td>
-<td>3</td>
-<td>建议加仓3档</td>
-</tr>
-</tbody></table>
-<p><strong>② 趋势过滤（防接飞刀）</strong>：档位 ≥1 且空头排列（MA20&lt;MA60）→ <strong>档位降 1</strong>，提示”趋势未企稳，建议分批”。</p>
-<p><strong>③ 修复确认（右侧辅助）</strong>：修复进度 ≥0.6 且 回撤 ≤-5% → 追加提示”企稳修复确认，可右侧加仓”。</p>
-<p><strong>④ 长回撤暂停（防 L 型阴跌）</strong>：回撤持续时间 ≥ 120 个交易日（约半年）<strong>且</strong>趋势空头 → <strong>暂停额外加仓</strong>（C类不买，A类定投照常）。依据：市场长时间不创新高 + 空头排列，更可能反映结构性下行（2022 式阴跌）而非临时回调；用可观测的”持续时间”替代不可靠的”预计修复周期”。<code>--pause-days</code> 可调（0&#x3D;关闭，250≈一年）。</p>
-<h3 id="执行"><a href="#执行" class="headerlink" title="执行"></a>执行</h3><table>
-<thead>
-<tr>
-<th>规则</th>
-<th>默认值</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>A类</td>
-<td>每基金 10（或 3） 元</td>
-<td>默认定投照常，长期持有，不看信号</td>
-</tr>
-<tr>
-<td>C类买入</td>
-<td>档位 ≥ 2 时买 10（或 3） 元</td>
-<td>“大规模加仓”&#x3D; 动用 C 类额度；7 天内刚买过则跳过</td>
-</tr>
-<tr>
-<td>C类止盈</td>
-<td>回撤修复至 -2%以内（接近新高）且 MA20 &gt; MA60 时</td>
-<td>建议卖出；不足 7 天提示”赎回费 1.5%，别卖”</td>
-</tr>
-<tr>
-<td>赎回费</td>
-<td>&lt;7天 1.5% &#x2F; 7~29天 0.5% &#x2F; ≥30天 0%</td>
-<td>决定卖出时机的硬约束</td>
-</tr>
-</tbody></table>
-<h2 id="三，效果验证"><a href="#三，效果验证" class="headerlink" title="三，效果验证"></a>三，效果验证</h2><p>分别使用纳斯达克和标普500收益最差的一年的数据来模拟，分别为2022和2008年。从收益率和预测效果来验证。</p>
-<h3 id="收益率"><a href="#收益率" class="headerlink" title="收益率"></a>收益率</h3><p>2022年纳斯达克100的全年跌幅为-33.0%，如果使用该算法定投全年收益率为-14.8%。<br>2008年标普500的全年跌幅为-38.5%，如果使用该算法定投全年收益率为-24.9%。</p>
-<h3 id="预测效果"><a href="#预测效果" class="headerlink" title="预测效果"></a>预测效果</h3><p>指数	年份	1档信号后60日	2档信号后60日	3档信号后60日<br>纳指100	2022	-9.5%	        -2.2%	            -2.2%<br>标普500	2008	-12.6%	        -8.4%	              —</p>
-<h2 id="四，优点"><a href="#四，优点" class="headerlink" title="四，优点"></a>四，优点</h2><h3 id="1-实现起来简单"><a href="#1-实现起来简单" class="headerlink" title="1.实现起来简单"></a>1.实现起来简单</h3><p>该算法本质上是一种简单的低买高卖结合上一些if else决策。不管是自己写还是用ai来完成都很容易。数据可以从新浪美股上获得。</p>
-<h3 id="2-帮助减少亏损效果显著"><a href="#2-帮助减少亏损效果显著" class="headerlink" title="2.帮助减少亏损效果显著"></a>2.帮助减少亏损效果显著</h3><p>由实验数据可知该算法不会出现追涨杀跌的情况，能够有效减少亏损。</p>
-<h2 id="五，缺陷"><a href="#五，缺陷" class="headerlink" title="五，缺陷"></a>五，缺陷</h2><h3 id="1-该算法本质上还是依赖定投的效果，策略并没有特别大的创新"><a href="#1-该算法本质上还是依赖定投的效果，策略并没有特别大的创新" class="headerlink" title="1.该算法本质上还是依赖定投的效果，策略并没有特别大的创新"></a>1.该算法本质上还是依赖定投的效果，策略并没有特别大的创新</h3><h3 id="2-实验不严谨"><a href="#2-实验不严谨" class="headerlink" title="2.实验不严谨"></a>2.实验不严谨</h3><p>仅仅验证了最差时候的效果，没有对于每一年的数据进行对比。而且没有和纯定投进行对比，无法证明选择性加仓定投确实优于纯定投。</p>
-<h3 id="3-策略过于保守"><a href="#3-策略过于保守" class="headerlink" title="3.策略过于保守"></a>3.策略过于保守</h3><p>加仓与否完全取决于是否是在回撤，如果当年是牛市，这种谨慎的策略显然会错过很多机会。</p>
-<h2 id="六，总结"><a href="#六，总结" class="headerlink" title="六，总结"></a>六，总结</h2><p>接下来应该就会以该策略来进行投资，同时会再做一些实验来验证和优化。同时也可以尝试其他方案，比如每天投5元（广发纳斯达克）,根据算法运行结果来判断当天是否额外买入。对于卖出这一块其实可以看个人，如果卖出过快可能会错过一些机会。希望这篇文章可以为读者以及后续阅读的自己提供一些灵感。</p>
-]]></content>
-      <categories>
-        <category>学习</category>
-      </categories>
-      <tags>
-        <tag>算法</tag>
-        <tag>投资</tag>
-        <tag>纳斯达克</tag>
-        <tag>标普</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>常用指令</title>
     <url>/azur_blog/2026/08/11/%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4/</url>
     <content><![CDATA[<h1 id="hexo"><a href="#hexo" class="headerlink" title="hexo"></a>hexo</h1><h2 id="创建文章"><a href="#创建文章" class="headerlink" title="创建文章"></a>创建文章</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo new <span class="string">&quot;标题&quot;</span></span><br></pre></td></tr></table></figure>
@@ -501,6 +515,15 @@
       </tags>
   </entry>
   <entry>
+    <title>我的第一篇博客</title>
+    <url>/azur_blog/2026/08/11/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/</url>
+    <content><![CDATA[<p>这个网站打算用来记录一些学习笔记，同人文等。</p>
+<span id="more"></span>
+
+<h1 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h1><p>博客这个东西是我在网上无意中看到的，感觉很有意思，于是打算自己做一下。我本人很喜欢用代码做东西，同时很喜欢碧蓝航线中一个叫企业的角色。平时的爱好就是看小说，写代码，写同人文。希望能打造出一个碧蓝航线风格的博客，也能用来记录自己提升的过程。</p>
+]]></content>
+  </entry>
+  <entry>
     <title>开发遇到的问题以及对策</title>
     <url>/azur_blog/2026/08/11/%E5%BC%80%E5%8F%91%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98%E4%BB%A5%E5%8F%8A%E5%AF%B9%E7%AD%96/</url>
     <content><![CDATA[<p><strong>Q: tags和categories有什么区别</strong><br><br>A:tags表示关键词和特征，categories表示大方向和目录。tags不需要事先定义，但是categoties需要事先定义</p>
@@ -516,14 +539,5 @@
         <tag>开发</tag>
         <tag>注意事项</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>我的第一篇博客</title>
-    <url>/azur_blog/2026/08/11/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/</url>
-    <content><![CDATA[<p>这个网站打算用来记录一些学习笔记，同人文等。</p>
-<span id="more"></span>
-
-<h1 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h1><p>博客这个东西是我在网上无意中看到的，感觉很有意思，于是打算自己做一下。我本人很喜欢用代码做东西，同时很喜欢碧蓝航线中一个叫企业的角色。平时的爱好就是看小说，写代码，写同人文。希望能打造出一个碧蓝航线风格的博客，也能用来记录自己提升的过程。</p>
-]]></content>
   </entry>
 </search>
