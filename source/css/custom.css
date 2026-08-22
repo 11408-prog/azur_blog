@@ -666,3 +666,8 @@
 #body-wrap.post #page-header.nav-visible:not(.fixed) #nav {
   transform: none;
 }
+
+/* ========== 阅读模式：目录不随 nav-visible 跳动（保持 top: 20px） ========== */
+#body-wrap.post #page-header.nav-visible:not(.fixed) + .layout > .aside-content > .sticky_layout {
+  top: 20px;
+}
