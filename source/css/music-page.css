@@ -1,0 +1,11 @@
+/* 音乐页基础样式 */
+.music-intro {
+  text-align: center;
+  color: var(--navy-mid);
+  margin-bottom: 20px;
+  font-size: 0.95rem;
+}
+
+.page.music .aplayer {
+  border-radius: 16px;
+}
