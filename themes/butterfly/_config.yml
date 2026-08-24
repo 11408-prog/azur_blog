@@ -50,8 +50,9 @@ code_blocks:
 social:
   fab fa-github: https://github.com/11408-prog || Github
   fab fa-bilibili: https://space.bilibili.com/1376082770 || B站
-  fab fa-qq: tencent://message/?uin=3036248429 || QQ
-  fab fa-weixin: /img/wechat.jpg || 微信
+  fab fa-qq: /img/qq.jpg || QQ
+  fab fa-weixin: /img/wechat.jpg || 微信 
+  fas fa-music: https://music.163.com/#/user/home?id=5189228438 || 网易云 
 
 # --------------------------------------
 # Image Settings
