@@ -276,14 +276,14 @@ aside:
   button: true
   mobile: true
   # Position: left / right
-  position: right
+  position: left
   display:
     archive: true
     tag: true
     category: true
   card_author:
     enable: true
-    description: 喜欢代码和碧蓝航线
+    description: 活着的话，就会有不如意。但是死的话，一定要不留遗憾
     button:
       enable: false
       icon: fab fa-github

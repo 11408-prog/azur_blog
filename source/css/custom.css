@@ -671,3 +671,121 @@
 #body-wrap.post #page-header.nav-visible:not(.fixed) + .layout > .aside-content > .sticky_layout {
   top: 20px;
 }
+
+
+/* custom.css */
+.layout {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  padding-left: 20px !important;   /* 左边留一点呼吸空间 */
+  padding-right: 20px !important;
+  max-width: 100% !important;      /* 取消最大宽度限制 */
+}
+
+/* 如果内容太宽阅读不舒服，限制文章区宽度 */
+#recent-posts, #page, #archive, #tag, #category {
+  max-width: 900px;
+}
+
+/* 去掉圆角 */
+#aside-content .card-widget {
+  border-top-left-radius: 0 !important;
+  border-bottom-left-radius: 0 !important;
+
+  border-top-right-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+}
+
+/*去掉一些圆角*/
+/* 1. 文章卡片（首页文章列表） */
+#recent-posts .recent-post-item,
+.recent-post-item,
+#recent-posts > div,
+article.recent-post-item {
+  border-radius: 0 !important;
+}
+
+/* 2. 轮播图 */
+.carousel-container,
+.carousel-slide,
+.carousel-slide img,
+#carousel,
+.carousel-item,
+.carousel-inner,
+.carousel-item img {
+  border-radius: 0 !important;
+}
+
+/* 3. 磁贴（学习/热爱） */
+.feature-card,
+.feature-card .feature-img,
+.feature-card .feature-content,
+.magnetic-tile,
+.home-card,
+.card-magnet {
+  border-radius: 0 !important;
+}
+
+/* 保险：把所有常见卡片圆角一次性清零 */
+.card-widget,
+#aside-content .card-widget,
+#recent-posts .recent-post-item,
+.post-content img,
+figure.highlight,
+#pagination .page-number,
+#pagination .space,
+#pagination .extend {
+  border-radius: 0 !important;
+}
+
+/* 强制目录卡片占满左侧 */
+#aside-content #card-toc {
+  height: 100% !important;
+  max-height: none !important;
+  flex-grow: 1 !important;
+}
+
+#card-toc .toc {
+  max-height: calc(100vh - 220px) !important;
+  overflow-y: auto !important;
+}
+
+/* 左侧栏整体布局 */
+#aside-content {
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+/* sticky 布局容器占满可用高度 */
+#aside-content .sticky_layout,
+.sticky_layout {
+  height: 100vh !important;
+  max-height: 100vh !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+/* 非目录卡片保持原样 */
+.sticky_layout .card-widget:not(#card-toc):not(.card-toc) {
+  flex: 0 0 auto !important;
+}
+
+/* 目录卡片撑满剩余空间 */
+.sticky_layout #card-toc,
+.sticky_layout .card-toc {
+  flex: 1 1 auto !important;
+  max-height: none !important;
+  height: auto !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+/* 目录内部滚动区 */
+#card-toc .toc,
+.card-toc .toc,
+#card-toc .toc-content,
+.card-toc .toc-content {
+  flex: 1 1 auto !important;
+  overflow-y: auto !important;
+  max-height: none !important;
+}
