@@ -789,3 +789,86 @@ figure.highlight,
   overflow-y: auto !important;
   max-height: none !important;
 }
+
+/* 限制侧栏最大高度，避免溢出页脚 */
+#aside-content .sticky_layout,
+.sticky_layout {
+  max-height: 100vh !important;
+  overflow-y: auto !important;
+}
+
+/* 隐藏滚动条（保持美观） */
+.sticky_layout::-webkit-scrollbar {
+  width: 0 !important;
+  background: transparent !important;
+}
+
+/* ========== 首页：恢复自然高度，不限制 ========== */
+.is-home #aside-content .sticky_layout,
+.home #aside-content .sticky_layout {
+  height: auto !important;
+  max-height: none !important;
+  overflow-y: visible !important;
+  display: block !important;
+}
+
+/* ========== 文章页：目录占满高度（保持之前效果） ========== */
+.post #aside-content .sticky_layout,
+.page #aside-content .sticky_layout {
+  max-height: 100vh !important;
+  overflow-y: auto !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+/* 文章页目录卡片撑满剩余空间 */
+.post #aside-content #card-toc {
+  flex: 1 1 auto !important;
+  max-height: none !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+/* 文章页目录内部滚动 */
+.post #card-toc .toc {
+  flex: 1 1 auto !important;
+  overflow-y: auto !important;
+  max-height: none !important;
+}
+
+/* 文章页隐藏滚动条 */
+.post #aside-content .sticky_layout::-webkit-scrollbar {
+  width: 0 !important;
+  background: transparent !important;
+}
+
+/* ========== 首页：完全恢复默认，不动 sticky_layout ========== */
+.is-home #aside-content .sticky_layout,
+.home #aside-content .sticky_layout {
+  height: auto !important;
+  max-height: none !important;
+  overflow: visible !important;
+  display: block !important;
+}
+
+/* 首页所有卡片恢复自然高度 */
+.is-home #aside-content .card-widget,
+.home #aside-content .card-widget {
+  flex: none !important;
+  height: auto !important;
+  max-height: none !important;
+}
+
+/* ========== 文章页：只动目录卡片，不动容器 ========== */
+.post #card-toc,
+.page #card-toc {
+  max-height: calc(100vh - 220px) !important;
+  overflow-y: auto !important;
+}
+
+/* 文章页目录隐藏滚动条 */
+.post #card-toc::-webkit-scrollbar,
+.page #card-toc::-webkit-scrollbar {
+  width: 0 !important;
+  background: transparent !important;
+}
