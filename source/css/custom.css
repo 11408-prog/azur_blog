@@ -280,13 +280,6 @@
 /* ========== 侧边栏美化 ========== */
 
 /* 卡片统一 */
-#aside-content .card-widget {
-  border-radius: 16px;
-  box-shadow: 0 2px 12px rgba(30, 58, 95, 0.06);
-  border: 1px solid rgba(43, 90, 143, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  overflow: hidden;
-}
 
 #aside-content .card-widget:hover {
   transform: translateY(-2px);
@@ -493,7 +486,7 @@
   }
 }
 
-/* ========== 侧边栏卡片半透明毛玻璃 ========== */
+/* ========== 侧边栏卡片半透明 ========== */
 #aside-content .card-widget {
   background: rgba(255, 255, 255, 0.64) !important;
   backdrop-filter: blur(0px) saturate(160%);
