@@ -4,29 +4,30 @@ chcp 65001 >nul
 set /p msg="Enter commit message (press Enter for default 'update'): "
 if "%msg%"=="" set msg=update
 
-echo ========================================
-echo Commit: %msg%
-echo ========================================
+powershell -Command "Write-Host '========================================' -ForegroundColor Cyan"
+powershell -Command "Write-Host ('Commit: ' + '%msg%') -ForegroundColor Yellow"
+powershell -Command "Write-Host '========================================' -ForegroundColor Cyan"
 
-echo [1/6] git add .
+powershell -Command "Write-Host '[1/6] git add .' -ForegroundColor Blue"
 git add .
 
-echo [2/6] git commit
+powershell -Command "Write-Host '[2/6] git commit' -ForegroundColor Blue"
 git commit -m "%msg%"
 
-echo [3/6] git push
+powershell -Command "Write-Host '[3/6] git push origin main' -ForegroundColor Blue"
 git push origin main
 
-echo [4/6] hexo clean
+powershell -Command "Write-Host '[4/6] hexo clean' -ForegroundColor Blue"
 call npx hexo clean
 
-echo [5/6] hexo generate
+powershell -Command "Write-Host '[5/6] hexo generate' -ForegroundColor Blue"
 call npx hexo generate
 
-echo [6/6] hexo deploy
+powershell -Command "Write-Host '[6/6] hexo deploy' -ForegroundColor Blue"
 call npx hexo deploy
 
-echo ========================================
-echo Done!
-echo ========================================
+powershell -Command "Write-Host '========================================' -ForegroundColor Cyan"
+powershell -Command "Write-Host 'Done!' -ForegroundColor Green"
+powershell -Command "Write-Host '========================================' -ForegroundColor Cyan"
+
 pause
