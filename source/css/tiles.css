@@ -1,0 +1,96 @@
+/* ========== 首页磁贴（学习 / 热爱） ========== */
+.tiles-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.tile {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  min-height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 背景图 */
+.tile-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  z-index: 0;
+  transition: transform 0.6s ease;
+}
+
+/* 遮罩 */
+.tile-mask {
+  position: absolute;
+  inset: 0;
+  background: var(--navy-deep-50);
+  z-index: 1;
+  transition: background 0.35s ease;
+}
+
+/* 标题 */
+.tile-title {
+  position: relative;
+  z-index: 2;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.8);
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.45);
+  letter-spacing: 3px;
+}
+
+/* hover 效果 */
+.tile:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px var(--navy-deep-22);
+}
+
+.tile:hover .tile-bg {
+  transform: scale(1.08);
+}
+
+.tile:hover .tile-mask {
+  background: var(--navy-deep-30);
+}
+
+/* 暗色模式 */
+[data-theme="dark"] .tile-mask {
+  background: var(--navy-deep-60);
+}
+
+[data-theme="dark"] .tile:hover .tile-mask {
+  background: var(--navy-deep-40);
+}
+
+/* 移动端 */
+@media (max-width: 768px) {
+  .tiles-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .tile {
+    min-height: 100px;
+  }
+
+  .tile-title {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .tiles-grid {
+    grid-template-columns: 1fr;
+  }
+}

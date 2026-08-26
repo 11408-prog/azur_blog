@@ -1,0 +1,67 @@
+/* ========== 首页文章卡片 ========== */
+#recent-posts > .recent-post-item {
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(30, 58, 95, 0.06);
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+  border: 1px solid rgba(43, 90, 143, 0.08);
+}
+
+#recent-posts > .recent-post-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 32px rgba(30, 58, 95, 0.14);
+}
+
+/* 封面图 hover 微放大 */
+#recent-posts > .recent-post-item .post-cover img {
+  transition: transform 0.6s ease;
+}
+
+#recent-posts > .recent-post-item:hover .post-cover img {
+  transform: scale(1.05);
+}
+
+/* 标题 hover 变蓝 */
+#recent-posts > .recent-post-item .article-title {
+  color: #2d3748;
+  transition: color 0.3s;
+}
+
+#recent-posts > .recent-post-item:hover .article-title {
+  color: var(--navy-mid);
+}
+
+/* 分类/标签胶囊 */
+.article-meta__tags .article-meta__tag,
+.article-meta__categories .article-meta__category {
+  display: inline-block;
+  background: rgba(43, 90, 143, 0.1);
+  color: var(--navy-mid);
+  border-radius: 20px;
+  padding: 2px 10px;
+  font-size: 0.85rem;
+  margin-right: 6px;
+  transition: all 0.3s;
+}
+
+.article-meta__tags .article-meta__tag:hover,
+.article-meta__categories .article-meta__category:hover {
+  background: var(--navy-deep);
+  color: #fff;
+}
+
+/* 暗色模式 */
+[data-theme="dark"] #recent-posts > .recent-post-item {
+  background: rgba(40, 40, 45, 0.7);
+  border-color: rgba(255, 255, 255, 0.05);
+}
+
+[data-theme="dark"] #recent-posts > .recent-post-item .article-title {
+  color: #e2e8f0;
+}
+
+[data-theme="dark"] .article-meta__tags .article-meta__tag,
+[data-theme="dark"] .article-meta__categories .article-meta__category {
+  background: rgba(43, 90, 143, 0.15);
+  color: var(--blue-light);
+}
