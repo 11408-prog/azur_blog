@@ -1,0 +1,76 @@
+/* ========== 全局布局微调 ========== */
+
+/* 页脚毛玻璃 */
+#footer {
+  background: rgba(30, 58, 95, 0.4);
+  backdrop-filter: blur(0px) saturate(160%);
+  -webkit-backdrop-filter: blur(0px) saturate(160%);
+}
+
+[data-theme='dark'] #footer {
+  background: rgba(0, 0, 0, 0.35);
+}
+
+/* 主布局边距 */
+.layout {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  padding-left: 20px !important;
+  padding-right: 20px !important;
+  max-width: 100% !important;
+}
+
+/* 文章区宽度限制 */
+#recent-posts,
+#page,
+#archive,
+#tag,
+#category {
+  max-width: 900px;
+}
+
+/* ========== 圆角清零 ========== */
+#aside-content .card-widget {
+  border-top-left-radius: 0 !important;
+  border-bottom-left-radius: 0 !important;
+  border-top-right-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+}
+
+#recent-posts .recent-post-item,
+.recent-post-item,
+#recent-posts > div,
+article.recent-post-item {
+  border-radius: 0 !important;
+}
+
+.carousel-container,
+.carousel-slide,
+.carousel-slide img,
+#carousel,
+.carousel-item,
+.carousel-inner,
+.carousel-item img {
+  border-radius: 0 !important;
+}
+
+.feature-card,
+.feature-card .feature-img,
+.feature-card .feature-content,
+.magnetic-tile,
+.home-card,
+.card-magnet {
+  border-radius: 0 !important;
+}
+
+/* 保险：所有常见卡片圆角清零 */
+.card-widget,
+#aside-content .card-widget,
+#recent-posts .recent-post-item,
+.post-content img,
+figure.highlight,
+#pagination .page-number,
+#pagination .space,
+#pagination .extend {
+  border-radius: 0 !important;
+}

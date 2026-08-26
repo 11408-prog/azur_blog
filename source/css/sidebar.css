@@ -1,0 +1,155 @@
+/* ========== 侧边栏通用样式 ========== */
+
+/* 卡片半透明背景 + 边框 */
+#aside-content .card-widget {
+  background: rgba(255, 255, 255, 0.64) !important;
+  backdrop-filter: blur(0px) saturate(160%);
+  -webkit-backdrop-filter: blur(0px) saturate(160%);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 0 4px 20px rgba(30, 58, 95, 0.08);
+}
+
+#aside-content .card-widget:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(30, 58, 95, 0.1);
+}
+
+/* 卡片标题左侧金线 */
+#aside-content .card-widget .item-headline {
+  border-left: 4px solid var(--gold);
+  padding-left: 10px;
+  font-weight: 600;
+  color: #2d3748;
+  margin-bottom: 12px;
+}
+
+/* 作者信息 */
+#aside-content .card-info .author-info__name {
+  font-weight: 700;
+  color: var(--navy-deep);
+  margin-top: 8px;
+}
+
+#aside-content .card-info .author-info__num {
+  font-weight: 600;
+  color: var(--navy-mid);
+}
+
+/* 最新文章列表 */
+#aside-content .card-recent-post .aside-list-item {
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(43, 90, 143, 0.06);
+  transition: background 0.3s ease, padding-left 0.3s ease;
+  border-radius: 6px;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#aside-content .card-recent-post .aside-list-item:last-child {
+  border-bottom: none;
+}
+
+#aside-content .card-recent-post .aside-list-item:hover {
+  background: rgba(43, 90, 143, 0.06);
+  padding-left: 10px;
+}
+
+#aside-content .card-recent-post .aside-list-item .content a {
+  color: #2d3748;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+#aside-content .card-recent-post .aside-list-item:hover .content a {
+  color: var(--navy-mid);
+}
+
+#aside-content .card-recent-post .aside-list-item .content time {
+  color: #a0aec0;
+  font-size: 0.8rem;
+}
+
+/* 标签云 */
+#aside-content .card-tag-cloud a {
+  display: inline-block;
+  background: rgba(43, 90, 143, 0.08);
+  color: var(--navy-mid);
+  border-radius: 20px;
+  padding: 3px 12px;
+  font-size: 0.85rem;
+  margin: 3px 4px 3px 0;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(43, 90, 143, 0.1);
+  text-decoration: none;
+}
+
+#aside-content .card-tag-cloud a:hover {
+  background: var(--navy-deep);
+  color: #fff;
+  border-color: var(--navy-deep);
+  transform: translateY(-1px);
+}
+
+/* ========== 侧边栏文字可读性优化 ========== */
+/* 以下使用 !important 覆盖 Butterfly 主题默认文字颜色 */
+
+#aside-content .card-widget .item-headline {
+  color: #1a202c !important;
+}
+
+#aside-content .card-recent-post .aside-list-item .content a {
+  color: #2d3748 !important;
+}
+
+#aside-content .card-recent-post .aside-list-item .content time {
+  color: #4a5568 !important;
+}
+
+#aside-content .card-tag-cloud a {
+  color: #2d3748 !important;
+  background: rgba(43, 90, 143, 0.15) !important;
+}
+
+#aside-content .card-tag-cloud a:hover {
+  color: #fff !important;
+}
+
+#aside-content .card-info .author-info__name {
+  color: #1a202c !important;
+}
+
+#aside-content .card-info .author-info__description {
+  color: #4a5568 !important;
+}
+
+#aside-content .card-info .author-info__num-name {
+  color: #718096 !important;
+}
+
+/* ==================== 暗色模式 ==================== */
+[data-theme="dark"] #aside-content .card-widget {
+  background: rgba(30, 30, 35, 0.64) !important;
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+[data-theme="dark"] #aside-content .card-widget .item-headline,
+[data-theme="dark"] #aside-content .card-recent-post .aside-list-item .content a,
+[data-theme="dark"] #aside-content .card-tag-cloud a,
+[data-theme="dark"] #aside-content .card-info .author-info__name {
+  color: #e2e8f0 !important;
+}
+
+[data-theme="dark"] #aside-content .card-recent-post .aside-list-item:hover .content a {
+  color: var(--blue-light) !important;
+}
+
+[data-theme="dark"] #aside-content .card-tag-cloud a {
+  background: rgba(43, 90, 143, 0.12) !important;
+  border-color: rgba(43, 90, 143, 0.2) !important;
+}
+
+[data-theme="dark"] #aside-content .card-recent-post .aside-list-item .content time,
+[data-theme="dark"] #aside-content .card-info .author-info__description,
+[data-theme="dark"] #aside-content .card-info .author-info__num-name {
+  color: #a0aec0 !important;
+}
