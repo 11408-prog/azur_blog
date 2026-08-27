@@ -18,34 +18,56 @@
 
   // ---------- 初始化 APlayer ----------
   var ap;
+  var audioUrl = '/azur_blog/music/bgm.mp3';
   try {
     ap = new APlayer({
       container: document.getElementById('aplayer'),
       fixed: true,
-      autoplay: false,          // 不自动播放，避免浏览器阻止
+      autoplay: false,
       loop: 'all',
       audio: [{
         name: 'BGM',
         artist: 'Unknown',
-        url: '/azur_blog/music/bgm.mp3'
+        url: audioUrl
       }]
     });
-    DSLog.info('BGM', 'APlayer 初始化成功');
+    DSLog.info('BGM', 'APlayer 初始化成功', { url: audioUrl });
   } catch (e) {
-    DSLog.error('BGM', '初始化失败', e);
+    DSLog.error('BGM', 'APlayer 初始化失败', { message: e.message, stack: e.stack, name: e.name });
     return;
   }
 
   // 保存全局引用
   window._aplayer_instance = ap;
 
+  // ---------- 音频加载状态监听 ----------
+  ap.audio.addEventListener('canplay', function () {
+    DSLog.info('BGM', '音频可播放', { url: audioUrl, duration: ap.audio.duration });
+  });
+
+  ap.audio.addEventListener('error', function () {
+    var err = ap.audio.error;
+    var codeMap = {
+      1: 'MEDIA_ERR_ABORTED',
+      2: 'MEDIA_ERR_NETWORK',
+      3: 'MEDIA_ERR_DECODE',
+      4: 'MEDIA_ERR_SRC_NOT_SUPPORTED'
+    };
+    DSLog.error('BGM', '音频加载失败', {
+      url: audioUrl,
+      errorCode: err ? err.code : 'unknown',
+      errorName: err ? codeMap[err.code] : 'unknown',
+      networkState: ap.audio.networkState,
+      readyState: ap.audio.readyState
+    });
+  });
+
   // ---------- 辅助方法：触发状态更新事件 ----------
   function notifyStateChange() {
     document.dispatchEvent(new Event('bgmStateChange'));
   }
 
-  // ---------- 包装播放/暂停方法（APlayer 1.x 不返回 Promise，不能 .then） ----------
-  // 状态同步依赖下面的 'play'/'pause'/'ended' 事件，包装只负责触发事件
+  // ---------- 包装播放/暂停方法 ----------
   var originalPlay = ap.play.bind(ap);
   var originalPause = ap.pause.bind(ap);
 
@@ -59,10 +81,19 @@
     notifyStateChange();
   };
 
-  // 监听 APlayer 自带的事件（用户通过其他方式播放/暂停时同步 UI）
-  ap.on('play', notifyStateChange);
-  ap.on('pause', notifyStateChange);
-  ap.on('ended', notifyStateChange);
+  // 监听 APlayer 自带的事件
+  ap.on('play', function () {
+    DSLog.debug('BGM', '状态变化', { state: 'playing' });
+    notifyStateChange();
+  });
+  ap.on('pause', function () {
+    DSLog.debug('BGM', '状态变化', { state: 'paused' });
+    notifyStateChange();
+  });
+  ap.on('ended', function () {
+    DSLog.debug('BGM', '状态变化', { state: 'ended' });
+    notifyStateChange();
+  });
 
   // ---------- 自动播放：先直接尝试；被浏览器策略阻止则等首次用户交互 ----------
   function playOnInteraction() {
@@ -70,7 +101,7 @@
       ap.play();
       DSLog.info('BGM', '首次交互后开始播放');
     } catch (e) {
-      DSLog.warn('BGM', '播放失败', e);
+      DSLog.warn('BGM', '交互后播放仍失败', { message: e.message, name: e.name });
     }
   }
 
@@ -78,14 +109,14 @@
     ['click', 'touchstart', 'keydown'].forEach(function(evt) {
       document.addEventListener(evt, playOnInteraction, { once: true });
     });
+    DSLog.debug('BGM', '已注册交互监听器', { events: ['click', 'touchstart', 'keydown'] });
   }
 
   try {
     ap.play();
     DSLog.info('BGM', '自动播放成功');
   } catch (e) {
-    // 桌面浏览器阻止无手势自动播放：等用户第一次点击/触摸/按键
-    DSLog.warn('BGM', '自动播放被阻止，等待首次交互后播放');
+    DSLog.warn('BGM', '自动播放被阻止，等待首次交互后播放', { message: e.message, name: e.name });
     notifyStateChange();
     registerInteractionListeners();
   }
