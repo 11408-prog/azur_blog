@@ -26,6 +26,9 @@ Thumbs.db
 # 图片备份（原图备份，不入库）
 source/_img_backup/
 
+# 每日日志（本地诊断用，不入库）
+daily_log/
+
 # 环境变量（防止泄露）
 .env
 .env.*

@@ -149,40 +149,52 @@ var quotes = [
   "不是我独占指挥官，而是作为情人节礼物，让指挥官独占我一整天吗……虽说我本来就已经完全属于指挥官了，不过如果指挥官的意思是，让我今天只能思考关于你的事的话……为了完成这一目标，所选用的手段可以由我来决定吗？"
 ];
 
-  var quoteIndex = Math.floor(Math.random() * quotes.length);
-  var charIndex = 0;
-  var isDeleting = false;
+  // 世代计数：每次重建（PJAX 回首页）都会 +1，让旧的打字机定时器链自动失效
+  var generation = 0;
 
-  function typeWriter() {
-    var current = quotes[quoteIndex];
-    var el = document.querySelector('.typewriter-line');
-    if (!el) return;
+  function startTypewriter() {
+    var gen = ++generation;
+    var quoteIndex = Math.floor(Math.random() * quotes.length);
+    var charIndex = 0;
+    var isDeleting = false;
 
-    if (!isDeleting) {
-      el.textContent = current.substring(0, charIndex + 1);
-      charIndex++;
-      if (charIndex === current.length) {
-        isDeleting = true;
-        setTimeout(typeWriter, 2500);
-        return;
+    function typeWriter() {
+      if (gen !== generation) return; // 已被新实例取代（PJAX 重建）
+      var current = quotes[quoteIndex];
+      var el = document.querySelector('.typewriter-line');
+      if (!el) return;
+
+      if (!isDeleting) {
+        el.textContent = current.substring(0, charIndex + 1);
+        charIndex++;
+        if (charIndex === current.length) {
+          isDeleting = true;
+          setTimeout(typeWriter, 2500);
+          return;
+        }
+      } else {
+        el.textContent = current.substring(0, charIndex - 1);
+        charIndex--;
+        if (charIndex === 0) {
+          isDeleting = false;
+          quoteIndex = Math.floor(Math.random() * quotes.length);
+          setTimeout(typeWriter, 600);
+          return;
+        }
       }
-    } else {
-      el.textContent = current.substring(0, charIndex - 1);
-      charIndex--;
-      if (charIndex === 0) {
-        isDeleting = false;
-        quoteIndex = Math.floor(Math.random() * quotes.length);
-        setTimeout(typeWriter, 600);
-        return;
-      }
+
+      setTimeout(typeWriter, isDeleting ? 60 : 120);
     }
 
-    setTimeout(typeWriter, isDeleting ? 60 : 120);
+    typeWriter();
   }
 
   function init() {
     var siteInfo = document.getElementById('site-info') || document.querySelector('.site-info');
     if (!siteInfo) return;
+    // 防重复：PJAX 重建时新 #site-info 没有 wrapper，正常创建；已有则跳过
+    if (siteInfo.querySelector('.welcome-wrapper')) return;
+    DSLog.info('Welcome', '欢迎动画初始化');
 
     var wrapper = document.createElement('div');
     wrapper.className = 'welcome-wrapper';
@@ -197,7 +209,7 @@ var quotes = [
     wrapper.appendChild(line);
 
     siteInfo.appendChild(wrapper);
-    setTimeout(typeWriter, 800);
+    setTimeout(startTypewriter, 800);
   }
 
   if (document.readyState === 'loading') {
@@ -205,4 +217,7 @@ var quotes = [
   } else {
     init();
   }
+
+  // PJAX 切换页面后 #body-wrap 被替换，回首页时欢迎动画需要重建
+  document.addEventListener('pjax:complete', init);
 })();

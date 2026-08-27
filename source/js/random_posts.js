@@ -37,6 +37,7 @@
     ordered.forEach(function (el) {
       container.appendChild(el); // 移动节点重排顺序
     });
+    DSLog.info('RandomPosts', '已重排文章：置顶 ' + pinned.length + ' 篇，随机 ' + others.length + ' 篇');
   }
 
   if (document.readyState === 'loading') {

@@ -11,6 +11,7 @@
       .then(function (r) { return r.json(); })
       .then(function (data) {
         var imgs = (data && data.images) || [];
+        DSLog.info('Carousel', '轮播数据加载成功，共 ' + imgs.length + ' 张');
         if (imgs.length) {
           recentPosts.insertBefore(buildCarousel(imgs), recentPosts.firstChild);
         }
@@ -18,6 +19,7 @@
         insertTiles(recentPosts);
       })
       .catch(function () {
+        DSLog.warn('Carousel', '轮播数据加载失败，仅插入磁贴');
         // 轮播图失败也插入磁贴
         insertTiles(recentPosts);
       });
