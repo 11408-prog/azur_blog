@@ -1064,6 +1064,7 @@ inject:
     - <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.css">
     - <link rel="stylesheet" href="/azur_blog/css/music-page.css?v=1.1">
   bottom:
+    - <script src="/azur_blog/js/toc-check.js?v=1.1"></script>
     - <script src="/azur_blog/js/welcome_animation.js?v=1.1"></script>
     - <script src="/azur_blog/js/weather.js?v=1.1"></script>
     - <script src="/azur_blog/js/carousel.js?v=1.1"></script>

@@ -1,13 +1,18 @@
 /* ========== 文章页阅读模式 ========== */
 
-/* 侧栏只保留目录卡片 */
+/* 默认：有目录时隐藏非目录卡片 */
 #body-wrap.post #aside-content .card-widget:not(#card-toc) {
   display: none;
 }
 
+/* 无目录文章：恢复显示所有卡片，避免左侧空着 */
+html.no-toc #body-wrap.post #aside-content .card-widget:not(#card-toc) {
+  display: block;
+}
+
 /* 文章正文字号 */
 #article-container {
-  font-size: 16px;
+  font-size: 18px;
 }
 
 /* 滚动时导航栏不弹出（回到顶部才显示） */
