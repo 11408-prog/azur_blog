@@ -41,7 +41,6 @@ external_link:
   exclude: ''
 filename_case: 0
 render_drafts: false
-post_asset_folder: false
 relative_link: false
 future: true
 syntax_highlighter: highlight.js
@@ -112,3 +111,8 @@ search:
   field: post
   content: true
   format: html
+
+post_asset_folder: true
+aplayer:
+  meting: true  # 保持开启，不影响本地功能
+  asset_inject: false
