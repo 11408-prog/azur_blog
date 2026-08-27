@@ -84,15 +84,20 @@
   }
 
   function init() {
+    DSLog.info('Activity', '开始加载活跃度数据', DATA_URL);
     fetch(DATA_URL)
       .then(function (r) { return r.json(); })
       .then(function (data) {
+        DSLog.info('Activity', '数据加载成功', data);
         var monthBox = document.getElementById('activity-month');
         if (monthBox) monthView(monthBox, data);
 
         var yearHead = document.getElementById('activity-year-head');
         var yearGridBox = document.getElementById('activity-year-grid');
         if (yearHead && yearGridBox) {
+          // PJAX 重建时清空上次的按钮，避免叠加
+          yearHead.innerHTML = '';
+
           // 数据里出现的年份（升序）
           var years = [];
           for (var k in data) {
@@ -127,7 +132,7 @@
           render();
         }
       })
-      .catch(function () { /* 数据缺失时不渲染，静默 */ });
+      .catch(function () { DSLog.warn('Activity', '数据加载失败'); /* 数据缺失时不渲染，静默 */ });
   }
 
   if (document.readyState === 'loading') {
@@ -135,4 +140,7 @@
   } else {
     init();
   }
+
+  // PJAX 切换页面后 #body-wrap 被替换，活动页容器是新节点，需要重新渲染
+  document.addEventListener('pjax:complete', init);
 })();

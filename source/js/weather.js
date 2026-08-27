@@ -49,15 +49,18 @@
   }
 
   function fetchWeather(city) {
+    DSLog.info('Weather', '请求天气', city);
     fetch('https://wttr.in/' + encodeURIComponent(city) + '?format=j1')
       .then(function (r) {
         if (!r.ok) throw new Error('network');
         return r.json();
       })
       .then(function (data) {
+        DSLog.info('Weather', '天气数据已加载', city);
         render(data);
       })
       .catch(function () {
+        DSLog.warn('Weather', '天气加载失败', city);
         var panel = document.getElementById('weather-panel');
         if (panel) panel.innerHTML = '<div style="text-align:center;color:#999;padding:10px;">天气加载失败</div>';
       });

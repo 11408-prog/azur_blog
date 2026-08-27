@@ -1065,6 +1065,7 @@ inject:
     - <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.css">
     - <link rel="stylesheet" href="/azur_blog/css/music-page.css?v=1.1">
   bottom:
+    - <script src="/azur_blog/js/logger.js?v=1.2"></script>
     - <script src="/azur_blog/js/toc-check.js?v=1.1"></script>
     - <script src="/azur_blog/js/welcome_animation.js?v=1.1"></script>
     - <script src="/azur_blog/js/weather.js?v=1.1"></script>
@@ -1075,9 +1076,235 @@ inject:
     - <script>window.meting_api="https://api.injahow.cn/meting/?server=:server&type=:type&id=:id&auth=:auth&r=:r";</script>
     - <script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
     - <script src="/azur_blog/js/video-cover.js?v=1.1"></script>
-    - <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
-    - <script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
     - <script src="/azur_blog/js/music.js"></script>
+    # ---------- 新增：导航栏齿轮下拉菜单 ----------
+    - >
+      <style>
+        /* 隐藏原悬浮工具栏 */
+        #rightside {
+          display: none !important;
+        }
+
+        /* 齿轮按钮样式（放在导航栏右侧） */
+        #nav-settings-toggle {
+          position: relative;
+          display: inline-block;
+          cursor: pointer;
+          margin-left: 15px;
+          font-size: 18px;
+          color: var(--font-color, #fff);
+          transition: 0.3s;
+          padding: 4px 8px;
+        }
+        #nav-settings-toggle:hover {
+          transform: rotate(60deg);
+          color: var(--theme-color, #49b1f5);
+        }
+
+        /* 下拉菜单容器 */
+        #nav-settings-dropdown {
+          display: none;
+          position: absolute;
+          top: 36px;
+          right: 0;
+          background: var(--card-bg, #fff);
+          border-radius: 10px;
+          box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+          min-width: 150px;
+          padding: 8px 0;
+          z-index: 99999;
+          backdrop-filter: blur(10px);
+          border: 1px solid var(--border-color, rgba(0,0,0,0.08));
+        }
+        #nav-settings-dropdown.show {
+          display: block;
+        }
+
+        /* 下拉菜单项 */
+        .nav-settings-item {
+          display: flex;
+          align-items: center;
+          padding: 10px 20px;
+          color: var(--font-color, #333);
+          font-size: 14px;
+          cursor: pointer;
+          transition: 0.2s;
+          gap: 10px;
+          white-space: nowrap;
+          border: none;
+          background: transparent;
+          width: 100%;
+          text-align: left;
+          font-family: inherit;
+        }
+        .nav-settings-item:hover {
+          background: var(--theme-color, #49b1f5);
+          color: #fff;
+        }
+        .nav-settings-item i {
+          width: 20px;
+          text-align: center;
+        }
+        .nav-settings-item .badge {
+          margin-left: auto;
+          font-size: 12px;
+          opacity: 0.6;
+        }
+
+        /* 导航栏菜单项容器（确保齿轮在正确位置） */
+        .menus {
+          display: flex;
+          align-items: center;
+          flex-wrap: wrap;
+        }
+        #nav-settings-wrapper {
+          display: inline-flex;
+          align-items: center;
+          margin-left: 10px;
+          position: relative;
+        }
+
+        /* 移动端适配 */
+        @media screen and (max-width: 768px) {
+          #nav-settings-toggle {
+            margin-left: 8px;
+            font-size: 16px;
+          }
+          #nav-settings-dropdown {
+            right: -10px;
+            min-width: 130px;
+          }
+          .nav-settings-item {
+            padding: 8px 16px;
+            font-size: 13px;
+          }
+        }
+      </style>
+
+      <script>
+        (function() {
+          'use strict';
+
+          // ---------- 挂载齿轮到导航栏（首次 + PJAX 完成后重建） ----------
+          function mountGear() {
+            var menus = document.getElementById('menus');
+            if (!menus) return;
+
+            // 清理可能残留的旧实例
+            var old = document.getElementById('nav-settings-wrapper');
+            if (old) old.remove();
+
+            // 动态创建齿轮按钮 + 下拉菜单
+            var wrap = document.createElement('div');
+            wrap.id = 'nav-settings-wrapper';
+            wrap.innerHTML =
+              '<div id="nav-settings-toggle" title="设置"><i class="fas fa-cog"></i></div>' +
+              '<div id="nav-settings-dropdown">' +
+                '<button class="nav-settings-item" id="nav-darkmode-toggle"><i class="fas fa-moon"></i><span>暗色模式</span><span class="badge" id="nav-darkmode-status">关</span></button>' +
+                '<button class="nav-settings-item" id="nav-bgm-toggle"><i class="fas fa-music"></i><span>背景音乐</span><span class="badge" id="nav-bgm-status">▶</span></button>' +
+              '</div>';
+            menus.appendChild(wrap);
+
+            var toggleBtn = document.getElementById('nav-settings-toggle');
+            var dropdown = document.getElementById('nav-settings-dropdown');
+            var darkBtn = document.getElementById('nav-darkmode-toggle');
+            var darkStatus = document.getElementById('nav-darkmode-status');
+            var bgmBtn = document.getElementById('nav-bgm-toggle');
+            var bgmStatus = document.getElementById('nav-bgm-status');
+
+            function getCurrentMode() {
+              // Butterfly 主题用 html 的 data-theme 属性标记暗色模式
+              return document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+            }
+
+            function updateDarkUI() {
+              var isDark = getCurrentMode() === 'dark';
+              darkStatus.textContent = isDark ? '开' : '关';
+              darkBtn.querySelector('i').className = isDark ? 'fas fa-sun' : 'fas fa-moon';
+            }
+
+            function updateBgmUI() {
+              var ap = window._aplayer_instance;
+              if (!ap || !ap.audio) { bgmStatus.textContent = '⏹'; return; }
+              var playing = !ap.audio.paused;
+              bgmStatus.textContent = playing ? '⏸' : '▶';
+              bgmBtn.querySelector('i').style.color = playing ? '#ff6b6b' : '';
+            }
+
+            // 下拉显隐
+            toggleBtn.addEventListener('click', function(e) {
+              e.stopPropagation();
+              dropdown.classList.toggle('show');
+            });
+            document.addEventListener('click', function() {
+              dropdown.classList.remove('show');
+            });
+            dropdown.addEventListener('click', function(e) {
+              e.stopPropagation();
+            });
+
+            // 暗色切换（触发主题原生逻辑，与 data-theme 同步）
+            darkBtn.addEventListener('click', function() {
+              var nativeBtn = document.querySelector('#rightside .darkmode-button');
+              if (nativeBtn) {
+                nativeBtn.click();
+              } else {
+                var html = document.documentElement;
+                var isDark = html.getAttribute('data-theme') === 'dark';
+                html.setAttribute('data-theme', isDark ? 'light' : 'dark');
+                localStorage.setItem('theme', isDark ? 'light' : 'dark');
+              }
+              setTimeout(updateDarkUI, 100);
+            });
+
+            // BGM 控制（APlayer 1.x 的 play/pause 不返回 Promise，直接调用）
+            bgmBtn.addEventListener('click', function() {
+              var ap = window._aplayer_instance;
+              if (!ap || !ap.audio) {
+                DSLog.warn('Settings', 'BGM 播放器未初始化');
+                return;
+              }
+              if (!ap.audio.paused) {
+                ap.pause();
+              } else {
+                ap.play();
+              }
+              setTimeout(updateBgmUI, 200);
+            });
+
+            updateDarkUI();
+            setTimeout(updateBgmUI, 300);
+          }
+
+          // ---------- 全局监听（只注册一次，元素每次挂载后动态查询） ----------
+          new MutationObserver(function() {
+            var s = document.getElementById('nav-darkmode-status');
+            var i = document.querySelector('#nav-darkmode-toggle i');
+            var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+            if (s) s.textContent = isDark ? '开' : '关';
+            if (i) i.className = isDark ? 'fas fa-sun' : 'fas fa-moon';
+          }).observe(document.documentElement, {
+            attributes: true,
+            attributeFilter: ['data-theme']
+          });
+
+          document.addEventListener('bgmStateChange', function() {
+            var s = document.getElementById('nav-bgm-status');
+            var ap = window._aplayer_instance;
+            if (!s) return;
+            if (!ap || !ap.audio) { s.textContent = '⏹'; return; }
+            s.textContent = !ap.audio.paused ? '⏸' : '▶';
+          });
+
+          // ---------- 首次挂载 + PJAX 完成后重建（PJAX 会替换 #body-wrap，齿轮随 #menus 丢失） ----------
+          mountGear();
+          document.addEventListener('pjax:complete', mountGear);
+
+          console.log('[设置] 导航栏齿轮菜单已初始化');
+          if (window.DSLog) DSLog.info('Settings', '导航栏齿轮菜单已初始化');
+        })();
+      </script>
+
 # CDN Settings
 # Don't modify the following settings unless you know how they work
 CDN:
