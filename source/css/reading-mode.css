@@ -1,15 +1,5 @@
 /* ========== 文章页阅读模式 ========== */
 
-/* 默认：有目录时隐藏非目录卡片 */
-#body-wrap.post #aside-content .card-widget:not(#card-toc) {
-  display: none;
-}
-
-/* 无目录文章：恢复显示所有卡片，避免左侧空着 */
-html.no-toc #body-wrap.post #aside-content .card-widget:not(#card-toc) {
-  display: block;
-}
-
 /* 文章正文字号 */
 #article-container {
   font-size: 18px;
@@ -54,4 +44,9 @@ html.no-toc #body-wrap.post #aside-content .card-widget:not(#card-toc) {
 .post #card-toc .toc::-webkit-scrollbar {
   width: 0;
   background: transparent;
+}
+
+/* 无目录文章：恢复显示所有卡片 */
+html.no-toc #body-wrap.post #aside-content .card-widget {
+  display: block !important;
 }

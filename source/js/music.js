@@ -1,6 +1,11 @@
 // source/js/music.js
 // 注意：APlayer 1.x 的 play()/pause() 不返回 Promise，所有调用都不能用 .then/.catch
 (function() {
+
+  if (window._aplayer_instance && !document.getElementById('aplayer')) {
+  window._aplayer_instance = null;
+}
+
   // 防止重复初始化
   if (window._aplayer_instance) {
     DSLog.info('BGM', '播放器已存在，跳过初始化');
@@ -124,4 +129,14 @@
   // ---------- 暴露调试接口 ----------
   window.__debug_bgm = ap;
   DSLog.info('BGM', '已就绪，可通过 window._aplayer_instance 控制');
+
+// 在 IIFE 结束前加：
+document.addEventListener('pjax:complete', function() {
+  if (!document.getElementById('aplayer')) {
+    window._aplayer_instance = null;
+    // 这里需要重新执行 music.js 的初始化逻辑
+    // 但 music.js 的结构是"执行一次就完"，需要重构为 init 函数
+  }
+});
+
 })();

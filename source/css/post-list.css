@@ -1,5 +1,10 @@
 /* ========== 首页文章卡片 ========== */
 #recent-posts > .recent-post-item {
+
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+
   border-radius: 16px;
   box-shadow: 0 4px 16px rgba(30, 58, 95, 0.06);
   transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
@@ -8,6 +13,9 @@
 }
 
 #recent-posts > .recent-post-item:hover {
+
+  background: rgba(255, 255, 255, 0.95);
+
   transform: translateY(-5px);
   box-shadow: 0 12px 32px rgba(30, 58, 95, 0.14);
 }
@@ -47,13 +55,20 @@
 .article-meta__tags .article-meta__tag:hover,
 .article-meta__categories .article-meta__category:hover {
   background: var(--navy-deep);
-  color: #fff;
+  color: hsl(0, 0%, 100%);
 }
 
 /* 暗色模式 */
 [data-theme="dark"] #recent-posts > .recent-post-item {
+
+  background: rgba(30, 30, 35, 0.7);
+  
   background: rgba(40, 40, 45, 0.7);
   border-color: rgba(255, 255, 255, 0.05);
+}
+
+[data-theme="dark"] #recent-posts > .recent-post-item:hover {
+  background: rgba(30, 30, 35, 0.8);
 }
 
 [data-theme="dark"] #recent-posts > .recent-post-item .article-title {

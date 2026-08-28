@@ -3,9 +3,14 @@
   'use strict';
 
   function init() {
-    if (!document.getElementById('recent-posts')) return;
     var recentPosts = document.getElementById('recent-posts');
     if (!recentPosts) return;
+
+    // 清理旧的（防止 PJAX 切换后重复）
+    var oldCarousel = recentPosts.querySelector('.carousel');
+    var oldTiles = recentPosts.querySelector('.tiles-grid');
+    if (oldCarousel) oldCarousel.remove();
+    if (oldTiles) oldTiles.remove();
 
     fetch('/azur_blog/carousel-list.json')   
       .then(function (r) { return r.json(); })
@@ -171,4 +176,5 @@
   } else {
     init();
   }
+  document.addEventListener('pjax:complete', init);
 })();
