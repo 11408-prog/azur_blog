@@ -45,4 +45,6 @@
   } else {
     init();
   }
+
+  document.addEventListener('pjax:complete', init);
 })();
