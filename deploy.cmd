@@ -17,15 +17,6 @@ git commit -m "%msg%"
 powershell -Command "Write-Host '[3/6] git push origin main' -ForegroundColor Blue"
 git push origin main
 
-powershell -Command "Write-Host '[4/6] hexo clean' -ForegroundColor Blue"
-call npx hexo clean
-
-powershell -Command "Write-Host '[5/6] hexo generate' -ForegroundColor Blue"
-call npx hexo generate
-
-powershell -Command "Write-Host '[6/6] hexo deploy' -ForegroundColor Blue"
-call npx hexo deploy
-
 powershell -Command "Write-Host '========================================' -ForegroundColor Cyan"
 powershell -Command "Write-Host 'Done!' -ForegroundColor Green"
 powershell -Command "Write-Host '========================================' -ForegroundColor Cyan"
