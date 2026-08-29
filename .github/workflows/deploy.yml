@@ -4,6 +4,11 @@ on:
   push:
     branches: [main]
 
+permissions:
+  contents: write   # 允许写入 gh-pages 分支
+  pages: write      # 允许操作 GitHub Pages
+  id-token: write
+
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
