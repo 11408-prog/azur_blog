@@ -19,8 +19,11 @@
     var container = document.getElementById('recent-posts');
     if (!container) return;
 
+    // 卡片真实父容器（中间隔着一层 .recent-post-items）
+    var list = container.querySelector('.recent-post-items') || container;
+
     var items = Array.prototype.slice.call(
-      container.querySelectorAll('.recent-post-item')
+      list.querySelectorAll('.recent-post-item')
     );
     if (!items.length) return;
 
@@ -35,7 +38,7 @@
 
     var ordered = pinned.concat(shuffle(others));
     ordered.forEach(function (el) {
-      container.appendChild(el); // 移动节点重排顺序
+      list.appendChild(el); // 移动节点重排顺序（保持在卡片容器内）
     });
     DSLog.info('RandomPosts', '已重排文章：置顶 ' + pinned.length + ' 篇，随机 ' + others.length + ' 篇');
   }

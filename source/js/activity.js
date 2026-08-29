@@ -1,4 +1,4 @@
-/* 活跃度热力图：侧栏月视图 + 独立页年视图（可切换年份） */
+/* 首页活跃度热力图（文章日期版）：自然年视图，可切换年份 */
 (function () {
   'use strict';
 
@@ -12,7 +12,8 @@
     'rgba(30, 58, 95, 0.95)'
   ];
 
-  var WEEKDAY = ['一', '二', '三', '四', '五', '六', '日'];
+  var ALL_DAYS = ['一', '二', '三', '四', '五', '六', '日'];
+  var DAY_LABELS = ['一', '三', '五']; // 行标签只显示 周一/周三/周五
 
   function pad(n) { return n < 10 ? '0' + n : '' + n; }
 
@@ -25,114 +26,118 @@
 
   function cell(day, count) {
     var el = document.createElement('div');
-    el.className = 'act-cell';
+    el.className = 'heatmap-cell';
     el.style.backgroundColor = COLORS[level(count)];
     el.title = day ? day + '：' + count + ' 篇' : '';
     return el;
   }
 
-  /* ========== 侧栏：当月日历 ========== */
-  function monthView(box, data) {
-    var now = new Date();
-    var y = now.getFullYear();
-    var m = now.getMonth();
-    var daysInMonth = new Date(y, m + 1, 0).getDate();
-    var firstIdx = (new Date(y, m, 1).getDay() + 6) % 7; // 周一起始
+  /* ========== 渲染某一年 ========== */
+  function renderYear(container, data, year) {
+    var gridBox = container.querySelector('.heatmap-grid');
+    gridBox.innerHTML = '';
 
-    var grid = document.createElement('div');
-    grid.className = 'act-month-grid';
-    WEEKDAY.forEach(function (l) {
-      var s = document.createElement('span');
-      s.className = 'act-weekday';
-      s.textContent = l;
-      grid.appendChild(s);
-    });
-    for (var i = 0; i < firstIdx; i++) grid.appendChild(cell(null, 0));
-    var monthKey = y + '-' + pad(m + 1);
-    var monthCount = 0;
-    for (var d = 1; d <= daysInMonth; d++) {
-      var key = monthKey + '-' + pad(d);
-      var c = data[key] || 0;
-      monthCount += c;
-      grid.appendChild(cell(key, c));
-    }
-    box.appendChild(grid);
-
-    var info = document.createElement('div');
-    info.className = 'act-info';
-    info.textContent = monthKey.replace('-', '年') + '月 · 共 ' + monthCount + ' 篇';
-    box.appendChild(info);
-  }
-
-  /* ========== 独立页：整年视图 ========== */
-  function yearGrid(container, data, year) {
-    container.innerHTML = '';
     var start = new Date(year, 0, 1);
     var end = new Date(year, 11, 31);
-    var startIdx = (start.getDay() + 6) % 7;
+    var startIdx = (start.getDay() + 6) % 7; // 周一起始
     var cursor = new Date(start);
     cursor.setDate(cursor.getDate() - startIdx); // 对齐到周一
 
     while (cursor <= end) {
-      for (var i = 0; i < 7; i++) {
+      for (var d = 0; d < 7; d++) {
         var inYear = cursor.getFullYear() === year;
         var key = year + '-' + pad(cursor.getMonth() + 1) + '-' + pad(cursor.getDate());
-        container.appendChild(cell(inYear ? key : null, inYear ? (data[key] || 0) : 0));
+        gridBox.appendChild(cell(inYear ? key : null, inYear ? (data[key] || 0) : 0));
         cursor.setDate(cursor.getDate() + 1);
       }
     }
   }
 
+  function build(container, data) {
+    // 年份列表（升序）
+    var years = [];
+    for (var k in data) {
+      var y = parseInt(k.slice(0, 4), 10);
+      if (years.indexOf(y) === -1) years.push(y);
+    }
+    years.sort();
+    if (!years.length) years.push(new Date().getFullYear());
+    var cur = years[years.length - 1];
+
+    container.innerHTML = '';
+
+    // 头部：年份 + 切换按钮
+    var head = document.createElement('div');
+    head.className = 'heatmap-head';
+    var btnPrev = document.createElement('button');
+    btnPrev.className = 'heatmap-year-btn';
+    btnPrev.innerHTML = '&#10094;';
+    var label = document.createElement('span');
+    label.className = 'heatmap-year-label';
+    var btnNext = document.createElement('button');
+    btnNext.className = 'heatmap-year-btn';
+    btnNext.innerHTML = '&#10095;';
+
+    // 主体：行标签列 + 网格
+    var body = document.createElement('div');
+    body.className = 'heatmap-body';
+
+    var days = document.createElement('div');
+    days.className = 'heatmap-days';
+    ALL_DAYS.forEach(function (l) {
+      var s = document.createElement('span');
+      s.textContent = DAY_LABELS.indexOf(l) !== -1 ? l : '';
+      days.appendChild(s);
+    });
+    body.appendChild(days);
+
+    var grid = document.createElement('div');
+    grid.className = 'heatmap-grid';
+    body.appendChild(grid);
+
+    function render() {
+      label.textContent = cur + ' 年';
+      btnPrev.disabled = cur <= years[0];
+      btnNext.disabled = cur >= years[years.length - 1];
+      renderYear(container, data, cur);
+    }
+
+    btnPrev.addEventListener('click', function () { if (cur > years[0]) { cur--; render(); } });
+    btnNext.addEventListener('click', function () { if (cur < years[years.length - 1]) { cur++; render(); } });
+
+    head.appendChild(btnPrev);
+    head.appendChild(label);
+    head.appendChild(btnNext);
+    container.appendChild(head);
+    container.appendChild(body);
+    render();
+
+    DSLog.info('Activity', '热力图渲染完成，年份: ' + cur);
+  }
+
   function init() {
+    var recentPosts = document.getElementById('recent-posts');
+    if (!recentPosts) return; // 仅首页
+
+    // 在 #recent-posts 内部最前面插入热力图容器（原轮播位置，保持在同一列内）
+    var container = document.getElementById('home-heatmap');
+    if (!container) {
+      container = document.createElement('div');
+      container.id = 'home-heatmap';
+      recentPosts.insertBefore(container, recentPosts.firstChild);
+    }
+
     DSLog.info('Activity', '开始加载活跃度数据', DATA_URL);
     fetch(DATA_URL)
       .then(function (r) { return r.json(); })
       .then(function (data) {
         DSLog.info('Activity', '数据加载成功', data);
-        var monthBox = document.getElementById('activity-month');
-        if (monthBox) monthView(monthBox, data);
-
-        var yearHead = document.getElementById('activity-year-head');
-        var yearGridBox = document.getElementById('activity-year-grid');
-        if (yearHead && yearGridBox) {
-          // PJAX 重建时清空上次的按钮，避免叠加
-          yearHead.innerHTML = '';
-
-          // 数据里出现的年份（升序）
-          var years = [];
-          for (var k in data) {
-            var y = parseInt(k.slice(0, 4), 10);
-            if (years.indexOf(y) === -1) years.push(y);
-          }
-          years.sort();
-          if (!years.length) years.push(new Date().getFullYear());
-          var cur = years[years.length - 1];
-
-          var btnPrev = document.createElement('button');
-          btnPrev.className = 'act-year-btn';
-          btnPrev.innerHTML = '&#10094;';
-          var label = document.createElement('span');
-          label.className = 'act-year-label';
-          var btnNext = document.createElement('button');
-          btnNext.className = 'act-year-btn';
-          btnNext.innerHTML = '&#10095;';
-
-          function render() {
-            label.textContent = cur + ' 年';
-            btnPrev.disabled = cur <= years[0];
-            btnNext.disabled = cur >= years[years.length - 1];
-            yearGrid(yearGridBox, data, cur);
-          }
-
-          btnPrev.addEventListener('click', function () { if (cur > years[0]) { cur--; render(); } });
-          btnNext.addEventListener('click', function () { if (cur < years[years.length - 1]) { cur++; render(); } });
-          yearHead.appendChild(btnPrev);
-          yearHead.appendChild(label);
-          yearHead.appendChild(btnNext);
-          render();
-        }
+        build(container, data);
       })
-      .catch(function () { DSLog.warn('Activity', '数据加载失败'); /* 数据缺失时不渲染，静默 */ });
+      .catch(function () {
+        DSLog.warn('Activity', '数据加载失败');
+        container.innerHTML = '<div class="heatmap-fallback">活跃度数据加载失败</div>';
+      });
   }
 
   if (document.readyState === 'loading') {
@@ -141,6 +146,6 @@
     init();
   }
 
-  // PJAX 切换页面后 #body-wrap 被替换，活动页容器是新节点，需要重新渲染
+  // PJAX 回首页时重新渲染
   document.addEventListener('pjax:complete', init);
 })();

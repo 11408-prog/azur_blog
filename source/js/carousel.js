@@ -1,32 +1,37 @@
-/* 首页轮播图 + 磁贴 */
+/* 轮播图（画廊页）+ 首页磁贴 */
 (function () {
   'use strict';
 
   function init() {
+    // 画廊页：渲染轮播到 #gallery-carousel
+    var galleryBox = document.getElementById('gallery-carousel');
+    if (galleryBox) {
+      renderCarouselInto(galleryBox);
+      return;
+    }
+
+    // 首页：只插入磁贴（轮播已移到画廊页）
     var recentPosts = document.getElementById('recent-posts');
     if (!recentPosts) return;
+    insertTiles(recentPosts);
+  }
 
+  function renderCarouselInto(container) {
     // 清理旧的（防止 PJAX 切换后重复）
-    var oldCarousel = recentPosts.querySelector('.carousel');
-    var oldTiles = recentPosts.querySelector('.tiles-grid');
-    if (oldCarousel) oldCarousel.remove();
-    if (oldTiles) oldTiles.remove();
+    var old = container.querySelector('.carousel');
+    if (old) old.remove();
 
-    fetch('/azur_blog/carousel-list.json')   
+    fetch('/azur_blog/carousel-list.json')
       .then(function (r) { return r.json(); })
       .then(function (data) {
         var imgs = (data && data.images) || [];
         DSLog.info('Carousel', '轮播数据加载成功，共 ' + imgs.length + ' 张');
         if (imgs.length) {
-          recentPosts.insertBefore(buildCarousel(imgs), recentPosts.firstChild);
+          container.appendChild(buildCarousel(imgs));
         }
-        // 轮播图插入完成后，立即插入磁贴
-        insertTiles(recentPosts);
       })
       .catch(function () {
-        DSLog.warn('Carousel', '轮播数据加载失败，仅插入磁贴');
-        // 轮播图失败也插入磁贴
-        insertTiles(recentPosts);
+        DSLog.warn('Carousel', '轮播数据加载失败');
       });
   }
 

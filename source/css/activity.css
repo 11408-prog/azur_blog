@@ -1,35 +1,16 @@
-/* ========== 活跃度热力图 ========== */
-.act-month-grid {
-  display: grid;
-  grid-template-columns: repeat(7, 12px);
-  gap: 3px;
-  justify-content: center;
-  margin: 8px 0 4px;
+/* ========== 首页活跃度热力图（文章日期版） ========== */
+
+#home-heatmap {
+  margin-bottom: 24px;
+  padding: 20px;
+  border-radius: 15px;
+  background: var(--card-bg, #fff);
+  border: 1px solid rgba(43, 90, 143, 0.08);
+  box-shadow: 0 4px 16px rgba(30, 58, 95, 0.06);
 }
 
-.act-weekday {
-  font-size: 0.7rem;
-  color: #a0aec0;
-  line-height: 12px;
-  text-align: center;
-}
-
-.act-cell {
-  width: 12px;
-  height: 12px;
-  border-radius: 2px;
-  background: var(--navy-deep-06);
-  border: 1px solid var(--navy-deep-12);
-}
-
-.act-info {
-  text-align: center;
-  color: #718096;
-  font-size: 0.75rem;
-  margin-top: 4px;
-}
-
-.act-year-head {
+/* 年份切换头部 */
+.heatmap-head {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -37,13 +18,13 @@
   margin-bottom: 12px;
 }
 
-.act-year-label {
+.heatmap-year-label {
   font-weight: 600;
   color: var(--navy-deep);
   font-size: 1rem;
 }
 
-.act-year-btn {
+.heatmap-year-btn {
   border: 1px solid var(--navy-deep-30);
   background: transparent;
   color: var(--navy-deep);
@@ -53,33 +34,60 @@
   font-size: 0.85rem;
 }
 
-.act-year-btn:disabled {
+.heatmap-year-btn:disabled {
   opacity: 0.3;
   cursor: default;
 }
 
-.act-year-body {
+/* 主体：行标签列 + 网格 */
+.heatmap-body {
   display: flex;
-  gap: 6px;
   justify-content: center;
+  gap: 8px;
 }
 
-.act-year-days {
+.heatmap-days {
   display: grid;
   grid-template-rows: repeat(7, 12px);
   gap: 3px;
 }
 
-.act-year-days span {
+.heatmap-days span {
   font-size: 0.7rem;
   color: #a0aec0;
   line-height: 12px;
   text-align: center;
 }
 
-.act-year-grid {
+.heatmap-grid {
   display: grid;
   grid-template-rows: repeat(7, 12px);
   grid-auto-flow: column;
   gap: 3px;
+}
+
+.heatmap-cell {
+  width: 12px;
+  height: 12px;
+  border-radius: 2px;
+  background: rgba(30, 58, 95, 0.06);
+  border: 1px solid rgba(30, 58, 95, 0.12);
+}
+
+/* 加载失败兜底 */
+.heatmap-fallback {
+  text-align: center;
+  color: #a0aec0;
+  font-size: 0.85rem;
+  padding: 10px 0;
+}
+
+/* 暗色模式 */
+[data-theme="dark"] #home-heatmap {
+  background: rgba(40, 40, 45, 0.7);
+  border-color: rgba(255, 255, 255, 0.05);
+}
+
+[data-theme="dark"] .heatmap-year-label {
+  color: var(--blue-light);
 }
