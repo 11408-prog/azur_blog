@@ -6,7 +6,7 @@
   margin-bottom: 24px;
   width: 100%;
   aspect-ratio: 16 / 9;
-  max-height: 420px;
+  max-height: 480px;
   box-shadow: 0 8px 28px var(--navy-deep-18);
   transition: box-shadow 0.4s ease;
 }

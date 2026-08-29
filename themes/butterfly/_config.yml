@@ -23,7 +23,7 @@ menu:
   标签: /tags/ || fas fa-tags
   分类: /categories/ || fas fa-folder-open
   音乐: /music/ || fas fa-music
-  活跃度: /activity/ || fas fa-chart-line 
+  画廊: /gallery/ || fas fa-images
 
 # --------------------------------------
 # Code Blocks Settings

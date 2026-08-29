@@ -1,12 +1,12 @@
 /* ========== 侧边栏通用样式 ========== */
 
-/* 卡片半透明背景 + 边框 */
+/* 卡片：不透明白色，与首页文章卡片同款配色 */
 #aside-content .card-widget {
-  background: rgba(255, 255, 255, 0.64) !important;
-  backdrop-filter: blur(0px) saturate(160%);
-  -webkit-backdrop-filter: blur(0px) saturate(160%);
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  box-shadow: 0 4px 20px rgba(30, 58, 95, 0.08);
+  background: var(--card-bg, #fff) !important;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border: 1px solid rgba(43, 90, 143, 0.08);
+  box-shadow: 0 4px 16px rgba(30, 58, 95, 0.06);
 }
 
 #aside-content .card-widget:hover {
@@ -128,8 +128,8 @@
 
 /* ==================== 暗色模式 ==================== */
 [data-theme="dark"] #aside-content .card-widget {
-  background: rgba(30, 30, 35, 0.64) !important;
-  border-color: rgba(255, 255, 255, 0.08);
+  background: #28282d !important;
+  border-color: rgba(255, 255, 255, 0.05);
 }
 
 [data-theme="dark"] #aside-content .card-widget .item-headline,
