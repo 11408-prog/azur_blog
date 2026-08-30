@@ -1051,31 +1051,33 @@ css_prefix: true
 # Insert the code to head (before '</head>' tag) and the bottom (before '</body>' tag)
 inject:
   head:
-    - <link rel="stylesheet" href="/azur_blog/css/variables.css?v=1.1">
-    - <link rel="stylesheet" href="/azur_blog/css/layout-fix.css?v=1.1">
-    - <link rel="stylesheet" href="/azur_blog/css/weather.css?v=1.1">
-    - <link rel="stylesheet" href="/azur_blog/css/carousel.css?v=1.1">
-    - <link rel="stylesheet" href="/azur_blog/css/tiles.css?v=1.1">
-    - <link rel="stylesheet" href="/azur_blog/css/activity.css?v=1.1">
-    - <link rel="stylesheet" href="/azur_blog/css/post-list.css?v=1.1">
-    - <link rel="stylesheet" href="/azur_blog/css/sidebar.css?v=1.1">
-    - <link rel="stylesheet" href="/azur_blog/css/reading-mode.css?v=1.1">
-    - <link rel="stylesheet" href="/azur_blog/css/welcome_animation.css?v=1.1">
-    - <link rel="stylesheet" href="/azur_blog/css/custom.css?v=1.1">
+    - <link rel="stylesheet" href="/azur_blog/css/variables.css?v=1.2">
+    - <link rel="stylesheet" href="/azur_blog/css/layout-fix.css?v=1.2">
+    - <link rel="stylesheet" href="/azur_blog/css/weather.css?v=1.2">
+    - <link rel="stylesheet" href="/azur_blog/css/carousel.css?v=1.2">
+    - <link rel="stylesheet" href="/azur_blog/css/tiles.css?v=1.2">
+    - <link rel="stylesheet" href="/azur_blog/css/activity.css?v=1.2">
+    - <link rel="stylesheet" href="/azur_blog/css/post-list.css?v=1.2">
+    - <link rel="stylesheet" href="/azur_blog/css/sidebar.css?v=1.2">
+    - <link rel="stylesheet" href="/azur_blog/css/reading-mode.css?v=1.2">
+    - <link rel="stylesheet" href="/azur_blog/css/welcome_animation.css?v=1.2">
+    - <link rel="stylesheet" href="/azur_blog/css/custom.css?v=1.2">
     - <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.css">
-    - <link rel="stylesheet" href="/azur_blog/css/music-page.css?v=1.1">
+    - <link rel="stylesheet" href="/azur_blog/css/music-page.css?v=1.2">
+    - <link rel="stylesheet" href="/azur_blog/css/gallery.css?v=1.2">
   bottom:
     - <script src="/azur_blog/js/logger.js?v=1.2"></script>
-    - <script src="/azur_blog/js/toc-check.js?v=1.1"></script>
-    - <script src="/azur_blog/js/welcome_animation.js?v=1.1"></script>
-    - <script src="/azur_blog/js/weather.js?v=1.1"></script>
-    - <script src="/azur_blog/js/carousel.js?v=1.1"></script>
-    - <script src="/azur_blog/js/activity.js?v=1.1"></script>
-    - <script src="/azur_blog/js/random_posts.js?v=1.1"></script>
+    - <script src="/azur_blog/js/toc-check.js?v=1.2"></script>
+    - <script src="/azur_blog/js/gallery.js?v=1.2"></script>
+    - <script src="/azur_blog/js/welcome_animation.js?v=1.2"></script>
+    - <script src="/azur_blog/js/weather.js?v=1.2"></script>
+    - <script src="/azur_blog/js/carousel.js?v=1.2"></script>
+    - <script src="/azur_blog/js/activity.js?v=1.2"></script>
+    - <script src="/azur_blog/js/random_posts.js?v=1.2"></script>
     - <script src="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.js"></script>
     - <script>window.meting_api="https://api.injahow.cn/meting/?server=:server&type=:type&id=:id&auth=:auth&r=:r";</script>
     - <script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
-    - <script src="/azur_blog/js/video-cover.js?v=1.1"></script>
+    - <script src="/azur_blog/js/video-cover.js?v=1.2"></script>
     - <script src="/azur_blog/js/music.js"></script>
     # ---------- 新增：导航栏齿轮下拉菜单 ----------
     - >

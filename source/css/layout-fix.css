@@ -72,3 +72,26 @@ figure.highlight,
 #pagination .extend {
   border-radius: 0 !important;
 }
+
+/* ========== 画廊页：无侧栏 + 全宽 + 去掉容器底板，只显示图片 ========== */
+.page.type-gallery #page {
+  width: 100% !important;            /* 覆盖 hide-aside 的 80% */
+  max-width: 1400px;
+  background: transparent !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+}
+
+.page.type-gallery #article-container {
+  background: transparent !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+}
+
+.page.type-gallery #article-container .gallery-container {
+  margin: 0;
+}
+
+.page.type-gallery #article-container .gallery-container img {
+  border-radius: 6px;
+}

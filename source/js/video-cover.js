@@ -1,11 +1,9 @@
 (function () {
   'use strict';
 
-  // 竖屏直接退出
-  if (window.innerWidth < window.innerHeight) {
-    DSLog.debug('VideoCover', '竖屏模式，跳过视频挂载');
-    return;
-  }
+  // 手机端（<=768px）：不挂视频，改用竖版封面图
+  var PHONE_COVER = '/azur_blog/img/phone_cover.jpg';
+  var mq = window.matchMedia('(max-width: 768px)');
 
   function mountVideo() {
     var header = document.getElementById('page-header');
@@ -15,6 +13,11 @@
     }
     if (!header.classList.contains('full_page')) {
       DSLog.debug('VideoCover', '非 full_page 页面，跳过');
+      return;
+    }
+    // 手机端：不挂视频（CSS 已换成 phone_cover 竖图背景）
+    if (mq.matches) {
+      DSLog.debug('VideoCover', '手机端，使用竖版封面图');
       return;
     }
     // PJAX 后 #page-header 是新节点，video 会被一并替换；已存在则不重复挂载
@@ -73,12 +76,23 @@
       #page-header.full_page { background-image: none !important; background-color: #0a0a0a; }
       #page-header.full_page::before { content:""; position:absolute; inset:0; background:rgba(0,0,0,0.2); z-index:1; }
       #site-info, #nav { position:relative; z-index:2; }
+      /* 手机端：页首换成竖版封面图，隐藏视频 */
+      @media (max-width: 768px) {
+        #page-header.full_page {
+          background-image: url(${PHONE_COVER}) !important;
+          background-size: cover;
+          background-position: center top;
+        }
+        #page-header.full_page video { display: none !important; }
+        #page-header.full_page::before { background: rgba(0,0,0,0.1); }
+      }
     `;
     document.head.appendChild(style);
     DSLog.debug('VideoCover', '样式首次注入');
   }
 
-  // 首次挂载 + PJAX 完成后重建
+  // 首次挂载 + PJAX 完成后重建 + 屏幕尺寸变化时切换
   mountVideo();
   document.addEventListener('pjax:complete', mountVideo);
+  mq.addEventListener('change', mountVideo);
 })();

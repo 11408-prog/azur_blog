@@ -91,3 +91,10 @@
 [data-theme="dark"] .heatmap-year-label {
   color: var(--blue-light);
 }
+
+/* 手机端隐藏活跃度（适配窄屏） */
+@media (max-width: 768px) {
+  #home-heatmap {
+    display: none;
+  }
+}
