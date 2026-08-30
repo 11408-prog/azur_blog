@@ -1,8 +1,9 @@
 name: Deploy Blog
 
+# 手动触发（画廊图片只在本机，云端 clone 不到 source/carousel/，
+# 自动构建会得到空画廊并覆盖线上，所以改为手动，平时用本地 npm run deploy）
 on:
-  push:
-    branches: [main]
+  workflow_dispatch:
 
 permissions:
   contents: write   # 允许写入 gh-pages 分支

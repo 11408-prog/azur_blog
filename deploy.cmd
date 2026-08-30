@@ -1,5 +1,4 @@
 @echo off
-chcp 65001 >nul
 
 set /p msg="Enter commit message (press Enter for default 'update'): "
 if "%msg%"=="" set msg=update
@@ -19,8 +18,6 @@ if %ERRORLEVEL% NEQ 0 (
     exit /b 1
 )
 
-for /f "tokens=*" %%a in ('git rev-parse HEAD') do set "COMMIT_HASH=%%a"
-
 echo [3/4] git push origin main
 git push origin main
 if %ERRORLEVEL% NEQ 0 (
@@ -29,18 +26,14 @@ if %ERRORLEVEL% NEQ 0 (
     exit /b 1
 )
 
-echo.
-echo [4/4] Waiting for CI/CD result...
-
-for /f "tokens=*" %%r in ('powershell -NoProfile -Command "(git remote get-url origin) -replace '.*github.com[/:]','' -replace '\.git$',''"') do set "REPO=%%r"
-
-if "%REPO%"=="" (
-    echo [ERROR] Failed to parse repository name from git remote
+echo [4/4] Local build and deploy to gh-pages
+call npm run deploy
+if %ERRORLEVEL% NEQ 0 (
+    echo [ERROR] Deploy failed
     pause
     exit /b 1
 )
 
-powershell -NoProfile -ExecutionPolicy Bypass -File "%~dp0check-ci.ps1" -repo "%REPO%" -hash "%COMMIT_HASH%"
-
 echo ========================================
+echo Done: source pushed, site deployed
 pause
