@@ -104,6 +104,7 @@ deploy:
   type: git
   repo: https://github.com/11408-prog/azur_blog
   branch: gh-pages
+  force: true
 
 
 search:
