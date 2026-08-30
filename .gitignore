@@ -26,6 +26,9 @@ Thumbs.db
 # 图片备份（原图备份，不入库）
 source/_img_backup/
 
+# 画廊原图（42MB+ 不入 git，只留本机；线上用构建产物）
+source/carousel/
+
 # 每日日志（本地诊断用，不入库）
 daily_log/
 
