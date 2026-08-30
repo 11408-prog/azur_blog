@@ -10,12 +10,17 @@ echo ========================================
 echo [1/4] git add .
 git add .
 
-echo [2/4] git commit
-git commit -m "%msg%"
-if %ERRORLEVEL% NEQ 0 (
-    echo [ERROR] Commit failed. No changes to commit?
-    pause
-    exit /b 1
+echo [2/4] git commit (skip if no changes)
+git diff --cached --quiet
+if %ERRORLEVEL% EQU 0 (
+    echo [INFO] No changes to commit, skipping
+) else (
+    git commit -m "%msg%"
+    if %ERRORLEVEL% NEQ 0 (
+        echo [ERROR] Commit failed
+        pause
+        exit /b 1
+    )
 )
 
 echo [3/4] git push origin main
