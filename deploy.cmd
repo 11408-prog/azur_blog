@@ -16,7 +16,7 @@ if %ERRORLEVEL% EQU 0 (
     echo [INFO] No changes to commit, skipping
 ) else (
     git commit -m "%msg%"
-    if %ERRORLEVEL% NEQ 0 (
+    if errorlevel 1 (
         echo [ERROR] Commit failed
         pause
         exit /b 1
@@ -25,7 +25,7 @@ if %ERRORLEVEL% EQU 0 (
 
 echo [3/4] git push origin main
 git push origin main
-if %ERRORLEVEL% NEQ 0 (
+if errorlevel 1 (
     echo [ERROR] Push failed
     pause
     exit /b 1
@@ -33,7 +33,7 @@ if %ERRORLEVEL% NEQ 0 (
 
 echo [4/4] Local build and deploy to gh-pages
 call npm run deploy
-if %ERRORLEVEL% NEQ 0 (
+if errorlevel 1 (
     echo [ERROR] Deploy failed
     pause
     exit /b 1
