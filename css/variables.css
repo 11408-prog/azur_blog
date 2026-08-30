@@ -1,0 +1,50 @@
+/* ============================================================
+   企业色板（深海军蓝 + 金）
+   想整体调色：只改前 4 行即可，全站自动跟随
+   ============================================================ */
+:root {
+  /* 主色 */
+  --navy-deep: #1E3A5F;
+  --navy-mid: #2B5A8F;
+  --gold: #C9A227;
+  --blue-light: #90CDF4;
+
+  /* 透明衍生色（避免到处手写 rgba） */
+  --navy-deep-04: rgba(30, 58, 95, 0.04);
+  --navy-deep-06: rgba(30, 58, 95, 0.06);
+  --navy-deep-08: rgba(30, 58, 95, 0.08);
+  --navy-deep-12: rgba(30, 58, 95, 0.12);
+  --navy-deep-18: rgba(30, 58, 95, 0.18);
+  --navy-deep-22: rgba(30, 58, 95, 0.22);
+  --navy-deep-26: rgba(30, 58, 95, 0.26);
+  --navy-deep-30: rgba(30, 58, 95, 0.30);
+  --navy-deep-40: rgba(30, 58, 95, 0.40);
+  --navy-deep-45: rgba(30, 58, 95, 0.45);
+  --navy-deep-50: rgba(30, 58, 95, 0.50);
+  --navy-deep-60: rgba(30, 58, 95, 0.60);
+  --navy-deep-70: rgba(30, 58, 95, 0.70);
+
+  --navy-mid-06: rgba(43, 90, 143, 0.06);
+  --navy-mid-08: rgba(43, 90, 143, 0.08);
+  --navy-mid-10: rgba(43, 90, 143, 0.10);
+  --navy-mid-12: rgba(43, 90, 143, 0.12);
+  --navy-mid-15: rgba(43, 90, 143, 0.15);
+  --navy-mid-30: rgba(43, 90, 143, 0.30);
+}
+
+/* 动画 */
+@keyframes weather-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+/* 尊重用户关闭动画的系统偏好 */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

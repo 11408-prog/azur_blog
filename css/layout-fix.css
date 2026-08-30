@@ -1,0 +1,97 @@
+/* ========== 全局布局微调 ========== */
+
+/* 页脚毛玻璃 */
+#footer {
+  background: rgba(30, 58, 95, 0.4);
+  backdrop-filter: blur(0px) saturate(160%);
+  -webkit-backdrop-filter: blur(0px) saturate(160%);
+}
+
+[data-theme='dark'] #footer {
+  background: rgba(0, 0, 0, 0.35);
+}
+
+/* 主布局边距 */
+.layout {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  padding-left: 20px !important;
+  padding-right: 20px !important;
+  max-width: 100% !important;
+}
+
+/* 文章区宽度限制（含首页热力图，居中） */
+#recent-posts,
+#home-heatmap {
+  max-width: 1100px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#page,
+#archive,
+#tag,
+#category {
+  max-width: 900px;
+}
+
+/* ========== 圆角清零 ========== */
+#aside-content .card-widget {
+  border-top-left-radius: 0 !important;
+  border-bottom-left-radius: 0 !important;
+  border-top-right-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+}
+
+.carousel-container,
+.carousel-slide,
+.carousel-slide img,
+#carousel,
+.carousel-item,
+.carousel-inner,
+.carousel-item img {
+  border-radius: 0 !important;
+}
+
+.feature-card,
+.feature-card .feature-img,
+.feature-card .feature-content,
+.magnetic-tile,
+.home-card,
+.card-magnet {
+  border-radius: 0 !important;
+}
+
+/* 保险：所有常见卡片圆角清零（首页文章卡片除外，它有独立风格） */
+.card-widget,
+#aside-content .card-widget,
+.post-content img,
+figure.highlight,
+#pagination .page-number,
+#pagination .space,
+#pagination .extend {
+  border-radius: 0 !important;
+}
+
+/* ========== 画廊页：无侧栏 + 全宽 + 去掉容器底板，只显示图片 ========== */
+.page.type-gallery #page {
+  width: 100% !important;            /* 覆盖 hide-aside 的 80% */
+  max-width: 1400px;
+  background: transparent !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+}
+
+.page.type-gallery #article-container {
+  background: transparent !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+}
+
+.page.type-gallery #article-container .gallery-container {
+  margin: 0;
+}
+
+.page.type-gallery #article-container .gallery-container img {
+  border-radius: 6px;
+}

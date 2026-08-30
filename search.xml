@@ -1,0 +1,822 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>学习遇到的问题及解答</title>
+    <url>/azur_blog/2026/08/11/%E5%AD%A6%E4%B9%A0%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98%E5%8F%8A%E8%A7%A3%E7%AD%94/</url>
+    <content><![CDATA[<h1 id="hexo"><a href="#hexo" class="headerlink" title="hexo"></a>hexo</h1><p><strong>Q: tags和categories有什么区别</strong><br><br>A:tags表示关键词和特征，categories表示大方向和目录。tags不需要事先定义，但是categoties需要事先定义</p>
+<p><strong>Q:有时会出现tags: 或者其它类似物下一行明明是空行却报错，该怎么办</strong><br><br>A:记得：之后要空格</p>
+<h2 id="为什么博客不增加背景音乐"><a href="#为什么博客不增加背景音乐" class="headerlink" title="为什么博客不增加背景音乐"></a>为什么博客不增加背景音乐</h2><p>hexo是静态站点，每次点击链接都是完整刷新页面，体验会不好。</p>
+<h2 id="如果写的文章没有用到md的话怎么隐去目录"><a href="#如果写的文章没有用到md的话怎么隐去目录" class="headerlink" title="如果写的文章没有用到md的话怎么隐去目录"></a>如果写的文章没有用到md的话怎么隐去目录</h2><p>在文章 front mater里加上 </p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">toc: false</span><br></pre></td></tr></table></figure>
+
+<h1 id="css"><a href="#css" class="headerlink" title="css"></a>css</h1><p><strong>Q: forwards和infinite有什么区别</strong><br><br>A:前者会使动画停在最后一帧，后者会使动画无限播放<br>对比：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">/* 只播放一次，结束后停在最后一帧 */</span><br><span class="line">animation-name: welcome-reveal;</span><br><span class="line">animation-duration: 6s;</span><br><span class="line">animation-timing-function: ease-in-out;</span><br><span class="line">animation-fill-mode: forwards;</span><br><span class="line"></span><br><span class="line">/* 无限循环播放 */</span><br><span class="line">animation-name: welcome-reveal;</span><br><span class="line">animation-duration: 6s;</span><br><span class="line">animation-timing-function: ease-in-out;</span><br><span class="line">animation-iteration-count: infinite;</span><br></pre></td></tr></table></figure>
+
+<h1 id="github"><a href="#github" class="headerlink" title="github"></a>github</h1><h2 id="直接构建部署和先覆盖github源码再部署有区别吗"><a href="#直接构建部署和先覆盖github源码再部署有区别吗" class="headerlink" title="直接构建部署和先覆盖github源码再部署有区别吗"></a>直接构建部署和先覆盖github源码再部署有区别吗</h2><p>后者可以确保github上clone下来的源码包含这次修改，因为将源码备份到了main分支</p>
+<h2 id="什么是-CI-CD"><a href="#什么是-CI-CD" class="headerlink" title="什么是 CI&#x2F;CD"></a>什么是 CI&#x2F;CD</h2><p>这是软件开发里的一套自动化流程，全称是 持续集成&#x2F;持续部署<br>如果在 github 中设置了 CI&#x2F;CD 只需要提交即可，github会帮忙完成部署 </p>
+<h2 id="图片太多导致推送github被拒绝怎么办"><a href="#图片太多导致推送github被拒绝怎么办" class="headerlink" title="图片太多导致推送github被拒绝怎么办"></a>图片太多导致推送github被拒绝怎么办</h2><p>只上传代码即可</p>
+<h1 id="python"><a href="#python" class="headerlink" title="python"></a>python</h1><p><strong>Q: “ “和’ ‘有什么区别吗</strong><br><br>A:完全没有区别</p>
+<p><strong>Q: &gt;&gt;&gt; 是什么意思，可以被编译器读取吗</strong><br><br>A:是py交互式解释器（REPL）显示给用户看的。不能被编译器读取，这不是有效语法。</p>
+<h1 id="计算机网络"><a href="#计算机网络" class="headerlink" title="计算机网络"></a>计算机网络</h1><p><strong>Q:互联网和互连网是更大的计算机网络吗</strong><br><br>A:这个说法不严谨。因为互连网有时候要比计算机网络小，如一个庞大的城域网规模要远超一个家庭网络。可以这么理解，互连网是计网组合后的通用结果，互联网是计网组合后的特定结果。</p>
+<h1 id="终端"><a href="#终端" class="headerlink" title="终端"></a>终端</h1><h2 id="为什么进行部署的脚本要分别写在两个文件（deploy-cmd-check-ci-ps1）"><a href="#为什么进行部署的脚本要分别写在两个文件（deploy-cmd-check-ci-ps1）" class="headerlink" title="为什么进行部署的脚本要分别写在两个文件（deploy.cmd , check-ci.ps1）"></a>为什么进行部署的脚本要分别写在两个文件（deploy.cmd , check-ci.ps1）</h2><p>如果将Powershell和cmd写在一个文件里会导致bath文件的（）块解析冲突。而且分开写更方便维护</p>
+]]></content>
+      <categories>
+        <category>学习</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+        <tag>css</tag>
+        <tag>python</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>常用指令</title>
+    <url>/azur_blog/2026/08/11/%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4/</url>
+    <content><![CDATA[<h1 id="hexo"><a href="#hexo" class="headerlink" title="hexo"></a>hexo</h1><h2 id="创建文章"><a href="#创建文章" class="headerlink" title="创建文章"></a>创建文章</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo new <span class="string">&quot;标题&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="更新网站"><a href="#更新网站" class="headerlink" title="更新网站"></a>更新网站</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git add .</span><br><span class="line"></span><br><span class="line">git commit -m <span class="string">&quot;更新&quot;</span></span><br><span class="line"></span><br><span class="line">git push origin main</span><br><span class="line"></span><br><span class="line">hexo clean</span><br><span class="line"></span><br><span class="line">hexo generate</span><br><span class="line"></span><br><span class="line">hexo deploy</span><br></pre></td></tr></table></figure>
+
+<h2 id="创建一个独立页面"><a href="#创建一个独立页面" class="headerlink" title="创建一个独立页面"></a>创建一个独立页面</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo new page 页面名称</span><br></pre></td></tr></table></figure>
+
+<h2 id="列出所有文章（可以替换成页面，路由，标签，分类）"><a href="#列出所有文章（可以替换成页面，路由，标签，分类）" class="headerlink" title="列出所有文章（可以替换成页面，路由，标签，分类）"></a>列出所有文章（可以替换成页面，路由，标签，分类）</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo list post</span><br></pre></td></tr></table></figure>
+
+<h1 id="deepseek"><a href="#deepseek" class="headerlink" title="deepseek"></a>deepseek</h1><h2 id="启动deepseek-harness"><a href="#启动deepseek-harness" class="headerlink" title="启动deepseek harness"></a>启动deepseek harness</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">dsh web </span><br></pre></td></tr></table></figure>
+
+<p>如果未安装可以先输入</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">nvm install 24.11.1 </span><br><span class="line">nvm use 24.11.1</span><br><span class="line">npm install -g @deepseek-ai/dsh</span><br></pre></td></tr></table></figure>
+<p>再执行上面的命令</p>
+<h1 id="windows"><a href="#windows" class="headerlink" title="windows"></a>windows</h1><h2 id="强制刷新网页："><a href="#强制刷新网页：" class="headerlink" title="强制刷新网页："></a>强制刷新网页：</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ctrl + shift + r</span><br></pre></td></tr></table></figure>
+
+<h1 id="博客制作"><a href="#博客制作" class="headerlink" title="博客制作"></a>博客制作</h1><h2 id="将文章置顶"><a href="#将文章置顶" class="headerlink" title="将文章置顶"></a>将文章置顶</h2><p>在文章front matter 加入 sticky: 1</p>
+]]></content>
+      <categories>
+        <category>学习</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+        <tag>windows</tag>
+        <tag>deepseek</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>cookbook第一章笔记</title>
+    <url>/azur_blog/2026/08/19/python/cookbook%E7%AC%AC%E4%B8%80%E7%AB%A0%E7%AC%94%E8%AE%B0/</url>
+    <content><![CDATA[<pre><code>数据结构与算法，讲述一些对于序列和字典的操作。主要借助collections来实现。
+</code></pre>
+<h2 id="名词解释"><a href="#名词解释" class="headerlink" title="名词解释"></a>名词解释</h2><h3 id="可迭代对象"><a href="#可迭代对象" class="headerlink" title="可迭代对象"></a>可迭代对象</h3><p>定义：可以一次一个地返回元素。在python中，能够放在for循环右侧的基本都是可迭代对象</p>
+<p>代表：生成器，文件对象，集合，字典（遍历的是键）</p>
+<h3 id="序列"><a href="#序列" class="headerlink" title="序列"></a>序列</h3><p>定义：有索引的可迭代对象</p>
+<p>代表：列表，元组，字符串，范围（range）</p>
+<h3 id="collections"><a href="#collections" class="headerlink" title="collections"></a>collections</h3><p>定义：python的标准库之一，提供了多种数据类型，如 defaultdict、deque、OrderedDict、Counter等</p>
+<h3 id="可哈希（hashable）"><a href="#可哈希（hashable）" class="headerlink" title="可哈希（hashable）"></a>可哈希（hashable）</h3><p>定义：如果一个对象有固定的哈希值，并且在其生命周期内这个号码绝对不会变，同时它能和其它正常对象比较是否相等，那就是可哈希的。</p>
+<h3 id="os-operating-system"><a href="#os-operating-system" class="headerlink" title="os (operating system)"></a>os (operating system)</h3><p>它为我们提供了一种跨平台的方式，让我们编写的 Python 程序能够与底层的操作系统进行交互，比如操作文件、目录、环境变量和进程等</p>
+<h2 id="1-1-将序列分解为单独的变量"><a href="#1-1-将序列分解为单独的变量" class="headerlink" title="1.1 将序列分解为单独的变量"></a>1.1 将序列分解为单独的变量</h2><p>任何序列都可以通过赋值操作分解为与序列元素数相等的变量。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">a = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</span><br><span class="line"></span><br><span class="line">b,c,d = a</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;<span class="subst">&#123;b&#125;</span>\n<span class="subst">&#123;c&#125;</span>\n<span class="subst">&#123;d&#125;</span>&quot;</span>)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="1-2-解压可迭代对象赋值给多个变量"><a href="#1-2-解压可迭代对象赋值给多个变量" class="headerlink" title="1.2 解压可迭代对象赋值给多个变量"></a>1.2 解压可迭代对象赋值给多个变量</h2><p>通过在变量名称前加*可以起到类似于切片的效果。星号解压语法也可以用来分割长度不确定的序列。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">information = [<span class="string">&quot;enterprise&quot;</span>,<span class="string">&quot;10-03&quot;</span>,<span class="string">&quot;girl&quot;</span>,<span class="string">&quot;uss&quot;</span>]</span><br><span class="line"></span><br><span class="line">name,*value = information</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;<span class="subst">&#123;name&#125;</span>\n<span class="subst">&#123;value&#125;</span>\n&quot;</span>)</span><br><span class="line"></span><br><span class="line">*key,country = information</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;<span class="subst">&#123;key&#125;</span>\n<span class="subst">&#123;country&#125;</span>\n&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<h2 id="1-3-保留最后N个元素"><a href="#1-3-保留最后N个元素" class="headerlink" title="1.3 保留最后N个元素"></a>1.3 保留最后N个元素</h2><p>正常情况下采用切片即可，但是对于动态流式的数据采用collections.deque更好。核心思想是定义一个数组，元素先进先出。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> deque</span><br><span class="line"></span><br><span class="line">answer = deque(maxlen=<span class="number">10</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="string">&quot;yorktown&quot;</span>:</span><br><span class="line">    answer.append(i)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="string">&quot;enterprise&quot;</span>:</span><br><span class="line">    answer.append(i)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(answer)</span><br></pre></td></tr></table></figure>
+
+<h2 id="1-4-查找最大或最小的N个元素"><a href="#1-4-查找最大或最小的N个元素" class="headerlink" title="1.4 查找最大或最小的N个元素"></a>1.4 查找最大或最小的N个元素</h2><p>colllecions.heapq的nlargest()和nsmallest()可以完美解决这个问题。分别用于查找最大和最小元素。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> heapq</span><br><span class="line"></span><br><span class="line">a = <span class="string">&quot;enterprise&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(heapq.nlargest(<span class="number">4</span>,a))</span><br></pre></td></tr></table></figure>
+
+<h2 id="1-5-实现优先级队列"><a href="#1-5-实现优先级队列" class="headerlink" title="1.5 实现优先级队列"></a>1.5 实现优先级队列</h2><p>借助heapq来实现。特点为列表中索引为0的元素永远最小。当数据规模是动态的时候吗，使用堆来满足获取极值的要求具有绝对的优势。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> heapq</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建一个列表作为堆</span></span><br><span class="line">pq = []</span><br><span class="line"></span><br><span class="line"><span class="comment"># 插入元素（元组格式：优先级, 数据）</span></span><br><span class="line">heapq.heappush(pq, [<span class="number">2</span>, <span class="string">&#x27;enterprise&#x27;</span>])</span><br><span class="line">heapq.heappush(pq, [<span class="number">1</span>, <span class="string">&#x27;yorktown&#x27;</span>])  </span><br><span class="line">heapq.heappush(pq, [<span class="number">3</span>, <span class="string">&#x27;hornet&#x27;</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment"># 弹出优先级最高的元素（数字最小的）</span></span><br><span class="line"><span class="built_in">print</span>(heapq.heappop(pq))  </span><br><span class="line"><span class="built_in">print</span>(heapq.heappop(pq))  </span><br><span class="line"><span class="built_in">print</span>(heapq.heappop(pq))</span><br><span class="line"></span><br><span class="line"><span class="comment">#弹出之后的元素消失</span></span><br><span class="line"><span class="built_in">print</span>(pq)</span><br></pre></td></tr></table></figure>
+
+<h2 id="1-6-字典映射多个值"><a href="#1-6-字典映射多个值" class="headerlink" title="1.6 字典映射多个值"></a>1.6 字典映射多个值</h2><p>可以将value用序列来表示，也可以借助collections.default,本质是一样的。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> defaultdict</span><br><span class="line"></span><br><span class="line">ship = defaultdict(<span class="built_in">set</span>) <span class="comment">#容器类型需要声明</span></span><br><span class="line"></span><br><span class="line">ship[<span class="string">&quot;yorktown&quot;</span>].add(<span class="string">&quot;yorktown&quot;</span>)</span><br><span class="line">ship[<span class="string">&quot;yorktown&quot;</span>].add(<span class="string">&quot;enterprise&quot;</span>)</span><br><span class="line">ship[<span class="string">&quot;yorktown&quot;</span>].add(<span class="string">&quot;hornet&quot;</span>)</span><br><span class="line"></span><br><span class="line">ship[<span class="string">&quot;lexington&quot;</span>].add(<span class="string">&quot;lexington&quot;</span>)</span><br><span class="line">ship[<span class="string">&quot;lexington&quot;</span>].add(<span class="string">&quot;saratoga&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(ship)</span><br></pre></td></tr></table></figure>
+
+<h2 id="1-7-字典排序"><a href="#1-7-字典排序" class="headerlink" title="1.7 字典排序"></a>1.7 字典排序</h2><p>使用collections.QrderedDict可以在迭代操作中保持元素被插入时的顺序。（注：不是按大小重新排序）</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> OrderedDict</span><br><span class="line"></span><br><span class="line">ship = OrderedDict()</span><br><span class="line"></span><br><span class="line">ship[<span class="string">&#x27;yorktown&#x27;</span>] = <span class="number">5</span></span><br><span class="line">ship[<span class="string">&#x27;enterprise&#x27;</span>] = <span class="number">6</span></span><br><span class="line">ship[<span class="string">&#x27;hornet&#x27;</span>] = <span class="number">7</span></span><br><span class="line">ship[<span class="string">&#x27;saratoga&#x27;</span>] = <span class="number">3</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(ship)</span><br></pre></td></tr></table></figure>
+
+<h2 id="1-8-字典的运算"><a href="#1-8-字典的运算" class="headerlink" title="1.8 字典的运算"></a>1.8 字典的运算</h2><p>对于求字典的最值和排序，需要先借助zip()函数将键和值反转过来。否则会作用于键而不是值。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> OrderedDict</span><br><span class="line"></span><br><span class="line">ship = OrderedDict()</span><br><span class="line"></span><br><span class="line">ship[<span class="string">&#x27;yorktown&#x27;</span>] = <span class="number">5</span></span><br><span class="line">ship[<span class="string">&#x27;enterprise&#x27;</span>] = <span class="number">6</span></span><br><span class="line">ship[<span class="string">&#x27;hornet&#x27;</span>] = <span class="number">7</span></span><br><span class="line">ship[<span class="string">&#x27;saratoga&#x27;</span>] = <span class="number">3</span></span><br><span class="line"></span><br><span class="line">answer = <span class="built_in">max</span>(<span class="built_in">zip</span>(ship.values(),ship.keys()))</span><br><span class="line"><span class="built_in">print</span>(answer)</span><br><span class="line"></span><br><span class="line"><span class="built_in">sorted</span>(<span class="built_in">zip</span>(ship.values(),ship.keys()))</span><br></pre></td></tr></table></figure>
+
+<h2 id="1-9-查找两字典的相同点"><a href="#1-9-查找两字典的相同点" class="headerlink" title="1.9 查找两字典的相同点"></a>1.9 查找两字典的相同点</h2><p>查找字典相同点的方法很多，但是无法直接查找相同的值，因为值不一定满足一一映射。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="built_in">print</span>(a.keys() &amp; b.keys()) <span class="comment">#找相同的键，如果想用相同方法找相同的值需要先用zip翻转</span></span><br><span class="line"><span class="built_in">print</span>(a.items() &amp; b.items()) <span class="comment">#找键和值都相同的组合</span></span><br><span class="line"><span class="built_in">print</span>(a.keys()-b.keys()) <span class="comment">#找两个字典键的差集</span></span><br><span class="line"></span><br><span class="line">c = &#123;key:a[key] <span class="keyword">for</span> key <span class="keyword">in</span> a.keys() - &#123;<span class="string">&#x27;z&#x27;</span>, <span class="string">&#x27;w&#x27;</span>&#125;&#125; <span class="comment">#构建排除指定键的字典</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="1-10-删除序列相同元素并保持顺序"><a href="#1-10-删除序列相同元素并保持顺序" class="headerlink" title="1.10 删除序列相同元素并保持顺序"></a>1.10 删除序列相同元素并保持顺序</h2><p>定义一个集合，将序列的元素按顺序逐一放入</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">dedupe</span>(<span class="params">items, key=<span class="literal">None</span></span>):</span><br><span class="line">    seen = <span class="built_in">set</span>()</span><br><span class="line">    <span class="keyword">for</span> item <span class="keyword">in</span> items:</span><br><span class="line">        val = item <span class="keyword">if</span> key <span class="keyword">is</span> <span class="literal">None</span> <span class="keyword">else</span> key(item)</span><br><span class="line">        <span class="keyword">if</span> val <span class="keyword">not</span> <span class="keyword">in</span> seen:</span><br><span class="line">            <span class="keyword">yield</span> item</span><br><span class="line">            seen.add(val)</span><br></pre></td></tr></table></figure>
+
+<h2 id="1-11-命名切片"><a href="#1-11-命名切片" class="headerlink" title="1.11 命名切片"></a>1.11 命名切片</h2><p>变量可以用切片来赋值</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">record = <span class="string">&#x27;....................100 .......513.25 ..........&#x27;</span></span><br><span class="line"></span><br><span class="line">SHARES = <span class="built_in">slice</span>(<span class="number">20</span>, <span class="number">23</span>)</span><br><span class="line">PRICE = <span class="built_in">slice</span>(<span class="number">31</span>, <span class="number">37</span>)</span><br><span class="line"></span><br><span class="line">cost = <span class="built_in">int</span>(record[SHARES]) * <span class="built_in">float</span>(record[PRICE])</span><br></pre></td></tr></table></figure>
+
+<h2 id="1-12-序列中出现次数最多的元素"><a href="#1-12-序列中出现次数最多的元素" class="headerlink" title="1.12 序列中出现次数最多的元素"></a>1.12 序列中出现次数最多的元素</h2><p>可以用collections.Counter解决</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">words = [</span><br><span class="line">    <span class="string">&#x27;look&#x27;</span>, <span class="string">&#x27;into&#x27;</span>, <span class="string">&#x27;my&#x27;</span>, <span class="string">&#x27;eyes&#x27;</span>, <span class="string">&#x27;look&#x27;</span>, <span class="string">&#x27;into&#x27;</span>, <span class="string">&#x27;my&#x27;</span>, <span class="string">&#x27;eyes&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;the&#x27;</span>, <span class="string">&#x27;eyes&#x27;</span>, <span class="string">&#x27;the&#x27;</span>, <span class="string">&#x27;eyes&#x27;</span>, <span class="string">&#x27;the&#x27;</span>, <span class="string">&#x27;eyes&#x27;</span>, <span class="string">&#x27;not&#x27;</span>, <span class="string">&#x27;around&#x27;</span>, <span class="string">&#x27;the&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;eyes&#x27;</span>, <span class="string">&quot;don&#x27;t&quot;</span>, <span class="string">&#x27;look&#x27;</span>, <span class="string">&#x27;around&#x27;</span>, <span class="string">&#x27;the&#x27;</span>, <span class="string">&#x27;eyes&#x27;</span>, <span class="string">&#x27;look&#x27;</span>, <span class="string">&#x27;into&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;my&#x27;</span>, <span class="string">&#x27;eyes&#x27;</span>, <span class="string">&quot;you&#x27;re&quot;</span>, <span class="string">&#x27;under&#x27;</span></span><br><span class="line">]</span><br><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> Counter</span><br><span class="line">word_counts = Counter(words)</span><br><span class="line"><span class="comment"># 出现频率最高的3个单词</span></span><br><span class="line">top_three = word_counts.most_common(<span class="number">3</span>)</span><br><span class="line"><span class="built_in">print</span>(top_three)</span><br></pre></td></tr></table></figure>
+
+<h2 id="1-13-通过某个关键字排序一个字典列表"><a href="#1-13-通过某个关键字排序一个字典列表" class="headerlink" title="1.13 通过某个关键字排序一个字典列表"></a>1.13 通过某个关键字排序一个字典列表</h2><p>使用operator模块的itemgetter函数实现</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">rows = [</span><br><span class="line">    &#123;<span class="string">&#x27;fname&#x27;</span>: <span class="string">&#x27;Brian&#x27;</span>, <span class="string">&#x27;lname&#x27;</span>: <span class="string">&#x27;Jones&#x27;</span>, <span class="string">&#x27;uid&#x27;</span>: <span class="number">1003</span>&#125;,</span><br><span class="line">    &#123;<span class="string">&#x27;fname&#x27;</span>: <span class="string">&#x27;David&#x27;</span>, <span class="string">&#x27;lname&#x27;</span>: <span class="string">&#x27;Beazley&#x27;</span>, <span class="string">&#x27;uid&#x27;</span>: <span class="number">1002</span>&#125;,</span><br><span class="line">    &#123;<span class="string">&#x27;fname&#x27;</span>: <span class="string">&#x27;John&#x27;</span>, <span class="string">&#x27;lname&#x27;</span>: <span class="string">&#x27;Cleese&#x27;</span>, <span class="string">&#x27;uid&#x27;</span>: <span class="number">1001</span>&#125;,</span><br><span class="line">    &#123;<span class="string">&#x27;fname&#x27;</span>: <span class="string">&#x27;Big&#x27;</span>, <span class="string">&#x27;lname&#x27;</span>: <span class="string">&#x27;Jones&#x27;</span>, <span class="string">&#x27;uid&#x27;</span>: <span class="number">1004</span>&#125;</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> operator <span class="keyword">import</span> itemgetter</span><br><span class="line"></span><br><span class="line">rows_by_fname = <span class="built_in">sorted</span>(rows, key=itemgetter(<span class="string">&#x27;fname&#x27;</span>))</span><br><span class="line">rows_by_uid = <span class="built_in">sorted</span>(rows, key=itemgetter(<span class="string">&#x27;uid&#x27;</span>))</span><br><span class="line">rows_by_lfname = <span class="built_in">sorted</span>(rows, key=itemgetter(<span class="string">&#x27;lname&#x27;</span>,<span class="string">&#x27;fname&#x27;</span>)) <span class="comment"># itemgetter支持多个keys</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(rows_by_fname , end=<span class="string">&#x27;\n\n&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(rows_by_uid , end=<span class="string">&#x27;\n\n&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(rows_by_lfname )</span><br></pre></td></tr></table></figure>
+
+<h2 id="1-14-排序不支持原生比较的对象"><a href="#1-14-排序不支持原生比较的对象" class="headerlink" title="1.14 排序不支持原生比较的对象"></a>1.14 排序不支持原生比较的对象</h2><p>当定义了一个类，并创建了多个实例放在列表里，使用sorted()排序会报错，因为py不知道按照什么规则来比。解决方法有两种，使用operate.attrgetter，或者借助lamba专门定义一个函数来实现。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">User</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, user_id</span>):</span><br><span class="line">        <span class="variable language_">self</span>.user_id = user_id</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__repr__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27;User(&#123;&#125;)&#x27;</span>.<span class="built_in">format</span>(<span class="variable language_">self</span>.user_id)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">sort_notcompare</span>():</span><br><span class="line">    users = [User(<span class="number">23</span>), User(<span class="number">3</span>), User(<span class="number">99</span>)]</span><br><span class="line">    <span class="built_in">print</span>(users)</span><br><span class="line">    <span class="built_in">print</span>(<span class="built_in">sorted</span>(users, key=<span class="keyword">lambda</span> u: u.user_id),end=<span class="string">&#x27;\n\n&#x27;</span>)</span><br><span class="line"></span><br><span class="line">sort_notcompare()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> operator <span class="keyword">import</span> attrgetter</span><br><span class="line"></span><br><span class="line">users = [User(<span class="number">23</span>), User(<span class="number">3</span>), User(<span class="number">99</span>)]</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">sorted</span>(users, key=attrgetter(<span class="string">&#x27;user_id&#x27;</span>)))</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="1-15-通过某个字段将记录分组"><a href="#1-15-通过某个字段将记录分组" class="headerlink" title="1.15 通过某个字段将记录分组"></a>1.15 通过某个字段将记录分组</h2><p>使用itertools.groupby()实现</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">rows = [</span><br><span class="line">    &#123;<span class="string">&#x27;address&#x27;</span>: <span class="string">&#x27;5412 N CLARK&#x27;</span>, <span class="string">&#x27;date&#x27;</span>: <span class="string">&#x27;07/01/2012&#x27;</span>&#125;,</span><br><span class="line">    &#123;<span class="string">&#x27;address&#x27;</span>: <span class="string">&#x27;5148 N CLARK&#x27;</span>, <span class="string">&#x27;date&#x27;</span>: <span class="string">&#x27;07/04/2012&#x27;</span>&#125;,</span><br><span class="line">    &#123;<span class="string">&#x27;address&#x27;</span>: <span class="string">&#x27;5800 E 58TH&#x27;</span>, <span class="string">&#x27;date&#x27;</span>: <span class="string">&#x27;07/02/2012&#x27;</span>&#125;,</span><br><span class="line">    &#123;<span class="string">&#x27;address&#x27;</span>: <span class="string">&#x27;2122 N CLARK&#x27;</span>, <span class="string">&#x27;date&#x27;</span>: <span class="string">&#x27;07/03/2012&#x27;</span>&#125;,</span><br><span class="line">    &#123;<span class="string">&#x27;address&#x27;</span>: <span class="string">&#x27;5645 N RAVENSWOOD&#x27;</span>, <span class="string">&#x27;date&#x27;</span>: <span class="string">&#x27;07/02/2012&#x27;</span>&#125;,</span><br><span class="line">    &#123;<span class="string">&#x27;address&#x27;</span>: <span class="string">&#x27;1060 W ADDISON&#x27;</span>, <span class="string">&#x27;date&#x27;</span>: <span class="string">&#x27;07/02/2012&#x27;</span>&#125;,</span><br><span class="line">    &#123;<span class="string">&#x27;address&#x27;</span>: <span class="string">&#x27;4801 N BROADWAY&#x27;</span>, <span class="string">&#x27;date&#x27;</span>: <span class="string">&#x27;07/01/2012&#x27;</span>&#125;,</span><br><span class="line">    &#123;<span class="string">&#x27;address&#x27;</span>: <span class="string">&#x27;1039 W GRANVILLE&#x27;</span>, <span class="string">&#x27;date&#x27;</span>: <span class="string">&#x27;07/04/2012&#x27;</span>&#125;,</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> operator <span class="keyword">import</span> itemgetter</span><br><span class="line"><span class="keyword">from</span> itertools <span class="keyword">import</span> groupby</span><br><span class="line"></span><br><span class="line">rows.sort(key=itemgetter(<span class="string">&#x27;date&#x27;</span>)) <span class="comment"># 基于日期排序</span></span><br><span class="line"></span><br><span class="line">example = groupby(rows, key=itemgetter(<span class="string">&#x27;date&#x27;</span>))</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> date,items <span class="keyword">in</span> example:</span><br><span class="line">        <span class="built_in">print</span>(date)</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> items:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&#x27; &#x27;</span>,i)</span><br></pre></td></tr></table></figure>
+
+<h2 id="1-16-过滤序列元素"><a href="#1-16-过滤序列元素" class="headerlink" title="1.16 过滤序列元素"></a>1.16 过滤序列元素</h2><p>使用列表推导。对于复杂的过滤规则可以定义一个函数，并借助filter实现过滤。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">values = [<span class="string">&#x27;1&#x27;</span>, <span class="string">&#x27;2&#x27;</span>, <span class="string">&#x27;-3&#x27;</span>, <span class="string">&#x27;-&#x27;</span>, <span class="string">&#x27;4&#x27;</span>, <span class="string">&#x27;N/A&#x27;</span>, <span class="string">&#x27;5&#x27;</span>]</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">choose</span>(<span class="params">e</span>):</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        e = <span class="built_in">int</span> (e)</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">    <span class="keyword">except</span> ValueError :</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line"></span><br><span class="line">show = <span class="built_in">list</span>(<span class="built_in">filter</span>(choose, values))</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(show)</span><br></pre></td></tr></table></figure>
+
+<h2 id="1-17-从字典中提取子集"><a href="#1-17-从字典中提取子集" class="headerlink" title="1.17 从字典中提取子集"></a>1.17 从字典中提取子集</h2><p>使用字典推导</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">prices = &#123;</span><br><span class="line">    <span class="string">&#x27;ACME&#x27;</span>: <span class="number">45.23</span>,</span><br><span class="line">    <span class="string">&#x27;AAPL&#x27;</span>: <span class="number">612.78</span>,</span><br><span class="line">    <span class="string">&#x27;IBM&#x27;</span>: <span class="number">205.55</span>,</span><br><span class="line">    <span class="string">&#x27;HPQ&#x27;</span>: <span class="number">37.20</span>,</span><br><span class="line">    <span class="string">&#x27;FB&#x27;</span>: <span class="number">10.75</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># Make a dictionary of all prices over 200</span></span><br><span class="line">p1 = &#123;key: value <span class="keyword">for</span> key, value <span class="keyword">in</span> prices.items() <span class="keyword">if</span> value &gt; <span class="number">200</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># Make a dictionary of tech stocks</span></span><br><span class="line">tech_names = &#123;<span class="string">&#x27;AAPL&#x27;</span>, <span class="string">&#x27;IBM&#x27;</span>, <span class="string">&#x27;HPQ&#x27;</span>, <span class="string">&#x27;MSFT&#x27;</span>&#125;</span><br><span class="line">p2 = &#123;key: value <span class="keyword">for</span> key, value <span class="keyword">in</span> prices.items() <span class="keyword">if</span> key <span class="keyword">in</span> tech_names&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(p1,end=<span class="string">&#x27;\n&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(p2)</span><br></pre></td></tr></table></figure>
+
+<h2 id="1-18-映射名称到序列元素"><a href="#1-18-映射名称到序列元素" class="headerlink" title="1.18 映射名称到序列元素"></a>1.18 映射名称到序列元素</h2><p>这个操作类似于定义一个结构体。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> collections <span class="keyword">import</span> namedtuple</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>Subscriber = namedtuple(<span class="string">&#x27;Subscriber&#x27;</span>, [<span class="string">&#x27;addr&#x27;</span>, <span class="string">&#x27;joined&#x27;</span>])</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>sub = Subscriber(<span class="string">&#x27;jonesy@example.com&#x27;</span>, <span class="string">&#x27;2012-10-19&#x27;</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>sub</span><br><span class="line">Subscriber(addr=<span class="string">&#x27;jonesy@example.com&#x27;</span>, joined=<span class="string">&#x27;2012-10-19&#x27;</span>)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>sub.addr</span><br><span class="line"><span class="string">&#x27;jonesy@example.com&#x27;</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>sub.joined</span><br><span class="line"><span class="string">&#x27;2012-10-19&#x27;</span></span><br><span class="line">&gt;&gt;&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="1-19-转换并同时计算数据"><a href="#1-19-转换并同时计算数据" class="headerlink" title="1.19 转换并同时计算数据"></a>1.19 转换并同时计算数据</h2><p>比较好的解决方式是使用一个生成器表达式参数。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line">files = os.listdir(<span class="string">&#x27;dirname&#x27;</span>)</span><br><span class="line"><span class="keyword">if</span> <span class="built_in">any</span>(name.endswith(<span class="string">&#x27;.py&#x27;</span>) <span class="keyword">for</span> name <span class="keyword">in</span> files):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;There be python!&#x27;</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&#x27;Sorry, no python.&#x27;</span>)</span><br><span class="line"><span class="comment"># Output a tuple as CSV</span></span><br><span class="line">s = (<span class="string">&#x27;ACME&#x27;</span>, <span class="number">50</span>, <span class="number">123.45</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;,&#x27;</span>.join(<span class="built_in">str</span>(x) <span class="keyword">for</span> x <span class="keyword">in</span> s))</span><br><span class="line"><span class="comment"># Data reduction across fields of a data structure</span></span><br><span class="line">portfolio = [</span><br><span class="line">    &#123;<span class="string">&#x27;name&#x27;</span>:<span class="string">&#x27;GOOG&#x27;</span>, <span class="string">&#x27;shares&#x27;</span>: <span class="number">50</span>&#125;,</span><br><span class="line">    &#123;<span class="string">&#x27;name&#x27;</span>:<span class="string">&#x27;YHOO&#x27;</span>, <span class="string">&#x27;shares&#x27;</span>: <span class="number">75</span>&#125;,</span><br><span class="line">    &#123;<span class="string">&#x27;name&#x27;</span>:<span class="string">&#x27;AOL&#x27;</span>, <span class="string">&#x27;shares&#x27;</span>: <span class="number">20</span>&#125;,</span><br><span class="line">    &#123;<span class="string">&#x27;name&#x27;</span>:<span class="string">&#x27;SCOX&#x27;</span>, <span class="string">&#x27;shares&#x27;</span>: <span class="number">65</span>&#125;</span><br><span class="line">]</span><br><span class="line">min_shares = <span class="built_in">min</span>(s[<span class="string">&#x27;shares&#x27;</span>] <span class="keyword">for</span> s <span class="keyword">in</span> portfolio)</span><br></pre></td></tr></table></figure>
+<h2 id="1-20-合并多个字典或映射"><a href="#1-20-合并多个字典或映射" class="headerlink" title="1.20 合并多个字典或映射"></a>1.20 合并多个字典或映射</h2><p>使用collections.ChainMap,将b里面a不存在的键加入</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">a = &#123;<span class="string">&#x27;x&#x27;</span>: <span class="number">1</span>, <span class="string">&#x27;z&#x27;</span>: <span class="number">3</span> &#125;</span><br><span class="line">b = &#123;<span class="string">&#x27;y&#x27;</span>: <span class="number">2</span>, <span class="string">&#x27;z&#x27;</span>: <span class="number">4</span> &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> ChainMap</span><br><span class="line">c = ChainMap(a,b)</span><br><span class="line"><span class="built_in">print</span>(c[<span class="string">&#x27;x&#x27;</span>]) <span class="comment"># Outputs 1 (from a)</span></span><br><span class="line"><span class="built_in">print</span>(c[<span class="string">&#x27;y&#x27;</span>]) <span class="comment"># Outputs 2 (from b)</span></span><br><span class="line"><span class="built_in">print</span>(c[<span class="string">&#x27;z&#x27;</span>]) <span class="comment"># Outputs 3 (from a)</span></span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>学习</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+        <tag>数据结构</tag>
+        <tag>字典</tag>
+        <tag>堆</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>cookbook第二章笔记</title>
+    <url>/azur_blog/2026/08/21/python/cookbook%E7%AC%AC%E4%BA%8C%E7%AB%A0%E7%AC%94%E8%AE%B0/</url>
+    <content><![CDATA[<p>本章讲述了如何高效、优雅地处理现实世界中“不规矩”的文本数据</p>
+<h2 id="名词解释"><a href="#名词解释" class="headerlink" title="名词解释"></a>名词解释</h2><h3 id="正则修饰符"><a href="#正则修饰符" class="headerlink" title="正则修饰符"></a>正则修饰符</h3><p>定义:用于改变正则表达式引擎默认匹配行为的额外参数或内联指令。它只改变匹配的方式和规则，如是否忽略大小写等。</p>
+<h2 id="2-1-使用多个界定字符分割字符串"><a href="#2-1-使用多个界定字符分割字符串" class="headerlink" title="2.1 使用多个界定字符分割字符串"></a>2.1 使用多个界定字符分割字符串</h2><p>split()方法不允许有多个分割符或者不确定的空格。建议使用re.split()。<br>使用方法为：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">re.split(pattern, string, maxsplit=<span class="number">0</span>, flags=<span class="number">0</span>)</span><br></pre></td></tr></table></figure>
+<p>其中，pattern表示正则表达式，string表示要分割的字符串，maxsplit表示最大分割次数，flags表示正则修饰符。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>line = <span class="string">&#x27;asdf fjdk; afed, fjek,asdf, foo&#x27;</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> re</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>re.split(<span class="string">r&#x27;[;,\s]\s*&#x27;</span>, line)</span><br><span class="line">[<span class="string">&#x27;asdf&#x27;</span>, <span class="string">&#x27;fjdk&#x27;</span>, <span class="string">&#x27;afed&#x27;</span>, <span class="string">&#x27;fjek&#x27;</span>, <span class="string">&#x27;asdf&#x27;</span>, <span class="string">&#x27;foo&#x27;</span>]</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-2-字符串开头或结尾匹配"><a href="#2-2-字符串开头或结尾匹配" class="headerlink" title="2.2 字符串开头或结尾匹配"></a>2.2 字符串开头或结尾匹配</h2><p>使用str.startswith()或者str.endswith()。</p>
+<p>‘’’python<br>url &#x3D; ‘<a href="http://www.python.org/">http://www.python.org</a>‘</p>
+<p>print(url.endswith(‘com’))<br>print(url.startswith(‘http’))<br>‘’’</p>
+<h2 id="2-3-用shell通配符匹配字符串"><a href="#2-3-用shell通配符匹配字符串" class="headerlink" title="2.3 用shell通配符匹配字符串"></a>2.3 用shell通配符匹配字符串</h2><p>fnmatch模块提供了fnmatch()和fnmatchcase()来实现。相比于前者，后者会严格按照的你用的模式的大小写匹配。前者使用操作系统的大小写敏感规则来匹配模式。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> fnmatch <span class="keyword">import</span> fnmatch,fnmatchcase</span><br><span class="line"></span><br><span class="line">names = [<span class="string">&#x27;Dat1.csv&#x27;</span>, <span class="string">&#x27;Dat2.csv&#x27;</span>, <span class="string">&#x27;config.ini&#x27;</span>, <span class="string">&#x27;foo.py&#x27;</span>]</span><br><span class="line"><span class="built_in">print</span>([name <span class="keyword">for</span> name <span class="keyword">in</span> names <span class="keyword">if</span> fnmatch(name, <span class="string">&#x27;Dat*.csv&#x27;</span>)])</span><br><span class="line"><span class="comment">#输出[&#x27;Dat1.csv&#x27;, &#x27;Dat2.csv&#x27;]</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(fnmatch(<span class="string">&#x27;foot.txt&#x27;</span>,<span class="string">&#x27;*.txt&#x27;</span>))</span><br><span class="line"><span class="built_in">print</span>(fnmatch(<span class="string">&#x27;foot.txt&#x27;</span>,<span class="string">&#x27;*.TXT&#x27;</span>))</span><br><span class="line"><span class="built_in">print</span>(fnmatchcase(<span class="string">&#x27;foot.txt&#x27;</span>,<span class="string">&#x27;*.txt&#x27;</span>))</span><br><span class="line"><span class="built_in">print</span>(fnmatchcase(<span class="string">&#x27;foot.txt&#x27;</span>,<span class="string">&#x27;*.TXT&#x27;</span>))</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-4-字符串匹配搜索"><a href="#2-4-字符串匹配搜索" class="headerlink" title="2.4 字符串匹配搜索"></a>2.4 字符串匹配搜索</h2><p>需要调用str.find() , str.endswith() , str.startswith() 或者类似的方法。</p>
+<p>需要注意的是，如果你打算做大量的匹配和搜索操作的话，最好先编译正则表达式，然后再重复使用它。 模块级别的函数会将最近编译过的模式缓存起来，因此并不会消耗太多的性能， 但是如果使用预编译模式的话，你将会减少查找和一些额外的处理损耗。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>text = <span class="string">&#x27;yeah, but no, but yeah, but no, but yeah&#x27;</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="comment"># Exact match</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>text == <span class="string">&#x27;yeah&#x27;</span></span><br><span class="line"><span class="literal">False</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="comment"># Match at start or end</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>text.startswith(<span class="string">&#x27;yeah&#x27;</span>)</span><br><span class="line"><span class="literal">True</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>text.endswith(<span class="string">&#x27;no&#x27;</span>)</span><br><span class="line"><span class="literal">False</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="comment"># Search for the location of the first occurrence</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>text.find(<span class="string">&#x27;no&#x27;</span>)</span><br><span class="line"><span class="number">10</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="2-5-字符串搜索和替换"><a href="#2-5-字符串搜索和替换" class="headerlink" title="2.5 字符串搜索和替换"></a>2.5 字符串搜索和替换</h2><p>使用str.replace()或者re.sub()</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">text = <span class="string">&#x27;yeah , but no , but yeah , but no , but yeah&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># replace操作之后不会改变原来的值</span></span><br><span class="line"><span class="built_in">print</span>(text.replace(<span class="string">&#x27;yeah&#x27;</span>,<span class="string">&#x27;yep&#x27;</span>))</span><br><span class="line"><span class="built_in">print</span>(text)</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line">text = <span class="string">&#x27;Today is 11/27/2012. PyCon starts 3/13/2013.&#x27;</span></span><br><span class="line"><span class="built_in">print</span>(re.sub(<span class="string">r&#x27;(\d+)/(\d+)/(\d+)&#x27;</span>, <span class="string">r&#x27;\3-\1-\2&#x27;</span>, text))</span><br><span class="line"><span class="built_in">print</span>(text)</span><br></pre></td></tr></table></figure>
+
+
+]]></content>
+      <categories>
+        <category>学习</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+        <tag>字符串文本</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>css常见调参函数</title>
+    <url>/azur_blog/2026/08/14/%E5%8D%9A%E5%AE%A2%E5%88%B6%E4%BD%9C%E7%9B%B8%E5%85%B3/css%E5%B8%B8%E8%A7%81%E8%B0%83%E5%8F%82%E5%87%BD%E6%95%B0/</url>
+    <content><![CDATA[<h2 id="reba-红绿蓝透明度"><a href="#reba-红绿蓝透明度" class="headerlink" title="reba &#x2F; 红绿蓝透明度"></a>reba &#x2F; 红绿蓝透明度</h2><p>用法：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">reba(红色，绿色，蓝色，不透明度)</span><br></pre></td></tr></table></figure>
+<p>前三者都是0 ~ 255 ，数越大越接近白色。不透明度是越低越透明。</p>
+<h2 id="backdrop-filter-对元素背后的区域采用滤镜效果"><a href="#backdrop-filter-对元素背后的区域采用滤镜效果" class="headerlink" title="backdrop-filter &#x2F; 对元素背后的区域采用滤镜效果"></a>backdrop-filter &#x2F; 对元素背后的区域采用滤镜效果</h2><p>用法:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">backdrop-filter: blur(12px)</span><br></pre></td></tr></table></figure>
+<p>模糊半径（xxpx）越大内容越糊</p>
+]]></content>
+      <categories>
+        <category>学习</category>
+      </categories>
+      <tags>
+        <tag>css</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>博客制作注意事项</title>
+    <url>/azur_blog/2026/08/11/%E5%8D%9A%E5%AE%A2%E5%88%B6%E4%BD%9C%E7%9B%B8%E5%85%B3/%E5%8D%9A%E5%AE%A2%E5%88%B6%E4%BD%9C%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/</url>
+    <content><![CDATA[<h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>今天尝试搭建好了博客的环境，并制作了一个大概的样子。在开发过程中遇到了如下两个问题：</p>
+<h2 id="1-欢迎动画无法循环播放"><a href="#1-欢迎动画无法循环播放" class="headerlink" title="1.欢迎动画无法循环播放"></a>1.欢迎动画无法循环播放</h2><p>在css动画属性中用了forwards,应该改为infinite<br>最后的效果如下：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">.welcome-text.animate &#123;</span><br><span class="line">  animation: welcome-reveal 6s ease-in-out infinite;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="2-将路径或者一些文件弄混"><a href="#2-将路径或者一些文件弄混" class="headerlink" title="2.将路径或者一些文件弄混"></a>2.将路径或者一些文件弄混</h2><p>目前的结构有点像是一个嵌套的结构，因此一定要记录好架构，目前的架构为</p>
+<p>  blog&#x2F;                                    ← 整个博客项目<br>  ├── _config.yml                          ← ① 站点配置（博客”本体”的设置）<br>  ├── package.json                         ← Node 依赖清单（hexo<br>  本体、渲染插件）<br>  ├── package-lock.json                    ← 依赖锁定文件（不用管）<br>  ├── node_modules&#x2F;                        ← 已安装的依赖（不用管，别删）<br>  │<br>  ├── scaffolds&#x2F;                           ← 新建文章&#x2F;页面的”模板”<br>  │   ├── post.md                         （新建文章时套用）<br>  │   ├── page.md                         （新建页面时套用）<br>  │   └── draft.md                        （新建草稿时套用）<br>  │<br>  ├── source&#x2F;                              ← ② 你的”原料”都在这里<br>  │   ├── _posts&#x2F;                         ← ★ 你的文章（Markdown 文件）<br>  │   │   └── 我的第一篇博客.md<br>  │   ├── img&#x2F;                            ← 你的图片（avatar.png 头像在这）<br>  │   ├── tags&#x2F;index.md                   ← “标签”页面<br>  │   ├── categories&#x2F;index.md             ← “分类”页面<br>  │   └── _data&#x2F;butterfly.yml             ← 主题备用配置（目前是空文件）<br>  │<br>  ├── themes&#x2F;                              ← ③ 主题（决定网站长什么样）<br>  │   └── butterfly&#x2F;<br>  │       ├── _config.yml                 ← ★★ 主题配置（最常改的）<br>  │       ├── layout&#x2F;                     ← 页面模板（Pug，一般不用动）<br>  │       ├── source&#x2F;                     ← 主题自己的 CSS&#x2F;JS&#x2F;默认图<br>  │       └── scripts&#x2F;                    ← 主题辅助脚本<br>  │<br>  ├── public&#x2F;                              ← ④<br>  生成出的”成品网站”（自动生成，别手动改）<br>  ├── db.json                              ← 缓存（不用管）<br>  ├── .git&#x2F;                                ← 版本控制（上次已 init 并提交）<br>  └── .github&#x2F;                             ← GitHub 自动更新依赖的配置</p>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>js</tag>
+        <tag>开发</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>我的第一篇博客</title>
+    <url>/azur_blog/2026/08/11/%E5%8D%9A%E5%AE%A2%E5%88%B6%E4%BD%9C%E7%9B%B8%E5%85%B3/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/</url>
+    <content><![CDATA[<p>这个网站打算用来记录一些学习笔记，同人文等。</p>
+<span id="more"></span>
+
+<h1 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h1><p>博客这个东西是我在网上无意中看到的，感觉很有意思，于是打算自己做一下。我本人很喜欢用代码做东西，同时很喜欢碧蓝航线中一个叫企业的角色。平时的爱好就是看小说，写代码，写同人文。希望能打造出一个碧蓝航线风格的博客，也能用来记录自己提升的过程。</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>基于小额投资纳斯达克和标普的算法</title>
+    <url>/azur_blog/2026/08/17/%E6%8A%95%E8%B5%84/%E5%9F%BA%E4%BA%8E%E5%B0%8F%E9%A2%9D%E6%8A%95%E8%B5%84%E7%BA%B3%E6%96%AF%E8%BE%BE%E5%85%8B%E5%92%8C%E6%A0%87%E6%99%AE%E7%9A%84%E7%AE%97%E6%B3%95/</url>
+    <content><![CDATA[<h2 id="一，背景"><a href="#一，背景" class="headerlink" title="一，背景"></a>一，背景</h2><p>该算法基于的背景是每月投资一百五十元左右的纳指和标普基金而设计的。<em>旨在降低投资风险，避免单年出现过高亏损。</em></p>
+<h2 id="二，算法"><a href="#二，算法" class="headerlink" title="二，算法"></a>二，算法</h2><h3 id="理论基础"><a href="#理论基础" class="headerlink" title="理论基础"></a>理论基础</h3><p>以下是和该算法相关的一些指标</p>
+<table>
+<thead>
+<tr>
+<th>指标</th>
+<th>公式</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>MA20 &#x2F; MA60</td>
+<td>最近 20 &#x2F; 60 日收盘价均值</td>
+<td>短期&#x2F;中期持仓成本线</td>
+</tr>
+<tr>
+<td>趋势</td>
+<td>MA20 &gt; MA60 → 多头排列，否则空头排列</td>
+<td>中期趋势方向</td>
+</tr>
+<tr>
+<td>回撤 DD</td>
+<td>(现价 − 近120日最高) ÷ 近120日最高 × 100%</td>
+<td>相对近期高点的下跌深度</td>
+</tr>
+<tr>
+<td>修复进度</td>
+<td>(现价 − 近60日最低) ÷ (近60日最高 − 近60日最低)</td>
+<td>从坑底爬回的比例（0~1）</td>
+</tr>
+<tr>
+<td>回撤持续时间</td>
+<td>距最近一次创”运行新高”（全部历史最高）的交易日数</td>
+<td>市场多久没创新高了，区分 V 型急跌 vs L 型阴跌</td>
+</tr>
+</tbody></table>
+<h3 id="决策选择"><a href="#决策选择" class="headerlink" title="决策选择"></a>决策选择</h3><table>
+<thead>
+<tr>
+<th>回撤 DD</th>
+<th>档位</th>
+<th>信号</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>DD ≥ 0%</td>
+<td>-1</td>
+<td>高位不追，持有</td>
+</tr>
+<tr>
+<td>-5% ≤ DD &lt; 0%</td>
+<td>0</td>
+<td>观望</td>
+</tr>
+<tr>
+<td>-10% ≤ DD &lt; -5%</td>
+<td>1</td>
+<td>建议加仓1档</td>
+</tr>
+<tr>
+<td>-15% ≤ DD &lt; -10%</td>
+<td>2</td>
+<td>建议加仓2档</td>
+</tr>
+<tr>
+<td>DD &lt; -15%</td>
+<td>3</td>
+<td>建议加仓3档</td>
+</tr>
+</tbody></table>
+<p><strong>② 趋势过滤（防接飞刀）</strong>：档位 ≥1 且空头排列（MA20&lt;MA60）→ <strong>档位降 1</strong>，提示”趋势未企稳，建议分批”。</p>
+<p><strong>③ 修复确认（右侧辅助）</strong>：修复进度 ≥0.6 且 回撤 ≤-5% → 追加提示”企稳修复确认，可右侧加仓”。</p>
+<p><strong>④ 长回撤暂停（防 L 型阴跌）</strong>：回撤持续时间 ≥ 120 个交易日（约半年）<strong>且</strong>趋势空头 → <strong>暂停额外加仓</strong>（C类不买，A类定投照常）。依据：市场长时间不创新高 + 空头排列，更可能反映结构性下行（2022 式阴跌）而非临时回调；用可观测的”持续时间”替代不可靠的”预计修复周期”。<code>--pause-days</code> 可调（0&#x3D;关闭，250≈一年）。</p>
+<h3 id="执行"><a href="#执行" class="headerlink" title="执行"></a>执行</h3><table>
+<thead>
+<tr>
+<th>规则</th>
+<th>默认值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>A类</td>
+<td>每基金 10（或 3） 元</td>
+<td>默认定投照常，长期持有，不看信号</td>
+</tr>
+<tr>
+<td>C类买入</td>
+<td>档位 ≥ 2 时买 10（或 3） 元</td>
+<td>“大规模加仓”&#x3D; 动用 C 类额度；7 天内刚买过则跳过</td>
+</tr>
+<tr>
+<td>C类止盈</td>
+<td>回撤修复至 -2%以内（接近新高）且 MA20 &gt; MA60 时</td>
+<td>建议卖出；不足 7 天提示”赎回费 1.5%，别卖”</td>
+</tr>
+<tr>
+<td>赎回费</td>
+<td>&lt;7天 1.5% &#x2F; 7~29天 0.5% &#x2F; ≥30天 0%</td>
+<td>决定卖出时机的硬约束</td>
+</tr>
+</tbody></table>
+<h2 id="三，效果验证"><a href="#三，效果验证" class="headerlink" title="三，效果验证"></a>三，效果验证</h2><p>分别使用纳斯达克和标普500收益最差的一年的数据来模拟，分别为2022和2008年。从收益率和预测效果来验证。</p>
+<h3 id="收益率"><a href="#收益率" class="headerlink" title="收益率"></a>收益率</h3><p>2022年纳斯达克100的全年跌幅为-33.0%，如果使用该算法定投全年收益率为-14.8%。<br>2008年标普500的全年跌幅为-38.5%，如果使用该算法定投全年收益率为-24.9%。</p>
+<h3 id="预测效果"><a href="#预测效果" class="headerlink" title="预测效果"></a>预测效果</h3><p>指数	年份	1档信号后60日	2档信号后60日	3档信号后60日<br>纳指100	2022	-9.5%	        -2.2%	            -2.2%<br>标普500	2008	-12.6%	        -8.4%	              —</p>
+<h2 id="四，优点"><a href="#四，优点" class="headerlink" title="四，优点"></a>四，优点</h2><h3 id="1-实现起来简单"><a href="#1-实现起来简单" class="headerlink" title="1.实现起来简单"></a>1.实现起来简单</h3><p>该算法本质上是一种简单的低买高卖结合上一些if else决策。不管是自己写还是用ai来完成都很容易。数据可以从新浪美股上获得。</p>
+<h3 id="2-帮助减少亏损效果显著"><a href="#2-帮助减少亏损效果显著" class="headerlink" title="2.帮助减少亏损效果显著"></a>2.帮助减少亏损效果显著</h3><p>由实验数据可知该算法不会出现追涨杀跌的情况，能够有效减少亏损。</p>
+<h2 id="五，缺陷"><a href="#五，缺陷" class="headerlink" title="五，缺陷"></a>五，缺陷</h2><h3 id="1-该算法本质上还是依赖定投的效果，策略并没有特别大的创新"><a href="#1-该算法本质上还是依赖定投的效果，策略并没有特别大的创新" class="headerlink" title="1.该算法本质上还是依赖定投的效果，策略并没有特别大的创新"></a>1.该算法本质上还是依赖定投的效果，策略并没有特别大的创新</h3><h3 id="2-实验不严谨"><a href="#2-实验不严谨" class="headerlink" title="2.实验不严谨"></a>2.实验不严谨</h3><p>仅仅验证了最差时候的效果，没有对于每一年的数据进行对比。而且没有和纯定投进行对比，无法证明选择性加仓定投确实优于纯定投。</p>
+<h3 id="3-策略过于保守"><a href="#3-策略过于保守" class="headerlink" title="3.策略过于保守"></a>3.策略过于保守</h3><p>加仓与否完全取决于是否是在回撤，如果当年是牛市，这种谨慎的策略显然会错过很多机会。</p>
+<h2 id="六，总结"><a href="#六，总结" class="headerlink" title="六，总结"></a>六，总结</h2><p>接下来应该就会以该策略来进行投资，同时会再做一些实验来验证和优化。同时也可以尝试其他方案，比如每天投5元（广发纳斯达克）,根据算法运行结果来判断当天是否额外买入。对于卖出这一块其实可以看个人，如果卖出过快可能会错过一些机会。希望这篇文章可以为读者以及后续阅读的自己提供一些灵感。</p>
+]]></content>
+      <categories>
+        <category>学习</category>
+      </categories>
+      <tags>
+        <tag>算法</tag>
+        <tag>投资</tag>
+        <tag>纳斯达克</tag>
+        <tag>标普</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>黄金，纳指，标普，债基同时下跌的原因汇总</title>
+    <url>/azur_blog/2026/08/26/%E6%8A%95%E8%B5%84/%E9%BB%84%E9%87%91%EF%BC%8C%E7%BA%B3%E6%8C%87%EF%BC%8C%E6%A0%87%E6%99%AE%EF%BC%8C%E5%80%BA%E5%9F%BA%E5%90%8C%E6%97%B6%E4%B8%8B%E8%B7%8C%E7%9A%84%E5%8E%9F%E5%9B%A0%E6%B1%87%E6%80%BB/</url>
+    <content><![CDATA[<p>本问用于记录自 2026.8.25 起每次四者同时下跌的时间和原因。购买的基金分别为广发纳斯达克100,摩根标普500，华安纳斯达克100，易方达黄金etf连接A,易方达增强回报债券A。</p>
+<h1 id="2026-8-26"><a href="#2026-8-26" class="headerlink" title="2026&#x2F;8&#x2F;26"></a>2026&#x2F;8&#x2F;26</h1><h2 id="纳指，标普"><a href="#纳指，标普" class="headerlink" title="纳指，标普"></a>纳指，标普</h2><ul>
+<li><p>芯片股集体暴跌</p>
+</li>
+<li><p>英伟达财报前担忧，市场担忧ai资本支出可持续性</p>
+</li>
+<li><p>美国和其他国家冲突加剧，包括和加拿大，伊朗</p>
+</li>
+</ul>
+<h2 id="黄金"><a href="#黄金" class="headerlink" title="黄金"></a>黄金</h2><ul>
+<li>技术性回调（资产短期内涨的太快导致大量获利盘涌出，价格出现回落）</li>
+</ul>
+<h2 id="债基"><a href="#债基" class="headerlink" title="债基"></a>债基</h2><ul>
+<li>流动性预期边际收紧</li>
+</ul>
+]]></content>
+      <categories>
+        <category>学习</category>
+      </categories>
+      <tags>
+        <tag>投资</tag>
+        <tag>纳斯达克</tag>
+        <tag>标普</tag>
+        <tag>黄金</tag>
+        <tag>债基</tag>
+        <tag>基金</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>企业(海上传奇)技能和台词设计</title>
+    <url>/azur_blog/2026/08/20/%E7%A2%A7%E8%93%9D%E8%88%AA%E7%BA%BF/%E4%BC%81%E4%B8%9A-%E6%B5%B7%E4%B8%8A%E4%BC%A0%E5%A5%87-%E6%8A%80%E8%83%BD%E5%92%8C%E5%8F%B0%E8%AF%8D%E8%AE%BE%E8%AE%A1/</url>
+    <content><![CDATA[<h2 id="技能"><a href="#技能" class="headerlink" title="技能"></a>技能</h2><h3 id="幸运眷顾的幽灵-蓝"><a href="#幸运眷顾的幽灵-蓝" class="headerlink" title="幸运眷顾的幽灵 (蓝)"></a>幸运眷顾的幽灵 (蓝)</h3><p>企业进入战斗时处于”灰色幽灵”状态。企业发动空袭时有50%的概率进入”Lucky E++”状态，否则进入”灰色幽灵”状态。</p>
+<p>“灰色幽灵”:免疫所有伤害，装填增加50%,伤害增加20%。如果空袭后仍处于”灰色幽灵”状态，进入”Lucky E++”状态的概率增加10%(可累积增加)。进入”Lucky E++”状态时，额外释放一轮不触发本技能的空袭，将进入”Lucky E++”状态的概率重置为50%。</p>
+<p>Lucky E++:每次空袭附带一轮特殊弹幕，伤害加50%，装填加20%。如果空袭后仍处于”Lucky E++”状态，进入”灰色幽灵”状态的概率增加10%(可累积增加)。进入”灰色幽灵”状态时，额外释放一轮不触发本技能的空袭，将进入”灰色幽灵”状态的概率重置为50%。</p>
+<h3 id="身经百战的战士-红"><a href="#身经百战的战士-红" class="headerlink" title="身经百战的战士 (红)"></a>身经百战的战士 (红)</h3><p>自身或其它编队进入战斗后。每隔20秒进行一次判定，如果场上敌人数大于3，企业将派出F6F地狱猫(HVAR搭载型)进行一轮攻击，额外使全场敌人移速减少5%，生命值减少5%。否则编队所有舰船装填加10%，攻击加5%。</p>
+<h3 id="照亮黑暗的灯塔-黄"><a href="#照亮黑暗的灯塔-黄" class="headerlink" title="照亮黑暗的灯塔 (黄)"></a>照亮黑暗的灯塔 (黄)</h3><p>企业每次空袭后使自身所在编队的所有角色生命值恢复4%，并获得最大生命值2%的护盾，持续10秒(可以叠加)。企业的存在鼓舞着每一位同伴，编队内所有舰船装填、伤害、闪避加5%。</p>
+<h2 id="台词"><a href="#台词" class="headerlink" title="台词"></a>台词</h2><h3 id="登录界面"><a href="#登录界面" class="headerlink" title="登录界面"></a>登录界面</h3><p>碧蓝航线！</p>
+<h3 id="舰船型号"><a href="#舰船型号" class="headerlink" title="舰船型号"></a>舰船型号</h3><p>约克城级航空母舰————企业，弦号CV-6</p>
+<h3 id="自我介绍"><a href="#自我介绍" class="headerlink" title="自我介绍"></a>自我介绍</h3><p>虽然我有了更强的力量，但是还是要牢记自己的使命。指挥官，感谢你一直陪在我身边。</p>
+<h3 id="获取台词"><a href="#获取台词" class="headerlink" title="获取台词"></a>获取台词</h3><p>约克城级二号舰，企业，向您报道。以后的日子，请让我们一同携手迈向未来。</p>
+<h3 id="登陆台词-1"><a href="#登陆台词-1" class="headerlink" title="登陆台词-1"></a>登陆台词-1</h3><p>今天的风很温和，很适合航行。指挥官，准备好出发了吗？</p>
+<h3 id="登陆台词-2"><a href="#登陆台词-2" class="headerlink" title="登陆台词-2"></a>登陆台词-2</h3><p>你来了。书架上的书我已经挑了好几本，如果任务不急的话……晚上可以一起看。</p>
+<h3 id="查看详情-1"><a href="#查看详情-1" class="headerlink" title="查看详情-1"></a>查看详情-1</h3><p>二十枚战役之星……比起拿在身边数，我更希望收藏起来。数字太多代表太多人没能回来。</p>
+<h3 id="查看详情-2"><a href="#查看详情-2" class="headerlink" title="查看详情-2"></a>查看详情-2</h3><p>“灰色幽灵”这个绰号……我不讨厌它。只是偶尔会想，如果能以普通人的身份认识大家就好了</p>
+<h3 id="主界面-1"><a href="#主界面-1" class="headerlink" title="主界面-1"></a>主界面-1</h3><p>我们需要一个灯塔，指挥官。灯塔是必要的。</p>
+<h3 id="主界面-2"><a href="#主界面-2" class="headerlink" title="主界面-2"></a>主界面-2</h3><p>运气也是决定胜负的关键。能将好运带给同伴何尝不是一种运气好呢。</p>
+<h3 id="主界面-3"><a href="#主界面-3" class="headerlink" title="主界面-3"></a>主界面-3</h3><p>虽然指挥官是我最重要的人，但是约克城姐姐她们也是。我不能独占指挥官，指挥官也要多照顾照顾她们。</p>
+<h3 id="主界面-4"><a href="#主界面-4" class="headerlink" title="主界面-4"></a>主界面-4</h3><p>我打算和约克城姐姐去图书馆看一会书，指挥官要一起吗?</p>
+<h3 id="主界面-5"><a href="#主界面-5" class="headerlink" title="主界面-5"></a>主界面-5</h3><p>从珍珠港到冲绳，我走过太远的路。但只要有你在，我就知道方向是对的。</p>
+<h3 id="主界面-6"><a href="#主界面-6" class="headerlink" title="主界面-6"></a>主界面-6</h3><p>今天埃塞克斯对我说自从我变强了之后她提升自我的动力更足了，那孩子的好胜心真的很强。</p>
+<h3 id="主界面-7"><a href="#主界面-7" class="headerlink" title="主界面-7"></a>主界面-7</h3><p>今天的天气很好，适合出去散步，说不定还能偶遇大黄蜂。</p>
+<h3 id="主界面-8"><a href="#主界面-8" class="headerlink" title="主界面-8"></a>主界面-8</h3><p>你知道吗？有时我觉得，这片海记得我们所有人的名字。风平浪静的时候，能听见它们。</p>
+<h3 id="触摸台词-1"><a href="#触摸台词-1" class="headerlink" title="触摸台词-1"></a>触摸台词-1</h3><p>约克城姐姐说我最近学会偷懒了……其实我只是在学着享受战斗以外的时光而已。</p>
+<h3 id="触摸台词-2"><a href="#触摸台词-2" class="headerlink" title="触摸台词-2"></a>触摸台词-2</h3><p>我会一直待在你身边，和你留下美好的回忆。</p>
+<h3 id="特殊触摸-1"><a href="#特殊触摸-1" class="headerlink" title="特殊触摸-1"></a>特殊触摸-1</h3><p>偶尔的放松是有必要的，但是也不能太松弛。</p>
+<h3 id="特殊触摸-2"><a href="#特殊触摸-2" class="headerlink" title="特殊触摸-2"></a>特殊触摸-2</h3><p>感觉有时候指挥官需要“惩罚”一下呢。</p>
+<h3 id="摸头台词"><a href="#摸头台词" class="headerlink" title="摸头台词"></a>摸头台词</h3><p>偶尔像小孩子一样撒娇也不错。</p>
+<h3 id="任务提醒"><a href="#任务提醒" class="headerlink" title="任务提醒"></a>任务提醒</h3><p>还有任务没有完成，我们快去解决一下。</p>
+<h3 id="任务完成"><a href="#任务完成" class="headerlink" title="任务完成"></a>任务完成</h3><p>虽然任务完成了，但是也要注意复盘，下次行动起来才能更默契。</p>
+<h3 id="邮件提醒"><a href="#邮件提醒" class="headerlink" title="邮件提醒"></a>邮件提醒</h3><p>指挥官，不要忘了查看邮件。</p>
+<h3 id="回港台词-1"><a href="#回港台词-1" class="headerlink" title="回港台词-1"></a>回港台词-1</h3><p>虽然还会有下一场战斗，但至少，我们现在是放松的。指挥官，我们快去享受一下来之不易的时光吧。</p>
+<h3 id="回港台词-2"><a href="#回港台词-2" class="headerlink" title="回港台词-2"></a>回港台词-2</h3><p>回来之后赶快休息吧，我来负责善后。我可不希望指挥官又被约克城姐姐调侃“变得有点像企业一样”。</p>
+<h3 id="好感度-失望"><a href="#好感度-失望" class="headerlink" title="好感度-失望"></a>好感度-失望</h3><p>每个人都有状态不好的时候。指挥官，一定要早点调整好状态。</p>
+<h3 id="好感度-陌生"><a href="#好感度-陌生" class="headerlink" title="好感度-陌生"></a>好感度-陌生</h3><p>指挥官，有什么任务请尽管吩咐。我会做好自己的本分。</p>
+<h3 id="好感度-友好"><a href="#好感度-友好" class="headerlink" title="好感度-友好"></a>好感度-友好</h3><p>你最近和约克城姐姐走的挺近的……挺好的。看到她开心，我也会很安心。</p>
+<h3 id="好感度-喜欢"><a href="#好感度-喜欢" class="headerlink" title="好感度-喜欢"></a>好感度-喜欢</h3><p>以前我只会在意战斗。现在……我发现自己开始在意你有没有好好吃饭了。约克城姐姐也说我最近有点太关注你了。</p>
+<h3 id="好感度-爱"><a href="#好感度-爱" class="headerlink" title="好感度-爱"></a>好感度-爱</h3><p>指挥官，我经历过的战斗告诉我，命运从不会提前许诺什么。但是，无论未来怎么样，我都会选择在你身边。不是命令，不是使命，是我自己的决定。</p>
+<h3 id="誓约台词"><a href="#誓约台词" class="headerlink" title="誓约台词"></a>誓约台词</h3><p>我接受这枚戒指。不是为了奖励或纪念，而是为了确定一件事：在你身边，我不再只是幸运的幽灵，而是真正活着的人。指挥官，谢谢你。</p>
+<h3 id="礼物台词"><a href="#礼物台词" class="headerlink" title="礼物台词"></a>礼物台词</h3><p>我很喜欢这份礼物。如果指挥官有想要的也可以告诉我。</p>
+<h3 id="委托完成-1"><a href="#委托完成-1" class="headerlink" title="委托完成-1"></a>委托完成-1</h3><p>正如同我的身后有指挥官辛苦付出一样，指挥官也要重视幕后那些姐妹的辛苦付出。快去迎接她们吧，指挥官。</p>
+<h3 id="委托完成-2"><a href="#委托完成-2" class="headerlink" title="委托完成-2"></a>委托完成-2</h3><p>经过了这么多战争，指挥官肯定明白后勤的重要性。一起去迎接她们吧。</p>
+<h3 id="强化成功"><a href="#强化成功" class="headerlink" title="强化成功"></a>强化成功</h3><p>现在我感觉自己的感知能力更强了，希望能用这份力量更好地保护指挥官。</p>
+<h3 id="旗舰开战"><a href="#旗舰开战" class="headerlink" title="旗舰开战"></a>旗舰开战</h3><p>天佑白鹰！</p>
+<h3 id="胜利台词-1"><a href="#胜利台词-1" class="headerlink" title="胜利台词-1"></a>胜利台词-1</h3><p>想要什么奖励？让我独占指挥官一个小时可以吗。</p>
+<h3 id="胜利台词-2"><a href="#胜利台词-2" class="headerlink" title="胜利台词-2"></a>胜利台词-2</h3><p>多亏了指挥官的战术，才能取得胜利。</p>
+<h3 id="失败台词"><a href="#失败台词" class="headerlink" title="失败台词"></a>失败台词</h3><p>即使在最黑暗的时刻，也不能放弃希望。</p>
+<h3 id="技能台词"><a href="#技能台词" class="headerlink" title="技能台词"></a>技能台词</h3><p>直面命运吧！</p>
+<h3 id="彩蛋台词"><a href="#彩蛋台词" class="headerlink" title="彩蛋台词"></a>彩蛋台词</h3><p>（约克城）虽然姐姐也变强了，但是还是由我来保护。</p>
+<p>（大黄蜂）要注意安全。至少，要在我能看到的地方。</p>
+<p>（埃塞克斯）证明自己的时候到了！</p>
+<h2 id="设计理念"><a href="#设计理念" class="headerlink" title="设计理念"></a>设计理念</h2><h3 id="技能-1"><a href="#技能-1" class="headerlink" title="技能"></a>技能</h3><h4 id="幸运眷顾的幽灵"><a href="#幸运眷顾的幽灵" class="headerlink" title="幸运眷顾的幽灵"></a>幸运眷顾的幽灵</h4><p>由于原版中企业仅有Lucky E 一个技能，而且收益不稳定。因此我将原本一个技能的两个收益解耦，确保每次发动技能都有稳定收益。将两个状态分别命名为灰色幽灵和Lucky E++，前者是因为日军曾多次宣称击沉企业号，但她始终奇迹般地出现在战场上。后者是对于Lucky E的致敬，这里其实也参考了c++，因为c++的理念是打造为c的超集，但实际上和c的差异很大，这里亦是如此。状态的反复变化体现了命运对于企业的无常，也寓意着无论处于什么状态，企业始终会全力以赴击败敌人。</p>
+<h4 id="身经百战的战士"><a href="#身经百战的战士" class="headerlink" title="身经百战的战士"></a>身经百战的战士</h4><p>在历史上，企业不止参加过一些大型战役，也执行过一些护航任务(如1942年1月11日，企业号所在的特混舰队执行了保护前往萨摩亚群岛的运输船队的任务)，企业不止是一位战士，也是一位守护者。所以企业的应用场景不应该局限于boss战，应当在道中战也有发挥空间。但是如果只是一味地增加特殊弹幕难免有些俗套，因此这里设计为派出F6F发动攻击或者“乘胜追击”，同时附带一点属性加成作为添头，具有角色自身的特色，更符合企业对于敌人不会同情也不会手下留情的人设。</p>
+<h4 id="照亮黑暗的灯塔"><a href="#照亮黑暗的灯塔" class="headerlink" title="照亮黑暗的灯塔"></a>照亮黑暗的灯塔</h4><p>企业对于太平洋战争乃至反法西斯战争做出了巨大贡献，是美国海军在太平洋战争中不屈不挠精神的象征。这个技能增强了企业的团队收益，无论是道中还是boss战都是万金油的存在。</p>
+<h3 id="台词-1"><a href="#台词-1" class="headerlink" title="台词"></a>台词</h3><h4 id="主界面-1-1"><a href="#主界面-1-1" class="headerlink" title="主界面-1"></a>主界面-1</h4><p>这里致敬了《迪迦奥特曼》中奥特之星那一集的经典台词：“我们需要一个英雄，金城，英雄是有必要的”。企业和迪迦都是正义的象征，因此想到了参考这句话。这里想体现的是企业在太平洋战争中精神支柱的作用。也可以指指挥官在港区起到的重要作用之一。</p>
+<h4 id="主界面-2-1"><a href="#主界面-2-1" class="headerlink" title="主界面-2"></a>主界面-2</h4><p>企业原皮的主界面台词提到过希望将运气分给姐姐一部分。因此这里加了一个有些唯心的设定：企业可以给同伴带来好运。不过在历史上也是有体现的。</p>
+<h4 id="主界面-3-1"><a href="#主界面-3-1" class="headerlink" title="主界面-3"></a>主界面-3</h4><p>企业在22年23年的情人节台词提到过，不希望独占指挥官。而且约克城和大黄蜂等舰娘的台词透露着对于企业的关心。所以企业希望指挥官也能多照顾她们是合情合理的。</p>
+<h4 id="主界面-4-1"><a href="#主界面-4-1" class="headerlink" title="主界面-4"></a>主界面-4</h4><p>这一句是希望能完善一下企业的形象，企业在婚纱那件皮肤说过她并不是除了战斗一无是处的存在，可是其它皮肤并没有过多的展示企业的兴趣爱好。因此我希望给企业加上一个喜欢看书学习的设定（身为那么强大的存在，善于学习肯定是必要的）。</p>
+<h4 id="主界面-5-1"><a href="#主界面-5-1" class="headerlink" title="主界面-5"></a>主界面-5</h4><p>历史上，企业经历过过很多战斗。原皮也体现了那种迷茫（“一场战斗之后还有下一场战斗吗”）。但是指挥官让企业明白了舰娘的意义不止是战斗，也可以像正常人一样生活。</p>
+<h4 id="主界面-6-1"><a href="#主界面-6-1" class="headerlink" title="主界面-6"></a>主界面-6</h4><p>在碧蓝航线中，埃塞克斯始终视企业前辈为榜样。在企业变强之后自然会希望能更快提升自己</p>
+<h4 id="主界面-7-1"><a href="#主界面-7-1" class="headerlink" title="主界面-7"></a>主界面-7</h4><p>主动邀请指挥官散步，体现了企业和指挥官逐渐熟悉。这句话也体现了大黄蜂喜欢像牛仔一样到处乱转的特点。</p>
+<h4 id="主界面-8-1"><a href="#主界面-8-1" class="headerlink" title="主界面-8"></a>主界面-8</h4><p>企业见证了无数同伴的牺牲和离别。这句话可以表达企业始终铭记自身的使命。</p>
+<h3 id="其它"><a href="#其它" class="headerlink" title="其它"></a>其它</h3><p>1.由于不懂设计数值，因此数值设定为和约克城Ⅱ的数值相等。<br>2.技能展示的都是10级的效果<br>3.设定为1943年7月经过改造后的企业<br>4.我认为黄鸡目前没有能力设计出好的台词和技能，所以想自己试一下<br>5.写到一半突然发现碧蓝的很多角色其实人设很单薄。就拿企业来说，所有皮肤的台词都没有体现出过她有什么兴趣爱好，这是很糟糕的事情。我肯定希望她围着我转，但是我也希望她能有一些自己的爱好，比如看书、健身。</p>
+]]></content>
+      <categories>
+        <category>热爱</category>
+      </categories>
+      <tags>
+        <tag>企业</tag>
+        <tag>碧蓝航线</tag>
+        <tag>舰娘</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>企业的皮肤和情人节台词汇总</title>
+    <url>/azur_blog/2026/08/14/%E7%A2%A7%E8%93%9D%E8%88%AA%E7%BA%BF/%E4%BC%81%E4%B8%9A%E7%9A%84%E7%9A%AE%E8%82%A4%E5%92%8C%E6%83%85%E4%BA%BA%E8%8A%82%E5%8F%B0%E8%AF%8D%E6%B1%87%E6%80%BB/</url>
+    <content><![CDATA[<p>企业作为碧蓝航线中一位实力强大且美丽的舰娘，自然拥有很多的皮肤以及台词。截止至雨霁于心晴之时，企业已经拥有11件换装（包括原皮），144句台词（包括皮肤，情人节情书）。博客封面就采用了企业的所有台词进行随机输出。</p>
+<h3 id="初始"><a href="#初始" class="headerlink" title="初始"></a>初始</h3><p><img src="/azur_blog/img/%E6%B1%87%E6%80%BB-%E7%AB%8B%E7%BB%98/%E5%8E%9F%E7%9A%AE.jpg" alt="初始"><br>登录界面	<br>碧蓝航线！</p>
+<p>舰船型号	<br>约克城级航空母舰2号舰—企业，舷号CV-6</p>
+<p>自我介绍	<br>我是约克城级航空母舰的企业。灰色幽灵是我众多绰号之一。 身上这浸满鲜血的战衣无时无刻的在提醒着我沉重的使命，不过我将继续胜利，直到战争的尽头</p>
+<p>获取台词	<br>约克城级二号舰企业，报到。对于敌人，我不会同情也不会手下留情，只会全力迎战，这就是我的风格</p>
+<p>登录台词	<br>你来了？要战斗的话我随时都能出动</p>
+<p>查看详情	<br>要看看我珍藏的勋章吗？</p>
+<p>主界面	<br>指挥官？……我已经开始怀疑自己是不是可以反潜了</p>
+<p>幸运也是实力的一部分？那我能分一些给姐姐么？</p>
+<p>活着的话，就会有不如意。但是死的话，一定要不留遗憾</p>
+<p>触摸台词	<br>怎么，要出动了吗？</p>
+<p>特殊触摸	<br>什……！！（脸红）</p>
+<p>任务提醒	<br>指挥官，还有任务没有完成，赶快出发吧</p>
+<p>任务完成	<br>指挥官，奖励收到了</p>
+<p>邮件提醒	<br>指挥官，有新邮件</p>
+<p>回港台词	<br>一场战斗结束后还有下一场战斗在等待、吗…</p>
+<p>好感度-失望	<br>…指挥官似乎欠缺勇敢呢</p>
+<p>好感度-陌生	<br>我的愿望是正直而真诚地活着，所以有什么意见我会直说，你如果有什么想法也都告诉我吧</p>
+<p>好感度-友好	<br>天上的光全都是星星，海上的光全都是敌人……指挥官，真的会有没有斗争的那一天吗？</p>
+<p>好感度-喜欢	<br>单纯的无敌是没有意义的，指挥官。不过我相信有你在，我一定可以发挥我这身本领的最大价值，让我们一起终结这场斗争吧</p>
+<p>好感度-爱	<br>战争结束后你想做什么？——我？我的话，大概还会跟着你吧，毕竟战场之外也只有你身边比较安心了，你愿意……带我走吗？</p>
+<p>誓约台词	<br>我曾横跨无数战场，也迎接过无数别离，我的身上承载着无数的夙愿与意志。指挥官做好承担这一切的准备了吗？——是吗…那就一起走下去吧，直到生命的尽头</p>
+<p>礼物台词	<br>帮大忙了，说谢未免见外，就在战场上为你再胜几次吧。</p>
+<p>委托完成	<br>我一直在战场上所以明白后勤有多重要，指挥官，去迎接那些在幕后努力的姐妹们吧</p>
+<p>强化成功	<br>力量的彼端是什么……让我去看看吧</p>
+<p>旗舰开战	<br>勇往直前吧</p>
+<p>胜利台词	<br>指挥官，告诉我，我还要击沉多少敌人才行？</p>
+<p>失败台词	<br>全力而败，也没什么怨言</p>
+<p>技能台词	<br>结束了</p>
+<p>血量告急	<br>这才有意思不是吗！</p>
+<h3 id="驯鹿之主"><a href="#驯鹿之主" class="headerlink" title="驯鹿之主"></a>驯鹿之主</h3><p><img src="/azur_blog/img/%E6%B1%87%E6%80%BB-%E7%AB%8B%E7%BB%98/%E5%9C%A3%E8%AF%9E%E7%9A%AE.jpg" alt="驯鹿之主"><br>皮肤描述	<br>圣诞快乐，指挥官！现在的我是圣诞老人！所以，平安夜就寝之前，记得把袜子挂在壁炉上哦</p>
+<p>查看详情	<br>我将牢记过去，并为未来考虑</p>
+<p>主界面	<br>圣诞快乐，你想要什么圣诞礼物？</p>
+<p>圣诞老人是真实存在的哦，她现在正站在你的面前</p>
+<p>雪飘的圣诞节，真漂亮啊……欸？等等，女灶神，别拖我回去，我不冷！——我真的不冷啦！</p>
+<p>触摸台词	<br>尽情欢笑吧，这些美丽的回忆都将成为战斗的动力！</p>
+<h3 id="誓约的星光"><a href="#誓约的星光" class="headerlink" title="誓约的星光"></a>誓约的星光</h3><p><img src="/azur_blog/img/%E6%B1%87%E6%80%BB-%E7%AB%8B%E7%BB%98/%E5%A9%9A%E7%BA%B1.jpg" alt="誓约的星光"><br>获取台词	<br>怎、怎么样？会不会有些奇怪…不，我当然不讨厌，不如说，不论谁都憧憬过披上它的那天吧，只是……</p>
+<p>查看详情	<br>只要有你在身边，无论经受多少残酷的战斗，面临多少痛苦的分离，我都一定能够满怀希望地走下去吧</p>
+<p>主界面	<br>今晚要不要尝尝我的厨艺？女灶神说我已经尽得她的真传了……我可不是那种除战斗外一无所长的存在</p>
+<p>因为你，我开始相信了，终会没有战争，人们都能真心欢笑的那一天</p>
+<p>触摸台词	<br>唔，这孩子也很中意你呢</p>
+<h3 id="傲春之牡丹"><a href="#傲春之牡丹" class="headerlink" title="傲春之牡丹"></a>傲春之牡丹</h3><p><img src="/azur_blog/img/%E6%B1%87%E6%80%BB-%E7%AB%8B%E7%BB%98/%E6%98%A5%E8%8A%82%E7%9A%AE.jpg" alt="傲春之牡丹"><br>皮肤描述	<br>这就是东煌的服装吗?…穿起来意外地合身啊。哦?还有特制的弓箭吗…有趣，就让我看看东煌的弓能射的多远吧！</p>
+<p>登录台词	<br>灯笼…应该是这么挂的吗?啊，指挥官你来了啊。听说东煌的新年要挂上灯笼，我就试了一下…你觉得如何?有节庆的氛围不?</p>
+<p>查看详情	<br>能够像这样享受安稳祥和的节日气氛，也是多亏了指挥官和港区所有人的不断努力呢…嗯</p>
+<p>主界面	<br>飞行甲板也是东煌风格的限定涂装啊…这种代表着幸福与喜悦的颜色，也挺不错的</p>
+<p>听东煌的朋友们说，传说中春节会出现一种叫做“年”的怪兽，而这个装着火药的红色纸筒，好像有着驱逐年兽的作用呢</p>
+<p>听说东煌的新年有“发红包”的习俗，我要不要也给白鹰的孩子们准备些红包呢……</p>
+<p>触摸台词	<br>指挥官，这件大衣，貌似能容纳两个人呢。要来感受一下这件大衣的温度吗?</p>
+<p>回港台词	<br>在下一场战斗开始之前，稍微放松一下也无妨吧，指挥官?</p>
+<h3 id="anniversary-drive"><a href="#anniversary-drive" class="headerlink" title="anniversary drive"></a>anniversary drive</h3><p><img src="/azur_blog/img/%E6%B1%87%E6%80%BB-%E7%AB%8B%E7%BB%98/%E5%B8%B8%E6%9C%8D.jpg" alt="anniversary drive"><br>皮肤描述	<br>「Happy anniversary」……指挥官，今天就尽情庆祝吧，然后一起祈愿吧，祈愿我们能一直胜利下去——</p>
+<p>登录台词	<br>来了吗。我已经做好出发准备了。啊，别忘了戴上安全帽哦</p>
+<p>查看详情	<br>指挥官，感觉还好吗？…“生生不息，繁荣昌盛！”呵呵</p>
+<p>主界面	<br>指挥官？…最近开始觉得自己是不是有一天甚至能够在天际飞翔…嗯，果然还是太勉强了。抱歉，就当做没听到吧</p>
+<p>旅行啊……服役时间长了，自然造访过的地方就多了，甚至有时会让人搞不清楚自己究竟是在旅行，还是在执勤呢</p>
+<p>最近埃塞克斯也对这个燃起了兴趣呢，下次大家能一起去兜风就好了</p>
+<p>触摸台词	<br>你也想看看我的「爱马」吗？</p>
+<p>邮件提醒	<br>指挥官，有来自舰队司令部的讯息哦  </p>
+<p>回港台词	<br>出击辛苦了，在其他同伴检查的时候稍微休息下吧</p>
+<p>好感度-失望	<br>是不是应该义无反顾地继续前进呢…</p>
+<p>好感度-爱	<br>指挥官，要和我一起来吗？只要你想，我们可以到任何地方，邂逅全新的文化，以及各种各样的人们——</p>
+<p>旗舰开战	<br>Enterprise，engage！</p>
+<p>胜利台词	<br>我会继续战斗下去，为了碧蓝色的自由意志——</p>
+<p>失败台词	<br>人生…有时真的可能有解不开的死局啊…  </p>
+<h3 id="翱翔的在自由之翼"><a href="#翱翔的在自由之翼" class="headerlink" title="翱翔的在自由之翼"></a>翱翔的在自由之翼</h3><p><img src="/azur_blog/img/%E6%B1%87%E6%80%BB-%E7%AB%8B%E7%BB%98/%E7%89%B9%E5%85%B8.jpg" alt="翱翔的自由之翼"><br>皮肤描述	<br>对于为战争而生这件事我并没有疑问。为了碧蓝航路的自由——企业，出击！</p>
+<p>登录台词	<br>早安指挥官。距离作战会议开始还有点时间。趁着还能放松的时候好好放松一下吧</p>
+<p>查看详情	<br>只要是为了正义就不惜付诸武力，伤害她人…我不认为这样是正确的</p>
+<p>主界面	<br>皇家女仆队还真是各种令人惊讶啊。对于战斗之外的各种工作也十分得心应手呢</p>
+<p>女灶神，怎么了？…不，我没有不注重饮食！指挥官做了各种…不！我有时候也会做饭的！</p>
+<p>小鹰和指挥官很亲热呢。能和平共处是最好的，呵呵</p>
+<p>触摸台词	<br>指挥官，有什么事吗？</p>
+<p>特殊触摸	<br>你不会对约克城姐姐也做了这种事情吧…</p>
+<p>任务提醒	<br>还有未完成的任务哦，还是确认下进度比较好</p>
+<p>回港台词	<br>指挥官，辛苦了。开始准备下一次作战吧</p>
+<p>委托完成	<br>要去迎接委托归来的同伴们吗？偶尔还是运动下比较好，在被大黄蜂念叨之前</p>
+<p>旗舰开战	<br>企业，前进！粉碎敌人！</p>
+<p>胜利台词	<br>似乎这边以些微的优势胜利了呢</p>
+<p>失败台词	<br>还是太勉强了…吗……</p>
+<h3 id="英雄的礼服"><a href="#英雄的礼服" class="headerlink" title="英雄的礼服"></a>英雄的礼服</h3><p><img src="/azur_blog/img/%E6%B1%87%E6%80%BB-%E7%AB%8B%E7%BB%98/%E7%A4%BC%E6%9C%8D.jpg" alt="英雄的礼服"><br>皮肤描述	<br>宴会礼服吗…平时没什么机会穿这样的衣服，意外地花了不少时间。啊，让我们赶紧去会场吧，让大家久等了可不好</p>
+<p>登录台词	<br>我是白鹰的企业，列席参加本次的宴会</p>
+<p>查看详情	<br>说起来，刚才急急忙忙忘了问…指挥官，觉得我这一身怎么样？大黄蜂评价和指挥官的评价，我都想听听看呢</p>
+<p>主界面	<br>原来如此，这个不错啊。下次学学怎么做好了……嗯？我是在说这个冰淇淋，指挥官也要来点吗？</p>
+<p>我已经习惯了紧急出击了，无论在宴会上还是在哪里，只要你一声令下，我就能马上出击</p>
+<p>独立带着的那孩子？啊，和鹰酱一样是个可爱的孩子。是足以治愈战斗的疲惫的好伙伴啊</p>
+<p>回港台词	<br>指挥官，不要勉强自己…——这句话应该对我说…吗？明白了…</p>
+<p>委托完成	<br>委托组回来了吗，那打招呼就先缓缓，先去迎接她们吧</p>
+<p>胜利台词	<br>希望这场胜利能成为节目的一丝点缀</p>
+<h3 id="wind-catcher"><a href="#wind-catcher" class="headerlink" title="wind catcher"></a>wind catcher</h3><p><img src="/azur_blog/img/%E6%B1%87%E6%80%BB-%E7%AB%8B%E7%BB%98/%E8%B5%9B%E8%BD%A6%E7%9A%AE.jpg" alt="wind catcher"><br>获取台词	<br>指挥官也来观战了吗？其实比起这样站着，我更想一起参赛呢。这种仿佛能抓住风的感觉……不觉得赛车和航海其实是一样的吗？</p>
+<p>登录台词	<br>今天也加油吧。我已经做好应援的准备了。</p>
+<p>查看详情	<br>啊，指挥官，我想听听你的意见…这个姿势…怎么样？我得努努力…至少不给指挥官抹黑才行。</p>
+<p>主界面	<br>那是…瑞鹤？衣服还挺夸张的啊…不过…我也没什么资格说别人的样子呢。</p>
+<p>埃塞克斯，前进的时候要冷静点！…咳咳。抱歉，我没有说教的打算，只是忍不住担心起来…</p>
+<p>要帮忙维修…？明白了。老实说，也许你更适合做这个呢，哈哈哈。</p>
+<p>触摸台词	<br>拍照吗？我知道了，要我摆什么样的姿势？</p>
+<p>特殊触摸	<br>这是犯规的哦，指挥官。</p>
+<p>回港台词	<br>指挥官，幸苦了。你先稍微休息一下吧，后续大家的后援工作交给我就好。</p>
+<p>委托完成	<br>委托组的伙伴们回来了啊。抱歉，能麻烦你去迎接么？</p>
+<p>旗舰开战	<br>上吧，引擎全开！</p>
+<p>胜利台词	<br>第一名吗。虽然没什么实感，不过既然是比赛还是开香槟庆祝一下吧。</p>
+<h3 id="旅行的启程"><a href="#旅行的启程" class="headerlink" title="旅行的启程"></a>旅行的启程</h3><p><img src="/azur_blog/img/%E6%B1%87%E6%80%BB-%E7%AB%8B%E7%BB%98/%E6%97%85%E8%A1%8C.jpg" alt="旅行的启程"><br>皮肤描述	<br>为了旅行请了这么长的假期，真的合适吗……为了能更好的工作，休息也是必要的…？好吧，那就…为了指挥官，让我们好好享受旅途吧！</p>
+<p>登录台词	<br>你来了？我这边也做好准备了，随时都能出发。</p>
+<p>查看详情	<br>多亏指挥官，我得以从战斗的喧嚣中抽身，明白了身处安静悠长时光中的意义。力量…就是为了这样的东西而存在的吧。</p>
+<p>主界面	<br>美术馆也好、建筑物也好，都无愧于此处“艺术之都”的美称。要是有机会还想再一起来呢。</p>
+<p>咨询女灶神后，她给我推荐了一座薰衣草盛开的小村庄。说是很适合跟指挥官一起去…</p>
+<p>和指挥官去了这么多地方后，我总算明白了，对我而言，去哪里其实并不是那么重要，重要的…是同行的同伴。</p>
+<p>触摸台词	<br>怎么了？票的话我已经安排好了哦？</p>
+<p>任务提醒	<br>指挥官，向下个目的地出发前，先确认下任务的进度</p>
+<p>任务完成	<br>领取奖励后去转转礼品店吧。想给大黄蜂她们买她们会喜欢的东西</p>
+<p>回港台词	<br>辛苦了，指挥官。接下来的安排就交给我，你先去休息吧。</p>
+<p>好感度-爱	<br>平时出任务去了很多地方，但是这样休假观光还是第一次。总感觉看到的一切都好新鲜……原来如此，也许这就是旅行的意义吧。指挥官，今后也朝着未知的景色和邂逅出发，继续我们的航行吧！</p>
+<p>委托完成	<br>委托组的同伴们回来了啊。去迎接的时候顺便把伴手礼给她们吧</p>
+<p>旗舰开战	<br>无论身处何方，都要彻底击溃敌人！</p>
+<p>胜利台词	<br>为了庆祝胜利，晚上吃豪华套餐吗…挺期待的。</p>
+<p>失败台词	<br>在旅途中兴奋过了头的缘故么…</p>
+<h3 id="天际的潜水者"><a href="#天际的潜水者" class="headerlink" title="天际的潜水者"></a>天际的潜水者</h3><p><img src="/azur_blog/img/%E6%B1%87%E6%80%BB-%E7%AB%8B%E7%BB%98/%E6%B3%B3%E8%A3%85.jpg" alt="天际的潜水者"><br>皮肤描述	<br>……呼！指挥官，还能继续吗？在海上时，无论面对何种战斗我都不曾退缩，可一旦潜下水，心中还是难免会觉得不放心……</p>
+<p>登录台词	<br>…呼，稍微适应些了。指挥官还好吗？很高兴你能陪着我，就是嗯…希望你不要太勉强自己。</p>
+<p>查看详情	<br>潜水服有点破损？我之后还是去修补一下吧，免得让女灶神她们担心…指挥官，谢谢你的提醒。</p>
+<p>主界面	<br>潜水时规定需要有一个潜伴，想来的确合理。万一发生什么状况，有伙伴在身边真的很令人安心。</p>
+<p>在那边的是…大黄蜂吗？真是马力十足呢…对了指挥官，和她一起乘坐快艇的感觉如何？</p>
+<p>在现实里可以自由移动这一点上，潜水和跳伞挺相似的。指挥官，下次我想试试一起跳伞。</p>
+<p>触摸台词	<br>需要帮忙吗？</p>
+<p>特殊触摸	<br>啊…！是…是事故吗？</p>
+<p>任务完成	<br>指挥官，奖励送来了。真期待晚上的烧烤大会。</p>
+<p>邮件提醒	<br>…小鹰？啊，是来新邮件了。</p>
+<p>回港台词	<br>指挥官，辛苦了。总结完之后有空吗？啊，不是关于战斗。是这套装备的穿着顺序有些复杂……</p>
+<p>委托完成	<br>委托组的孩子们回来了。怎么办？先上岸吗？</p>
+<p>旗舰开战	<br>攻击队，准备起飞！</p>
+<p>胜利台词	<br>好，总算能正常战斗了。</p>
+<h3 id="雨霁于心晴之时"><a href="#雨霁于心晴之时" class="headerlink" title="雨霁于心晴之时"></a>雨霁于心晴之时</h3><p><img src="/azur_blog/img/%E6%B1%87%E6%80%BB-%E7%AB%8B%E7%BB%98/%E6%B8%A9%E6%B3%89.jpg" alt="雨霁于心晴之时"><br>皮肤描述	<br>指挥官，你来了？抱歉，刚刚泡得太热了，我还有点晕，只能这样见你了……嗯？你身上有青草的气味，闻起来很舒服呢。</p>
+<p>登录台词	<br>偶尔在林间泡一下温泉，感觉身体和精神都放松了不少……欸？糟糕……绳子、散开了……！？</p>
+<p>查看详情	<br>温泉泡了太久有点懒懒的……唔，这样惬意的时光很难得，或许我一直努力的意义……就是为了这样的温馨时刻。</p>
+<p>主界面	<br>听说橙子的香气能缓解晕眩，这样清新的味道让人感到很安心。欸，原来是指挥官准备的吗……谢谢你。</p>
+<p>指挥官，水池里还算凉爽，我的体温现在正常了不少。只是这里还有点热……不如拿花洒降降温吧。</p>
+<p>小心，花洒的水压有点——指、指挥官？！哈哈……这下你和我一样，都湿漉漉的了。</p>
+<p>触摸台词	<br>我身上已经染上橙子的味道了？呵呵，指挥官也要来一些么？</p>
+<p>特殊触摸	<br>指挥官~！好、好像……又升温了……</p>
+<p>回港台词	<br>雨后的林间散发着清新的气息，令人心情舒畅。指挥官，一会我们一起去散步吧？</p>
+<p>好感度-爱	<br>原来，这样的生活是真实存在啊。像这样舒服地泡着温泉，让身心都放松下来的场合，仅会存在于你的身边吧……仅仅是明确了这件事，就足以让我继续坚守下去了。</p>
+<h3 id="情人节"><a href="#情人节" class="headerlink" title="情人节"></a>情人节</h3><p><img src="/azur_blog/img/%E6%B1%87%E6%80%BB-%E7%AB%8B%E7%BB%98/%E6%83%85%E4%BA%BA%E8%8A%82.jpg" alt="情人节"><br>2018年	<br>这盒情人节巧克力也是我的全力，相信不会输给别的孩子。指挥官绝对要尝尝。</p>
+<p>2019年	<br>多亏了你带来的和平，我才能够像这样做巧克力。指挥官，谢谢你。请收下我的感谢，以及……我的感情。</p>
+<p>2020年	<br>像这样送巧克力给指挥官，说实话…有点害羞啊…不，没什么。这个巧克力包含着我的心意，还有舰队里的同伴们的鼓励和建议。指挥官，能收下吗？</p>
+<p>2021年	<br>终于有点习惯给指挥官巧克力了。并不是说我不害羞了，只是我更想把我的心意告诉你。指挥官，让我今后也一直与你一同进步吧——</p>
+<p>2022年	<br>我在情人节感受到，这个港区内想着指挥官的肯定不止我一个人。我的话…无论在你身侧有多少人都无所谓。只要和你在一起，向着同一个理想不断前行我就很幸福了。指挥官，谢谢你。</p>
+<p>2023年	<br>我不能一个人独占指挥官。巧克力吃的话之后就行，现在先去与大家同享节日吧。没关系。在指挥官享受情人节的期间，我会守护好港区的。你说还不如一起巡逻……呵呵，也是呢，如果这是指挥官所希望的话——</p>
+<p>2024年	<br>能够和指挥官共度这样和平而甜蜜的日子，偶尔会让我觉得像是在做梦一样呢。虽然感觉闲下来有些不习惯，但毕竟指挥官是这样希望的，所以我也会好好和你一起享受这个充满着幸福的节日。</p>
+<p>2025年	<br>不是我独占指挥官，而是作为情人节礼物，让指挥官独占我一整天吗……虽说我本来就已经完全属于指挥官了，不过如果指挥官的意思是，让我今天只能思考关于你的事的话……为了完成这一目标，所选用的手段可以由我来决定吗？</p>
+<p>作为一个已经出场了9年之久的角色，这些丰富的换装和台词无疑塑造出了一个优秀的形象，也形成了一段令人印象深刻的弧光。从一开始久经沙场的老兵到如今指挥官身边最亲近的爱人，企业毫无疑问是碧蓝航线塑造最成功的角色之一，也是我最喜欢的角色。她就像一个温暖的港湾，为我提供心灵的归宿。</p>
+]]></content>
+      <categories>
+        <category>热爱</category>
+      </categories>
+      <tags>
+        <tag>企业</tag>
+        <tag>碧蓝航线</tag>
+        <tag>舰娘</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>风从葵花田来</title>
+    <url>/azur_blog/2026/08/27/%E7%A2%A7%E8%93%9D%E8%88%AA%E7%BA%BF%E5%90%8C%E4%BA%BA%E6%96%87%E7%9B%B8%E5%85%B3/%E7%BA%A6%E5%85%8B%E5%9F%8E/%E9%A3%8E%E4%BB%8E%E8%91%B5%E8%8A%B1%E7%94%B0%E6%9D%A5/</url>
+    <content><![CDATA[<p>午后的阳光透过窗户，在会客室的地板上投下明净的光影。我正低头翻看一份港区补给清单，杯中的红茶已经续了第二道。</p>
+<p>“那么，企业小姐，请随我来。”贝尔法斯特的声音一如既往的优雅而平稳，“女仆队的礼仪课程大约需要五个小时。”</p>
+<p>企业站在门口，表情显然有些僵硬。她回头看了我一眼，又看了看安静坐在沙发上的约克城，像是要说些什么，最后只是说：“这种活动真的不太习惯”。</p>
+<p>大门在她们身后轻轻合上。房间里突然安静了下来，只剩墙上的老实挂钟在规律地摆动。</p>
+<p>约克城放下手中的书卷，偏头看向我，唇角带着一丝温和的笑意：“指挥官，下午的时光，要一起出去走走吗？感觉有一段时间没有享受过二人时光了。”</p>
+<p>“是啊，感觉这是一个好机会。”我放下手中的资料，和约克城一同出门了。</p>
+<p>今天的天气很不错，正好适合出门散步。我和约克城打算前往一片荒野看看，因为那里从没去过，也很僻静。约克城显然对于这次出行也很期待。</p>
+<p>正当我和约克城聊的正开心时，身后传来了一个熟悉的声音：“指挥官怎么和姐姐单独出门了，不怕企业姐嫉妒吗？”是大黄蜂的声音。约克城的脸有些红，急忙说：“去忙你的吧，姐姐和指挥官还有话说。”大黄蜂想了一下，便坏笑着走开了。</p>
+<p>“那孩子还真是有趣啊。”我看着约克城红的像苹果一样的脸，调侃道。“感觉得找个机会教训她一下”约克城露出一副不满的表情。</p>
+<p>之后的路程我和她聊起了对于两个妹妹港区的看法。虽然有时候大黄蜂有些调皮，但是约克城对她的评价还是很高的。</p>
+<p>令我没想到的是，居然有人在这片荒野种植了一大片葵花，或许是金狮她们的力量。一片一望无际的向日葵正对着西斜的太阳，金黄色的花盘连成一片温暖的海洋。风从远处吹来花田泛起层层波浪。</p>
+<p>我下意识地侧过头，看见约克城正站在我身旁。她地眼睛里映满了金色的光芒，唇角微微翘起，很久没说话。</p>
+<p>我拉着她的手，走向了葵花田的深处。约克城轻声地问我：“指挥官，以后的日子也会这样，我们什么也不可能失去，对吗？”我用不容置疑的预期回答：“对。”</p>
+<p>看着眼前美丽的景色和身边美丽的约克城，我突然抱住了她。不为别的，只是觉得平常似乎很少关注过她。约克城有些愣住了，但只是默默地感受着时间的流逝。</p>
+<p>许久，我和约克城决定回家，因为感觉时间有些晚了。在路上，约克城开心地说：“我不会要求指挥官像对待企业那样对我，只需要现在这样就好了。”</p>
+<p>推开家门时，我正想开口说“我们回来了”，话却卡在了嗓子里。</p>
+<p>客厅中央，企业正笔直地站着。她穿着一件标准的女仆装————裙摆刚过膝盖，围裙系的一丝不苟，领口的蝴蝶结甚至打了正中央地对称结。但她脸上的表情……有种如临大敌的感觉。</p>
+<p>“指、指挥官，约克城姐姐……”她开口时，声音都比平时高了半个调，“欢迎回来。”</p>
+<p>贝尔法斯特站在一旁，表情平静中带着一丝不易察觉的满意：“企业小姐的学习能力很强，在基础礼仪方面已经达标。我只是提议，或许可以亲自为指挥官和约克城小姐演示一下————当然，这是一个小小的惊喜，企业小姐觉得穿上这身衣服会让两位更开心”</p>
+<p>约克城走上前去，轻轻拉起企业的手，上下打量了一番，才柔声说道：“很适合你。不过……”她侧过头看向我，眼中带着笑意，“我猜指挥官心里在想，这身衣服如果给大黄蜂穿上，怕是不到三分钟就会被撕破。”</p>
+<p>企业听了之后，脸上的紧张终于松弛了一些，嘴角也不自觉地扬起了一个小小的弧度。</p>
+<p>之后，企业帮我们倒了红茶，并行了一个标准的女仆礼。贝尔法斯特在夸赞几句之后便离开了。美好的一天便这样在欢声笑语中结束了。</p>
+]]></content>
+      <categories>
+        <category>热爱</category>
+      </categories>
+      <tags>
+        <tag>企业</tag>
+        <tag>碧蓝航线</tag>
+        <tag>约克城</tag>
+        <tag>贝法</tag>
+        <tag>同人文</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>王道计算机网络第一章笔记</title>
+    <url>/azur_blog/2026/08/23/408/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E7%8E%8B%E9%81%93%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%AC%E4%B8%80%E7%AB%A0%E7%AC%94%E8%AE%B0/</url>
+    <content><![CDATA[<p>计算机网络体系结构</p>
+<h1 id="1-1-1-计算机网络的概念"><a href="#1-1-1-计算机网络的概念" class="headerlink" title="1.1_1 计算机网络的概念"></a>1.1_1 计算机网络的概念</h1><h2 id="计算机网络"><a href="#计算机网络" class="headerlink" title="计算机网络"></a>计算机网络</h2><p>将众多分散的、自治的计算机系统，通过通信设备与线路连接起来，由功能完善的软件实现资源共享和信息传递的系统。</p>
+<h2 id="计网，互联网，互连网的区别"><a href="#计网，互联网，互连网的区别" class="headerlink" title="计网，互联网，互连网的区别"></a>计网，互联网，互连网的区别</h2><p>计算机网络：由若干结点和连接这些结点的链路构成</p>
+<ul>
+<li>结点：集线器，计算机，交换机，路由器等</li>
+<li>链路：有线链路，无线链路</li>
+</ul>
+<p>互连网：多个计算机网络通过路由器互相连接</p>
+<p>互联网（因特网）：把全球范围的计算机网络连接起来</p>
+<ul>
+<li>互联网必须使用TCP&#x2F;IP协议通信，互连网可使用任意协议（因为后者一般是小范围使用）</li>
+<li>互联网是世界上最大规模的互连网</li>
+</ul>
+<h2 id="其它"><a href="#其它" class="headerlink" title="其它"></a>其它</h2><ul>
+<li><p>家用路由器 &#x3D; 交换机 + 路由器 + 其他功能</p>
+</li>
+<li><p>路由器用于连接不同的网络</p>
+</li>
+</ul>
+<h1 id="1-1-2-计算机网络的组成、功能"><a href="#1-1-2-计算机网络的组成、功能" class="headerlink" title="1.1_2 计算机网络的组成、功能"></a>1.1_2 计算机网络的组成、功能</h1><h2 id="组成"><a href="#组成" class="headerlink" title="组成"></a>组成</h2><h3 id="从组成部分看"><a href="#从组成部分看" class="headerlink" title="从组成部分看"></a>从组成部分看</h3><h4 id="硬件"><a href="#硬件" class="headerlink" title="硬件"></a>硬件</h4><ul>
+<li><p>主机（端系统，end system）， 如电脑，手机</p>
+</li>
+<li><p>通信设备，如集线器，路由器     </p>
+</li>
+<li><p>通信链路，如网线，光纤</p>
+</li>
+</ul>
+<h4 id="软件"><a href="#软件" class="headerlink" title="软件"></a>软件</h4><p>实现资源贡献。如聊天软件，网盘软件</p>
+<h4 id="协议"><a href="#协议" class="headerlink" title="协议"></a>协议</h4><p>规定计算机网络的通信规则，由硬件和软件共同实现，如：网络适配器+软件 实现网络通信协议</p>
+<h3 id="从工作方式看"><a href="#从工作方式看" class="headerlink" title="从工作方式看"></a>从工作方式看</h3><h4 id="边缘部分"><a href="#边缘部分" class="headerlink" title="边缘部分"></a>边缘部分</h4><p>工作方式：直接为用户服务（通信，资源共享）</p>
+<p>主要由连接到互联网上的主机及其软件组成</p>
+<h4 id="核心部分"><a href="#核心部分" class="headerlink" title="核心部分"></a>核心部分</h4><p>工作方式：为边缘部分服务（连通性，交换服务）</p>
+<p>由大量网络和连接这些网络的路由器组成</p>
+<h3 id="从逻辑功能看"><a href="#从逻辑功能看" class="headerlink" title="从逻辑功能看"></a>从逻辑功能看</h3><h4 id="资源子网"><a href="#资源子网" class="headerlink" title="资源子网"></a>资源子网</h4><p>向用户提供可共享的硬件、软件和信息资源的部分</p>
+<p>主要由连接在互联网上的主机组成</p>
+<h4 id="通信子网"><a href="#通信子网" class="headerlink" title="通信子网"></a>通信子网</h4><p>把计算机和其他用户装置连接在一起的所有通信设备和介质的总称</p>
+<p>主要由<strong>通信链路+通信设备+协议</strong>构成</p>
+<h2 id="功能"><a href="#功能" class="headerlink" title="功能"></a>功能</h2><ul>
+<li><p>数据通信</p>
+</li>
+<li><p>资源共享</p>
+</li>
+<li><p>分布式处理 将复杂任务分派给网络中的多台计算机 例如mapreduce</p>
+</li>
+<li><p>提高可靠性 网络中各台计算机互为替代机 例如将数据备份在网盘</p>
+</li>
+</ul>
+<h1 id="1-1-3-电路交换，报文交换，分组交换"><a href="#1-1-3-电路交换，报文交换，分组交换" class="headerlink" title="1.1_3 电路交换，报文交换，分组交换"></a>1.1_3 电路交换，报文交换，分组交换</h1><h2 id="电路交换"><a href="#电路交换" class="headerlink" title="电路交换"></a>电路交换</h2><p>通过物理线路的连接，动态地分配传输线路资源</p>
+<h3 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h3><p>建立连接 -&gt; 通信 -&gt; 释放连接</p>
+<h3 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h3><ul>
+<li>会建立一条专用的线路，传输效率高</li>
+</ul>
+<h3 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h3><ul>
+<li><p>建立和释放连接需要额外的时间开销</p>
+</li>
+<li><p>线路被双方独占，利用率低</p>
+</li>
+<li><p>灵活性差</p>
+</li>
+<li><p>交换节点不支持“差错控制”（无法发现传输过程中的发生的数据错误）</p>
+</li>
+</ul>
+<h2 id="报文交换"><a href="#报文交换" class="headerlink" title="报文交换"></a>报文交换</h2><p>把传送的数据单元先储存进中间节点，再根据目的地址转发至下一节点</p>
+<h3 id="优点-1"><a href="#优点-1" class="headerlink" title="优点"></a>优点</h3><ul>
+<li><p>通信前无需建立连接</p>
+</li>
+<li><p>通信线路可以灵活分配</p>
+</li>
+<li><p>用户无需独占一整条物理线路，线路利用率高</p>
+</li>
+<li><p>支持差错控制（通过校验技术）</p>
+</li>
+</ul>
+<h3 id="缺点-1"><a href="#缺点-1" class="headerlink" title="缺点"></a>缺点</h3><ul>
+<li><p>报文不定长，不方便储存转发管理</p>
+</li>
+<li><p>长报文的存储转发时间开销大、缓存开销大</p>
+</li>
+<li><p>长报文容易出错，重传代价高</p>
+</li>
+</ul>
+<h2 id="分组交换"><a href="#分组交换" class="headerlink" title="分组交换"></a>分组交换</h2><p>将数据分割为较小的分组进行存储转发</p>
+<h3 id="分割后的首部要素"><a href="#分割后的首部要素" class="headerlink" title="分割后的首部要素"></a>分割后的首部要素</h3><p>源地址，目的地址，分组号等</p>
+<h3 id="优点-2"><a href="#优点-2" class="headerlink" title="优点"></a>优点</h3><ul>
+<li><p>无需建立连接</p>
+</li>
+<li><p>分组长度小，节点缓存压力小，转发速度快。</p>
+</li>
+<li><p>分组不易出错，重传代价低</p>
+</li>
+</ul>
+<h3 id="缺点-2"><a href="#缺点-2" class="headerlink" title="缺点"></a>缺点</h3><ul>
+<li><p>相比于报文交换，控制信息占比增加</p>
+</li>
+<li><p>相比于电路交换，仍然存在储存转发时延</p>
+</li>
+<li><p>报文被拆分为多个分组，传输过程中可能出现丢失等问题，增加处理的复杂度</p>
+</li>
+</ul>
+<h2 id="三种方式性能对比"><a href="#三种方式性能对比" class="headerlink" title="三种方式性能对比"></a>三种方式性能对比</h2><h3 id="电路交换性能分析"><a href="#电路交换性能分析" class="headerlink" title="电路交换性能分析"></a>电路交换性能分析</h3><h1 id="1-1-4-计算机网络的分类"><a href="#1-1-4-计算机网络的分类" class="headerlink" title="1.1_4 计算机网络的分类"></a>1.1_4 计算机网络的分类</h1><h2 id="按分布范围分"><a href="#按分布范围分" class="headerlink" title="按分布范围分"></a>按分布范围分</h2><h3 id="广域网（WAN）"><a href="#广域网（WAN）" class="headerlink" title="广域网（WAN）"></a>广域网（WAN）</h3><p>跨国，跨省，跨洲</p>
+<h3 id="城域网-MAN"><a href="#城域网-MAN" class="headerlink" title="城域网(MAN)"></a>城域网(MAN)</h3><p>几个或几个相邻城市</p>
+<p>通信技术：常采用“以太网技术”</p>
+<h3 id="局域网-LAN"><a href="#局域网-LAN" class="headerlink" title="局域网(LAN)"></a>局域网(LAN)</h3><p>范围：学校，企业，工作单位，家庭</p>
+<p>通信技术：以太网技术</p>
+<p>由于局域网如今几乎都是采用以太网技术实现，因此以太网几乎成了局域网的代名词</p>
+<h3 id="个域网-PAN"><a href="#个域网-PAN" class="headerlink" title="个域网(PAN)"></a>个域网(PAN)</h3><p>范围：几十米以内</p>
+<p>通常是通过无线技术将个人设备连接起来的网络，也称为无线个域网</p>
+<h2 id="按传输技术分"><a href="#按传输技术分" class="headerlink" title="按传输技术分"></a>按传输技术分</h2><h3 id="广播式网络"><a href="#广播式网络" class="headerlink" title="广播式网络"></a>广播式网络</h3><p>一对多，通过检查分组的目的地址确定是否接收该分组</p>
+<h3 id="点对点网络"><a href="#点对点网络" class="headerlink" title="点对点网络"></a>点对点网络</h3><p>一对一</p>
+<h2 id="按拓补结构分类"><a href="#按拓补结构分类" class="headerlink" title="按拓补结构分类"></a>按拓补结构分类</h2><ul>
+<li>总线形结构</li>
+</ul>
+<p>数据广播式传输，存在总线争用的问题</p>
+<ul>
+<li>环形结构</li>
+</ul>
+<p>数据广播式传输，通过“令牌”解决总线争用问题，令牌顺环形依次传递，拿到令牌者可以传递数据</p>
+<ul>
+<li>星形结构</li>
+</ul>
+<p>由中央设备实现数据的点对点传输，不存在总线争用的问题</p>
+<p>以太网交换机连接的设备</p>
+<ul>
+<li>网状结构</li>
+</ul>
+<p>数据通过各中间节点逐一存储转发，属于点到点传输</p>
+<p>众多路由器构架的广域网</p>
+<h2 id="按使用者分类"><a href="#按使用者分类" class="headerlink" title="按使用者分类"></a>按使用者分类</h2><ul>
+<li><p>公用网</p>
+</li>
+<li><p>专用网</p>
+</li>
+</ul>
+<h2 id="按传输介质分类"><a href="#按传输介质分类" class="headerlink" title="按传输介质分类"></a>按传输介质分类</h2><ul>
+<li><p>有线网络</p>
+</li>
+<li><p>无线网络</p>
+</li>
+</ul>
+<h1 id="1-1-5-计算机网络的性能指标-（高频考点）"><a href="#1-1-5-计算机网络的性能指标-（高频考点）" class="headerlink" title="1.1_5 计算机网络的性能指标 （高频考点）"></a>1.1_5 计算机网络的性能指标 （高频考点）</h1><h2 id="1，速率"><a href="#1，速率" class="headerlink" title="1，速率"></a>1，速率</h2><p>windwos用户可以在任务管理器中查看</p>
+<p>信道：某一方向传送信息的通道（不等于通信线路）。一条通信线路在逻辑上对应一条发送信道和一条接收信道</p>
+<p>1B &#x3D; 8b , B是字节，b是比特 </p>
+<p>速率：连接到网络上的节点在信道的传输数据的速率。也称数据率或比特率、数据传输速率。单位为bit&#x2F;s,b&#x2F;s,bps(三者表示的意思一样)</p>
+<h2 id="2-带宽"><a href="#2-带宽" class="headerlink" title="2, 带宽"></a>2, 带宽</h2><p>带宽：某信道所能传输的最高数据率</p>
+<p>节点间通信实际能达到的最高速率，由带宽、节点性能共同限制</p>
+<p>光猫：将光信号转化为电信号</p>
+<p>在通信领域，带宽表示某信道允许通过的信号频带范围</p>
+<p>信道带宽越大，传输数据的能力越强</p>
+<h2 id="3，吞吐量"><a href="#3，吞吐量" class="headerlink" title="3，吞吐量"></a>3，吞吐量</h2><p>吞吐量：单位时间内通过某个网络（或信道、接口）的实际数据量</p>
+<p>吞吐量受宽带限制、受复杂的网络负载情况影响</p>
+<h2 id="4，时延"><a href="#4，时延" class="headerlink" title="4，时延"></a>4，时延</h2><p>时延：数据从网络的一段传送到另一端所需的时间</p>
+<p>总时延 &#x3D; 发送时延 + 传播时延 + 处理时延 + 排队时延</p>
+<ul>
+<li>发送时延：节点将数据推向信道所花的时间</li>
+<li>传播时延：电磁波在信道中传播一定距离所花的时间</li>
+<li>处理时延：被路由器处理所花的时间</li>
+<li>排队时延：数据排队进入、排出所花的时间</li>
+</ul>
+<h2 id="5，时延带宽积"><a href="#5，时延带宽积" class="headerlink" title="5，时延带宽积"></a>5，时延带宽积</h2><p>时延带宽积 &#x3D; 传播时延 * 带宽 </p>
+<p>表示的意义是一条链路中，已从发送端发出来但尚未到达接收端的最大比特数</p>
+<h2 id="6，往返时延（RTT）"><a href="#6，往返时延（RTT）" class="headerlink" title="6，往返时延（RTT）"></a>6，往返时延（RTT）</h2><p>从发送方发送完数据，到发送方接收到来自接收方的确认总经历的时间</p>
+<p>RTT &#x3D; 传播时延 + 处理时延 + “确认”的发送时延 + “确认” 的传播时延</p>
+<p>注：发送方发送数据的时延不计入发送时延</p>
+<h2 id="7，-信道利用率"><a href="#7，-信道利用率" class="headerlink" title="7， 信道利用率"></a>7， 信道利用率</h2><p>有数据通过的时间&#x2F;（有数据通过的时间 + 没有数据通过的时间）</p>
+<p>太高或太低都不好</p>
+<h1 id="1-2-1-计算机网络分层结构"><a href="#1-2-1-计算机网络分层结构" class="headerlink" title="1.2.1 计算机网络分层结构"></a>1.2.1 计算机网络分层结构</h1>]]></content>
+      <categories>
+        <category>学习</category>
+      </categories>
+      <tags>
+        <tag>计算机网络</tag>
+        <tag>考研</tag>
+        <tag>计算机</tag>
+        <tag>408</tag>
+      </tags>
+  </entry>
+</search>

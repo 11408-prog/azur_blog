@@ -1,0 +1,477 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>2026 | </title><meta name="author" content="lyh"><meta name="copyright" content="lyh"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="一个分享学习和热爱的个人博客">
+<meta property="og:type" content="website">
+<meta property="og:title" content="2026">
+<meta property="og:url" content="https://11408-prog.github.io/azur_blog/archives/2026/index.html">
+<meta property="og:site_name">
+<meta property="og:description" content="一个分享学习和热爱的个人博客">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://11408-prog.github.io/azur_blog/img/avatar.png">
+<meta property="article:author" content="lyh">
+<meta property="article:tag" content="博客, 技术, 学习, 生活, 碧蓝航线, vibe coding">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://11408-prog.github.io/azur_blog/img/avatar.png"><script type="application/ld+json"></script><link rel="shortcut icon" href="/azur_blog/img/favicon.png"><link rel="canonical" href="https://11408-prog.github.io/azur_blog/archives/2026/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/azur_blog/css/index.css?v=5.7.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.3.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@6.1.14/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        const data = { value }
+
+        if (ttl != null) {
+          data.expiry = Date.now() + ttl * 86400000
+        }
+
+        localStorage.setItem(key, JSON.stringify(data))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return
+
+        try {
+          const data = JSON.parse(itemStr)
+
+          if (data.expiry && Date.now() > data.expiry) {
+            localStorage.removeItem(key)
+            return
+          }
+
+          return data.value
+        } catch {
+          localStorage.removeItem(key)
+        }
+      }
+    }
+
+    const scriptCache = new Map()
+    const cssCache = new Map()
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => {
+        if (scriptCache.has(url)) {
+          return scriptCache.get(url)
+        }
+
+        const promise = new Promise((resolve, reject) => {
+          const script = document.createElement('script')
+
+          script.src = url
+          script.async = true
+
+          for (const key in attr) {
+            script.setAttribute(key, attr[key])
+          }
+
+          script.onload = resolve
+          script.onerror = reject
+
+          document.head.appendChild(script)
+        })
+
+        scriptCache.set(url, promise)
+
+        return promise
+      },
+      getCSS: (url, id) => {
+        if (cssCache.has(url)) {
+          return cssCache.get(url)
+        }
+
+        const promise = new Promise((resolve, reject) => {
+          const link = document.createElement('link')
+
+          link.rel = 'stylesheet'
+          link.href = url
+
+          if (id) {
+            link.id = id
+          }
+
+          link.onload = resolve
+          link.onerror = reject
+
+          document.head.appendChild(link)
+        })
+
+        cssCache.set(url, promise)
+
+        return promise
+      },
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!true && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const metaThemeColor = document.querySelector('meta[name="theme-color"]')
+      const activateDarkMode = () => {
+        document.documentElement.dataset.theme = 'dark'
+        if (metaThemeColor !== null) {
+          metaThemeColor.setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.dataset.theme = 'light'
+        if (metaThemeColor !== null) {
+          metaThemeColor.setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/azur_blog/',
+  algolia: undefined,
+  localSearch: {"path":"/azur_blog/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"pagination":{"enable":false,"hitsPerPage":8},"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.13.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: true,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '2026',
+  isHighlightShrink: false,
+  isToc: false,
+  pageType: 'archive'
+}</script><link rel="stylesheet" href="/azur_blog/css/variables.css?v=1.2"><link rel="stylesheet" href="/azur_blog/css/layout-fix.css?v=1.2"><link rel="stylesheet" href="/azur_blog/css/weather.css?v=1.2"><link rel="stylesheet" href="/azur_blog/css/carousel.css?v=1.2"><link rel="stylesheet" href="/azur_blog/css/tiles.css?v=1.2"><link rel="stylesheet" href="/azur_blog/css/activity.css?v=1.2"><link rel="stylesheet" href="/azur_blog/css/post-list.css?v=1.2"><link rel="stylesheet" href="/azur_blog/css/sidebar.css?v=1.2"><link rel="stylesheet" href="/azur_blog/css/reading-mode.css?v=1.2"><link rel="stylesheet" href="/azur_blog/css/welcome_animation.css?v=1.2"><link rel="stylesheet" href="/azur_blog/css/custom.css?v=1.2"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.css"><link rel="stylesheet" href="/azur_blog/css/music-page.css?v=1.2"><link rel="stylesheet" href="/azur_blog/css/gallery.css?v=1.2"><meta name="generator" content="Hexo 8.1.2"></head><body><div class="bg-animation" id="web_bg" style="background-image: url(/azur_blog/img/background.jpg);"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/azur_blog/img/avatar.png" onerror="this.onerror=null;this.src='/azur_blog/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/azur_blog/archives/"><div class="headline">文章</div><div class="length-num">13</div></a><a href="/azur_blog/tags/"><div class="headline">标签</div><div class="length-num">28</div></a><a href="/azur_blog/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/azur_blog/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/azur_blog/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/azur_blog/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/azur_blog/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/azur_blog/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></div><div class="menus_item"><a class="site-page" href="/azur_blog/gallery/"><i class="fa-fw fas fa-images"></i><span> 画廊</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="not-home-page" id="page-header" style="background-image: url(/azur_blog/img/covers/enterprise_2.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/azur_blog/"><span class="site-name"></span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/azur_blog/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/azur_blog/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/azur_blog/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/azur_blog/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/azur_blog/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></div><div class="menus_item"><a class="site-page" href="/azur_blog/gallery/"><i class="fa-fw fas fa-images"></i><span> 画廊</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="page-site-info"><h1 id="site-title">2026</h1></div></header><main class="layout" id="content-inner"><div id="archive"><div class="article-sort-title">全部文章 - 13</div><div class="article-sort"><div class="article-sort-item year">2026</div><div class="article-sort-item"><a class="article-sort-item-img" href="/azur_blog/2026/08/27/%E7%A2%A7%E8%93%9D%E8%88%AA%E7%BA%BF%E5%90%8C%E4%BA%BA%E6%96%87%E7%9B%B8%E5%85%B3/%E7%BA%A6%E5%85%8B%E5%9F%8E/%E9%A3%8E%E4%BB%8E%E8%91%B5%E8%8A%B1%E7%94%B0%E6%9D%A5/" title="风从葵花田来"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/azur_blog/img/%E6%96%87%E7%AB%A0%E5%B0%81%E9%9D%A2/yorktown_1.jpg" alt="风从葵花田来" onerror="this.onerror=null;this.src='/azur_blog/img/404.jpg'"></a><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2026-08-27T03:33:49.000Z" title="发表于 2026-08-27 11:33:49">2026-08-27</time></div><a class="article-sort-item-title" href="/azur_blog/2026/08/27/%E7%A2%A7%E8%93%9D%E8%88%AA%E7%BA%BF%E5%90%8C%E4%BA%BA%E6%96%87%E7%9B%B8%E5%85%B3/%E7%BA%A6%E5%85%8B%E5%9F%8E/%E9%A3%8E%E4%BB%8E%E8%91%B5%E8%8A%B1%E7%94%B0%E6%9D%A5/" title="风从葵花田来">风从葵花田来</a></div></div><div class="article-sort-item no-article-cover"><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2026-08-26T01:18:28.000Z" title="发表于 2026-08-26 09:18:28">2026-08-26</time></div><a class="article-sort-item-title" href="/azur_blog/2026/08/26/%E6%8A%95%E8%B5%84/%E9%BB%84%E9%87%91%EF%BC%8C%E7%BA%B3%E6%8C%87%EF%BC%8C%E6%A0%87%E6%99%AE%EF%BC%8C%E5%80%BA%E5%9F%BA%E5%90%8C%E6%97%B6%E4%B8%8B%E8%B7%8C%E7%9A%84%E5%8E%9F%E5%9B%A0%E6%B1%87%E6%80%BB/" title="黄金，纳指，标普，债基同时下跌的原因汇总">黄金，纳指，标普，债基同时下跌的原因汇总</a></div></div><div class="article-sort-item no-article-cover"><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2026-08-23T02:39:43.000Z" title="发表于 2026-08-23 10:39:43">2026-08-23</time></div><a class="article-sort-item-title" href="/azur_blog/2026/08/23/408/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E7%8E%8B%E9%81%93%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%AC%E4%B8%80%E7%AB%A0%E7%AC%94%E8%AE%B0/" title="王道计算机网络第一章笔记">王道计算机网络第一章笔记</a></div></div><div class="article-sort-item no-article-cover"><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2026-08-21T10:07:15.000Z" title="发表于 2026-08-21 18:07:15">2026-08-21</time></div><a class="article-sort-item-title" href="/azur_blog/2026/08/21/python/cookbook%E7%AC%AC%E4%BA%8C%E7%AB%A0%E7%AC%94%E8%AE%B0/" title="cookbook第二章笔记">cookbook第二章笔记</a></div></div><div class="article-sort-item no-article-cover"><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2026-08-20T12:59:53.000Z" title="发表于 2026-08-20 20:59:53">2026-08-20</time></div><a class="article-sort-item-title" href="/azur_blog/2026/08/20/%E7%A2%A7%E8%93%9D%E8%88%AA%E7%BA%BF/%E4%BC%81%E4%B8%9A-%E6%B5%B7%E4%B8%8A%E4%BC%A0%E5%A5%87-%E6%8A%80%E8%83%BD%E5%92%8C%E5%8F%B0%E8%AF%8D%E8%AE%BE%E8%AE%A1/" title="企业(海上传奇)技能和台词设计">企业(海上传奇)技能和台词设计</a></div></div><div class="article-sort-item no-article-cover"><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2026-08-19T04:18:47.000Z" title="发表于 2026-08-19 12:18:47">2026-08-19</time></div><a class="article-sort-item-title" href="/azur_blog/2026/08/19/python/cookbook%E7%AC%AC%E4%B8%80%E7%AB%A0%E7%AC%94%E8%AE%B0/" title="cookbook第一章笔记">cookbook第一章笔记</a></div></div><div class="article-sort-item no-article-cover"><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2026-08-17T13:26:40.000Z" title="发表于 2026-08-17 21:26:40">2026-08-17</time></div><a class="article-sort-item-title" href="/azur_blog/2026/08/17/%E6%8A%95%E8%B5%84/%E5%9F%BA%E4%BA%8E%E5%B0%8F%E9%A2%9D%E6%8A%95%E8%B5%84%E7%BA%B3%E6%96%AF%E8%BE%BE%E5%85%8B%E5%92%8C%E6%A0%87%E6%99%AE%E7%9A%84%E7%AE%97%E6%B3%95/" title="基于小额投资纳斯达克和标普的算法">基于小额投资纳斯达克和标普的算法</a></div></div><div class="article-sort-item no-article-cover"><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2026-08-14T08:09:06.000Z" title="发表于 2026-08-14 16:09:06">2026-08-14</time></div><a class="article-sort-item-title" href="/azur_blog/2026/08/14/%E5%8D%9A%E5%AE%A2%E5%88%B6%E4%BD%9C%E7%9B%B8%E5%85%B3/css%E5%B8%B8%E8%A7%81%E8%B0%83%E5%8F%82%E5%87%BD%E6%95%B0/" title="css常见调参函数">css常见调参函数</a></div></div><div class="article-sort-item"><a class="article-sort-item-img" href="/azur_blog/2026/08/14/%E7%A2%A7%E8%93%9D%E8%88%AA%E7%BA%BF/%E4%BC%81%E4%B8%9A%E7%9A%84%E7%9A%AE%E8%82%A4%E5%92%8C%E6%83%85%E4%BA%BA%E8%8A%82%E5%8F%B0%E8%AF%8D%E6%B1%87%E6%80%BB/" title="企业的皮肤和情人节台词汇总"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/azur_blog/img/%E6%96%87%E7%AB%A0%E5%B0%81%E9%9D%A2/enterprise_1.jpg" alt="企业的皮肤和情人节台词汇总" onerror="this.onerror=null;this.src='/azur_blog/img/404.jpg'"></a><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2026-08-14T02:34:10.000Z" title="发表于 2026-08-14 10:34:10">2026-08-14</time></div><a class="article-sort-item-title" href="/azur_blog/2026/08/14/%E7%A2%A7%E8%93%9D%E8%88%AA%E7%BA%BF/%E4%BC%81%E4%B8%9A%E7%9A%84%E7%9A%AE%E8%82%A4%E5%92%8C%E6%83%85%E4%BA%BA%E8%8A%82%E5%8F%B0%E8%AF%8D%E6%B1%87%E6%80%BB/" title="企业的皮肤和情人节台词汇总">企业的皮肤和情人节台词汇总</a></div></div><div class="article-sort-item no-article-cover"><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2026-08-11T12:31:32.000Z" title="发表于 2026-08-11 20:31:32">2026-08-11</time></div><a class="article-sort-item-title" href="/azur_blog/2026/08/11/%E5%8D%9A%E5%AE%A2%E5%88%B6%E4%BD%9C%E7%9B%B8%E5%85%B3/%E5%8D%9A%E5%AE%A2%E5%88%B6%E4%BD%9C%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/" title="博客制作注意事项">博客制作注意事项</a></div></div></div><nav id="pagination"><div class="pagination"><span class="page-number current">1</span><a class="page-number" href="/azur_blog/archives/2026/page/2/">2</a><a class="extend next" rel="next" href="/azur_blog/archives/2026/page/2/"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/azur_blog/img/avatar.png" onerror="this.onerror=null;this.src='/azur_blog/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">lyh</div><div class="author-info-description">活着的话，就会有不如意。但是死的话，一定要不留遗憾</div><div class="site-data"><a href="/azur_blog/archives/"><div class="headline">文章</div><div class="length-num">13</div></a><a href="/azur_blog/tags/"><div class="headline">标签</div><div class="length-num">28</div></a><a href="/azur_blog/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/11408-prog" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="https://space.bilibili.com/1376082770" target="_blank" title="B站"><i class="fab fa-bilibili"></i></a><a class="social-icon" href="/azur_blog/img/qq.jpg" target="_blank" title="QQ"><i class="fab fa-qq"></i></a><a class="social-icon" href="/azur_blog/img/wechat.jpg" target="_blank" title="微信"><i class="fab fa-weixin"></i></a><a class="social-icon" href="https://music.163.com/#/user/home?id=5189228438" target="_blank" title="网易云"><i class="fas fa-music"></i></a></div></div><div class="card-widget card-weather" id="weather"><div class="item-headline"><i class="fas fa-cloud-sun"></i><span>天气</span></div><div class="item-content"><div id="weather-panel">
+  <div class="weather-main">
+    <i class="weather-icon fa-solid fa-cloud-sun" id="weather-icon"></i>
+    <span class="weather-temp" id="weather-temp">--°</span>
+    <span class="weather-desc" id="weather-desc">加载中…</span>
+  </div>
+  <div class="weather-place" id="weather-place"></div>
+</div>
+</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/azur_blog/2026/08/27/%E7%A2%A7%E8%93%9D%E8%88%AA%E7%BA%BF%E5%90%8C%E4%BA%BA%E6%96%87%E7%9B%B8%E5%85%B3/%E7%BA%A6%E5%85%8B%E5%9F%8E/%E9%A3%8E%E4%BB%8E%E8%91%B5%E8%8A%B1%E7%94%B0%E6%9D%A5/" title="风从葵花田来"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/azur_blog/img/%E6%96%87%E7%AB%A0%E5%B0%81%E9%9D%A2/yorktown_1.jpg" onerror="this.onerror=null;this.src='/azur_blog/img/404.jpg'" alt="风从葵花田来"/></a><div class="content"><a class="title" href="/azur_blog/2026/08/27/%E7%A2%A7%E8%93%9D%E8%88%AA%E7%BA%BF%E5%90%8C%E4%BA%BA%E6%96%87%E7%9B%B8%E5%85%B3/%E7%BA%A6%E5%85%8B%E5%9F%8E/%E9%A3%8E%E4%BB%8E%E8%91%B5%E8%8A%B1%E7%94%B0%E6%9D%A5/" title="风从葵花田来">风从葵花田来</a><time datetime="2026-08-27T03:33:49.000Z" title="发表于 2026-08-27 11:33:49">2026-08-27</time></div></div></div></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/azur_blog/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 1.1em; color: #999">数据结构</a> <a href="/azur_blog/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%96%87%E6%9C%AC/" style="font-size: 1.1em; color: #999">字符串文本</a> <a href="/azur_blog/tags/hexo/" style="font-size: 1.3em; color: #99a1ac">hexo</a> <a href="/azur_blog/tags/%E7%A2%A7%E8%93%9D%E8%88%AA%E7%BA%BF/" style="font-size: 1.5em; color: #99a9bf">碧蓝航线</a> <a href="/azur_blog/tags/%E8%B4%9D%E6%B3%95/" style="font-size: 1.1em; color: #999">贝法</a> <a href="/azur_blog/tags/%E5%80%BA%E5%9F%BA/" style="font-size: 1.1em; color: #999">债基</a> <a href="/azur_blog/tags/%E4%BC%81%E4%B8%9A/" style="font-size: 1.5em; color: #99a9bf">企业</a> <a href="/azur_blog/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 1.1em; color: #999">计算机网络</a> <a href="/azur_blog/tags/%E9%BB%84%E9%87%91/" style="font-size: 1.1em; color: #999">黄金</a> <a href="/azur_blog/tags/%E6%A0%87%E6%99%AE/" style="font-size: 1.3em; color: #99a1ac">标普</a> <a href="/azur_blog/tags/windows/" style="font-size: 1.1em; color: #999">windows</a> <a href="/azur_blog/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA/" style="font-size: 1.1em; color: #999">计算机</a></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2026 By lyh</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 8.1.2</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.7.0</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/azur_blog/js/utils.js?v=5.7.0"></script><script src="/azur_blog/js/main.js?v=5.7.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@6.1.14/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@19.1.3/dist/lazyload.iife.min.js"></script><div class="js-pjax"></div><script src="/azur_blog/js/logger.js?v=1.2"></script><script src="/azur_blog/js/toc-check.js?v=1.2"></script><script src="/azur_blog/js/gallery.js?v=1.2"></script><script src="/azur_blog/js/welcome_animation.js?v=1.2"></script><script src="/azur_blog/js/weather.js?v=1.2"></script><script src="/azur_blog/js/carousel.js?v=1.2"></script><script src="/azur_blog/js/activity.js?v=1.2"></script><script src="/azur_blog/js/random_posts.js?v=1.2"></script><script src="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.js"></script><script>window.meting_api="https://api.injahow.cn/meting/?server=:server&type=:type&id=:id&auth=:auth&r=:r";</script><script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script><script src="/azur_blog/js/video-cover.js?v=1.2"></script><script src="/azur_blog/js/music.js"></script><style>
+  /* 隐藏原悬浮工具栏 */
+  #rightside {
+    display: none !important;
+  }
+
+  /* 齿轮按钮样式（放在导航栏右侧） */
+  #nav-settings-toggle {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    margin-left: 15px;
+    font-size: 18px;
+    color: var(--font-color, #fff);
+    transition: 0.3s;
+    padding: 4px 8px;
+  }
+  #nav-settings-toggle:hover {
+    transform: rotate(60deg);
+    color: var(--theme-color, #49b1f5);
+  }
+
+  /* 下拉菜单容器 */
+  #nav-settings-dropdown {
+    display: none;
+    position: absolute;
+    top: 36px;
+    right: 0;
+    background: var(--card-bg, #fff);
+    border-radius: 10px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+    min-width: 150px;
+    padding: 8px 0;
+    z-index: 99999;
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--border-color, rgba(0,0,0,0.08));
+  }
+  #nav-settings-dropdown.show {
+    display: block;
+  }
+
+  /* 下拉菜单项 */
+  .nav-settings-item {
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    color: var(--font-color, #333);
+    font-size: 14px;
+    cursor: pointer;
+    transition: 0.2s;
+    gap: 10px;
+    white-space: nowrap;
+    border: none;
+    background: transparent;
+    width: 100%;
+    text-align: left;
+    font-family: inherit;
+  }
+  .nav-settings-item:hover {
+    background: var(--theme-color, #49b1f5);
+    color: #fff;
+  }
+  .nav-settings-item i {
+    width: 20px;
+    text-align: center;
+  }
+  .nav-settings-item .badge {
+    margin-left: auto;
+    font-size: 12px;
+    opacity: 0.6;
+  }
+
+  /* 导航栏菜单项容器（确保齿轮在正确位置） */
+  .menus {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  #nav-settings-wrapper {
+    display: inline-flex;
+    align-items: center;
+    margin-left: 10px;
+    position: relative;
+  }
+
+  /* 移动端适配 */
+  @media screen and (max-width: 768px) {
+    #nav-settings-toggle {
+      margin-left: 8px;
+      font-size: 16px;
+    }
+    #nav-settings-dropdown {
+      right: -10px;
+      min-width: 130px;
+    }
+    .nav-settings-item {
+      padding: 8px 16px;
+      font-size: 13px;
+    }
+  }
+</style>
+<script>
+  (function() {
+    'use strict';
+
+    // ---------- 挂载齿轮到导航栏（首次 + PJAX 完成后重建） ----------
+    function mountGear() {
+      var menus = document.getElementById('menus');
+      if (!menus) return;
+
+      // 清理可能残留的旧实例
+      var old = document.getElementById('nav-settings-wrapper');
+      if (old) old.remove();
+
+      // 动态创建齿轮按钮 + 下拉菜单
+      var wrap = document.createElement('div');
+      wrap.id = 'nav-settings-wrapper';
+      wrap.innerHTML =
+        '<div id="nav-settings-toggle" title="设置"><i class="fas fa-cog"></i></div>' +
+        '<div id="nav-settings-dropdown">' +
+          '<button class="nav-settings-item" id="nav-darkmode-toggle"><i class="fas fa-moon"></i><span>暗色模式</span><span class="badge" id="nav-darkmode-status">关</span></button>' +
+          '<button class="nav-settings-item" id="nav-bgm-toggle"><i class="fas fa-music"></i><span>背景音乐</span><span class="badge" id="nav-bgm-status">▶</span></button>' +
+        '</div>';
+      menus.appendChild(wrap);
+
+      var toggleBtn = document.getElementById('nav-settings-toggle');
+      var dropdown = document.getElementById('nav-settings-dropdown');
+      var darkBtn = document.getElementById('nav-darkmode-toggle');
+      var darkStatus = document.getElementById('nav-darkmode-status');
+      var bgmBtn = document.getElementById('nav-bgm-toggle');
+      var bgmStatus = document.getElementById('nav-bgm-status');
+
+      function getCurrentMode() {
+        // Butterfly 主题用 html 的 data-theme 属性标记暗色模式
+        return document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+      }
+
+      function updateDarkUI() {
+        var isDark = getCurrentMode() === 'dark';
+        darkStatus.textContent = isDark ? '开' : '关';
+        darkBtn.querySelector('i').className = isDark ? 'fas fa-sun' : 'fas fa-moon';
+      }
+
+      function updateBgmUI() {
+        var ap = window._aplayer_instance;
+        if (!ap || !ap.audio) { bgmStatus.textContent = '⏹'; return; }
+        var playing = !ap.audio.paused;
+        bgmStatus.textContent = playing ? '⏸' : '▶';
+        bgmBtn.querySelector('i').style.color = playing ? '#ff6b6b' : '';
+      }
+
+      // 下拉显隐
+      toggleBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        dropdown.classList.toggle('show');
+      });
+      document.addEventListener('click', function() {
+        dropdown.classList.remove('show');
+      });
+      dropdown.addEventListener('click', function(e) {
+        e.stopPropagation();
+      });
+
+      // 暗色切换（触发主题原生逻辑，与 data-theme 同步）
+      darkBtn.addEventListener('click', function() {
+        var nativeBtn = document.querySelector('#rightside .darkmode-button');
+        if (nativeBtn) {
+          nativeBtn.click();
+        } else {
+          var html = document.documentElement;
+          var isDark = html.getAttribute('data-theme') === 'dark';
+          html.setAttribute('data-theme', isDark ? 'light' : 'dark');
+          localStorage.setItem('theme', isDark ? 'light' : 'dark');
+        }
+        setTimeout(updateDarkUI, 100);
+      });
+
+      // BGM 控制（APlayer 1.x 的 play/pause 不返回 Promise，直接调用）
+      bgmBtn.addEventListener('click', function() {
+        var ap = window._aplayer_instance;
+        if (!ap || !ap.audio) {
+          DSLog.warn('Settings', 'BGM 播放器未初始化');
+          return;
+        }
+        if (!ap.audio.paused) {
+          ap.pause();
+        } else {
+          ap.play();
+        }
+        setTimeout(updateBgmUI, 200);
+      });
+
+      updateDarkUI();
+      setTimeout(updateBgmUI, 300);
+    }
+
+    // ---------- 全局监听（只注册一次，元素每次挂载后动态查询） ----------
+    new MutationObserver(function() {
+      var s = document.getElementById('nav-darkmode-status');
+      var i = document.querySelector('#nav-darkmode-toggle i');
+      var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+      if (s) s.textContent = isDark ? '开' : '关';
+      if (i) i.className = isDark ? 'fas fa-sun' : 'fas fa-moon';
+    }).observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['data-theme']
+    });
+
+    document.addEventListener('bgmStateChange', function() {
+      var s = document.getElementById('nav-bgm-status');
+      var ap = window._aplayer_instance;
+      if (!s) return;
+      if (!ap || !ap.audio) { s.textContent = '⏹'; return; }
+      s.textContent = !ap.audio.paused ? '⏸' : '▶';
+    });
+
+    // ---------- 首次挂载 + PJAX 完成后重建（PJAX 会替换 #body-wrap，齿轮随 #menus 丢失） ----------
+    mountGear();
+    document.addEventListener('pjax:complete', mountGear);
+
+    console.log('[设置] 导航栏齿轮菜单已初始化');
+    if (window.DSLog) DSLog.info('Settings', '导航栏齿轮菜单已初始化');
+  })();
+</script>
+<script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js" defer="defer"></script><script>document.addEventListener('DOMContentLoaded', () => {
+  const pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+  window.pjax = new Pjax({
+    elements: 'a:not([target="_blank"]):not([data-fancybox]):not([href="/music/"])',
+    selectors: pjaxSelectors,
+    cacheBust: false,
+    analytics: false,
+    scrollRestoration: false
+  })
+
+  const triggerPjaxFn = (val) => {
+    if (!val) return
+    Object.values(val).forEach(fn => {
+      try {
+        fn()
+      } catch (err) {
+        console.debug('Pjax callback failed:', err)
+      }
+    })
+  }
+
+  document.addEventListener('pjax:send', () => {
+    // removeEventListener
+    btf.removeGlobalFnEvent('pjaxSendOnce')
+    btf.removeGlobalFnEvent('themeChange')
+
+    // reset readmode
+    const $bodyClassList = document.body.classList
+    if ($bodyClassList.contains('read-mode')) $bodyClassList.remove('read-mode')
+
+    triggerPjaxFn(window.globalFn.pjaxSend)
+  })
+
+  document.addEventListener('pjax:complete', () => {
+    btf.removeGlobalFnEvent('pjaxCompleteOnce')
+    document.querySelectorAll('script[data-pjax]').forEach(item => {
+      if (!item.parentNode) return
+      const newScript = document.createElement('script')
+      const content = item.text || item.textContent || ''
+      Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+      newScript.appendChild(document.createTextNode(content))
+      item.parentNode.replaceChild(newScript, item)
+    })
+
+    triggerPjaxFn(window.globalFn.pjaxComplete)
+  })
+
+  document.addEventListener('pjax:error', e => {
+    const responseURL = e.request && e.request.responseURL
+    if (e.request && e.request.status === 404) {
+      true
+        ? pjax.loadUrl('/azur_blog/404.html')
+        : responseURL && (window.location.href = responseURL)
+    } else if (responseURL) {
+      window.location.href = responseURL
+    }
+  })
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><i class="fas fa-spinner fa-pulse" id="loading-status" hidden="hidden"></i><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="local-search-input"><input placeholder="搜索文章" type="text"/></div><hr/><div id="local-search-results"></div><div class="ais-Pagination" id="local-search-pagination" style="display:none;"><ul class="ais-Pagination-list"></ul></div><div id="local-search-stats"></div></div><div id="search-mask"></div><script src="/azur_blog/js/search/local-search.js?v=5.7.0"></script></div></div></body></html>

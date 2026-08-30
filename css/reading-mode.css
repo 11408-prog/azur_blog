@@ -1,0 +1,52 @@
+/* ========== 文章页阅读模式 ========== */
+
+/* 文章正文字号 */
+#article-container {
+  font-size: 18px;
+}
+
+/* 滚动时导航栏不弹出（回到顶部才显示） */
+#body-wrap.post #page-header.nav-visible:not(.fixed) #nav {
+  transform: none;
+}
+
+/* 目录不随 nav-visible 跳动 */
+#body-wrap.post #page-header.nav-visible:not(.fixed) + .layout > .aside-content > .sticky_layout {
+  top: 20px;
+}
+
+/* ========== 文章页目录占满高度 ========== */
+
+/* sticky 容器：明确高度，flex 列布局 */
+.post #aside-content .sticky_layout {
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 40px);
+}
+
+/* 目录卡片：撑满 sticky 容器剩余空间 */
+.post #aside-content #card-toc {
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 目录内容区：占满卡片内部，超出时滚动 */
+.post #card-toc .toc {
+  flex: 1 1 auto;
+  overflow-y: auto;
+  max-height: none;
+}
+
+/* 隐藏滚动条 */
+.post #card-toc::-webkit-scrollbar,
+.post #card-toc .toc::-webkit-scrollbar {
+  width: 0;
+  background: transparent;
+}
+
+/* 无目录文章：恢复显示所有卡片 */
+html.no-toc #body-wrap.post #aside-content .card-widget {
+  display: block !important;
+}
