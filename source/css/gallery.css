@@ -1,0 +1,26 @@
+/* ========== 画廊瀑布流（CSS 多列，图片保持自然比例） ========== */
+
+#masonry-gallery {
+  column-count: 3;
+  column-gap: 12px;
+}
+
+#masonry-gallery img {
+  width: 100%;
+  display: block;
+  margin-bottom: 12px;
+  break-inside: avoid;
+  border-radius: 6px;
+}
+
+@media (max-width: 768px) {
+  #masonry-gallery {
+    column-count: 2;
+  }
+}
+
+@media (max-width: 480px) {
+  #masonry-gallery {
+    column-count: 1;
+  }
+}
