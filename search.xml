@@ -1,39 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>cookbook第二章笔记</title>
-    <url>/azur_blog/2026/08/21/python/cookbook%E7%AC%AC%E4%BA%8C%E7%AB%A0%E7%AC%94%E8%AE%B0/</url>
-    <content><![CDATA[<p>本章讲述了如何高效、优雅地处理现实世界中“不规矩”的文本数据</p>
-<h2 id="名词解释"><a href="#名词解释" class="headerlink" title="名词解释"></a>名词解释</h2><h3 id="正则修饰符"><a href="#正则修饰符" class="headerlink" title="正则修饰符"></a>正则修饰符</h3><p>定义:用于改变正则表达式引擎默认匹配行为的额外参数或内联指令。它只改变匹配的方式和规则，如是否忽略大小写等。</p>
-<h2 id="2-1-使用多个界定字符分割字符串"><a href="#2-1-使用多个界定字符分割字符串" class="headerlink" title="2.1 使用多个界定字符分割字符串"></a>2.1 使用多个界定字符分割字符串</h2><p>split()方法不允许有多个分割符或者不确定的空格。建议使用re.split()。<br>使用方法为：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">re.split(pattern, string, maxsplit=<span class="number">0</span>, flags=<span class="number">0</span>)</span><br></pre></td></tr></table></figure>
-<p>其中，pattern表示正则表达式，string表示要分割的字符串，maxsplit表示最大分割次数，flags表示正则修饰符。</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>line = <span class="string">&#x27;asdf fjdk; afed, fjek,asdf, foo&#x27;</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> re</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>re.split(<span class="string">r&#x27;[;,\s]\s*&#x27;</span>, line)</span><br><span class="line">[<span class="string">&#x27;asdf&#x27;</span>, <span class="string">&#x27;fjdk&#x27;</span>, <span class="string">&#x27;afed&#x27;</span>, <span class="string">&#x27;fjek&#x27;</span>, <span class="string">&#x27;asdf&#x27;</span>, <span class="string">&#x27;foo&#x27;</span>]</span><br></pre></td></tr></table></figure>
-
-<h2 id="2-2-字符串开头或结尾匹配"><a href="#2-2-字符串开头或结尾匹配" class="headerlink" title="2.2 字符串开头或结尾匹配"></a>2.2 字符串开头或结尾匹配</h2><p>使用str.startswith()或者str.endswith()。</p>
-<p>‘’’python<br>url &#x3D; ‘<a href="http://www.python.org/">http://www.python.org</a>‘</p>
-<p>print(url.endswith(‘com’))<br>print(url.startswith(‘http’))<br>‘’’</p>
-<h2 id="2-3-用shell通配符匹配字符串"><a href="#2-3-用shell通配符匹配字符串" class="headerlink" title="2.3 用shell通配符匹配字符串"></a>2.3 用shell通配符匹配字符串</h2><p>fnmatch模块提供了fnmatch()和fnmatchcase()来实现。相比于前者，后者会严格按照的你用的模式的大小写匹配。前者使用操作系统的大小写敏感规则来匹配模式。</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> fnmatch <span class="keyword">import</span> fnmatch,fnmatchcase</span><br><span class="line"></span><br><span class="line">names = [<span class="string">&#x27;Dat1.csv&#x27;</span>, <span class="string">&#x27;Dat2.csv&#x27;</span>, <span class="string">&#x27;config.ini&#x27;</span>, <span class="string">&#x27;foo.py&#x27;</span>]</span><br><span class="line"><span class="built_in">print</span>([name <span class="keyword">for</span> name <span class="keyword">in</span> names <span class="keyword">if</span> fnmatch(name, <span class="string">&#x27;Dat*.csv&#x27;</span>)])</span><br><span class="line"><span class="comment">#输出[&#x27;Dat1.csv&#x27;, &#x27;Dat2.csv&#x27;]</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(fnmatch(<span class="string">&#x27;foot.txt&#x27;</span>,<span class="string">&#x27;*.txt&#x27;</span>))</span><br><span class="line"><span class="built_in">print</span>(fnmatch(<span class="string">&#x27;foot.txt&#x27;</span>,<span class="string">&#x27;*.TXT&#x27;</span>))</span><br><span class="line"><span class="built_in">print</span>(fnmatchcase(<span class="string">&#x27;foot.txt&#x27;</span>,<span class="string">&#x27;*.txt&#x27;</span>))</span><br><span class="line"><span class="built_in">print</span>(fnmatchcase(<span class="string">&#x27;foot.txt&#x27;</span>,<span class="string">&#x27;*.TXT&#x27;</span>))</span><br></pre></td></tr></table></figure>
-
-<h2 id="2-4-字符串匹配搜索"><a href="#2-4-字符串匹配搜索" class="headerlink" title="2.4 字符串匹配搜索"></a>2.4 字符串匹配搜索</h2><p>需要调用str.find() , str.endswith() , str.startswith() 或者类似的方法。</p>
-<p>需要注意的是，如果你打算做大量的匹配和搜索操作的话，最好先编译正则表达式，然后再重复使用它。 模块级别的函数会将最近编译过的模式缓存起来，因此并不会消耗太多的性能， 但是如果使用预编译模式的话，你将会减少查找和一些额外的处理损耗。</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>text = <span class="string">&#x27;yeah, but no, but yeah, but no, but yeah&#x27;</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="comment"># Exact match</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>text == <span class="string">&#x27;yeah&#x27;</span></span><br><span class="line"><span class="literal">False</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="comment"># Match at start or end</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>text.startswith(<span class="string">&#x27;yeah&#x27;</span>)</span><br><span class="line"><span class="literal">True</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>text.endswith(<span class="string">&#x27;no&#x27;</span>)</span><br><span class="line"><span class="literal">False</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="comment"># Search for the location of the first occurrence</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>text.find(<span class="string">&#x27;no&#x27;</span>)</span><br><span class="line"><span class="number">10</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="2-5-字符串搜索和替换"><a href="#2-5-字符串搜索和替换" class="headerlink" title="2.5 字符串搜索和替换"></a>2.5 字符串搜索和替换</h2><p>使用str.replace()或者re.sub()</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">text = <span class="string">&#x27;yeah , but no , but yeah , but no , but yeah&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># replace操作之后不会改变原来的值</span></span><br><span class="line"><span class="built_in">print</span>(text.replace(<span class="string">&#x27;yeah&#x27;</span>,<span class="string">&#x27;yep&#x27;</span>))</span><br><span class="line"><span class="built_in">print</span>(text)</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line">text = <span class="string">&#x27;Today is 11/27/2012. PyCon starts 3/13/2013.&#x27;</span></span><br><span class="line"><span class="built_in">print</span>(re.sub(<span class="string">r&#x27;(\d+)/(\d+)/(\d+)&#x27;</span>, <span class="string">r&#x27;\3-\1-\2&#x27;</span>, text))</span><br><span class="line"><span class="built_in">print</span>(text)</span><br></pre></td></tr></table></figure>
-
-
-]]></content>
-      <categories>
-        <category>学习</category>
-      </categories>
-      <tags>
-        <tag>python</tag>
-        <tag>字符串文本</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>常用指令</title>
     <url>/azur_blog/2026/08/11/%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4/</url>
     <content><![CDATA[<h1 id="hexo"><a href="#hexo" class="headerlink" title="hexo"></a>hexo</h1><h2 id="创建文章"><a href="#创建文章" class="headerlink" title="创建文章"></a>创建文章</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo new <span class="string">&quot;标题&quot;</span></span><br></pre></td></tr></table></figure>
@@ -86,9 +53,9 @@
         <category>学习</category>
       </categories>
       <tags>
-        <tag>python</tag>
         <tag>hexo</tag>
         <tag>css</tag>
+        <tag>python</tag>
       </tags>
   </entry>
   <entry>
@@ -173,6 +140,39 @@
       </tags>
   </entry>
   <entry>
+    <title>cookbook第二章笔记</title>
+    <url>/azur_blog/2026/08/21/python/cookbook%E7%AC%AC%E4%BA%8C%E7%AB%A0%E7%AC%94%E8%AE%B0/</url>
+    <content><![CDATA[<p>本章讲述了如何高效、优雅地处理现实世界中“不规矩”的文本数据</p>
+<h2 id="名词解释"><a href="#名词解释" class="headerlink" title="名词解释"></a>名词解释</h2><h3 id="正则修饰符"><a href="#正则修饰符" class="headerlink" title="正则修饰符"></a>正则修饰符</h3><p>定义:用于改变正则表达式引擎默认匹配行为的额外参数或内联指令。它只改变匹配的方式和规则，如是否忽略大小写等。</p>
+<h2 id="2-1-使用多个界定字符分割字符串"><a href="#2-1-使用多个界定字符分割字符串" class="headerlink" title="2.1 使用多个界定字符分割字符串"></a>2.1 使用多个界定字符分割字符串</h2><p>split()方法不允许有多个分割符或者不确定的空格。建议使用re.split()。<br>使用方法为：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">re.split(pattern, string, maxsplit=<span class="number">0</span>, flags=<span class="number">0</span>)</span><br></pre></td></tr></table></figure>
+<p>其中，pattern表示正则表达式，string表示要分割的字符串，maxsplit表示最大分割次数，flags表示正则修饰符。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>line = <span class="string">&#x27;asdf fjdk; afed, fjek,asdf, foo&#x27;</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> re</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>re.split(<span class="string">r&#x27;[;,\s]\s*&#x27;</span>, line)</span><br><span class="line">[<span class="string">&#x27;asdf&#x27;</span>, <span class="string">&#x27;fjdk&#x27;</span>, <span class="string">&#x27;afed&#x27;</span>, <span class="string">&#x27;fjek&#x27;</span>, <span class="string">&#x27;asdf&#x27;</span>, <span class="string">&#x27;foo&#x27;</span>]</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-2-字符串开头或结尾匹配"><a href="#2-2-字符串开头或结尾匹配" class="headerlink" title="2.2 字符串开头或结尾匹配"></a>2.2 字符串开头或结尾匹配</h2><p>使用str.startswith()或者str.endswith()。</p>
+<p>‘’’python<br>url &#x3D; ‘<a href="http://www.python.org/">http://www.python.org</a>‘</p>
+<p>print(url.endswith(‘com’))<br>print(url.startswith(‘http’))<br>‘’’</p>
+<h2 id="2-3-用shell通配符匹配字符串"><a href="#2-3-用shell通配符匹配字符串" class="headerlink" title="2.3 用shell通配符匹配字符串"></a>2.3 用shell通配符匹配字符串</h2><p>fnmatch模块提供了fnmatch()和fnmatchcase()来实现。相比于前者，后者会严格按照的你用的模式的大小写匹配。前者使用操作系统的大小写敏感规则来匹配模式。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> fnmatch <span class="keyword">import</span> fnmatch,fnmatchcase</span><br><span class="line"></span><br><span class="line">names = [<span class="string">&#x27;Dat1.csv&#x27;</span>, <span class="string">&#x27;Dat2.csv&#x27;</span>, <span class="string">&#x27;config.ini&#x27;</span>, <span class="string">&#x27;foo.py&#x27;</span>]</span><br><span class="line"><span class="built_in">print</span>([name <span class="keyword">for</span> name <span class="keyword">in</span> names <span class="keyword">if</span> fnmatch(name, <span class="string">&#x27;Dat*.csv&#x27;</span>)])</span><br><span class="line"><span class="comment">#输出[&#x27;Dat1.csv&#x27;, &#x27;Dat2.csv&#x27;]</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(fnmatch(<span class="string">&#x27;foot.txt&#x27;</span>,<span class="string">&#x27;*.txt&#x27;</span>))</span><br><span class="line"><span class="built_in">print</span>(fnmatch(<span class="string">&#x27;foot.txt&#x27;</span>,<span class="string">&#x27;*.TXT&#x27;</span>))</span><br><span class="line"><span class="built_in">print</span>(fnmatchcase(<span class="string">&#x27;foot.txt&#x27;</span>,<span class="string">&#x27;*.txt&#x27;</span>))</span><br><span class="line"><span class="built_in">print</span>(fnmatchcase(<span class="string">&#x27;foot.txt&#x27;</span>,<span class="string">&#x27;*.TXT&#x27;</span>))</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-4-字符串匹配搜索"><a href="#2-4-字符串匹配搜索" class="headerlink" title="2.4 字符串匹配搜索"></a>2.4 字符串匹配搜索</h2><p>需要调用str.find() , str.endswith() , str.startswith() 或者类似的方法。</p>
+<p>需要注意的是，如果你打算做大量的匹配和搜索操作的话，最好先编译正则表达式，然后再重复使用它。 模块级别的函数会将最近编译过的模式缓存起来，因此并不会消耗太多的性能， 但是如果使用预编译模式的话，你将会减少查找和一些额外的处理损耗。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>text = <span class="string">&#x27;yeah, but no, but yeah, but no, but yeah&#x27;</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="comment"># Exact match</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>text == <span class="string">&#x27;yeah&#x27;</span></span><br><span class="line"><span class="literal">False</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="comment"># Match at start or end</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>text.startswith(<span class="string">&#x27;yeah&#x27;</span>)</span><br><span class="line"><span class="literal">True</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>text.endswith(<span class="string">&#x27;no&#x27;</span>)</span><br><span class="line"><span class="literal">False</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="comment"># Search for the location of the first occurrence</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>text.find(<span class="string">&#x27;no&#x27;</span>)</span><br><span class="line"><span class="number">10</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="2-5-字符串搜索和替换"><a href="#2-5-字符串搜索和替换" class="headerlink" title="2.5 字符串搜索和替换"></a>2.5 字符串搜索和替换</h2><p>使用str.replace()或者re.sub()</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">text = <span class="string">&#x27;yeah , but no , but yeah , but no , but yeah&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># replace操作之后不会改变原来的值</span></span><br><span class="line"><span class="built_in">print</span>(text.replace(<span class="string">&#x27;yeah&#x27;</span>,<span class="string">&#x27;yep&#x27;</span>))</span><br><span class="line"><span class="built_in">print</span>(text)</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line">text = <span class="string">&#x27;Today is 11/27/2012. PyCon starts 3/13/2013.&#x27;</span></span><br><span class="line"><span class="built_in">print</span>(re.sub(<span class="string">r&#x27;(\d+)/(\d+)/(\d+)&#x27;</span>, <span class="string">r&#x27;\3-\1-\2&#x27;</span>, text))</span><br><span class="line"><span class="built_in">print</span>(text)</span><br></pre></td></tr></table></figure>
+
+
+]]></content>
+      <categories>
+        <category>学习</category>
+      </categories>
+      <tags>
+        <tag>python</tag>
+        <tag>字符串文本</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>css常见调参函数</title>
     <url>/azur_blog/2026/08/14/%E5%8D%9A%E5%AE%A2%E5%88%B6%E4%BD%9C%E7%9B%B8%E5%85%B3/css%E5%B8%B8%E8%A7%81%E8%B0%83%E5%8F%82%E5%87%BD%E6%95%B0/</url>
     <content><![CDATA[<h2 id="reba-红绿蓝透明度"><a href="#reba-红绿蓝透明度" class="headerlink" title="reba &#x2F; 红绿蓝透明度"></a>reba &#x2F; 红绿蓝透明度</h2><p>用法：</p>
@@ -190,15 +190,6 @@
       </tags>
   </entry>
   <entry>
-    <title>我的第一篇博客</title>
-    <url>/azur_blog/2026/08/11/%E5%8D%9A%E5%AE%A2%E5%88%B6%E4%BD%9C%E7%9B%B8%E5%85%B3/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/</url>
-    <content><![CDATA[<p>这个网站打算用来记录一些学习笔记，同人文等。</p>
-<span id="more"></span>
-
-<h1 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h1><p>博客这个东西是我在网上无意中看到的，感觉很有意思，于是打算自己做一下。我本人很喜欢用代码做东西，同时很喜欢碧蓝航线中一个叫企业的角色。平时的爱好就是看小说，写代码，写同人文。希望能打造出一个碧蓝航线风格的博客，也能用来记录自己提升的过程。</p>
-]]></content>
-  </entry>
-  <entry>
     <title>博客制作注意事项</title>
     <url>/azur_blog/2026/08/11/%E5%8D%9A%E5%AE%A2%E5%88%B6%E4%BD%9C%E7%9B%B8%E5%85%B3/%E5%8D%9A%E5%AE%A2%E5%88%B6%E4%BD%9C%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/</url>
     <content><![CDATA[<h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>今天尝试搭建好了博客的环境，并制作了一个大概的样子。在开发过程中遇到了如下两个问题：</p>
@@ -214,6 +205,15 @@
         <tag>js</tag>
         <tag>开发</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>我的第一篇博客</title>
+    <url>/azur_blog/2026/08/11/%E5%8D%9A%E5%AE%A2%E5%88%B6%E4%BD%9C%E7%9B%B8%E5%85%B3/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/</url>
+    <content><![CDATA[<p>这个网站打算用来记录一些学习笔记，同人文等。</p>
+<span id="more"></span>
+
+<h1 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h1><p>博客这个东西是我在网上无意中看到的，感觉很有意思，于是打算自己做一下。我本人很喜欢用代码做东西，同时很喜欢碧蓝航线中一个叫企业的角色。平时的爱好就是看小说，写代码，写同人文。希望能打造出一个碧蓝航线风格的博客，也能用来记录自己提升的过程。</p>
+]]></content>
   </entry>
   <entry>
     <title>基于小额投资纳斯达克和标普的算法</title>
@@ -340,37 +340,6 @@
       </tags>
   </entry>
   <entry>
-    <title>黄金，纳指，标普，债基同时下跌的原因汇总</title>
-    <url>/azur_blog/2026/08/26/%E6%8A%95%E8%B5%84/%E9%BB%84%E9%87%91%EF%BC%8C%E7%BA%B3%E6%8C%87%EF%BC%8C%E6%A0%87%E6%99%AE%EF%BC%8C%E5%80%BA%E5%9F%BA%E5%90%8C%E6%97%B6%E4%B8%8B%E8%B7%8C%E7%9A%84%E5%8E%9F%E5%9B%A0%E6%B1%87%E6%80%BB/</url>
-    <content><![CDATA[<p>本问用于记录自 2026.8.25 起每次四者同时下跌的时间和原因。购买的基金分别为广发纳斯达克100,摩根标普500，华安纳斯达克100，易方达黄金etf连接A,易方达增强回报债券A。</p>
-<h1 id="2026-8-26"><a href="#2026-8-26" class="headerlink" title="2026&#x2F;8&#x2F;26"></a>2026&#x2F;8&#x2F;26</h1><h2 id="纳指，标普"><a href="#纳指，标普" class="headerlink" title="纳指，标普"></a>纳指，标普</h2><ul>
-<li><p>芯片股集体暴跌</p>
-</li>
-<li><p>英伟达财报前担忧，市场担忧ai资本支出可持续性</p>
-</li>
-<li><p>美国和其他国家冲突加剧，包括和加拿大，伊朗</p>
-</li>
-</ul>
-<h2 id="黄金"><a href="#黄金" class="headerlink" title="黄金"></a>黄金</h2><ul>
-<li>技术性回调（资产短期内涨的太快导致大量获利盘涌出，价格出现回落）</li>
-</ul>
-<h2 id="债基"><a href="#债基" class="headerlink" title="债基"></a>债基</h2><ul>
-<li>流动性预期边际收紧</li>
-</ul>
-]]></content>
-      <categories>
-        <category>学习</category>
-      </categories>
-      <tags>
-        <tag>投资</tag>
-        <tag>纳斯达克</tag>
-        <tag>标普</tag>
-        <tag>黄金</tag>
-        <tag>债基</tag>
-        <tag>基金</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>企业(海上传奇)技能和台词设计</title>
     <url>/azur_blog/2026/08/20/%E7%A2%A7%E8%93%9D%E8%88%AA%E7%BA%BF/%E4%BC%81%E4%B8%9A-%E6%B5%B7%E4%B8%8A%E4%BC%A0%E5%A5%87-%E6%8A%80%E8%83%BD%E5%92%8C%E5%8F%B0%E8%AF%8D%E8%AE%BE%E8%AE%A1/</url>
     <content><![CDATA[<h2 id="技能"><a href="#技能" class="headerlink" title="技能"></a>技能</h2><h3 id="幸运眷顾的幽灵-蓝"><a href="#幸运眷顾的幽灵-蓝" class="headerlink" title="幸运眷顾的幽灵 (蓝)"></a>幸运眷顾的幽灵 (蓝)</h3><p>企业进入战斗时处于”灰色幽灵”状态。企业发动空袭时有50%的概率进入”Lucky E++”状态，否则进入”灰色幽灵”状态。</p>
@@ -442,6 +411,216 @@
         <tag>企业</tag>
         <tag>碧蓝航线</tag>
         <tag>舰娘</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>黄金，纳指，标普，债基同时下跌的原因汇总</title>
+    <url>/azur_blog/2026/08/26/%E6%8A%95%E8%B5%84/%E9%BB%84%E9%87%91%EF%BC%8C%E7%BA%B3%E6%8C%87%EF%BC%8C%E6%A0%87%E6%99%AE%EF%BC%8C%E5%80%BA%E5%9F%BA%E5%90%8C%E6%97%B6%E4%B8%8B%E8%B7%8C%E7%9A%84%E5%8E%9F%E5%9B%A0%E6%B1%87%E6%80%BB/</url>
+    <content><![CDATA[<p>本问用于记录自 2026.8.25 起每次四者同时下跌的时间和原因。购买的基金分别为广发纳斯达克100,摩根标普500，华安纳斯达克100，易方达黄金etf连接A,易方达增强回报债券A。</p>
+<h1 id="2026-8-26"><a href="#2026-8-26" class="headerlink" title="2026&#x2F;8&#x2F;26"></a>2026&#x2F;8&#x2F;26</h1><h2 id="纳指，标普"><a href="#纳指，标普" class="headerlink" title="纳指，标普"></a>纳指，标普</h2><ul>
+<li><p>芯片股集体暴跌</p>
+</li>
+<li><p>英伟达财报前担忧，市场担忧ai资本支出可持续性</p>
+</li>
+<li><p>美国和其他国家冲突加剧，包括和加拿大，伊朗</p>
+</li>
+</ul>
+<h2 id="黄金"><a href="#黄金" class="headerlink" title="黄金"></a>黄金</h2><ul>
+<li>技术性回调（资产短期内涨的太快导致大量获利盘涌出，价格出现回落）</li>
+</ul>
+<h2 id="债基"><a href="#债基" class="headerlink" title="债基"></a>债基</h2><ul>
+<li>流动性预期边际收紧</li>
+</ul>
+]]></content>
+      <categories>
+        <category>学习</category>
+      </categories>
+      <tags>
+        <tag>投资</tag>
+        <tag>纳斯达克</tag>
+        <tag>标普</tag>
+        <tag>黄金</tag>
+        <tag>债基</tag>
+        <tag>基金</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>王道计算机网络第一章笔记</title>
+    <url>/azur_blog/2026/08/23/408/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E7%8E%8B%E9%81%93%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%AC%E4%B8%80%E7%AB%A0%E7%AC%94%E8%AE%B0/</url>
+    <content><![CDATA[<p>计算机网络体系结构</p>
+<h1 id="1-1-1-计算机网络的概念"><a href="#1-1-1-计算机网络的概念" class="headerlink" title="1.1_1 计算机网络的概念"></a>1.1_1 计算机网络的概念</h1><h2 id="计算机网络"><a href="#计算机网络" class="headerlink" title="计算机网络"></a>计算机网络</h2><p>将众多分散的、自治的计算机系统，通过通信设备与线路连接起来，由功能完善的软件实现资源共享和信息传递的系统。</p>
+<h2 id="计网，互联网，互连网的区别"><a href="#计网，互联网，互连网的区别" class="headerlink" title="计网，互联网，互连网的区别"></a>计网，互联网，互连网的区别</h2><p>计算机网络：由若干结点和连接这些结点的链路构成</p>
+<ul>
+<li>结点：集线器，计算机，交换机，路由器等</li>
+<li>链路：有线链路，无线链路</li>
+</ul>
+<p>互连网：多个计算机网络通过路由器互相连接</p>
+<p>互联网（因特网）：把全球范围的计算机网络连接起来</p>
+<ul>
+<li>互联网必须使用TCP&#x2F;IP协议通信，互连网可使用任意协议（因为后者一般是小范围使用）</li>
+<li>互联网是世界上最大规模的互连网</li>
+</ul>
+<h2 id="其它"><a href="#其它" class="headerlink" title="其它"></a>其它</h2><ul>
+<li><p>家用路由器 &#x3D; 交换机 + 路由器 + 其他功能</p>
+</li>
+<li><p>路由器用于连接不同的网络</p>
+</li>
+</ul>
+<h1 id="1-1-2-计算机网络的组成、功能"><a href="#1-1-2-计算机网络的组成、功能" class="headerlink" title="1.1_2 计算机网络的组成、功能"></a>1.1_2 计算机网络的组成、功能</h1><h2 id="组成"><a href="#组成" class="headerlink" title="组成"></a>组成</h2><h3 id="从组成部分看"><a href="#从组成部分看" class="headerlink" title="从组成部分看"></a>从组成部分看</h3><h4 id="硬件"><a href="#硬件" class="headerlink" title="硬件"></a>硬件</h4><ul>
+<li><p>主机（端系统，end system）， 如电脑，手机</p>
+</li>
+<li><p>通信设备，如集线器，路由器     </p>
+</li>
+<li><p>通信链路，如网线，光纤</p>
+</li>
+</ul>
+<h4 id="软件"><a href="#软件" class="headerlink" title="软件"></a>软件</h4><p>实现资源贡献。如聊天软件，网盘软件</p>
+<h4 id="协议"><a href="#协议" class="headerlink" title="协议"></a>协议</h4><p>规定计算机网络的通信规则，由硬件和软件共同实现，如：网络适配器+软件 实现网络通信协议</p>
+<h3 id="从工作方式看"><a href="#从工作方式看" class="headerlink" title="从工作方式看"></a>从工作方式看</h3><h4 id="边缘部分"><a href="#边缘部分" class="headerlink" title="边缘部分"></a>边缘部分</h4><p>工作方式：直接为用户服务（通信，资源共享）</p>
+<p>主要由连接到互联网上的主机及其软件组成</p>
+<h4 id="核心部分"><a href="#核心部分" class="headerlink" title="核心部分"></a>核心部分</h4><p>工作方式：为边缘部分服务（连通性，交换服务）</p>
+<p>由大量网络和连接这些网络的路由器组成</p>
+<h3 id="从逻辑功能看"><a href="#从逻辑功能看" class="headerlink" title="从逻辑功能看"></a>从逻辑功能看</h3><h4 id="资源子网"><a href="#资源子网" class="headerlink" title="资源子网"></a>资源子网</h4><p>向用户提供可共享的硬件、软件和信息资源的部分</p>
+<p>主要由连接在互联网上的主机组成</p>
+<h4 id="通信子网"><a href="#通信子网" class="headerlink" title="通信子网"></a>通信子网</h4><p>把计算机和其他用户装置连接在一起的所有通信设备和介质的总称</p>
+<p>主要由<strong>通信链路+通信设备+协议</strong>构成</p>
+<h2 id="功能"><a href="#功能" class="headerlink" title="功能"></a>功能</h2><ul>
+<li><p>数据通信</p>
+</li>
+<li><p>资源共享</p>
+</li>
+<li><p>分布式处理 将复杂任务分派给网络中的多台计算机 例如mapreduce</p>
+</li>
+<li><p>提高可靠性 网络中各台计算机互为替代机 例如将数据备份在网盘</p>
+</li>
+</ul>
+<h1 id="1-1-3-电路交换，报文交换，分组交换"><a href="#1-1-3-电路交换，报文交换，分组交换" class="headerlink" title="1.1_3 电路交换，报文交换，分组交换"></a>1.1_3 电路交换，报文交换，分组交换</h1><h2 id="电路交换"><a href="#电路交换" class="headerlink" title="电路交换"></a>电路交换</h2><p>通过物理线路的连接，动态地分配传输线路资源</p>
+<h3 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h3><p>建立连接 -&gt; 通信 -&gt; 释放连接</p>
+<h3 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h3><ul>
+<li>会建立一条专用的线路，传输效率高</li>
+</ul>
+<h3 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h3><ul>
+<li><p>建立和释放连接需要额外的时间开销</p>
+</li>
+<li><p>线路被双方独占，利用率低</p>
+</li>
+<li><p>灵活性差</p>
+</li>
+<li><p>交换节点不支持“差错控制”（无法发现传输过程中的发生的数据错误）</p>
+</li>
+</ul>
+<h2 id="报文交换"><a href="#报文交换" class="headerlink" title="报文交换"></a>报文交换</h2><p>把传送的数据单元先储存进中间节点，再根据目的地址转发至下一节点</p>
+<h3 id="优点-1"><a href="#优点-1" class="headerlink" title="优点"></a>优点</h3><ul>
+<li><p>通信前无需建立连接</p>
+</li>
+<li><p>通信线路可以灵活分配</p>
+</li>
+<li><p>用户无需独占一整条物理线路，线路利用率高</p>
+</li>
+<li><p>支持差错控制（通过校验技术）</p>
+</li>
+</ul>
+<h3 id="缺点-1"><a href="#缺点-1" class="headerlink" title="缺点"></a>缺点</h3><ul>
+<li><p>报文不定长，不方便储存转发管理</p>
+</li>
+<li><p>长报文的存储转发时间开销大、缓存开销大</p>
+</li>
+<li><p>长报文容易出错，重传代价高</p>
+</li>
+</ul>
+<h2 id="分组交换"><a href="#分组交换" class="headerlink" title="分组交换"></a>分组交换</h2><p>将数据分割为较小的分组进行存储转发</p>
+<h3 id="分割后的首部要素"><a href="#分割后的首部要素" class="headerlink" title="分割后的首部要素"></a>分割后的首部要素</h3><p>源地址，目的地址，分组号等</p>
+<h3 id="优点-2"><a href="#优点-2" class="headerlink" title="优点"></a>优点</h3><ul>
+<li><p>无需建立连接</p>
+</li>
+<li><p>分组长度小，节点缓存压力小，转发速度快。</p>
+</li>
+<li><p>分组不易出错，重传代价低</p>
+</li>
+</ul>
+<h3 id="缺点-2"><a href="#缺点-2" class="headerlink" title="缺点"></a>缺点</h3><ul>
+<li><p>相比于报文交换，控制信息占比增加</p>
+</li>
+<li><p>相比于电路交换，仍然存在储存转发时延</p>
+</li>
+<li><p>报文被拆分为多个分组，传输过程中可能出现丢失等问题，增加处理的复杂度</p>
+</li>
+</ul>
+<h2 id="三种方式性能对比"><a href="#三种方式性能对比" class="headerlink" title="三种方式性能对比"></a>三种方式性能对比</h2><h3 id="电路交换性能分析"><a href="#电路交换性能分析" class="headerlink" title="电路交换性能分析"></a>电路交换性能分析</h3><h1 id="1-1-4-计算机网络的分类"><a href="#1-1-4-计算机网络的分类" class="headerlink" title="1.1_4 计算机网络的分类"></a>1.1_4 计算机网络的分类</h1><h2 id="按分布范围分"><a href="#按分布范围分" class="headerlink" title="按分布范围分"></a>按分布范围分</h2><h3 id="广域网（WAN）"><a href="#广域网（WAN）" class="headerlink" title="广域网（WAN）"></a>广域网（WAN）</h3><p>跨国，跨省，跨洲</p>
+<h3 id="城域网-MAN"><a href="#城域网-MAN" class="headerlink" title="城域网(MAN)"></a>城域网(MAN)</h3><p>几个或几个相邻城市</p>
+<p>通信技术：常采用“以太网技术”</p>
+<h3 id="局域网-LAN"><a href="#局域网-LAN" class="headerlink" title="局域网(LAN)"></a>局域网(LAN)</h3><p>范围：学校，企业，工作单位，家庭</p>
+<p>通信技术：以太网技术</p>
+<p>由于局域网如今几乎都是采用以太网技术实现，因此以太网几乎成了局域网的代名词</p>
+<h3 id="个域网-PAN"><a href="#个域网-PAN" class="headerlink" title="个域网(PAN)"></a>个域网(PAN)</h3><p>范围：几十米以内</p>
+<p>通常是通过无线技术将个人设备连接起来的网络，也称为无线个域网</p>
+<h2 id="按传输技术分"><a href="#按传输技术分" class="headerlink" title="按传输技术分"></a>按传输技术分</h2><h3 id="广播式网络"><a href="#广播式网络" class="headerlink" title="广播式网络"></a>广播式网络</h3><p>一对多，通过检查分组的目的地址确定是否接收该分组</p>
+<h3 id="点对点网络"><a href="#点对点网络" class="headerlink" title="点对点网络"></a>点对点网络</h3><p>一对一</p>
+<h2 id="按拓补结构分类"><a href="#按拓补结构分类" class="headerlink" title="按拓补结构分类"></a>按拓补结构分类</h2><ul>
+<li>总线形结构</li>
+</ul>
+<p>数据广播式传输，存在总线争用的问题</p>
+<ul>
+<li>环形结构</li>
+</ul>
+<p>数据广播式传输，通过“令牌”解决总线争用问题，令牌顺环形依次传递，拿到令牌者可以传递数据</p>
+<ul>
+<li>星形结构</li>
+</ul>
+<p>由中央设备实现数据的点对点传输，不存在总线争用的问题</p>
+<p>以太网交换机连接的设备</p>
+<ul>
+<li>网状结构</li>
+</ul>
+<p>数据通过各中间节点逐一存储转发，属于点到点传输</p>
+<p>众多路由器构架的广域网</p>
+<h2 id="按使用者分类"><a href="#按使用者分类" class="headerlink" title="按使用者分类"></a>按使用者分类</h2><ul>
+<li><p>公用网</p>
+</li>
+<li><p>专用网</p>
+</li>
+</ul>
+<h2 id="按传输介质分类"><a href="#按传输介质分类" class="headerlink" title="按传输介质分类"></a>按传输介质分类</h2><ul>
+<li><p>有线网络</p>
+</li>
+<li><p>无线网络</p>
+</li>
+</ul>
+<h1 id="1-1-5-计算机网络的性能指标-（高频考点）"><a href="#1-1-5-计算机网络的性能指标-（高频考点）" class="headerlink" title="1.1_5 计算机网络的性能指标 （高频考点）"></a>1.1_5 计算机网络的性能指标 （高频考点）</h1><h2 id="1，速率"><a href="#1，速率" class="headerlink" title="1，速率"></a>1，速率</h2><p>windwos用户可以在任务管理器中查看</p>
+<p>信道：某一方向传送信息的通道（不等于通信线路）。一条通信线路在逻辑上对应一条发送信道和一条接收信道</p>
+<p>1B &#x3D; 8b , B是字节，b是比特 </p>
+<p>速率：连接到网络上的节点在信道的传输数据的速率。也称数据率或比特率、数据传输速率。单位为bit&#x2F;s,b&#x2F;s,bps(三者表示的意思一样)</p>
+<h2 id="2-带宽"><a href="#2-带宽" class="headerlink" title="2, 带宽"></a>2, 带宽</h2><p>带宽：某信道所能传输的最高数据率</p>
+<p>节点间通信实际能达到的最高速率，由带宽、节点性能共同限制</p>
+<p>光猫：将光信号转化为电信号</p>
+<p>在通信领域，带宽表示某信道允许通过的信号频带范围</p>
+<p>信道带宽越大，传输数据的能力越强</p>
+<h2 id="3，吞吐量"><a href="#3，吞吐量" class="headerlink" title="3，吞吐量"></a>3，吞吐量</h2><p>吞吐量：单位时间内通过某个网络（或信道、接口）的实际数据量</p>
+<p>吞吐量受宽带限制、受复杂的网络负载情况影响</p>
+<h2 id="4，时延"><a href="#4，时延" class="headerlink" title="4，时延"></a>4，时延</h2><p>时延：数据从网络的一段传送到另一端所需的时间</p>
+<p>总时延 &#x3D; 发送时延 + 传播时延 + 处理时延 + 排队时延</p>
+<ul>
+<li>发送时延：节点将数据推向信道所花的时间</li>
+<li>传播时延：电磁波在信道中传播一定距离所花的时间</li>
+<li>处理时延：被路由器处理所花的时间</li>
+<li>排队时延：数据排队进入、排出所花的时间</li>
+</ul>
+<h2 id="5，时延带宽积"><a href="#5，时延带宽积" class="headerlink" title="5，时延带宽积"></a>5，时延带宽积</h2><p>时延带宽积 &#x3D; 传播时延 * 带宽 </p>
+<p>表示的意义是一条链路中，已从发送端发出来但尚未到达接收端的最大比特数</p>
+<h2 id="6，往返时延（RTT）"><a href="#6，往返时延（RTT）" class="headerlink" title="6，往返时延（RTT）"></a>6，往返时延（RTT）</h2><p>从发送方发送完数据，到发送方接收到来自接收方的确认总经历的时间</p>
+<p>RTT &#x3D; 传播时延 + 处理时延 + “确认”的发送时延 + “确认” 的传播时延</p>
+<p>注：发送方发送数据的时延不计入发送时延</p>
+<h2 id="7，-信道利用率"><a href="#7，-信道利用率" class="headerlink" title="7， 信道利用率"></a>7， 信道利用率</h2><p>有数据通过的时间&#x2F;（有数据通过的时间 + 没有数据通过的时间）</p>
+<p>太高或太低都不好</p>
+<h1 id="1-2-1-计算机网络分层结构"><a href="#1-2-1-计算机网络分层结构" class="headerlink" title="1.2.1 计算机网络分层结构"></a>1.2.1 计算机网络分层结构</h1>]]></content>
+      <categories>
+        <category>学习</category>
+      </categories>
+      <tags>
+        <tag>计算机网络</tag>
+        <tag>考研</tag>
+        <tag>计算机</tag>
+        <tag>408</tag>
       </tags>
   </entry>
   <entry>
@@ -638,185 +817,6 @@
         <tag>约克城</tag>
         <tag>贝法</tag>
         <tag>同人文</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>王道计算机网络第一章笔记</title>
-    <url>/azur_blog/2026/08/23/408/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E7%8E%8B%E9%81%93%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%AC%E4%B8%80%E7%AB%A0%E7%AC%94%E8%AE%B0/</url>
-    <content><![CDATA[<p>计算机网络体系结构</p>
-<h1 id="1-1-1-计算机网络的概念"><a href="#1-1-1-计算机网络的概念" class="headerlink" title="1.1_1 计算机网络的概念"></a>1.1_1 计算机网络的概念</h1><h2 id="计算机网络"><a href="#计算机网络" class="headerlink" title="计算机网络"></a>计算机网络</h2><p>将众多分散的、自治的计算机系统，通过通信设备与线路连接起来，由功能完善的软件实现资源共享和信息传递的系统。</p>
-<h2 id="计网，互联网，互连网的区别"><a href="#计网，互联网，互连网的区别" class="headerlink" title="计网，互联网，互连网的区别"></a>计网，互联网，互连网的区别</h2><p>计算机网络：由若干结点和连接这些结点的链路构成</p>
-<ul>
-<li>结点：集线器，计算机，交换机，路由器等</li>
-<li>链路：有线链路，无线链路</li>
-</ul>
-<p>互连网：多个计算机网络通过路由器互相连接</p>
-<p>互联网（因特网）：把全球范围的计算机网络连接起来</p>
-<ul>
-<li>互联网必须使用TCP&#x2F;IP协议通信，互连网可使用任意协议（因为后者一般是小范围使用）</li>
-<li>互联网是世界上最大规模的互连网</li>
-</ul>
-<h2 id="其它"><a href="#其它" class="headerlink" title="其它"></a>其它</h2><ul>
-<li><p>家用路由器 &#x3D; 交换机 + 路由器 + 其他功能</p>
-</li>
-<li><p>路由器用于连接不同的网络</p>
-</li>
-</ul>
-<h1 id="1-1-2-计算机网络的组成、功能"><a href="#1-1-2-计算机网络的组成、功能" class="headerlink" title="1.1_2 计算机网络的组成、功能"></a>1.1_2 计算机网络的组成、功能</h1><h2 id="组成"><a href="#组成" class="headerlink" title="组成"></a>组成</h2><h3 id="从组成部分看"><a href="#从组成部分看" class="headerlink" title="从组成部分看"></a>从组成部分看</h3><h4 id="硬件"><a href="#硬件" class="headerlink" title="硬件"></a>硬件</h4><ul>
-<li><p>主机（端系统，end system）， 如电脑，手机</p>
-</li>
-<li><p>通信设备，如集线器，路由器     </p>
-</li>
-<li><p>通信链路，如网线，光纤</p>
-</li>
-</ul>
-<h4 id="软件"><a href="#软件" class="headerlink" title="软件"></a>软件</h4><p>实现资源贡献。如聊天软件，网盘软件</p>
-<h4 id="协议"><a href="#协议" class="headerlink" title="协议"></a>协议</h4><p>规定计算机网络的通信规则，由硬件和软件共同实现，如：网络适配器+软件 实现网络通信协议</p>
-<h3 id="从工作方式看"><a href="#从工作方式看" class="headerlink" title="从工作方式看"></a>从工作方式看</h3><h4 id="边缘部分"><a href="#边缘部分" class="headerlink" title="边缘部分"></a>边缘部分</h4><p>工作方式：直接为用户服务（通信，资源共享）</p>
-<p>主要由连接到互联网上的主机及其软件组成</p>
-<h4 id="核心部分"><a href="#核心部分" class="headerlink" title="核心部分"></a>核心部分</h4><p>工作方式：为边缘部分服务（连通性，交换服务）</p>
-<p>由大量网络和连接这些网络的路由器组成</p>
-<h3 id="从逻辑功能看"><a href="#从逻辑功能看" class="headerlink" title="从逻辑功能看"></a>从逻辑功能看</h3><h4 id="资源子网"><a href="#资源子网" class="headerlink" title="资源子网"></a>资源子网</h4><p>向用户提供可共享的硬件、软件和信息资源的部分</p>
-<p>主要由连接在互联网上的主机组成</p>
-<h4 id="通信子网"><a href="#通信子网" class="headerlink" title="通信子网"></a>通信子网</h4><p>把计算机和其他用户装置连接在一起的所有通信设备和介质的总称</p>
-<p>主要由<strong>通信链路+通信设备+协议</strong>构成</p>
-<h2 id="功能"><a href="#功能" class="headerlink" title="功能"></a>功能</h2><ul>
-<li><p>数据通信</p>
-</li>
-<li><p>资源共享</p>
-</li>
-<li><p>分布式处理 将复杂任务分派给网络中的多台计算机 例如mapreduce</p>
-</li>
-<li><p>提高可靠性 网络中各台计算机互为替代机 例如将数据备份在网盘</p>
-</li>
-</ul>
-<h1 id="1-1-3-电路交换，报文交换，分组交换"><a href="#1-1-3-电路交换，报文交换，分组交换" class="headerlink" title="1.1_3 电路交换，报文交换，分组交换"></a>1.1_3 电路交换，报文交换，分组交换</h1><h2 id="电路交换"><a href="#电路交换" class="headerlink" title="电路交换"></a>电路交换</h2><p>通过物理线路的连接，动态地分配传输线路资源</p>
-<h3 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h3><p>建立连接 -&gt; 通信 -&gt; 释放连接</p>
-<h3 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h3><ul>
-<li>会建立一条专用的线路，传输效率高</li>
-</ul>
-<h3 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h3><ul>
-<li><p>建立和释放连接需要额外的时间开销</p>
-</li>
-<li><p>线路被双方独占，利用率低</p>
-</li>
-<li><p>灵活性差</p>
-</li>
-<li><p>交换节点不支持“差错控制”（无法发现传输过程中的发生的数据错误）</p>
-</li>
-</ul>
-<h2 id="报文交换"><a href="#报文交换" class="headerlink" title="报文交换"></a>报文交换</h2><p>把传送的数据单元先储存进中间节点，再根据目的地址转发至下一节点</p>
-<h3 id="优点-1"><a href="#优点-1" class="headerlink" title="优点"></a>优点</h3><ul>
-<li><p>通信前无需建立连接</p>
-</li>
-<li><p>通信线路可以灵活分配</p>
-</li>
-<li><p>用户无需独占一整条物理线路，线路利用率高</p>
-</li>
-<li><p>支持差错控制（通过校验技术）</p>
-</li>
-</ul>
-<h3 id="缺点-1"><a href="#缺点-1" class="headerlink" title="缺点"></a>缺点</h3><ul>
-<li><p>报文不定长，不方便储存转发管理</p>
-</li>
-<li><p>长报文的存储转发时间开销大、缓存开销大</p>
-</li>
-<li><p>长报文容易出错，重传代价高</p>
-</li>
-</ul>
-<h2 id="分组交换"><a href="#分组交换" class="headerlink" title="分组交换"></a>分组交换</h2><p>将数据分割为较小的分组进行存储转发</p>
-<h3 id="分割后的首部要素"><a href="#分割后的首部要素" class="headerlink" title="分割后的首部要素"></a>分割后的首部要素</h3><p>源地址，目的地址，分组号等</p>
-<h3 id="优点-2"><a href="#优点-2" class="headerlink" title="优点"></a>优点</h3><ul>
-<li><p>无需建立连接</p>
-</li>
-<li><p>分组长度小，节点缓存压力小，转发速度快。</p>
-</li>
-<li><p>分组不易出错，重传代价低</p>
-</li>
-</ul>
-<h3 id="缺点-2"><a href="#缺点-2" class="headerlink" title="缺点"></a>缺点</h3><ul>
-<li><p>相比于报文交换，控制信息占比增加</p>
-</li>
-<li><p>相比于电路交换，仍然存在储存转发时延</p>
-</li>
-<li><p>报文被拆分为多个分组，传输过程中可能出现丢失等问题，增加处理的复杂度</p>
-</li>
-</ul>
-<h2 id="三种方式性能对比"><a href="#三种方式性能对比" class="headerlink" title="三种方式性能对比"></a>三种方式性能对比</h2><h3 id="电路交换性能分析"><a href="#电路交换性能分析" class="headerlink" title="电路交换性能分析"></a>电路交换性能分析</h3><h1 id="1-1-4-计算机网络的分类"><a href="#1-1-4-计算机网络的分类" class="headerlink" title="1.1_4 计算机网络的分类"></a>1.1_4 计算机网络的分类</h1><h2 id="按分布范围分"><a href="#按分布范围分" class="headerlink" title="按分布范围分"></a>按分布范围分</h2><h3 id="广域网（WAN）"><a href="#广域网（WAN）" class="headerlink" title="广域网（WAN）"></a>广域网（WAN）</h3><p>跨国，跨省，跨洲</p>
-<h3 id="城域网-MAN"><a href="#城域网-MAN" class="headerlink" title="城域网(MAN)"></a>城域网(MAN)</h3><p>几个或几个相邻城市</p>
-<p>通信技术：常采用“以太网技术”</p>
-<h3 id="局域网-LAN"><a href="#局域网-LAN" class="headerlink" title="局域网(LAN)"></a>局域网(LAN)</h3><p>范围：学校，企业，工作单位，家庭</p>
-<p>通信技术：以太网技术</p>
-<p>由于局域网如今几乎都是采用以太网技术实现，因此以太网几乎成了局域网的代名词</p>
-<h3 id="个域网-PAN"><a href="#个域网-PAN" class="headerlink" title="个域网(PAN)"></a>个域网(PAN)</h3><p>范围：几十米以内</p>
-<p>通常是通过无线技术将个人设备连接起来的网络，也称为无线个域网</p>
-<h2 id="按传输技术分"><a href="#按传输技术分" class="headerlink" title="按传输技术分"></a>按传输技术分</h2><h3 id="广播式网络"><a href="#广播式网络" class="headerlink" title="广播式网络"></a>广播式网络</h3><p>一对多，通过检查分组的目的地址确定是否接收该分组</p>
-<h3 id="点对点网络"><a href="#点对点网络" class="headerlink" title="点对点网络"></a>点对点网络</h3><p>一对一</p>
-<h2 id="按拓补结构分类"><a href="#按拓补结构分类" class="headerlink" title="按拓补结构分类"></a>按拓补结构分类</h2><ul>
-<li>总线形结构</li>
-</ul>
-<p>数据广播式传输，存在总线争用的问题</p>
-<ul>
-<li>环形结构</li>
-</ul>
-<p>数据广播式传输，通过“令牌”解决总线争用问题，令牌顺环形依次传递，拿到令牌者可以传递数据</p>
-<ul>
-<li>星形结构</li>
-</ul>
-<p>由中央设备实现数据的点对点传输，不存在总线争用的问题</p>
-<p>以太网交换机连接的设备</p>
-<ul>
-<li>网状结构</li>
-</ul>
-<p>数据通过各中间节点逐一存储转发，属于点到点传输</p>
-<p>众多路由器构架的广域网</p>
-<h2 id="按使用者分类"><a href="#按使用者分类" class="headerlink" title="按使用者分类"></a>按使用者分类</h2><ul>
-<li><p>公用网</p>
-</li>
-<li><p>专用网</p>
-</li>
-</ul>
-<h2 id="按传输介质分类"><a href="#按传输介质分类" class="headerlink" title="按传输介质分类"></a>按传输介质分类</h2><ul>
-<li><p>有线网络</p>
-</li>
-<li><p>无线网络</p>
-</li>
-</ul>
-<h1 id="1-1-5-计算机网络的性能指标-（高频考点）"><a href="#1-1-5-计算机网络的性能指标-（高频考点）" class="headerlink" title="1.1_5 计算机网络的性能指标 （高频考点）"></a>1.1_5 计算机网络的性能指标 （高频考点）</h1><h2 id="1，速率"><a href="#1，速率" class="headerlink" title="1，速率"></a>1，速率</h2><p>windwos用户可以在任务管理器中查看</p>
-<p>信道：某一方向传送信息的通道（不等于通信线路）。一条通信线路在逻辑上对应一条发送信道和一条接收信道</p>
-<p>1B &#x3D; 8b , B是字节，b是比特 </p>
-<p>速率：连接到网络上的节点在信道的传输数据的速率。也称数据率或比特率、数据传输速率。单位为bit&#x2F;s,b&#x2F;s,bps(三者表示的意思一样)</p>
-<h2 id="2-带宽"><a href="#2-带宽" class="headerlink" title="2, 带宽"></a>2, 带宽</h2><p>带宽：某信道所能传输的最高数据率</p>
-<p>节点间通信实际能达到的最高速率，由带宽、节点性能共同限制</p>
-<p>光猫：将光信号转化为电信号</p>
-<p>在通信领域，带宽表示某信道允许通过的信号频带范围</p>
-<p>信道带宽越大，传输数据的能力越强</p>
-<h2 id="3，吞吐量"><a href="#3，吞吐量" class="headerlink" title="3，吞吐量"></a>3，吞吐量</h2><p>吞吐量：单位时间内通过某个网络（或信道、接口）的实际数据量</p>
-<p>吞吐量受宽带限制、受复杂的网络负载情况影响</p>
-<h2 id="4，时延"><a href="#4，时延" class="headerlink" title="4，时延"></a>4，时延</h2><p>时延：数据从网络的一段传送到另一端所需的时间</p>
-<p>总时延 &#x3D; 发送时延 + 传播时延 + 处理时延 + 排队时延</p>
-<ul>
-<li>发送时延：节点将数据推向信道所花的时间</li>
-<li>传播时延：电磁波在信道中传播一定距离所花的时间</li>
-<li>处理时延：被路由器处理所花的时间</li>
-<li>排队时延：数据排队进入、排出所花的时间</li>
-</ul>
-<h2 id="5，时延带宽积"><a href="#5，时延带宽积" class="headerlink" title="5，时延带宽积"></a>5，时延带宽积</h2><p>时延带宽积 &#x3D; 传播时延 * 带宽 </p>
-<p>表示的意义是一条链路中，已从发送端发出来但尚未到达接收端的最大比特数</p>
-<h2 id="6，往返时延（RTT）"><a href="#6，往返时延（RTT）" class="headerlink" title="6，往返时延（RTT）"></a>6，往返时延（RTT）</h2><p>从发送方发送完数据，到发送方接收到来自接收方的确认总经历的时间</p>
-<p>RTT &#x3D; 传播时延 + 处理时延 + “确认”的发送时延 + “确认” 的传播时延</p>
-<p>注：发送方发送数据的时延不计入发送时延</p>
-<h2 id="7，-信道利用率"><a href="#7，-信道利用率" class="headerlink" title="7， 信道利用率"></a>7， 信道利用率</h2><p>有数据通过的时间&#x2F;（有数据通过的时间 + 没有数据通过的时间）</p>
-<p>太高或太低都不好</p>
-<h1 id="1-2-1-计算机网络分层结构"><a href="#1-2-1-计算机网络分层结构" class="headerlink" title="1.2.1 计算机网络分层结构"></a>1.2.1 计算机网络分层结构</h1>]]></content>
-      <categories>
-        <category>学习</category>
-      </categories>
-      <tags>
-        <tag>计算机网络</tag>
-        <tag>考研</tag>
-        <tag>计算机</tag>
-        <tag>408</tag>
       </tags>
   </entry>
 </search>
