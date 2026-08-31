@@ -1,19 +1,14 @@
-/* 首页活跃度热力图（文章日期版）：自然年视图，可切换年份 */
+/* 首页活跃度热力图（Git提交版 · 四季横排 · 无跨季） */
 (function () {
   'use strict';
 
   var DATA_URL = '/azur_blog/data/activity.json';
-
-  // 密度 4 档：无 / 1 篇 / 2 篇 / 3 篇+（海军蓝深浅）
-  var COLORS = [
-    'rgba(30, 58, 95, 0.06)',
-    'rgba(30, 58, 95, 0.32)',
-    'rgba(30, 58, 95, 0.58)',
-    'rgba(30, 58, 95, 0.95)'
+  var SEASONS = [
+    { name: '春', startMonth: 0, endMonth: 2 },
+    { name: '夏', startMonth: 3, endMonth: 5 },
+    { name: '秋', startMonth: 6, endMonth: 8 },
+    { name: '冬', startMonth: 9, endMonth: 11 }
   ];
-
-  var ALL_DAYS = ['一', '二', '三', '四', '五', '六', '日'];
-  var DAY_LABELS = ['一', '三', '五']; // 行标签只显示 周一/周三/周五
 
   function pad(n) { return n < 10 ? '0' + n : '' + n; }
 
@@ -21,105 +16,165 @@
     if (!count) return 0;
     if (count === 1) return 1;
     if (count === 2) return 2;
-    return 3;
+    if (count <= 4) return 3;
+    return 4;
   }
 
   function cell(day, count) {
     var el = document.createElement('div');
-    el.className = 'heatmap-cell';
-    el.style.backgroundColor = COLORS[level(count)];
-    el.title = day ? day + '：' + count + ' 篇' : '';
+    el.className = 'heatmap-cell level-' + level(count);
+    el.title = day ? day + '：' + count + ' 次提交' : '';
     return el;
   }
 
-  /* ========== 渲染某一年 ========== */
-  function renderYear(container, data, year) {
-    var gridBox = container.querySelector('.heatmap-grid');
-    gridBox.innerHTML = '';
-
-    var start = new Date(year, 0, 1);
-    var end = new Date(year, 11, 31);
-    var startIdx = (start.getDay() + 6) % 7; // 周一起始
-    var cursor = new Date(start);
-    cursor.setDate(cursor.getDate() - startIdx); // 对齐到周一
-
-    while (cursor <= end) {
-      for (var d = 0; d < 7; d++) {
-        var inYear = cursor.getFullYear() === year;
-        var key = year + '-' + pad(cursor.getMonth() + 1) + '-' + pad(cursor.getDate());
-        gridBox.appendChild(cell(inYear ? key : null, inYear ? (data[key] || 0) : 0));
-        cursor.setDate(cursor.getDate() + 1);
-      }
-    }
+  function normalizeDate(d) {
+    return new Date(d.getFullYear(), d.getMonth(), d.getDate());
   }
 
-  function build(container, data) {
-    // 年份列表（升序）
-    var years = [];
-    for (var k in data) {
-      var y = parseInt(k.slice(0, 4), 10);
-      if (years.indexOf(y) === -1) years.push(y);
+  function getStats(data) {
+    var today = normalizeDate(new Date());
+    var oneYearAgo = new Date(today);
+    oneYearAgo.setDate(today.getDate() - 365);
+    var oneMonthAgo = new Date(today);
+    oneMonthAgo.setDate(today.getDate() - 30);
+    var oneWeekAgo = new Date(today);
+    oneWeekAgo.setDate(today.getDate() - 7);
+
+    var yearCount = 0;
+    var monthCount = 0;
+    var weekCount = 0;
+
+    for (var key in data) {
+      if (!data.hasOwnProperty(key)) continue;
+      var d = normalizeDate(new Date(key));
+      var count = data[key];
+      if (d >= oneYearAgo && d <= today) yearCount += count;
+      if (d >= oneMonthAgo && d <= today) monthCount += count;
+      if (d >= oneWeekAgo && d <= today) weekCount += count;
     }
-    years.sort();
-    if (!years.length) years.push(new Date().getFullYear());
-    var cur = years[years.length - 1];
 
-    container.innerHTML = '';
+    function fmt(date) {
+      return date.getFullYear() + '-' + pad(date.getMonth() + 1) + '-' + pad(date.getDate());
+    }
 
-    // 头部：年份 + 切换按钮
-    var head = document.createElement('div');
-    head.className = 'heatmap-head';
-    var btnPrev = document.createElement('button');
-    btnPrev.className = 'heatmap-year-btn';
-    btnPrev.innerHTML = '&#10094;';
-    var label = document.createElement('span');
-    label.className = 'heatmap-year-label';
-    var btnNext = document.createElement('button');
-    btnNext.className = 'heatmap-year-btn';
-    btnNext.innerHTML = '&#10095;';
+    return {
+      yearCount: yearCount,
+      monthCount: monthCount,
+      weekCount: weekCount,
+      yearRange: fmt(oneYearAgo) + ' - ' + fmt(today),
+      monthRange: fmt(oneMonthAgo) + ' - ' + fmt(today),
+      weekRange: fmt(oneWeekAgo) + ' - ' + fmt(today)
+    };
+  }
 
-    // 主体：行标签列 + 网格
-    var body = document.createElement('div');
-    body.className = 'heatmap-body';
-
-    var days = document.createElement('div');
-    days.className = 'heatmap-days';
-    ALL_DAYS.forEach(function (l) {
-      var s = document.createElement('span');
-      s.textContent = DAY_LABELS.indexOf(l) !== -1 ? l : '';
-      days.appendChild(s);
-    });
-    body.appendChild(days);
+  /* 渲染单个季节块（只含当季日期，周一对齐） */
+  function renderSeasonBlock(year, season, data) {
+    var seasonStart = new Date(year, season.startMonth, 1);
+    var seasonEnd = new Date(year, season.endMonth + 1, 0);
+    var firstDayIdx = (seasonStart.getDay() + 6) % 7;
+    var lastDayIdx = (seasonEnd.getDay() + 6) % 7;
 
     var grid = document.createElement('div');
-    grid.className = 'heatmap-grid';
-    body.appendChild(grid);
+    grid.className = 'season-grid';
 
-    function render() {
-      label.textContent = cur + ' 年';
-      btnPrev.disabled = cur <= years[0];
-      btnNext.disabled = cur >= years[years.length - 1];
-      renderYear(container, data, cur);
+    // 前导空位：让季度第一天出现在正确的星期行
+    for (var i = 0; i < firstDayIdx; i++) {
+      var empty = document.createElement('div');
+      empty.className = 'heatmap-cell';
+      empty.style.visibility = 'hidden';
+      grid.appendChild(empty);
     }
 
-    btnPrev.addEventListener('click', function () { if (cur > years[0]) { cur--; render(); } });
-    btnNext.addEventListener('click', function () { if (cur < years[years.length - 1]) { cur++; render(); } });
+    // 当季日期
+    var cursor = new Date(seasonStart);
+    while (cursor <= seasonEnd) {
+      var key = cursor.getFullYear() + '-' + pad(cursor.getMonth() + 1) + '-' + pad(cursor.getDate());
+      grid.appendChild(cell(key, data[key] || 0));
+      cursor.setDate(cursor.getDate() + 1);
+    }
 
-    head.appendChild(btnPrev);
-    head.appendChild(label);
-    head.appendChild(btnNext);
-    container.appendChild(head);
-    container.appendChild(body);
-    render();
+    // 尾部空位：补齐到周日，保持最后一列完整
+    for (var i = lastDayIdx; i < 6; i++) {
+      var empty = document.createElement('div');
+      empty.className = 'heatmap-cell';
+      empty.style.visibility = 'hidden';
+      grid.appendChild(empty);
+    }
 
-    DSLog.info('Activity', '热力图渲染完成，年份: ' + cur);
+    var block = document.createElement('div');
+    block.className = 'season-block';
+    var label = document.createElement('div');
+    label.className = 'season-label';
+    label.textContent = season.name;
+    block.appendChild(label);
+    block.appendChild(grid);
+    return block;
+  }
+
+  function render(container, data) {
+    var year = new Date().getFullYear();
+    container.innerHTML = '';
+
+    // 四季横排
+    var seasonsRow = document.createElement('div');
+    seasonsRow.className = 'seasons-row';
+    for (var i = 0; i < 4; i++) {
+      seasonsRow.appendChild(renderSeasonBlock(year, SEASONS[i], data));
+    }
+
+    // 统计面板
+    var stats = getStats(data);
+    var statsBox = document.createElement('div');
+    statsBox.className = 'heatmap-stats';
+    statsBox.innerHTML =
+      '<div class="stat-item">' +
+        '<div class="stat-num">' + stats.yearCount + '</div>' +
+        '<div class="stat-label">过去一年提交</div>' +
+        '<div class="stat-range">' + stats.yearRange + '</div>' +
+      '</div>' +
+      '<div class="stat-item">' +
+        '<div class="stat-num">' + stats.monthCount + '</div>' +
+        '<div class="stat-label">过去一月提交</div>' +
+        '<div class="stat-range">' + stats.monthRange + '</div>' +
+      '</div>' +
+      '<div class="stat-item">' +
+        '<div class="stat-num">' + stats.weekCount + '</div>' +
+        '<div class="stat-label">最近一周提交</div>' +
+        '<div class="stat-range">' + stats.weekRange + '</div>' +
+      '</div>';
+
+    // 底部
+    var footer = document.createElement('div');
+    footer.className = 'heatmap-footer';
+
+    var legend = document.createElement('div');
+    legend.className = 'heatmap-legend';
+    legend.innerHTML = '<span>Less</span>' +
+      '<span class="heatmap-legend-box level-0"></span>' +
+      '<span class="heatmap-legend-box level-1"></span>' +
+      '<span class="heatmap-legend-box level-2"></span>' +
+      '<span class="heatmap-legend-box level-3"></span>' +
+      '<span class="heatmap-legend-box level-4"></span>' +
+      '<span>More</span>';
+
+    var source = document.createElement('div');
+    source.className = 'heatmap-source';
+    source.textContent = '数据来源：Git 提交记录';
+
+    footer.appendChild(legend);
+    footer.appendChild(source);
+
+    container.appendChild(seasonsRow);
+    container.appendChild(statsBox);
+    container.appendChild(footer);
+
+    DSLog.info('Activity', '热力图渲染完成，四季视图');
   }
 
   function init() {
     var recentPosts = document.getElementById('recent-posts');
-    if (!recentPosts) return; // 仅首页
+    if (!recentPosts) return;
 
-    // 在 #recent-posts 内部最前面插入热力图容器（原轮播位置，保持在同一列内）
     var container = document.getElementById('home-heatmap');
     if (!container) {
       container = document.createElement('div');
@@ -129,14 +184,17 @@
 
     DSLog.info('Activity', '开始加载活跃度数据', DATA_URL);
     fetch(DATA_URL)
-      .then(function (r) { return r.json(); })
+      .then(function (r) { 
+        if (!r.ok) throw new Error('HTTP ' + r.status);
+        return r.json(); 
+      })
       .then(function (data) {
         DSLog.info('Activity', '数据加载成功', data);
-        build(container, data);
+        render(container, data);
       })
-      .catch(function () {
-        DSLog.warn('Activity', '数据加载失败');
-        container.innerHTML = '<div class="heatmap-fallback">活跃度数据加载失败</div>';
+      .catch(function (err) {
+        DSLog.warn('Activity', '数据加载失败: ' + err.message);
+        container.innerHTML = '<div class="heatmap-fallback">活跃度数据加载失败 (' + err.message + ')</div>';
       });
   }
 
@@ -146,6 +204,5 @@
     init();
   }
 
-  // PJAX 回首页时重新渲染
   document.addEventListener('pjax:complete', init);
 })();
