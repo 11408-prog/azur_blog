@@ -1,4 +1,4 @@
-/* ========== 首页活跃度热力图（文章日期版） ========== */
+/* ========== 首页活跃度热力图（Git提交版 · 四季横排 · 无跨季） ========== */
 
 #home-heatmap {
   margin-bottom: 24px;
@@ -9,69 +9,119 @@
   box-shadow: 0 4px 16px rgba(30, 58, 95, 0.06);
 }
 
-/* 年份切换头部 */
-.heatmap-head {
+/* 四季横排 */
+.seasons-row {
   display: flex;
   justify-content: center;
+  gap: 16px;
+  flex-wrap: nowrap;
+  margin-top: 4px;
+}
+
+/* 单个季节块 */
+.season-block {
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 14px;
-  margin-bottom: 12px;
-}
-
-.heatmap-year-label {
-  font-weight: 600;
-  color: var(--navy-deep);
-  font-size: 1rem;
-}
-
-.heatmap-year-btn {
-  border: 1px solid var(--navy-deep-30);
-  background: transparent;
-  color: var(--navy-deep);
-  border-radius: 4px;
-  padding: 2px 10px;
-  cursor: pointer;
-  font-size: 0.85rem;
-}
-
-.heatmap-year-btn:disabled {
-  opacity: 0.3;
-  cursor: default;
-}
-
-/* 主体：行标签列 + 网格 */
-.heatmap-body {
-  display: flex;
-  justify-content: center;
   gap: 8px;
 }
 
-.heatmap-days {
-  display: grid;
-  grid-template-rows: repeat(7, 12px);
-  gap: 3px;
+/* 季节标签 */
+.season-label {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--navy-deep);
 }
 
-.heatmap-days span {
-  font-size: 0.7rem;
-  color: #a0aec0;
-  line-height: 12px;
-  text-align: center;
-}
-
-.heatmap-grid {
+/* 季节网格：7行，列数自动（只含当季日期） */
+.season-grid {
   display: grid;
-  grid-template-rows: repeat(7, 12px);
+  grid-template-rows: repeat(7, 14px);
   grid-auto-flow: column;
-  gap: 3px;
+  gap: 4px;
 }
 
 .heatmap-cell {
-  width: 12px;
-  height: 12px;
-  border-radius: 2px;
-  background: rgba(30, 58, 95, 0.06);
-  border: 1px solid rgba(30, 58, 95, 0.12);
+  width: 14px;
+  height: 14px;
+  border-radius: 3px;
+  border: 1px solid transparent;
+}
+
+/* 蓝色系（浅色模式 · 鲜艳版） */
+.heatmap-cell.level-0 { background-color: #ebedf0; border-color: rgba(27,31,35,0.06); }
+.heatmap-cell.level-1 { background-color: #60a5fa; border-color: rgba(27,31,35,0.06); }
+.heatmap-cell.level-2 { background-color: #3b82f6; border-color: rgba(27,31,35,0.06); }
+.heatmap-cell.level-3 { background-color: #2563eb; border-color: rgba(27,31,35,0.06); }
+.heatmap-cell.level-4 { background-color: #1d4ed8; border-color: rgba(27,31,35,0.06); }
+
+/* 统计面板（三列） */
+.heatmap-stats {
+  display: flex;
+  justify-content: space-around;
+  padding: 14px 0;
+  border-top: 1px solid rgba(43, 90, 143, 0.08);
+  border-bottom: 1px solid rgba(43, 90, 143, 0.08);
+  margin-bottom: 12px;
+  margin-top: 16px;
+}
+
+.stat-item {
+  text-align: center;
+  flex: 1;
+}
+
+.stat-num {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--navy-deep);
+}
+
+.stat-label {
+  font-size: 0.75rem;
+  color: #a0aec0;
+  margin-top: 4px;
+}
+
+.stat-range {
+  font-size: 0.65rem;
+  color: #cbd5e0;
+  margin-top: 2px;
+}
+
+/* 底部图例与来源 */
+.heatmap-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.heatmap-legend {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.7rem;
+  color: #a0aec0;
+}
+
+.heatmap-legend-box {
+  width: 14px;
+  height: 14px;
+  border-radius: 3px;
+  display: inline-block;
+}
+
+.heatmap-legend-box.level-0 { background-color: #ebedf0; }
+.heatmap-legend-box.level-1 { background-color: #60a5fa; }
+.heatmap-legend-box.level-2 { background-color: #3b82f6; }
+.heatmap-legend-box.level-3 { background-color: #2563eb; }
+.heatmap-legend-box.level-4 { background-color: #1d4ed8; }
+
+.heatmap-source {
+  font-size: 0.7rem;
+  color: #cbd5e0;
 }
 
 /* 加载失败兜底 */
@@ -88,11 +138,47 @@
   border-color: rgba(255, 255, 255, 0.05);
 }
 
-[data-theme="dark"] .heatmap-year-label {
+[data-theme="dark"] .season-label {
   color: var(--blue-light);
 }
 
-/* 手机端隐藏活跃度（适配窄屏） */
+[data-theme="dark"] .heatmap-cell.level-0 { background-color: #0d1117; border-color: rgba(255,255,255,0.05); }
+[data-theme="dark"] .heatmap-cell.level-1 { background-color: #1e3a8a; border-color: rgba(255,255,255,0.05); }
+[data-theme="dark"] .heatmap-cell.level-2 { background-color: #3b82f6; border-color: rgba(255,255,255,0.05); }
+[data-theme="dark"] .heatmap-cell.level-3 { background-color: #60a5fa; border-color: rgba(255,255,255,0.05); }
+[data-theme="dark"] .heatmap-cell.level-4 { background-color: #93c5fd; border-color: rgba(255,255,255,0.05); }
+
+[data-theme="dark"] .heatmap-stats {
+  border-color: rgba(255, 255, 255, 0.05);
+}
+
+[data-theme="dark"] .stat-num {
+  color: var(--blue-light);
+}
+
+[data-theme="dark"] .stat-label {
+  color: #8b949e;
+}
+
+[data-theme="dark"] .stat-range {
+  color: #6e7681;
+}
+
+[data-theme="dark"] .heatmap-legend {
+  color: #8b949e;
+}
+
+[data-theme="dark"] .heatmap-legend-box.level-0 { background-color: #0d1117; }
+[data-theme="dark"] .heatmap-legend-box.level-1 { background-color: #1e3a8a; }
+[data-theme="dark"] .heatmap-legend-box.level-2 { background-color: #3b82f6; }
+[data-theme="dark"] .heatmap-legend-box.level-3 { background-color: #60a5fa; }
+[data-theme="dark"] .heatmap-legend-box.level-4 { background-color: #93c5fd; }
+
+[data-theme="dark"] .heatmap-source {
+  color: #6e7681;
+}
+
+/* 手机端隐藏 */
 @media (max-width: 768px) {
   #home-heatmap {
     display: none;

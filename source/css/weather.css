@@ -73,3 +73,64 @@
 [data-theme="dark"] #weather-panel .weather-place {
   color: #718096;
 }
+
+/* ========== 新增：日期 + 时间 ========== */
+#weather-panel .weather-datetime {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 6px;
+  line-height: 1.5;
+}
+
+#weather-panel .weather-date {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #4a5568;
+  letter-spacing: 0.3px;
+}
+
+#weather-panel .weather-time {
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: #a0aec0;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.5px;
+}
+
+/* ========== 新增：湿度 + 地点行 ========== */
+#weather-panel .weather-details {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  margin-top: 8px;
+  padding-top: 6px;
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+  font-size: 0.8rem;
+  color: #a0aec0;
+}
+
+#weather-panel .weather-humidity {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: #718096;
+}
+
+/* 暗色模式适配 */
+[data-theme="dark"] #weather-panel .weather-date {
+  color: #cbd5e0;
+}
+
+[data-theme="dark"] #weather-panel .weather-time {
+  color: #718096;
+}
+
+[data-theme="dark"] #weather-panel .weather-details {
+  border-top-color: rgba(255, 255, 255, 0.08);
+}
+
+[data-theme="dark"] #weather-panel .weather-humidity {
+  color: #a0aec0;
+}
