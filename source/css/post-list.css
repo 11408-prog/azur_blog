@@ -79,7 +79,7 @@
 
 /* 元信息（置顶 / 创建 / 更新 / 分类） */
 #recent-posts .recent-post-item .recent-post-meta {
-  margin-top: 10px;
+  margin-top: 20px;
   font-size: 12px;
   color: #969797;
   display: flex;

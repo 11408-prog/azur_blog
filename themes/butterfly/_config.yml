@@ -295,7 +295,7 @@ aside:
   card_recent_post:
     enable: true
     # If set 0 will show all
-    limit: 1
+    limit: 3
     # Sort: date / updated
     sort: date
     sort_order:
