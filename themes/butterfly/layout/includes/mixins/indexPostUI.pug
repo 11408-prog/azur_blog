@@ -6,7 +6,7 @@ mixin indexPostUI()
       each article, index in page.posts.data
         - const link = article.link || article.path
         - const title = article.title || _p('no_title')
-        - const postCover = article.cover
+        - const postCover = article.cover || '/img/文章封面/if.jpg'
         .recent-post-item(class=postCover ? '' : 'no-cover')
           if postCover
             .recent-post-cover
