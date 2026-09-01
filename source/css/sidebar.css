@@ -2,10 +2,11 @@
 
 /* 卡片：不透明白色，与首页文章卡片同款配色 */
 #aside-content .card-widget {
-  background: var(--card-bg, #fff) !important;
+  background: rgba(255, 255, 255, 0.8) !important;
   backdrop-filter: none;
   -webkit-backdrop-filter: none;
   border: 1px solid rgba(43, 90, 143, 0.08);
+  border-radius: 15px !important;
   box-shadow: 0 4px 16px rgba(30, 58, 95, 0.06);
 }
 
