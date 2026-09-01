@@ -80,8 +80,8 @@
 /* 元信息（置顶 / 创建 / 更新 / 分类） */
 #recent-posts .recent-post-item .recent-post-meta {
   margin-top: 20px;
-  font-size: 12px;
-  color: #969797;
+  font-size: 13px;
+  color: #666666;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -93,7 +93,7 @@
 }
 
 #recent-posts .recent-post-item .recent-post-meta a {
-  color: #969797;
+  color: #666666;
   transition: color 0.2s;
 }
 

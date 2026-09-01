@@ -78,14 +78,14 @@
 }
 
 .stat-label {
-  font-size: 0.75rem;
-  color: #a0aec0;
+  font-size: 0.8rem;
+  color: #666666;
   margin-top: 4px;
 }
 
 .stat-range {
-  font-size: 0.65rem;
-  color: #cbd5e0;
+  font-size: 0.75rem;
+  color: #888888;
   margin-top: 2px;
 }
 
