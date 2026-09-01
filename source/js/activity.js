@@ -77,7 +77,7 @@
     var grid = document.createElement('div');
     grid.className = 'season-grid';
 
-    // 前导空位：让季度第一天出现在正确的星期行
+    // 前导空位
     for (var i = 0; i < firstDayIdx; i++) {
       var empty = document.createElement('div');
       empty.className = 'heatmap-cell';
@@ -85,7 +85,6 @@
       grid.appendChild(empty);
     }
 
-    // 当季日期
     var cursor = new Date(seasonStart);
     while (cursor <= seasonEnd) {
       var key = cursor.getFullYear() + '-' + pad(cursor.getMonth() + 1) + '-' + pad(cursor.getDate());
@@ -93,7 +92,6 @@
       cursor.setDate(cursor.getDate() + 1);
     }
 
-    // 尾部空位：补齐到周日，保持最后一列完整
     for (var i = lastDayIdx; i < 6; i++) {
       var empty = document.createElement('div');
       empty.className = 'heatmap-cell';
@@ -115,14 +113,12 @@
     var year = new Date().getFullYear();
     container.innerHTML = '';
 
-    // 四季横排
     var seasonsRow = document.createElement('div');
     seasonsRow.className = 'seasons-row';
     for (var i = 0; i < 4; i++) {
       seasonsRow.appendChild(renderSeasonBlock(year, SEASONS[i], data));
     }
 
-    // 统计面板
     var stats = getStats(data);
     var statsBox = document.createElement('div');
     statsBox.className = 'heatmap-stats';
@@ -143,7 +139,6 @@
         '<div class="stat-range">' + stats.weekRange + '</div>' +
       '</div>';
 
-    // 底部
     var footer = document.createElement('div');
     footer.className = 'heatmap-footer';
 

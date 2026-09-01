@@ -19,11 +19,11 @@ nav:
 
 menu:
   Home: / || fas fa-home
-  归档: /archives/ || fas fa-archive
   标签: /tags/ || fas fa-tags
   分类: /categories/ || fas fa-folder-open
   音乐: /music/ || fas fa-music
   画廊: /gallery/ || fas fa-images
+  归档: /archives/ || fas fa-archive
 
 # --------------------------------------
 # Code Blocks Settings

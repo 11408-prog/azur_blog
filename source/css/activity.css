@@ -182,8 +182,8 @@
   color: #6e7681;
 }
 
-/* 手机端隐藏 */
-@media (max-width: 768px) {
+/* 手机和平板隐藏 */
+@media (max-width: 1024px) {
   #home-heatmap {
     display: none;
   }
