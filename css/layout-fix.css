@@ -35,7 +35,7 @@
   max-width: 900px;
 }
 
-/* ========== 圆角清零 ========== */
+/* ========== 圆角清零 ========== 
 #aside-content .card-widget {
   border-top-left-radius: 0 !important;
   border-bottom-left-radius: 0 !important;
@@ -61,8 +61,6 @@
 .card-magnet {
   border-radius: 0 !important;
 }
-
-/* 保险：所有常见卡片圆角清零（首页文章卡片除外，它有独立风格） */
 .card-widget,
 #aside-content .card-widget,
 .post-content img,
@@ -72,6 +70,7 @@ figure.highlight,
 #pagination .extend {
   border-radius: 0 !important;
 }
+暂时先不使用*/
 
 /* ========== 画廊页：无侧栏 + 全宽 + 去掉容器底板，只显示图片 ========== */
 .page.type-gallery #page {
