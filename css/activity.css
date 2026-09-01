@@ -4,7 +4,7 @@
   margin-bottom: 24px;
   padding: 20px;
   border-radius: 15px;
-  background: var(--card-bg, #fff);
+  background: rgba(255, 255, 255, 0.92); 
   border: 1px solid rgba(43, 90, 143, 0.08);
   box-shadow: 0 4px 16px rgba(30, 58, 95, 0.06);
 }
@@ -107,10 +107,14 @@
 }
 
 .heatmap-legend-box {
-  width: 14px;
-  height: 14px;
-  border-radius: 3px;
-  display: inline-block;
+  width: clamp(8px,1vw,14px);
+  height: clamp(8px,1vw,14px);
+}
+.season-grid-rows{
+  grid-template-rows: repeat(7, clamp(8px, 1vw, 14px));
+}
+.seasons-row{
+  gap: clamp(6px, 1vw, 16px);
 }
 
 .heatmap-legend-box.level-0 { background-color: #ebedf0; }
