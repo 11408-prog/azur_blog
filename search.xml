@@ -1,6 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>常用指令</title>
+    <url>/azur_blog/2026/08/11/%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4/</url>
+    <content><![CDATA[<h1 id="hexo"><a href="#hexo" class="headerlink" title="hexo"></a>hexo</h1><h2 id="创建文章"><a href="#创建文章" class="headerlink" title="创建文章"></a>创建文章</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo new <span class="string">&quot;标题&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="更新网站"><a href="#更新网站" class="headerlink" title="更新网站"></a>更新网站</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git add .</span><br><span class="line"></span><br><span class="line">git commit -m <span class="string">&quot;更新&quot;</span></span><br><span class="line"></span><br><span class="line">git push origin main</span><br><span class="line"></span><br><span class="line">hexo clean</span><br><span class="line"></span><br><span class="line">hexo generate</span><br><span class="line"></span><br><span class="line">hexo deploy</span><br></pre></td></tr></table></figure>
+
+<h2 id="创建一个独立页面"><a href="#创建一个独立页面" class="headerlink" title="创建一个独立页面"></a>创建一个独立页面</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo new page 页面名称</span><br></pre></td></tr></table></figure>
+
+<h2 id="列出所有文章（可以替换成页面，路由，标签，分类）"><a href="#列出所有文章（可以替换成页面，路由，标签，分类）" class="headerlink" title="列出所有文章（可以替换成页面，路由，标签，分类）"></a>列出所有文章（可以替换成页面，路由，标签，分类）</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo list post</span><br></pre></td></tr></table></figure>
+
+<h1 id="deepseek"><a href="#deepseek" class="headerlink" title="deepseek"></a>deepseek</h1><h2 id="启动deepseek-harness"><a href="#启动deepseek-harness" class="headerlink" title="启动deepseek harness"></a>启动deepseek harness</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">dsh web </span><br></pre></td></tr></table></figure>
+
+<p>如果未安装可以先输入</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">nvm install 24.11.1 </span><br><span class="line">nvm use 24.11.1</span><br><span class="line">npm install -g @deepseek-ai/dsh</span><br></pre></td></tr></table></figure>
+<p>再执行上面的命令</p>
+<h1 id="windows"><a href="#windows" class="headerlink" title="windows"></a>windows</h1><h2 id="强制刷新网页："><a href="#强制刷新网页：" class="headerlink" title="强制刷新网页："></a>强制刷新网页：</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ctrl + shift + r</span><br></pre></td></tr></table></figure>
+
+<h1 id="博客制作"><a href="#博客制作" class="headerlink" title="博客制作"></a>博客制作</h1><h2 id="将文章置顶"><a href="#将文章置顶" class="headerlink" title="将文章置顶"></a>将文章置顶</h2><p>在文章front matter 加入 sticky: 1</p>
+]]></content>
+      <categories>
+        <category>学习</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+        <tag>windows</tag>
+        <tag>deepseek</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>学习遇到的问题及解答</title>
     <url>/azur_blog/2026/08/11/%E5%AD%A6%E4%B9%A0%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98%E5%8F%8A%E8%A7%A3%E7%AD%94/</url>
     <content><![CDATA[<h1 id="hexo"><a href="#hexo" class="headerlink" title="hexo"></a>hexo</h1><p><strong>Q: tags和categories有什么区别</strong><br><br>A:tags表示关键词和特征，categories表示大方向和目录。tags不需要事先定义，但是categoties需要事先定义</p>
@@ -30,32 +59,34 @@
       </tags>
   </entry>
   <entry>
-    <title>常用指令</title>
-    <url>/azur_blog/2026/08/11/%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4/</url>
-    <content><![CDATA[<h1 id="hexo"><a href="#hexo" class="headerlink" title="hexo"></a>hexo</h1><h2 id="创建文章"><a href="#创建文章" class="headerlink" title="创建文章"></a>创建文章</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo new <span class="string">&quot;标题&quot;</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="更新网站"><a href="#更新网站" class="headerlink" title="更新网站"></a>更新网站</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git add .</span><br><span class="line"></span><br><span class="line">git commit -m <span class="string">&quot;更新&quot;</span></span><br><span class="line"></span><br><span class="line">git push origin main</span><br><span class="line"></span><br><span class="line">hexo clean</span><br><span class="line"></span><br><span class="line">hexo generate</span><br><span class="line"></span><br><span class="line">hexo deploy</span><br></pre></td></tr></table></figure>
-
-<h2 id="创建一个独立页面"><a href="#创建一个独立页面" class="headerlink" title="创建一个独立页面"></a>创建一个独立页面</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo new page 页面名称</span><br></pre></td></tr></table></figure>
-
-<h2 id="列出所有文章（可以替换成页面，路由，标签，分类）"><a href="#列出所有文章（可以替换成页面，路由，标签，分类）" class="headerlink" title="列出所有文章（可以替换成页面，路由，标签，分类）"></a>列出所有文章（可以替换成页面，路由，标签，分类）</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo list post</span><br></pre></td></tr></table></figure>
-
-<h1 id="deepseek"><a href="#deepseek" class="headerlink" title="deepseek"></a>deepseek</h1><h2 id="启动deepseek-harness"><a href="#启动deepseek-harness" class="headerlink" title="启动deepseek harness"></a>启动deepseek harness</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">dsh web </span><br></pre></td></tr></table></figure>
-
-<p>如果未安装可以先输入</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">nvm install 24.11.1 </span><br><span class="line">nvm use 24.11.1</span><br><span class="line">npm install -g @deepseek-ai/dsh</span><br></pre></td></tr></table></figure>
-<p>再执行上面的命令</p>
-<h1 id="windows"><a href="#windows" class="headerlink" title="windows"></a>windows</h1><h2 id="强制刷新网页："><a href="#强制刷新网页：" class="headerlink" title="强制刷新网页："></a>强制刷新网页：</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ctrl + shift + r</span><br></pre></td></tr></table></figure>
-
-<h1 id="博客制作"><a href="#博客制作" class="headerlink" title="博客制作"></a>博客制作</h1><h2 id="将文章置顶"><a href="#将文章置顶" class="headerlink" title="将文章置顶"></a>将文章置顶</h2><p>在文章front matter 加入 sticky: 1</p>
+    <title>黄金，纳指，标普，债基同时下跌的原因汇总</title>
+    <url>/azur_blog/2026/08/26/%E6%8A%95%E8%B5%84/%E9%BB%84%E9%87%91%EF%BC%8C%E7%BA%B3%E6%8C%87%EF%BC%8C%E6%A0%87%E6%99%AE%EF%BC%8C%E5%80%BA%E5%9F%BA%E5%90%8C%E6%97%B6%E4%B8%8B%E8%B7%8C%E7%9A%84%E5%8E%9F%E5%9B%A0%E6%B1%87%E6%80%BB/</url>
+    <content><![CDATA[<p>本问用于记录自 2026.8.25 起每次四者同时下跌的时间和原因。购买的基金分别为广发纳斯达克100,摩根标普500，华安纳斯达克100，易方达黄金etf连接A,易方达增强回报债券A。</p>
+<h1 id="2026-8-26"><a href="#2026-8-26" class="headerlink" title="2026&#x2F;8&#x2F;26"></a>2026&#x2F;8&#x2F;26</h1><h2 id="纳指，标普"><a href="#纳指，标普" class="headerlink" title="纳指，标普"></a>纳指，标普</h2><ul>
+<li><p>芯片股集体暴跌</p>
+</li>
+<li><p>英伟达财报前担忧，市场担忧ai资本支出可持续性</p>
+</li>
+<li><p>美国和其他国家冲突加剧，包括和加拿大，伊朗</p>
+</li>
+</ul>
+<h2 id="黄金"><a href="#黄金" class="headerlink" title="黄金"></a>黄金</h2><ul>
+<li>技术性回调（资产短期内涨的太快导致大量获利盘涌出，价格出现回落）</li>
+</ul>
+<h2 id="债基"><a href="#债基" class="headerlink" title="债基"></a>债基</h2><ul>
+<li>流动性预期边际收紧</li>
+</ul>
 ]]></content>
       <categories>
         <category>学习</category>
       </categories>
       <tags>
-        <tag>hexo</tag>
-        <tag>windows</tag>
-        <tag>deepseek</tag>
+        <tag>纳斯达克</tag>
+        <tag>标普</tag>
+        <tag>黄金</tag>
+        <tag>债基</tag>
+        <tag>基金</tag>
+        <tag>投资</tag>
       </tags>
   </entry>
   <entry>
@@ -140,6 +171,23 @@
       </tags>
   </entry>
   <entry>
+    <title>博客制作注意事项</title>
+    <url>/azur_blog/2026/08/11/%E5%8D%9A%E5%AE%A2%E5%88%B6%E4%BD%9C%E7%9B%B8%E5%85%B3/%E5%8D%9A%E5%AE%A2%E5%88%B6%E4%BD%9C%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/</url>
+    <content><![CDATA[<h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>今天尝试搭建好了博客的环境，并制作了一个大概的样子。在开发过程中遇到了如下两个问题：</p>
+<h2 id="1-欢迎动画无法循环播放"><a href="#1-欢迎动画无法循环播放" class="headerlink" title="1.欢迎动画无法循环播放"></a>1.欢迎动画无法循环播放</h2><p>在css动画属性中用了forwards,应该改为infinite<br>最后的效果如下：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">.welcome-text.animate &#123;</span><br><span class="line">  animation: welcome-reveal 6s ease-in-out infinite;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="2-将路径或者一些文件弄混"><a href="#2-将路径或者一些文件弄混" class="headerlink" title="2.将路径或者一些文件弄混"></a>2.将路径或者一些文件弄混</h2><p>目前的结构有点像是一个嵌套的结构，因此一定要记录好架构，目前的架构为</p>
+<p>  blog&#x2F;                                    ← 整个博客项目<br>  ├── _config.yml                          ← ① 站点配置（博客”本体”的设置）<br>  ├── package.json                         ← Node 依赖清单（hexo<br>  本体、渲染插件）<br>  ├── package-lock.json                    ← 依赖锁定文件（不用管）<br>  ├── node_modules&#x2F;                        ← 已安装的依赖（不用管，别删）<br>  │<br>  ├── scaffolds&#x2F;                           ← 新建文章&#x2F;页面的”模板”<br>  │   ├── post.md                         （新建文章时套用）<br>  │   ├── page.md                         （新建页面时套用）<br>  │   └── draft.md                        （新建草稿时套用）<br>  │<br>  ├── source&#x2F;                              ← ② 你的”原料”都在这里<br>  │   ├── _posts&#x2F;                         ← ★ 你的文章（Markdown 文件）<br>  │   │   └── 我的第一篇博客.md<br>  │   ├── img&#x2F;                            ← 你的图片（avatar.png 头像在这）<br>  │   ├── tags&#x2F;index.md                   ← “标签”页面<br>  │   ├── categories&#x2F;index.md             ← “分类”页面<br>  │   └── _data&#x2F;butterfly.yml             ← 主题备用配置（目前是空文件）<br>  │<br>  ├── themes&#x2F;                              ← ③ 主题（决定网站长什么样）<br>  │   └── butterfly&#x2F;<br>  │       ├── _config.yml                 ← ★★ 主题配置（最常改的）<br>  │       ├── layout&#x2F;                     ← 页面模板（Pug，一般不用动）<br>  │       ├── source&#x2F;                     ← 主题自己的 CSS&#x2F;JS&#x2F;默认图<br>  │       └── scripts&#x2F;                    ← 主题辅助脚本<br>  │<br>  ├── public&#x2F;                              ← ④<br>  生成出的”成品网站”（自动生成，别手动改）<br>  ├── db.json                              ← 缓存（不用管）<br>  ├── .git&#x2F;                                ← 版本控制（上次已 init 并提交）<br>  └── .github&#x2F;                             ← GitHub 自动更新依赖的配置</p>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>js</tag>
+        <tag>开发</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>cookbook第二章笔记</title>
     <url>/azur_blog/2026/08/21/python/cookbook%E7%AC%AC%E4%BA%8C%E7%AB%A0%E7%AC%94%E8%AE%B0/</url>
     <content><![CDATA[<p>本章讲述了如何高效、优雅地处理现实世界中“不规矩”的文本数据</p>
@@ -188,32 +236,6 @@
       <tags>
         <tag>css</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>博客制作注意事项</title>
-    <url>/azur_blog/2026/08/11/%E5%8D%9A%E5%AE%A2%E5%88%B6%E4%BD%9C%E7%9B%B8%E5%85%B3/%E5%8D%9A%E5%AE%A2%E5%88%B6%E4%BD%9C%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/</url>
-    <content><![CDATA[<h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>今天尝试搭建好了博客的环境，并制作了一个大概的样子。在开发过程中遇到了如下两个问题：</p>
-<h2 id="1-欢迎动画无法循环播放"><a href="#1-欢迎动画无法循环播放" class="headerlink" title="1.欢迎动画无法循环播放"></a>1.欢迎动画无法循环播放</h2><p>在css动画属性中用了forwards,应该改为infinite<br>最后的效果如下：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">.welcome-text.animate &#123;</span><br><span class="line">  animation: welcome-reveal 6s ease-in-out infinite;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="2-将路径或者一些文件弄混"><a href="#2-将路径或者一些文件弄混" class="headerlink" title="2.将路径或者一些文件弄混"></a>2.将路径或者一些文件弄混</h2><p>目前的结构有点像是一个嵌套的结构，因此一定要记录好架构，目前的架构为</p>
-<p>  blog&#x2F;                                    ← 整个博客项目<br>  ├── _config.yml                          ← ① 站点配置（博客”本体”的设置）<br>  ├── package.json                         ← Node 依赖清单（hexo<br>  本体、渲染插件）<br>  ├── package-lock.json                    ← 依赖锁定文件（不用管）<br>  ├── node_modules&#x2F;                        ← 已安装的依赖（不用管，别删）<br>  │<br>  ├── scaffolds&#x2F;                           ← 新建文章&#x2F;页面的”模板”<br>  │   ├── post.md                         （新建文章时套用）<br>  │   ├── page.md                         （新建页面时套用）<br>  │   └── draft.md                        （新建草稿时套用）<br>  │<br>  ├── source&#x2F;                              ← ② 你的”原料”都在这里<br>  │   ├── _posts&#x2F;                         ← ★ 你的文章（Markdown 文件）<br>  │   │   └── 我的第一篇博客.md<br>  │   ├── img&#x2F;                            ← 你的图片（avatar.png 头像在这）<br>  │   ├── tags&#x2F;index.md                   ← “标签”页面<br>  │   ├── categories&#x2F;index.md             ← “分类”页面<br>  │   └── _data&#x2F;butterfly.yml             ← 主题备用配置（目前是空文件）<br>  │<br>  ├── themes&#x2F;                              ← ③ 主题（决定网站长什么样）<br>  │   └── butterfly&#x2F;<br>  │       ├── _config.yml                 ← ★★ 主题配置（最常改的）<br>  │       ├── layout&#x2F;                     ← 页面模板（Pug，一般不用动）<br>  │       ├── source&#x2F;                     ← 主题自己的 CSS&#x2F;JS&#x2F;默认图<br>  │       └── scripts&#x2F;                    ← 主题辅助脚本<br>  │<br>  ├── public&#x2F;                              ← ④<br>  生成出的”成品网站”（自动生成，别手动改）<br>  ├── db.json                              ← 缓存（不用管）<br>  ├── .git&#x2F;                                ← 版本控制（上次已 init 并提交）<br>  └── .github&#x2F;                             ← GitHub 自动更新依赖的配置</p>
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>js</tag>
-        <tag>开发</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>我的第一篇博客</title>
-    <url>/azur_blog/2026/08/11/%E5%8D%9A%E5%AE%A2%E5%88%B6%E4%BD%9C%E7%9B%B8%E5%85%B3/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/</url>
-    <content><![CDATA[<p>这个网站打算用来记录一些学习笔记，同人文等。</p>
-<span id="more"></span>
-
-<h1 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h1><p>博客这个东西是我在网上无意中看到的，感觉很有意思，于是打算自己做一下。我本人很喜欢用代码做东西，同时很喜欢碧蓝航线中一个叫企业的角色。平时的爱好就是看小说，写代码，写同人文。希望能打造出一个碧蓝航线风格的博客，也能用来记录自己提升的过程。</p>
-]]></content>
   </entry>
   <entry>
     <title>基于小额投资纳斯达克和标普的算法</title>
@@ -333,42 +355,46 @@
         <category>学习</category>
       </categories>
       <tags>
-        <tag>算法</tag>
-        <tag>投资</tag>
         <tag>纳斯达克</tag>
         <tag>标普</tag>
+        <tag>投资</tag>
+        <tag>算法</tag>
       </tags>
   </entry>
   <entry>
-    <title>黄金，纳指，标普，债基同时下跌的原因汇总</title>
-    <url>/azur_blog/2026/08/26/%E6%8A%95%E8%B5%84/%E9%BB%84%E9%87%91%EF%BC%8C%E7%BA%B3%E6%8C%87%EF%BC%8C%E6%A0%87%E6%99%AE%EF%BC%8C%E5%80%BA%E5%9F%BA%E5%90%8C%E6%97%B6%E4%B8%8B%E8%B7%8C%E7%9A%84%E5%8E%9F%E5%9B%A0%E6%B1%87%E6%80%BB/</url>
-    <content><![CDATA[<p>本问用于记录自 2026.8.25 起每次四者同时下跌的时间和原因。购买的基金分别为广发纳斯达克100,摩根标普500，华安纳斯达克100，易方达黄金etf连接A,易方达增强回报债券A。</p>
-<h1 id="2026-8-26"><a href="#2026-8-26" class="headerlink" title="2026&#x2F;8&#x2F;26"></a>2026&#x2F;8&#x2F;26</h1><h2 id="纳指，标普"><a href="#纳指，标普" class="headerlink" title="纳指，标普"></a>纳指，标普</h2><ul>
-<li><p>芯片股集体暴跌</p>
-</li>
-<li><p>英伟达财报前担忧，市场担忧ai资本支出可持续性</p>
-</li>
-<li><p>美国和其他国家冲突加剧，包括和加拿大，伊朗</p>
-</li>
-</ul>
-<h2 id="黄金"><a href="#黄金" class="headerlink" title="黄金"></a>黄金</h2><ul>
-<li>技术性回调（资产短期内涨的太快导致大量获利盘涌出，价格出现回落）</li>
-</ul>
-<h2 id="债基"><a href="#债基" class="headerlink" title="债基"></a>债基</h2><ul>
-<li>流动性预期边际收紧</li>
-</ul>
+    <title>借助开源项目petra制作桌面l2d小人的教程</title>
+    <url>/azur_blog/2026/09/02/%E6%95%99%E7%A8%8B/%E5%80%9F%E5%8A%A9%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AEpetra%E5%88%B6%E4%BD%9Cl2d%E5%B0%8F%E4%BA%BA%E7%9A%84%E6%95%99%E7%A8%8B/</url>
+    <content><![CDATA[<p>本教程借助github上的开源项目petra来实现，下载地址为</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">https://github.com/Wumiu/Petra/releases</span><br></pre></td></tr></table></figure>
+
+<h1 id="制作PSD"><a href="#制作PSD" class="headerlink" title="制作PSD"></a>制作PSD</h1><p>PSD可以理解为将一张立绘按部件（头发、眼睛、身体等）拆分成独立图层的分层文件。</p>
+<p>推荐使用：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">https://huggingface.co/spaces/24yearsold/see-through-demo </span><br></pre></td></tr></table></figure>
+
+<p>每天可以免费使用一次</p>
+<p>如果从手机下载传到电脑上可能名称会变成一串数字，建议重新命名为一个后缀是psd的文件</p>
+<h1 id="调整"><a href="#调整" class="headerlink" title="调整"></a>调整</h1><p>建议使用：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">https://www.photopea.com/</span><br></pre></td></tr></table></figure>
+<p>由于一些原因，生成的psd的图层有时候会顺序混乱，例如不显示眼睛，或者帽子被拆成了两部分。这时候需要通过修图软件修改一下图层。</p>
+<p>需要检查一下各图层的命名是否符合petra的文档要求的规范，否则在下一步可能会出现显示异常的问题</p>
+<h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><p>在点开petra之后于模型设置部分导入修改好的psd即可</p>
 ]]></content>
       <categories>
         <category>学习</category>
       </categories>
       <tags>
-        <tag>投资</tag>
-        <tag>纳斯达克</tag>
-        <tag>标普</tag>
-        <tag>黄金</tag>
-        <tag>债基</tag>
-        <tag>基金</tag>
+        <tag>l2d</tag>
+        <tag>教程，桌宠</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>我的第一篇博客</title>
+    <url>/azur_blog/2026/08/11/%E5%8D%9A%E5%AE%A2%E5%88%B6%E4%BD%9C%E7%9B%B8%E5%85%B3/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/</url>
+    <content><![CDATA[<p>这个网站打算用来记录一些学习笔记，同人文等。</p>
+<span id="more"></span>
+
+<h1 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h1><p>博客这个东西是我在网上无意中看到的，感觉很有意思，于是打算自己做一下。我本人很喜欢用代码做东西，同时很喜欢碧蓝航线中一个叫企业的角色。平时的爱好就是看小说，写代码，写同人文。希望能打造出一个碧蓝航线风格的博客，也能用来记录自己提升的过程。</p>
+]]></content>
   </entry>
   <entry>
     <title>企业(海上传奇)技能和台词设计</title>
@@ -604,100 +630,6 @@
       </tags>
   </entry>
   <entry>
-    <title>碧蓝航线同人设定</title>
-    <url>/azur_blog/2026/09/01/%E7%A2%A7%E8%93%9D%E8%88%AA%E7%BA%BF/%E7%A2%A7%E8%93%9D%E8%88%AA%E7%BA%BF%E5%90%8C%E4%BA%BA%E8%AE%BE%E5%AE%9A/</url>
-    <content><![CDATA[<p>本文是对于碧蓝航线世界观的一些补充和修改，用于更好地创作同人文。(其实是单纯感觉官方现在的剧情和设定太乱了，想自己整。单纯为了给碧蓝航线做一个比较合理的世界观)</p>
-<h1 id="《碧蓝航线》同人设定"><a href="#《碧蓝航线》同人设定" class="headerlink" title="《碧蓝航线》同人设定"></a>《碧蓝航线》同人设定</h1><h2 id="核心概念"><a href="#核心概念" class="headerlink" title="核心概念"></a>核心概念</h2><h3 id="心智"><a href="#心智" class="headerlink" title="心智"></a>心智</h3><h4 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h4><p>一种寄宿于历史认知中的概念性物质，可将承载了集体记忆的物体（尤其是军舰）拟人化为具有独立人格的“舰娘”。</p>
-<h4 id="规则"><a href="#规则" class="headerlink" title="规则"></a>规则</h4><ul>
-<li><p>心智与物体的历史烙印强相关：经历的战争越惨烈、被世人铭记越深刻，融合效果越强。二战的军舰因此成为最理想的载体</p>
-</li>
-<li><p>心智融合不可逆，一旦拟人化即永久固定为独立的个体存在</p>
-</li>
-<li><p>心智具有频段特性。舰娘世界与人类世界地理重叠但是心智频段不同，普通人无法感知或进入。</p>
-</li>
-<li><p>舰娘所在的世界是心智映射出的，和人类世界本质上是隔离的两个世界。</p>
-</li>
-<li><p>能够适应心智的人拥有无限的寿命</p>
-</li>
-</ul>
-<h3 id="心智魔方"><a href="#心智魔方" class="headerlink" title="心智魔方"></a>心智魔方</h3><h4 id="定义-1"><a href="#定义-1" class="headerlink" title="定义"></a>定义</h4><p>人类科学家通过研究心智原理制作出的心智载体，可以与将舰船残骸融合，可控地激发舰船拟人化</p>
-<h4 id="规则-1"><a href="#规则-1" class="headerlink" title="规则"></a>规则</h4><ul>
-<li><p>任何舰船都可以被激活</p>
-</li>
-<li><p>融合后的力量和舰船的历史完整性（服役记录、战绩等）正相关</p>
-</li>
-<li><p>心智魔方的制造技术对于人类而言是黑盒的存在</p>
-</li>
-<li><p>虽然人类中断了对心智魔方的研究。但事实证明心智魔方对于舰娘的融合、治疗等都具有很好的效果。在人类于碧蓝航线达成协议之后这项技术被转让给了碧蓝航线。</p>
-</li>
-</ul>
-<h3 id="心智谐振层"><a href="#心智谐振层" class="headerlink" title="心智谐振层"></a>心智谐振层</h3><h4 id="定义-2"><a href="#定义-2" class="headerlink" title="定义"></a>定义</h4><p>心智在三维空间中形成的一种特殊频段层。舰娘世界与人类世界地理重叠，但处于不同的心智频段上，因此互不干涉、互不可见。</p>
-<h4 id="规则-2"><a href="#规则-2" class="headerlink" title="规则"></a>规则</h4><ul>
-<li><p>普通人无法进入舰娘世界，即使进入了也会因为不适应心智和谐振而消散</p>
-</li>
-<li><p>只有指挥官和舰娘可以自由在两个频段之间切换</p>
-</li>
-</ul>
-<h3 id="舰娘"><a href="#舰娘" class="headerlink" title="舰娘"></a>舰娘</h3><h4 id="定义-3"><a href="#定义-3" class="headerlink" title="定义"></a>定义</h4><p>借助心智和军舰映射出的少女，同时具备军舰的力量和人类的身体。</p>
-<h4 id="规则-3"><a href="#规则-3" class="headerlink" title="规则"></a>规则</h4><ul>
-<li><p>舰娘可以随时召唤出舰装进行战斗。外貌和普通人没有差异。</p>
-</li>
-<li><p>在碧蓝航线中，舰娘忠诚于指挥官</p>
-</li>
-<li><p>舰娘在非战斗状态下会像正常人一样生活，也会有看书，画画等爱好</p>
-</li>
-<li><p>舰娘通常具有高于常人的智力，服装和生活习惯于其生前服役的地区有很强关系</p>
-</li>
-</ul>
-<h2 id="历史事件"><a href="#历史事件" class="headerlink" title="历史事件"></a>历史事件</h2><h3 id="二战与心智的觉醒"><a href="#二战与心智的觉醒" class="headerlink" title="二战与心智的觉醒"></a>二战与心智的觉醒</h3><h4 id="核心内容"><a href="#核心内容" class="headerlink" title="核心内容"></a>核心内容</h4><p>第二次世界大战期间，由于海战规模与烈度达到人类历史巅峰，大量军舰的心智在此时期集体觉醒，在“心智谐振层”中形成了最初的舰娘社会雏形</p>
-<h4 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h4><ul>
-<li><p>觉醒并非由人类触发，而是心智对大规模战争记忆的“自然反应”</p>
-</li>
-<li><p>塞壬势力也是在这一时期大量出现</p>
-</li>
-</ul>
-<h3 id="美利坚号事件"><a href="#美利坚号事件" class="headerlink" title="美利坚号事件"></a>美利坚号事件</h3><h4 id="核心内容-1"><a href="#核心内容-1" class="headerlink" title="核心内容"></a>核心内容</h4><p>人类军方首次尝试使用心智魔方融合舰船的实验，但是实验对象美利坚号在融合完成后出现了暴走的情况，在进行几个小时破坏后死亡。</p>
-<h4 id="补充-1"><a href="#补充-1" class="headerlink" title="补充"></a>补充</h4><ul>
-<li><p>这次事件之后人类中断了对于心智的研究</p>
-</li>
-<li><p>失败的原因之一是人类对于心智的利用效果很差，过度放大了历史部分的影响，导致美利坚号极其不稳定</p>
-</li>
-</ul>
-<h3 id="第一次接触"><a href="#第一次接触" class="headerlink" title="第一次接触"></a>第一次接触</h3><h4 id="核心内容-2"><a href="#核心内容-2" class="headerlink" title="核心内容"></a>核心内容</h4><p>在某一场人类舰队对抗塞壬的战斗中，碧蓝航线未来的指挥官（之后简称指挥官）所领导的舰队被塞壬以压倒性优势击败。除了指挥官外的人无一幸存。但是指挥官被突然出现的企业救下，这是人类首次目击舰娘战斗。</p>
-<h4 id="补充-2"><a href="#补充-2" class="headerlink" title="补充"></a>补充</h4><ul>
-<li><p>指挥官之所以能幸存是因为对于心智带来的影响具有很强的适应能力</p>
-</li>
-<li><p>指挥官当时看到了企业的模糊背影，但是企业并没有注意到指挥官</p>
-</li>
-<li><p>因为这次事件，在后续与碧蓝航线合作的时候高层决定让指挥官作为两边沟通桥梁</p>
-</li>
-</ul>
-<h3 id="合作协定的建立"><a href="#合作协定的建立" class="headerlink" title="合作协定的建立"></a>合作协定的建立</h3><h4 id="核心内容-3"><a href="#核心内容-3" class="headerlink" title="核心内容"></a>核心内容</h4><p>人类世界与碧蓝航线之间建立了跨世界合作框架，明确了双方的权利、义务与边界。核心条款包括双方不得互相干涉、指挥官作为唯一的跨世界联络官常驻碧蓝航线，负责协调作战信息与维持通讯、人类定期向碧蓝航线提供物资。</p>
-<h2 id="势力与阵营"><a href="#势力与阵营" class="headerlink" title="势力与阵营"></a>势力与阵营</h2><h3 id="碧蓝航线"><a href="#碧蓝航线" class="headerlink" title="碧蓝航线"></a>碧蓝航线</h3><h4 id="定义-4"><a href="#定义-4" class="headerlink" title="定义"></a>定义</h4><p>由二战时期觉醒的军舰心智自发组建的组织，以抗击塞壬、维护心智谐振层稳定为宗旨</p>
-<h4 id="补充-3"><a href="#补充-3" class="headerlink" title="补充"></a>补充</h4><ul>
-<li><p>碧蓝航线的内部组织与人类的海军阵营划分基本一致，按历史归属分为白鹰、皇家、重樱、铁血等主要阵营。各阵营日常相对独立。</p>
-</li>
-<li><p>舰娘世界存在除了碧蓝航线组织以外的舰娘和阵营，但是规模都远小于碧蓝航线。</p>
-</li>
-</ul>
-<h3 id="塞壬"><a href="#塞壬" class="headerlink" title="塞壬"></a>塞壬</h3><h4 id="定义-5"><a href="#定义-5" class="headerlink" title="定义"></a>定义</h4><p>心智的“自然排异反应”产物。海洋吞噬过无数未经记载的古老船只与生命，那些混沌的、无名的残留意念在心智影响下聚合，形成了敌视一切有序文明的存在</p>
-<h4 id="补充-4"><a href="#补充-4" class="headerlink" title="补充"></a>补充</h4><ul>
-<li>塞壬并不是一个铁板一块的阵营，内部也存在分歧</li>
-</ul>
-<h2 id="一些问题和解答"><a href="#一些问题和解答" class="headerlink" title="一些问题和解答"></a>一些问题和解答</h2><h3 id="舰娘对于人类有敌意吗"><a href="#舰娘对于人类有敌意吗" class="headerlink" title="舰娘对于人类有敌意吗"></a>舰娘对于人类有敌意吗</h3><p>虽然出现了美利坚号事件那样的事，但是大多数舰娘对于人类其实是处于不关心的态度。有点像歌者文明对于人类文明的态度。她们视人类为一种需要被保护但不介入其内部事务的邻近物种——就像人类会保护濒危动物，但不会试图和它们讨论哲学。</p>
-<h3 id="舰娘的战斗能力如何"><a href="#舰娘的战斗能力如何" class="headerlink" title="舰娘的战斗能力如何"></a>舰娘的战斗能力如何</h3><p>经过心智融合之后的舰娘战斗力远非简单的军舰加上人的力量。仅凭企业一人就可以摧毁人类的所有军事设施，给人类文明去军事化。</p>
-<h3 id="为什么在碧蓝航线中，舰娘忠诚于指挥官"><a href="#为什么在碧蓝航线中，舰娘忠诚于指挥官" class="headerlink" title="为什么在碧蓝航线中，舰娘忠诚于指挥官"></a>为什么在碧蓝航线中，舰娘忠诚于指挥官</h3><p>有两个原因。一方面是指挥官具有很出色的领导能力，能够协调好碧蓝航线内部的事务。另一方面指挥官和企业走的很近，企业在舰娘当中很有威望。</p>
-<h3 id="为什么舰娘那么强却没有想着灭掉人类"><a href="#为什么舰娘那么强却没有想着灭掉人类" class="headerlink" title="为什么舰娘那么强却没有想着灭掉人类"></a>为什么舰娘那么强却没有想着灭掉人类</h3><p>因为舰娘的意志本质上是来自于人类，因此不管是处于什么角度都不可能这么做。</p>
-]]></content>
-      <categories>
-        <category>热爱</category>
-      </categories>
-      <tags>
-        <tag>碧蓝航线</tag>
-        <tag>舰娘</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>王道计算机网络第一章笔记</title>
     <url>/azur_blog/2026/08/23/408/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E7%8E%8B%E9%81%93%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%AC%E4%B8%80%E7%AB%A0%E7%AC%94%E8%AE%B0/</url>
     <content><![CDATA[<p>计算机网络体系结构</p>
@@ -874,6 +806,100 @@
         <tag>考研</tag>
         <tag>计算机</tag>
         <tag>408</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>碧蓝航线同人设定</title>
+    <url>/azur_blog/2026/09/01/%E7%A2%A7%E8%93%9D%E8%88%AA%E7%BA%BF/%E7%A2%A7%E8%93%9D%E8%88%AA%E7%BA%BF%E5%90%8C%E4%BA%BA%E8%AE%BE%E5%AE%9A/</url>
+    <content><![CDATA[<p>本文是对于碧蓝航线世界观的一些补充和修改，用于更好地创作同人文。(其实是单纯感觉官方现在的剧情和设定太乱了，想自己整。单纯为了给碧蓝航线做一个比较合理的世界观)</p>
+<h1 id="《碧蓝航线》同人设定"><a href="#《碧蓝航线》同人设定" class="headerlink" title="《碧蓝航线》同人设定"></a>《碧蓝航线》同人设定</h1><h2 id="核心概念"><a href="#核心概念" class="headerlink" title="核心概念"></a>核心概念</h2><h3 id="心智"><a href="#心智" class="headerlink" title="心智"></a>心智</h3><h4 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h4><p>一种寄宿于历史认知中的概念性物质，可将承载了集体记忆的物体（尤其是军舰）拟人化为具有独立人格的“舰娘”。</p>
+<h4 id="规则"><a href="#规则" class="headerlink" title="规则"></a>规则</h4><ul>
+<li><p>心智与物体的历史烙印强相关：经历的战争越惨烈、被世人铭记越深刻，融合效果越强。二战的军舰因此成为最理想的载体</p>
+</li>
+<li><p>心智融合不可逆，一旦拟人化即永久固定为独立的个体存在</p>
+</li>
+<li><p>心智具有频段特性。舰娘世界与人类世界地理重叠但是心智频段不同，普通人无法感知或进入。</p>
+</li>
+<li><p>舰娘所在的世界是心智映射出的，和人类世界本质上是隔离的两个世界。</p>
+</li>
+<li><p>能够适应心智的人拥有无限的寿命</p>
+</li>
+</ul>
+<h3 id="心智魔方"><a href="#心智魔方" class="headerlink" title="心智魔方"></a>心智魔方</h3><h4 id="定义-1"><a href="#定义-1" class="headerlink" title="定义"></a>定义</h4><p>人类科学家通过研究心智原理制作出的心智载体，可以与将舰船残骸融合，可控地激发舰船拟人化</p>
+<h4 id="规则-1"><a href="#规则-1" class="headerlink" title="规则"></a>规则</h4><ul>
+<li><p>任何舰船都可以被激活</p>
+</li>
+<li><p>融合后的力量和舰船的历史完整性（服役记录、战绩等）正相关</p>
+</li>
+<li><p>心智魔方的制造技术对于人类而言是黑盒的存在</p>
+</li>
+<li><p>虽然人类中断了对心智魔方的研究。但事实证明心智魔方对于舰娘的融合、治疗等都具有很好的效果。在人类于碧蓝航线达成协议之后这项技术被转让给了碧蓝航线。</p>
+</li>
+</ul>
+<h3 id="心智谐振层"><a href="#心智谐振层" class="headerlink" title="心智谐振层"></a>心智谐振层</h3><h4 id="定义-2"><a href="#定义-2" class="headerlink" title="定义"></a>定义</h4><p>心智在三维空间中形成的一种特殊频段层。舰娘世界与人类世界地理重叠，但处于不同的心智频段上，因此互不干涉、互不可见。</p>
+<h4 id="规则-2"><a href="#规则-2" class="headerlink" title="规则"></a>规则</h4><ul>
+<li><p>普通人无法进入舰娘世界，即使进入了也会因为不适应心智和谐振而消散</p>
+</li>
+<li><p>只有指挥官和舰娘可以自由在两个频段之间切换</p>
+</li>
+</ul>
+<h3 id="舰娘"><a href="#舰娘" class="headerlink" title="舰娘"></a>舰娘</h3><h4 id="定义-3"><a href="#定义-3" class="headerlink" title="定义"></a>定义</h4><p>借助心智和军舰映射出的少女，同时具备军舰的力量和人类的身体。</p>
+<h4 id="规则-3"><a href="#规则-3" class="headerlink" title="规则"></a>规则</h4><ul>
+<li><p>舰娘可以随时召唤出舰装进行战斗。外貌和普通人没有差异。</p>
+</li>
+<li><p>在碧蓝航线中，舰娘忠诚于指挥官</p>
+</li>
+<li><p>舰娘在非战斗状态下会像正常人一样生活，也会有看书，画画等爱好</p>
+</li>
+<li><p>舰娘通常具有高于常人的智力，服装和生活习惯于其生前服役的地区有很强关系</p>
+</li>
+</ul>
+<h2 id="历史事件"><a href="#历史事件" class="headerlink" title="历史事件"></a>历史事件</h2><h3 id="二战与心智的觉醒"><a href="#二战与心智的觉醒" class="headerlink" title="二战与心智的觉醒"></a>二战与心智的觉醒</h3><h4 id="核心内容"><a href="#核心内容" class="headerlink" title="核心内容"></a>核心内容</h4><p>第二次世界大战期间，由于海战规模与烈度达到人类历史巅峰，大量军舰的心智在此时期集体觉醒，在“心智谐振层”中形成了最初的舰娘社会雏形</p>
+<h4 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h4><ul>
+<li><p>觉醒并非由人类触发，而是心智对大规模战争记忆的“自然反应”</p>
+</li>
+<li><p>塞壬势力也是在这一时期大量出现</p>
+</li>
+</ul>
+<h3 id="美利坚号事件"><a href="#美利坚号事件" class="headerlink" title="美利坚号事件"></a>美利坚号事件</h3><h4 id="核心内容-1"><a href="#核心内容-1" class="headerlink" title="核心内容"></a>核心内容</h4><p>人类军方首次尝试使用心智魔方融合舰船的实验，但是实验对象美利坚号在融合完成后出现了暴走的情况，在进行几个小时破坏后死亡。</p>
+<h4 id="补充-1"><a href="#补充-1" class="headerlink" title="补充"></a>补充</h4><ul>
+<li><p>这次事件之后人类中断了对于心智的研究</p>
+</li>
+<li><p>失败的原因之一是人类对于心智的利用效果很差，过度放大了历史部分的影响，导致美利坚号极其不稳定</p>
+</li>
+</ul>
+<h3 id="第一次接触"><a href="#第一次接触" class="headerlink" title="第一次接触"></a>第一次接触</h3><h4 id="核心内容-2"><a href="#核心内容-2" class="headerlink" title="核心内容"></a>核心内容</h4><p>在某一场人类舰队对抗塞壬的战斗中，碧蓝航线未来的指挥官（之后简称指挥官）所领导的舰队被塞壬以压倒性优势击败。除了指挥官外的人无一幸存。但是指挥官被突然出现的企业救下，这是人类首次目击舰娘战斗。</p>
+<h4 id="补充-2"><a href="#补充-2" class="headerlink" title="补充"></a>补充</h4><ul>
+<li><p>指挥官之所以能幸存是因为对于心智带来的影响具有很强的适应能力</p>
+</li>
+<li><p>指挥官当时看到了企业的模糊背影，但是企业并没有注意到指挥官</p>
+</li>
+<li><p>因为这次事件，在后续与碧蓝航线合作的时候高层决定让指挥官作为两边沟通桥梁</p>
+</li>
+</ul>
+<h3 id="合作协定的建立"><a href="#合作协定的建立" class="headerlink" title="合作协定的建立"></a>合作协定的建立</h3><h4 id="核心内容-3"><a href="#核心内容-3" class="headerlink" title="核心内容"></a>核心内容</h4><p>人类世界与碧蓝航线之间建立了跨世界合作框架，明确了双方的权利、义务与边界。核心条款包括双方不得互相干涉、指挥官作为唯一的跨世界联络官常驻碧蓝航线，负责协调作战信息与维持通讯、人类定期向碧蓝航线提供物资。</p>
+<h2 id="势力与阵营"><a href="#势力与阵营" class="headerlink" title="势力与阵营"></a>势力与阵营</h2><h3 id="碧蓝航线"><a href="#碧蓝航线" class="headerlink" title="碧蓝航线"></a>碧蓝航线</h3><h4 id="定义-4"><a href="#定义-4" class="headerlink" title="定义"></a>定义</h4><p>由二战时期觉醒的军舰心智自发组建的组织，以抗击塞壬、维护心智谐振层稳定为宗旨</p>
+<h4 id="补充-3"><a href="#补充-3" class="headerlink" title="补充"></a>补充</h4><ul>
+<li><p>碧蓝航线的内部组织与人类的海军阵营划分基本一致，按历史归属分为白鹰、皇家、重樱、铁血等主要阵营。各阵营日常相对独立。</p>
+</li>
+<li><p>舰娘世界存在除了碧蓝航线组织以外的舰娘和阵营，但是规模都远小于碧蓝航线。</p>
+</li>
+</ul>
+<h3 id="塞壬"><a href="#塞壬" class="headerlink" title="塞壬"></a>塞壬</h3><h4 id="定义-5"><a href="#定义-5" class="headerlink" title="定义"></a>定义</h4><p>心智的“自然排异反应”产物。海洋吞噬过无数未经记载的古老船只与生命，那些混沌的、无名的残留意念在心智影响下聚合，形成了敌视一切有序文明的存在</p>
+<h4 id="补充-4"><a href="#补充-4" class="headerlink" title="补充"></a>补充</h4><ul>
+<li>塞壬并不是一个铁板一块的阵营，内部也存在分歧</li>
+</ul>
+<h2 id="一些问题和解答"><a href="#一些问题和解答" class="headerlink" title="一些问题和解答"></a>一些问题和解答</h2><h3 id="舰娘对于人类有敌意吗"><a href="#舰娘对于人类有敌意吗" class="headerlink" title="舰娘对于人类有敌意吗"></a>舰娘对于人类有敌意吗</h3><p>虽然出现了美利坚号事件那样的事，但是大多数舰娘对于人类其实是处于不关心的态度。有点像歌者文明对于人类文明的态度。她们视人类为一种需要被保护但不介入其内部事务的邻近物种——就像人类会保护濒危动物，但不会试图和它们讨论哲学。</p>
+<h3 id="舰娘的战斗能力如何"><a href="#舰娘的战斗能力如何" class="headerlink" title="舰娘的战斗能力如何"></a>舰娘的战斗能力如何</h3><p>经过心智融合之后的舰娘战斗力远非简单的军舰加上人的力量。仅凭企业一人就可以摧毁人类的所有军事设施，给人类文明去军事化。</p>
+<h3 id="为什么在碧蓝航线中，舰娘忠诚于指挥官"><a href="#为什么在碧蓝航线中，舰娘忠诚于指挥官" class="headerlink" title="为什么在碧蓝航线中，舰娘忠诚于指挥官"></a>为什么在碧蓝航线中，舰娘忠诚于指挥官</h3><p>有两个原因。一方面是指挥官具有很出色的领导能力，能够协调好碧蓝航线内部的事务。另一方面指挥官和企业走的很近，企业在舰娘当中很有威望。</p>
+<h3 id="为什么舰娘那么强却没有想着灭掉人类"><a href="#为什么舰娘那么强却没有想着灭掉人类" class="headerlink" title="为什么舰娘那么强却没有想着灭掉人类"></a>为什么舰娘那么强却没有想着灭掉人类</h3><p>因为舰娘的意志本质上是来自于人类，因此不管是处于什么角度都不可能这么做。</p>
+]]></content>
+      <categories>
+        <category>热爱</category>
+      </categories>
+      <tags>
+        <tag>碧蓝航线</tag>
+        <tag>舰娘</tag>
       </tags>
   </entry>
   <entry>
