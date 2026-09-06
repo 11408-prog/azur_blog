@@ -40,3 +40,7 @@ daily_log/
 .claude/
 
 指令.txt
+
+# 测试模块
+
+test/
