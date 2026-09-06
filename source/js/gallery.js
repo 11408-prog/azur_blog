@@ -112,5 +112,11 @@
     mount();
   }
   document.addEventListener('pjax:complete', mount);
-  window.addEventListener('resize', mount); // 窗口尺寸变化时切换列数
+
+  // resize 防抖：停止调整 200ms 后再重建，避免拖动时疯狂闪烁
+  let resizeTimer;
+  window.addEventListener('resize', function() {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(mount, 200);
+  });
 })();

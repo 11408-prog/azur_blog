@@ -6,7 +6,8 @@
     "build": "hexo generate",
     "clean": "hexo clean",
     "deploy": "hexo deploy",
-    "server": "hexo server"
+    "server": "hexo server",
+    "test": "node test/validate-build.js"
   },
   "hexo": {
     "version": "8.1.2"
@@ -19,6 +20,7 @@
     "hexo-generator-index": "^4.0.0",
     "hexo-generator-searchdb": "^1.5.0",
     "hexo-generator-tag": "^2.0.0",
+    "hexo-qidaink-cursor_effects": "^0.0.2",
     "hexo-renderer-ejs": "^2.0.0",
     "hexo-renderer-marked": "^7.0.0",
     "hexo-renderer-pug": "^3.0.0",
