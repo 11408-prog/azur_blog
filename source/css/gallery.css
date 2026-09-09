@@ -17,6 +17,6 @@
 #masonry-gallery .mg-col img {
   width: 100%;
   display: block;
-  border-radius: 6px;
+  border-radius: var(--radius-sm);
   background: rgba(30, 58, 95, 0.05); /* 加载中的占位底色 */
 }

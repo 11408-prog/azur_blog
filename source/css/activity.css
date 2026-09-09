@@ -3,7 +3,7 @@
 #home-heatmap {
   margin-bottom: 24px;
   padding: 20px;
-  border-radius: 15px;
+  border-radius: var(--radius-lg);
   background: rgba(255, 255, 255, 0.92); 
   border: 1px solid rgba(43, 90, 143, 0.08);
   box-shadow: 0 4px 16px rgba(30, 58, 95, 0.06);
@@ -44,7 +44,7 @@
 .heatmap-cell {
   width: 14px;
   height: 14px;
-  border-radius: 3px;
+  border-radius: var(--radius-sm);
   border: 1px solid transparent;
 }
 
