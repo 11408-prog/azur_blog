@@ -44,3 +44,5 @@ daily_log/
 # 测试模块
 
 test/
+# Local Netlify folder
+.netlify
