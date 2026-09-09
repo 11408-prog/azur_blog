@@ -76,8 +76,7 @@
 
     var hours = String(now.getHours()).padStart(2, '0');
     var mins = String(now.getMinutes()).padStart(2, '0');
-    var secs = String(now.getSeconds()).padStart(2, '0');
-    timeEl.textContent = hours + ':' + mins + ':' + secs;
+    timeEl.textContent = hours + ':' + mins ;
   }
 
   // ---------- 获取天气数据 ----------

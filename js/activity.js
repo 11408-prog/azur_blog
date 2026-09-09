@@ -154,7 +154,7 @@
 
     var source = document.createElement('div');
     source.className = 'heatmap-source';
-    source.textContent = '数据来源：Git 提交记录';
+    source.textContent = '数据来源：本网站Git提交记录';
 
     footer.appendChild(legend);
     footer.appendChild(source);
