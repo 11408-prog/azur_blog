@@ -20,10 +20,15 @@ hexo.extend.generator.register('gallery-list', async function () {
   }
   files.sort();
 
+  // 生成可安全用于 URL 的路径：空格/中文交给 encodeURI，# 会被当锚点截断必须编码
+  function safeUrl(f) {
+    return '/azur_blog/carousel/' + encodeURI(f).replace(/#/g, '%23');
+  }
+
   const images = [];
   for (const f of files) {
     const item = {
-      url: '/azur_blog/carousel/' + f,
+      url: safeUrl(f),
       alt: path.basename(f, path.extname(f))
     };
     // 读取真实尺寸（读不到就省略，前端用默认占位）
