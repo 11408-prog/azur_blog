@@ -92,5 +92,5 @@ figure.highlight,
 }
 
 .page.type-gallery #article-container .gallery-container img {
-  border-radius: 6px;
+  border-radius: var(--radius-sm);
 }
