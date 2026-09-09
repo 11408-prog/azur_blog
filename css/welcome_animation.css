@@ -82,3 +82,8 @@
 .welcome-text {
   display: none !important;
 }
+/* 欢迎区字体：衬线（航海日志/书卷感），覆盖系统默认黑体 */
+.welcome-title,
+.typewriter-line {
+  font-family: 'Noto Serif SC', 'Songti SC', 'SimSun', serif !important;
+}

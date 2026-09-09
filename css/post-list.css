@@ -15,7 +15,7 @@
 /* 卡片（一行两个） */
 #recent-posts .recent-post-item {
   width: calc(50% - 8px);
-  border-radius: 15px;
+  border-radius: var(--radius-lg);
   overflow: hidden;
   background: rgba(255, 255, 255, 0.8);
   border: 1px solid rgba(43, 90, 143, 0.08);

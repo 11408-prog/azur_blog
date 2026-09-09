@@ -48,3 +48,35 @@
     transition-duration: 0.01ms !important;
   }
 }
+
+/* ============================================================
+   字体体系
+   ------------------------------------------------------------
+   --font-serif: 标题衬线（思源宋体，fonts.loli.net 引入）
+   --font-body:  正文黑体（MiSans 装了优先，否则系统黑体兜底）
+   ============================================================ */
+:root {
+  --font-serif: 'Noto Serif SC', 'Source Han Serif SC', 'Songti SC', 'SimSun', serif;
+  --font-body: 'MiSans', 'HarmonyOS Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+
+  /* 圆角体系：主卡片 12 / 中等元素 8 / 小元素 4 */
+  --radius-lg: 12px;
+  --radius-md: 8px;
+  --radius-sm: 4px;
+}
+
+/* 正文全局黑体 */
+body {
+  font-family: var(--font-body);
+}
+
+/* 标题用衬线（思源宋体）：首页欢迎标题、文章标题、正文标题、侧栏标题、季节标签 */
+.welcome-title,
+.article-title,
+h1, h2, h3,
+.item-headline,
+.season-label,
+#post-info .post-title,
+.card-info .author-info__name {
+  font-family: var(--font-serif);
+}
