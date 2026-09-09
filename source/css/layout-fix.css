@@ -94,3 +94,8 @@ figure.highlight,
 .page.type-gallery #article-container .gallery-container img {
   border-radius: var(--radius-sm);
 }
+
+/* 隐藏 Netlify Drop 注入的广告角标 iframe（正式站点/其他平台无此元素，无害） */
+#nl-badge-frame {
+  display: none !important;
+}

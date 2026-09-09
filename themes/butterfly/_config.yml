@@ -1053,7 +1053,7 @@ inject:
   head:
     - <link rel="stylesheet" href="https://fonts.loli.net/css2?family=Noto+Serif+SC:wght@500;600;700&display=swap">
     - <link rel="stylesheet" href="/azur_blog/css/variables.css?v=1.5">
-    - <link rel="stylesheet" href="/azur_blog/css/layout-fix.css?v=1.4">
+    - <link rel="stylesheet" href="/azur_blog/css/layout-fix.css?v=1.5">
     - <link rel="stylesheet" href="/azur_blog/css/weather.css?v=1.2">
     - <link rel="stylesheet" href="/azur_blog/css/carousel.css?v=1.4">
     - <link rel="stylesheet" href="/azur_blog/css/tiles.css?v=1.4">
