@@ -33,14 +33,14 @@
 
   function getStats(data) {
     var today = normalizeDate(new Date());
-    var oneYearAgo = new Date(today);
-    oneYearAgo.setDate(today.getDate() - 365);
+    // 统计起始日期（博客首次提交日）
+    var startDate = normalizeDate(new Date('2026-08-11'));
     var oneMonthAgo = new Date(today);
     oneMonthAgo.setDate(today.getDate() - 30);
     var oneWeekAgo = new Date(today);
     oneWeekAgo.setDate(today.getDate() - 7);
 
-    var yearCount = 0;
+    var totalCount = 0;
     var monthCount = 0;
     var weekCount = 0;
 
@@ -48,7 +48,7 @@
       if (!data.hasOwnProperty(key)) continue;
       var d = normalizeDate(new Date(key));
       var count = data[key];
-      if (d >= oneYearAgo && d <= today) yearCount += count;
+      if (d >= startDate && d <= today) totalCount += count;
       if (d >= oneMonthAgo && d <= today) monthCount += count;
       if (d >= oneWeekAgo && d <= today) weekCount += count;
     }
@@ -58,10 +58,10 @@
     }
 
     return {
-      yearCount: yearCount,
+      totalCount: totalCount,
       monthCount: monthCount,
       weekCount: weekCount,
-      yearRange: fmt(oneYearAgo) + ' - ' + fmt(today),
+      totalRange: '2026-08-11 - ' + fmt(today),
       monthRange: fmt(oneMonthAgo) + ' - ' + fmt(today),
       weekRange: fmt(oneWeekAgo) + ' - ' + fmt(today)
     };
@@ -124,9 +124,9 @@
     statsBox.className = 'heatmap-stats';
     statsBox.innerHTML =
       '<div class="stat-item">' +
-        '<div class="stat-num">' + stats.yearCount + '</div>' +
-        '<div class="stat-label">过去一年提交</div>' +
-        '<div class="stat-range">' + stats.yearRange + '</div>' +
+        '<div class="stat-num">' + stats.totalCount + '</div>' +
+        '<div class="stat-label">总计提交</div>' +
+        '<div class="stat-range">' + stats.totalRange + '</div>' +
       '</div>' +
       '<div class="stat-item">' +
         '<div class="stat-num">' + stats.monthCount + '</div>' +
