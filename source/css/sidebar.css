@@ -1,8 +1,8 @@
 /* ========== 侧边栏通用样式 ========== */
 
-/* 卡片：不透明白色，与首页文章卡片同款配色 */
+/* 卡片：高不透明度白色（0.92），背景微透但文字清晰 */
 #aside-content .card-widget {
-  background: rgba(255, 255, 255, 0.8) !important;
+  background: rgba(255, 255, 255, 0.92) !important;
   backdrop-filter: none;
   -webkit-backdrop-filter: none;
   border: 1px solid rgba(43, 90, 143, 0.08);
