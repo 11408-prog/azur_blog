@@ -1,7 +1,7 @@
 ---
 title: 借助开源项目petra制作桌面l2d小人的教程
 date: 2026-09-02 15:28:53
-tags: [l2d,教程，桌宠]
+tags: [l2d,教程,桌宠]
 categories: 学习
 ---
 
