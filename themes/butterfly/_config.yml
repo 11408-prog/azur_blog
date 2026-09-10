@@ -198,7 +198,7 @@ index_post_content:
 toc:
   post: true
   page: false
-  number: true
+  number: false
   expand: false
   # Only for post
   style_simple: false
@@ -1059,7 +1059,7 @@ inject:
     - <link rel="stylesheet" href="/azur_blog/css/tiles.css?v=1.4">
     - <link rel="stylesheet" href="/azur_blog/css/activity.css?v=1.4">
     - <link rel="stylesheet" href="/azur_blog/css/post-list.css?v=1.4">
-    - <link rel="stylesheet" href="/azur_blog/css/sidebar.css?v=1.4">
+    - <link rel="stylesheet" href="/azur_blog/css/sidebar.css?v=1.5">
     - <link rel="stylesheet" href="/azur_blog/css/reading-mode.css?v=1.2">
     - <link rel="stylesheet" href="/azur_blog/css/welcome_animation.css?v=1.4">
     - <link rel="stylesheet" href="/azur_blog/css/custom.css?v=1.2">
