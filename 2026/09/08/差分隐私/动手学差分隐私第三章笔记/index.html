@@ -531,7 +531,8 @@
     selectors: pjaxSelectors,
     cacheBust: false,
     analytics: false,
-    scrollRestoration: false
+    scrollRestoration: false,
+    scrollTo: false
   })
 
   const triggerPjaxFn = (val) => {
@@ -569,6 +570,15 @@
     })
 
     triggerPjaxFn(window.globalFn.pjaxComplete)
+
+    // Scroll to content-inner after PJAX navigation (scrollTo:false disables PJAX auto-scroll)
+    const el = document.getElementById('content-inner')
+    if (el) {
+      const top = el.getBoundingClientRect().top + window.scrollY - 70
+      window.scrollTo(0, top)
+    } else {
+      window.scrollTo(0, 0)
+    }
   })
 
   document.addEventListener('pjax:error', e => {
