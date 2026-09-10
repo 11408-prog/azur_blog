@@ -1004,6 +1004,8 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   btf.addGlobalFn('pjaxComplete', refreshFn, 'refreshFn')
+
+
   refreshFn()
   unRefreshFn()
 
