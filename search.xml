@@ -1,37 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>学习遇到的问题及解答</title>
-    <url>/azur_blog/2026/08/11/%E5%AD%A6%E4%B9%A0%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98%E5%8F%8A%E8%A7%A3%E7%AD%94/</url>
-    <content><![CDATA[<h1 id="hexo"><a href="#hexo" class="headerlink" title="hexo"></a>hexo</h1><p><strong>Q: tags和categories有什么区别</strong><br><br>A:tags表示关键词和特征，categories表示大方向和目录。tags不需要事先定义，但是categoties需要事先定义</p>
-<p><strong>Q:有时会出现tags: 或者其它类似物下一行明明是空行却报错，该怎么办</strong><br><br>A:记得：之后要空格</p>
-<h2 id="为什么博客不增加背景音乐"><a href="#为什么博客不增加背景音乐" class="headerlink" title="为什么博客不增加背景音乐"></a>为什么博客不增加背景音乐</h2><p>hexo是静态站点，每次点击链接都是完整刷新页面，体验会不好。</p>
-<h2 id="如果写的文章没有用到md的话怎么隐去目录"><a href="#如果写的文章没有用到md的话怎么隐去目录" class="headerlink" title="如果写的文章没有用到md的话怎么隐去目录"></a>如果写的文章没有用到md的话怎么隐去目录</h2><p>在文章 front mater里加上 </p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">toc: false</span><br></pre></td></tr></table></figure>
-
-<h2 id="怎么将文章置顶"><a href="#怎么将文章置顶" class="headerlink" title="怎么将文章置顶"></a>怎么将文章置顶</h2><p>在文章front matter 加入 sticky: 1</p>
-<h2 id="hexo的构建速度有点慢怎么办"><a href="#hexo的构建速度有点慢怎么办" class="headerlink" title="hexo的构建速度有点慢怎么办"></a>hexo的构建速度有点慢怎么办</h2><p>将 hexo g 改成 hexo g -c 4  (4可替换成支持的线程数)<br>hexo默认使用单线程。在hexo 5.0 之后引入了多线程。</p>
-<h1 id="css"><a href="#css" class="headerlink" title="css"></a>css</h1><p><strong>Q: forwards和infinite有什么区别</strong><br><br>A:前者会使动画停在最后一帧，后者会使动画无限播放<br>对比：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">/* 只播放一次，结束后停在最后一帧 */</span><br><span class="line">animation-name: welcome-reveal;</span><br><span class="line">animation-duration: 6s;</span><br><span class="line">animation-timing-function: ease-in-out;</span><br><span class="line">animation-fill-mode: forwards;</span><br><span class="line"></span><br><span class="line">/* 无限循环播放 */</span><br><span class="line">animation-name: welcome-reveal;</span><br><span class="line">animation-duration: 6s;</span><br><span class="line">animation-timing-function: ease-in-out;</span><br><span class="line">animation-iteration-count: infinite;</span><br></pre></td></tr></table></figure>
-
-<h1 id="github"><a href="#github" class="headerlink" title="github"></a>github</h1><h2 id="直接构建部署和先覆盖github源码再部署有区别吗"><a href="#直接构建部署和先覆盖github源码再部署有区别吗" class="headerlink" title="直接构建部署和先覆盖github源码再部署有区别吗"></a>直接构建部署和先覆盖github源码再部署有区别吗</h2><p>后者可以确保github上clone下来的源码包含这次修改，因为将源码备份到了main分支</p>
-<h2 id="什么是-CI-CD"><a href="#什么是-CI-CD" class="headerlink" title="什么是 CI&#x2F;CD"></a>什么是 CI&#x2F;CD</h2><p>这是软件开发里的一套自动化流程，全称是 持续集成&#x2F;持续部署<br>如果在 github 中设置了 CI&#x2F;CD 只需要提交即可，github会帮忙完成部署 </p>
-<h2 id="图片太多导致推送github被拒绝怎么办"><a href="#图片太多导致推送github被拒绝怎么办" class="headerlink" title="图片太多导致推送github被拒绝怎么办"></a>图片太多导致推送github被拒绝怎么办</h2><p>只上传代码即可</p>
-<h1 id="python"><a href="#python" class="headerlink" title="python"></a>python</h1><p><strong>Q: “ “和’ ‘有什么区别吗</strong><br><br>A:完全没有区别</p>
-<p><strong>Q: &gt;&gt;&gt; 是什么意思，可以被编译器读取吗</strong><br><br>A:是py交互式解释器（REPL）显示给用户看的。不能被编译器读取，这不是有效语法。</p>
-<h1 id="计算机网络"><a href="#计算机网络" class="headerlink" title="计算机网络"></a>计算机网络</h1><p><strong>Q:互联网和互连网是更大的计算机网络吗</strong><br><br>A:这个说法不严谨。因为互连网有时候要比计算机网络小，如一个庞大的城域网规模要远超一个家庭网络。可以这么理解，互连网是计网组合后的通用结果，互联网是计网组合后的特定结果。</p>
-<h1 id="终端"><a href="#终端" class="headerlink" title="终端"></a>终端</h1><h2 id="为什么进行部署的脚本要分别写在两个文件（deploy-cmd-check-ci-ps1）"><a href="#为什么进行部署的脚本要分别写在两个文件（deploy-cmd-check-ci-ps1）" class="headerlink" title="为什么进行部署的脚本要分别写在两个文件（deploy.cmd , check-ci.ps1）"></a>为什么进行部署的脚本要分别写在两个文件（deploy.cmd , check-ci.ps1）</h2><p>如果将Powershell和cmd写在一个文件里会导致bath文件的（）块解析冲突。而且分开写更方便维护</p>
-]]></content>
-      <categories>
-        <category>学习</category>
-      </categories>
-      <tags>
-        <tag>hexo</tag>
-        <tag>css</tag>
-        <tag>python</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>常用指令</title>
     <url>/azur_blog/2026/08/11/%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4/</url>
     <content><![CDATA[<h1 id="hexo"><a href="#hexo" class="headerlink" title="hexo"></a>hexo</h1><h2 id="创建文章"><a href="#创建文章" class="headerlink" title="创建文章"></a>创建文章</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo new <span class="string">&quot;标题&quot;</span></span><br></pre></td></tr></table></figure>
@@ -59,23 +28,6 @@
         <tag>hexo</tag>
         <tag>windows</tag>
         <tag>deepseek</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>css常见调参函数</title>
-    <url>/azur_blog/2026/08/14/%E5%8D%9A%E5%AE%A2%E5%88%B6%E4%BD%9C%E7%9B%B8%E5%85%B3/css%E5%B8%B8%E8%A7%81%E8%B0%83%E5%8F%82%E5%87%BD%E6%95%B0/</url>
-    <content><![CDATA[<h2 id="reba-红绿蓝透明度"><a href="#reba-红绿蓝透明度" class="headerlink" title="reba &#x2F; 红绿蓝透明度"></a>reba &#x2F; 红绿蓝透明度</h2><p>用法：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">reba(红色，绿色，蓝色，不透明度)</span><br></pre></td></tr></table></figure>
-<p>前三者都是0 ~ 255 ，数越大越接近白色。不透明度是越低越透明。</p>
-<h2 id="backdrop-filter-对元素背后的区域采用滤镜效果"><a href="#backdrop-filter-对元素背后的区域采用滤镜效果" class="headerlink" title="backdrop-filter &#x2F; 对元素背后的区域采用滤镜效果"></a>backdrop-filter &#x2F; 对元素背后的区域采用滤镜效果</h2><p>用法:</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">backdrop-filter: blur(12px)</span><br></pre></td></tr></table></figure>
-<p>模糊半径（xxpx）越大内容越糊</p>
-]]></content>
-      <categories>
-        <category>学习</category>
-      </categories>
-      <tags>
-        <tag>css</tag>
       </tags>
   </entry>
   <entry>
@@ -153,10 +105,41 @@
         <category>学习</category>
       </categories>
       <tags>
-        <tag>python</tag>
         <tag>数据结构</tag>
+        <tag>python</tag>
         <tag>字典</tag>
         <tag>堆</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>学习遇到的问题及解答</title>
+    <url>/azur_blog/2026/08/11/%E5%AD%A6%E4%B9%A0%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98%E5%8F%8A%E8%A7%A3%E7%AD%94/</url>
+    <content><![CDATA[<h1 id="hexo"><a href="#hexo" class="headerlink" title="hexo"></a>hexo</h1><p><strong>Q: tags和categories有什么区别</strong><br><br>A:tags表示关键词和特征，categories表示大方向和目录。tags不需要事先定义，但是categoties需要事先定义</p>
+<p><strong>Q:有时会出现tags: 或者其它类似物下一行明明是空行却报错，该怎么办</strong><br><br>A:记得：之后要空格</p>
+<h2 id="为什么博客不增加背景音乐"><a href="#为什么博客不增加背景音乐" class="headerlink" title="为什么博客不增加背景音乐"></a>为什么博客不增加背景音乐</h2><p>hexo是静态站点，每次点击链接都是完整刷新页面，体验会不好。</p>
+<h2 id="如果写的文章没有用到md的话怎么隐去目录"><a href="#如果写的文章没有用到md的话怎么隐去目录" class="headerlink" title="如果写的文章没有用到md的话怎么隐去目录"></a>如果写的文章没有用到md的话怎么隐去目录</h2><p>在文章 front mater里加上 </p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">toc: false</span><br></pre></td></tr></table></figure>
+
+<h2 id="怎么将文章置顶"><a href="#怎么将文章置顶" class="headerlink" title="怎么将文章置顶"></a>怎么将文章置顶</h2><p>在文章front matter 加入 sticky: 1</p>
+<h2 id="hexo的构建速度有点慢怎么办"><a href="#hexo的构建速度有点慢怎么办" class="headerlink" title="hexo的构建速度有点慢怎么办"></a>hexo的构建速度有点慢怎么办</h2><p>将 hexo g 改成 hexo g -c 4  (4可替换成支持的线程数)<br>hexo默认使用单线程。在hexo 5.0 之后引入了多线程。</p>
+<h1 id="css"><a href="#css" class="headerlink" title="css"></a>css</h1><p><strong>Q: forwards和infinite有什么区别</strong><br><br>A:前者会使动画停在最后一帧，后者会使动画无限播放<br>对比：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">/* 只播放一次，结束后停在最后一帧 */</span><br><span class="line">animation-name: welcome-reveal;</span><br><span class="line">animation-duration: 6s;</span><br><span class="line">animation-timing-function: ease-in-out;</span><br><span class="line">animation-fill-mode: forwards;</span><br><span class="line"></span><br><span class="line">/* 无限循环播放 */</span><br><span class="line">animation-name: welcome-reveal;</span><br><span class="line">animation-duration: 6s;</span><br><span class="line">animation-timing-function: ease-in-out;</span><br><span class="line">animation-iteration-count: infinite;</span><br></pre></td></tr></table></figure>
+
+<h1 id="github"><a href="#github" class="headerlink" title="github"></a>github</h1><h2 id="直接构建部署和先覆盖github源码再部署有区别吗"><a href="#直接构建部署和先覆盖github源码再部署有区别吗" class="headerlink" title="直接构建部署和先覆盖github源码再部署有区别吗"></a>直接构建部署和先覆盖github源码再部署有区别吗</h2><p>后者可以确保github上clone下来的源码包含这次修改，因为将源码备份到了main分支</p>
+<h2 id="什么是-CI-CD"><a href="#什么是-CI-CD" class="headerlink" title="什么是 CI&#x2F;CD"></a>什么是 CI&#x2F;CD</h2><p>这是软件开发里的一套自动化流程，全称是 持续集成&#x2F;持续部署<br>如果在 github 中设置了 CI&#x2F;CD 只需要提交即可，github会帮忙完成部署 </p>
+<h2 id="图片太多导致推送github被拒绝怎么办"><a href="#图片太多导致推送github被拒绝怎么办" class="headerlink" title="图片太多导致推送github被拒绝怎么办"></a>图片太多导致推送github被拒绝怎么办</h2><p>只上传代码即可</p>
+<h1 id="python"><a href="#python" class="headerlink" title="python"></a>python</h1><p><strong>Q: “ “和’ ‘有什么区别吗</strong><br><br>A:完全没有区别</p>
+<p><strong>Q: &gt;&gt;&gt; 是什么意思，可以被编译器读取吗</strong><br><br>A:是py交互式解释器（REPL）显示给用户看的。不能被编译器读取，这不是有效语法。</p>
+<h1 id="计算机网络"><a href="#计算机网络" class="headerlink" title="计算机网络"></a>计算机网络</h1><p><strong>Q:互联网和互连网是更大的计算机网络吗</strong><br><br>A:这个说法不严谨。因为互连网有时候要比计算机网络小，如一个庞大的城域网规模要远超一个家庭网络。可以这么理解，互连网是计网组合后的通用结果，互联网是计网组合后的特定结果。</p>
+<h1 id="终端"><a href="#终端" class="headerlink" title="终端"></a>终端</h1><h2 id="为什么进行部署的脚本要分别写在两个文件（deploy-cmd-check-ci-ps1）"><a href="#为什么进行部署的脚本要分别写在两个文件（deploy-cmd-check-ci-ps1）" class="headerlink" title="为什么进行部署的脚本要分别写在两个文件（deploy.cmd , check-ci.ps1）"></a>为什么进行部署的脚本要分别写在两个文件（deploy.cmd , check-ci.ps1）</h2><p>如果将Powershell和cmd写在一个文件里会导致bath文件的（）块解析冲突。而且分开写更方便维护</p>
+]]></content>
+      <categories>
+        <category>学习</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+        <tag>python</tag>
+        <tag>css</tag>
       </tags>
   </entry>
   <entry>
@@ -193,6 +176,23 @@
       </tags>
   </entry>
   <entry>
+    <title>css常见调参函数</title>
+    <url>/azur_blog/2026/08/14/%E5%8D%9A%E5%AE%A2%E5%88%B6%E4%BD%9C%E7%9B%B8%E5%85%B3/css%E5%B8%B8%E8%A7%81%E8%B0%83%E5%8F%82%E5%87%BD%E6%95%B0/</url>
+    <content><![CDATA[<h2 id="reba-红绿蓝透明度"><a href="#reba-红绿蓝透明度" class="headerlink" title="reba &#x2F; 红绿蓝透明度"></a>reba &#x2F; 红绿蓝透明度</h2><p>用法：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">reba(红色，绿色，蓝色，不透明度)</span><br></pre></td></tr></table></figure>
+<p>前三者都是0 ~ 255 ，数越大越接近白色。不透明度是越低越透明。</p>
+<h2 id="backdrop-filter-对元素背后的区域采用滤镜效果"><a href="#backdrop-filter-对元素背后的区域采用滤镜效果" class="headerlink" title="backdrop-filter &#x2F; 对元素背后的区域采用滤镜效果"></a>backdrop-filter &#x2F; 对元素背后的区域采用滤镜效果</h2><p>用法:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">backdrop-filter: blur(12px)</span><br></pre></td></tr></table></figure>
+<p>模糊半径（xxpx）越大内容越糊</p>
+]]></content>
+      <categories>
+        <category>学习</category>
+      </categories>
+      <tags>
+        <tag>css</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>博客制作注意事项</title>
     <url>/azur_blog/2026/08/11/%E5%8D%9A%E5%AE%A2%E5%88%B6%E4%BD%9C%E7%9B%B8%E5%85%B3/%E5%8D%9A%E5%AE%A2%E5%88%B6%E4%BD%9C%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/</url>
     <content><![CDATA[<h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>今天尝试搭建好了博客的环境，并制作了一个大概的样子。在开发过程中遇到了如下两个问题：</p>
@@ -219,60 +219,104 @@
 ]]></content>
   </entry>
   <entry>
-    <title>借助开源项目petra制作桌面l2d小人的教程</title>
-    <url>/azur_blog/2026/09/02/%E6%95%99%E7%A8%8B/%E5%80%9F%E5%8A%A9%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AEpetra%E5%88%B6%E4%BD%9Cl2d%E5%B0%8F%E4%BA%BA%E7%9A%84%E6%95%99%E7%A8%8B/</url>
-    <content><![CDATA[<p>本教程借助github上的开源项目petra来实现，下载地址为</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">https://github.com/Wumiu/Petra/releases</span><br></pre></td></tr></table></figure>
-
-<h1 id="制作PSD"><a href="#制作PSD" class="headerlink" title="制作PSD"></a>制作PSD</h1><p>PSD可以理解为将一张立绘按部件（头发、眼睛、身体等）拆分成独立图层的分层文件。</p>
-<p>推荐使用：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">https://huggingface.co/spaces/24yearsold/see-through-demo </span><br></pre></td></tr></table></figure>
-
-<p>每天可以免费使用一次</p>
-<p>如果从手机下载传到电脑上可能名称会变成一串数字，建议重新命名为一个后缀是psd的文件</p>
-<h1 id="调整"><a href="#调整" class="headerlink" title="调整"></a>调整</h1><p>建议使用：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">https://www.photopea.com/</span><br></pre></td></tr></table></figure>
-<p>由于一些原因，生成的psd的图层有时候会顺序混乱，例如不显示眼睛，或者帽子被拆成了两部分。这时候需要通过修图软件修改一下图层。</p>
-<p>需要检查一下各图层的命名是否符合petra的文档要求的规范，否则在下一步可能会出现显示异常的问题</p>
-<h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><p>在点开petra之后于模型设置部分导入修改好的psd即可</p>
+    <title>动手学差分隐私第三章笔记</title>
+    <url>/azur_blog/2026/09/08/%E5%B7%AE%E5%88%86%E9%9A%90%E7%A7%81/%E5%8A%A8%E6%89%8B%E5%AD%A6%E5%B7%AE%E5%88%86%E9%9A%90%E7%A7%81%E7%AC%AC%E4%B8%89%E7%AB%A0%E7%AC%94%E8%AE%B0/</url>
+    <content><![CDATA[<h1 id="第三章：去标识化（De-identification）笔记"><a href="#第三章：去标识化（De-identification）笔记" class="headerlink" title="第三章：去标识化（De-identification）笔记"></a>第三章：去标识化（De-identification）笔记</h1><h2 id="3-1-预备知识"><a href="#3-1-预备知识" class="headerlink" title="3.1 预备知识"></a>3.1 预备知识</h2><ul>
+<li><strong>数据集</strong>：<code>adult_with_pii.csv</code>，包含人口普查数据，其中 <strong>PII（个人可识别信息）</strong> 是虚构的。</li>
+<li><strong>主要列</strong>：姓名、出生日期（DOB）、社保号（SSN）、邮编（Zip）、工作类别等。</li>
+</ul>
+<hr>
+<h2 id="3-2-去标识化（De-identification）"><a href="#3-2-去标识化（De-identification）" class="headerlink" title="3.2 去标识化（De-identification）"></a>3.2 去标识化（De-identification）</h2><ul>
+<li><strong>定义</strong>：移除数据集中的标识信息（如姓名、SSN 等）的过程，也称匿名化或假名化。</li>
+<li><strong>关键点</strong>：标识信息没有严格的形式化定义，因为<strong>所有信息都可能成为标识信息</strong>（取决于背景知识）。</li>
+<li><strong>常用做法</strong>：直接删除明显标识列（如姓名列和社保号列），例如使用数据框的删除列操作生成新的去标识化数据集。</li>
+</ul>
+<hr>
+<h2 id="3-3-关联攻击（Linkage-Attacks）"><a href="#3-3-关联攻击（Linkage-Attacks）" class="headerlink" title="3.3 关联攻击（Linkage Attacks）"></a>3.3 关联攻击（Linkage Attacks）</h2><p><strong>定义</strong>：攻击者利用辅助信息（auxiliary information）与去标识化数据集中的剩余属性进行连接（join），从而重新识别个体。</p>
+<h3 id="3-3-1-攻击演示"><a href="#3-3-1-攻击演示" class="headerlink" title="3.3.1 攻击演示"></a>3.3.1 攻击演示</h3><ul>
+<li><strong>目标</strong>：找到朋友 Karrie Trusslove 的收入。</li>
+<li><strong>已知辅助信息</strong>：出生日期 + 邮编。</li>
+<li>在去标识化数据中匹配这两个字段，若匹配唯一，则成功重新识别并推断敏感属性（如收入）。具体操作是将已知的单条记录与去标识化数据集按照出生日期和邮编两列进行合并，若结果唯一，即可定位目标个体。</li>
+</ul>
+<h3 id="3-3-2-重新识别的难易程度"><a href="#3-3-2-重新识别的难易程度" class="headerlink" title="3.3.2 重新识别的难易程度"></a>3.3.2 重新识别的难易程度</h3><ul>
+<li><strong>邮编</strong>：在数据集中非常唯一（大部分邮编只出现一次）→ 仅凭邮编即可唯一识别很多人。</li>
+<li><strong>出生日期</strong>：分布较分散，多数日期出现 1~3 次，但也有不少唯一值。</li>
+<li><strong>组合（邮编 + 出生日期）</strong>：几乎能唯一识别整个数据集（实验中仅 2 人重复）。</li>
+<li>引用 <strong>Latanya Sweeney</strong> 的研究：87% 的美国人口可通过“性别 + 出生日期 + 邮编”唯一识别。</li>
+</ul>
+<h3 id="3-3-3-能重新识别多少人？"><a href="#3-3-3-能重新识别多少人？" class="headerlink" title="3.3.3 能重新识别多少人？"></a>3.3.3 能重新识别多少人？</h3><ul>
+<li>仅用出生日期：约 7000 人可唯一识别，另有 10000 人缩小到 2 个候选。</li>
+<li>用出生日期 + 邮编：基本实现全员唯一识别。</li>
+</ul>
+<hr>
+<h2 id="3-4-聚合（Aggregation）"><a href="#3-4-聚合（Aggregation）" class="headerlink" title="3.4 聚合（Aggregation）"></a>3.4 聚合（Aggregation）</h2><p><strong>定义</strong>：只发布汇总统计量（如平均值、总和），而非个体记录。</p>
+<p>例如，计算所有记录年龄的平均值。</p>
+<h3 id="3-4-1-小群体问题（Problem-of-Small-Groups）"><a href="#3-4-1-小群体问题（Problem-of-Small-Groups）" class="headerlink" title="3.4.1 小群体问题（Problem of Small Groups）"></a>3.4.1 小群体问题（Problem of Small Groups）</h3><ul>
+<li>若分组过细（如按邮编分组），有些组只有 1 人，则平均值直接泄露该人的年龄。</li>
+<li>在数据集中，很多邮编唯一，导致按邮编求平均年龄实际上暴露了个体年龄。</li>
+<li>美国人口普查局发布的区块级数据中，有些区块人口为零，存在同样问题。</li>
+<li><strong>关键困难</strong>：多大群体才“足够大”？没有明确标准，因为攻击者总能利用小群体。</li>
+</ul>
+<h3 id="3-4-2-差分攻击（Differencing-Attacks）"><a href="#3-4-2-差分攻击（Differencing-Attacks）" class="headerlink" title="3.4.2 差分攻击（Differencing Attacks）"></a>3.4.2 差分攻击（Differencing Attacks）</h3><p>即使是大群体，若发布多个聚合结果，攻击者可通过求差提取个体信息。</p>
+<p><strong>示例</strong>：</p>
+<ul>
+<li>查询1：所有人年龄总和为某个数值。</li>
+<li>查询2：除 Karrie 外所有人年龄总和为另一个数值。</li>
+<li>两者相减，差值即为 Karrie 的精确年龄。</li>
+</ul>
+<p>这种攻击不依赖于群体大小，只要两个查询只差一条记录即可。</p>
+<h3 id="3-4-3-关于恶意查询（On-Malicious-Queries）"><a href="#3-4-3-关于恶意查询（On-Malicious-Queries）" class="headerlink" title="3.4.3 关于恶意查询（On Malicious Queries）"></a>3.4.3 关于恶意查询（On Malicious Queries）</h3><ul>
+<li>无法区分恶意与非恶意查询：攻击者可以利用一系列看似正常的查询组合来提取隐私。</li>
+<li>系统无法从查询语法判断意图，即使预批准查询也无法防止链式推理。</li>
+<li><strong>差分隐私的设计原则</strong>：不尝试识别恶意查询，而是通过控制输出分布来统一保护隐私，无论查询是否恶意。</li>
+</ul>
+<hr>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ul>
+<li><strong>链接攻击</strong>：利用辅助信息与去标识化数据进行连接，可高效重新识别个体。</li>
+<li><strong>去标识化</strong>：移除明显标识符并不足以保证安全，因为剩余属性（如邮编、出生日期）具有高度识别力。</li>
+<li><strong>聚合统计</strong>：看似安全，但小群体和差分攻击可轻松泄露个体信息。</li>
+<li><strong>核心教训</strong>：传统方法（去标识化、聚合）无法提供可靠隐私保护，因为它们依赖对攻击者背景知识和查询意图的不现实假设。</li>
+</ul>
+<hr>
+<h2 id="词汇表（Glossary）"><a href="#词汇表（Glossary）" class="headerlink" title="词汇表（Glossary）"></a>词汇表（Glossary）</h2><table>
+<thead>
+<tr>
+<th>术语</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Join（SQL）</td>
+<td>表连接操作</td>
+</tr>
+<tr>
+<td>Group by</td>
+<td>分组聚合</td>
+</tr>
+<tr>
+<td>Census block</td>
+<td>人口普查区块</td>
+</tr>
+<tr>
+<td>pandas 的 merge 函数</td>
+<td>执行 SQL 风格的连接</td>
+</tr>
+<tr>
+<td>pandas 的 groupby 方法</td>
+<td>分组操作</td>
+</tr>
+<tr>
+<td>pandas 的 read_csv 函数</td>
+<td>读取 CSV 文件</td>
+</tr>
+</tbody></table>
 ]]></content>
       <categories>
         <category>学习</category>
       </categories>
       <tags>
-        <tag>l2d</tag>
-        <tag>教程，桌宠</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>黄金，纳指，标普，债基同时下跌的原因汇总</title>
-    <url>/azur_blog/2026/08/26/%E6%8A%95%E8%B5%84/%E9%BB%84%E9%87%91%EF%BC%8C%E7%BA%B3%E6%8C%87%EF%BC%8C%E6%A0%87%E6%99%AE%EF%BC%8C%E5%80%BA%E5%9F%BA%E5%90%8C%E6%97%B6%E4%B8%8B%E8%B7%8C%E7%9A%84%E5%8E%9F%E5%9B%A0%E6%B1%87%E6%80%BB/</url>
-    <content><![CDATA[<p>本问用于记录自 2026.8.25 起每次四者同时下跌的时间和原因。购买的基金分别为广发纳斯达克100,摩根标普500，华安纳斯达克100，易方达黄金etf连接A,易方达增强回报债券A。</p>
-<h1 id="2026-8-26"><a href="#2026-8-26" class="headerlink" title="2026&#x2F;8&#x2F;26"></a>2026&#x2F;8&#x2F;26</h1><h2 id="纳指，标普"><a href="#纳指，标普" class="headerlink" title="纳指，标普"></a>纳指，标普</h2><ul>
-<li><p>芯片股集体暴跌</p>
-</li>
-<li><p>英伟达财报前担忧，市场担忧ai资本支出可持续性</p>
-</li>
-<li><p>美国和其他国家冲突加剧，包括和加拿大，伊朗</p>
-</li>
-</ul>
-<h2 id="黄金"><a href="#黄金" class="headerlink" title="黄金"></a>黄金</h2><ul>
-<li>技术性回调（资产短期内涨的太快导致大量获利盘涌出，价格出现回落）</li>
-</ul>
-<h2 id="债基"><a href="#债基" class="headerlink" title="债基"></a>债基</h2><ul>
-<li>流动性预期边际收紧</li>
-</ul>
-]]></content>
-      <categories>
-        <category>学习</category>
-      </categories>
-      <tags>
-        <tag>纳斯达克</tag>
-        <tag>标普</tag>
-        <tag>黄金</tag>
-        <tag>债基</tag>
-        <tag>基金</tag>
-        <tag>投资</tag>
+        <tag>差分隐私</tag>
+        <tag>笔记</tag>
       </tags>
   </entry>
   <entry>
@@ -393,10 +437,67 @@
         <category>学习</category>
       </categories>
       <tags>
+        <tag>算法</tag>
+        <tag>投资</tag>
         <tag>纳斯达克</tag>
         <tag>标普</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>黄金，纳指，标普，债基同时下跌的原因汇总</title>
+    <url>/azur_blog/2026/08/26/%E6%8A%95%E8%B5%84/%E9%BB%84%E9%87%91%EF%BC%8C%E7%BA%B3%E6%8C%87%EF%BC%8C%E6%A0%87%E6%99%AE%EF%BC%8C%E5%80%BA%E5%9F%BA%E5%90%8C%E6%97%B6%E4%B8%8B%E8%B7%8C%E7%9A%84%E5%8E%9F%E5%9B%A0%E6%B1%87%E6%80%BB/</url>
+    <content><![CDATA[<p>本问用于记录自 2026.8.25 起每次四者同时下跌的时间和原因。购买的基金分别为广发纳斯达克100,摩根标普500，华安纳斯达克100，易方达黄金etf连接A,易方达增强回报债券A。</p>
+<h1 id="2026-8-26"><a href="#2026-8-26" class="headerlink" title="2026&#x2F;8&#x2F;26"></a>2026&#x2F;8&#x2F;26</h1><h2 id="纳指，标普"><a href="#纳指，标普" class="headerlink" title="纳指，标普"></a>纳指，标普</h2><ul>
+<li><p>芯片股集体暴跌</p>
+</li>
+<li><p>英伟达财报前担忧，市场担忧ai资本支出可持续性</p>
+</li>
+<li><p>美国和其他国家冲突加剧，包括和加拿大，伊朗</p>
+</li>
+</ul>
+<h2 id="黄金"><a href="#黄金" class="headerlink" title="黄金"></a>黄金</h2><ul>
+<li>技术性回调（资产短期内涨的太快导致大量获利盘涌出，价格出现回落）</li>
+</ul>
+<h2 id="债基"><a href="#债基" class="headerlink" title="债基"></a>债基</h2><ul>
+<li>流动性预期边际收紧</li>
+</ul>
+]]></content>
+      <categories>
+        <category>学习</category>
+      </categories>
+      <tags>
         <tag>投资</tag>
-        <tag>算法</tag>
+        <tag>纳斯达克</tag>
+        <tag>标普</tag>
+        <tag>黄金</tag>
+        <tag>债基</tag>
+        <tag>基金</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>借助开源项目petra制作桌面l2d小人的教程</title>
+    <url>/azur_blog/2026/09/02/%E6%95%99%E7%A8%8B/%E5%80%9F%E5%8A%A9%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AEpetra%E5%88%B6%E4%BD%9Cl2d%E5%B0%8F%E4%BA%BA%E7%9A%84%E6%95%99%E7%A8%8B/</url>
+    <content><![CDATA[<p>本教程借助github上的开源项目petra来实现，下载地址为</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">https://github.com/Wumiu/Petra/releases</span><br></pre></td></tr></table></figure>
+
+<h1 id="制作PSD"><a href="#制作PSD" class="headerlink" title="制作PSD"></a>制作PSD</h1><p>PSD可以理解为将一张立绘按部件（头发、眼睛、身体等）拆分成独立图层的分层文件。</p>
+<p>推荐使用：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">https://huggingface.co/spaces/24yearsold/see-through-demo </span><br></pre></td></tr></table></figure>
+
+<p>每天可以免费使用一次</p>
+<p>如果从手机下载传到电脑上可能名称会变成一串数字，建议重新命名为一个后缀是psd的文件</p>
+<h1 id="调整"><a href="#调整" class="headerlink" title="调整"></a>调整</h1><p>建议使用：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">https://www.photopea.com/</span><br></pre></td></tr></table></figure>
+<p>由于一些原因，生成的psd的图层有时候会顺序混乱，例如不显示眼睛，或者帽子被拆成了两部分。这时候需要通过修图软件修改一下图层。</p>
+<p>需要检查一下各图层的命名是否符合petra的文档要求的规范，否则在下一步可能会出现显示异常的问题</p>
+<h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><p>在点开petra之后于模型设置部分导入修改好的psd即可</p>
+]]></content>
+      <categories>
+        <category>学习</category>
+      </categories>
+      <tags>
+        <tag>l2d</tag>
+        <tag>教程，桌宠</tag>
       </tags>
   </entry>
   <entry>
@@ -469,100 +570,6 @@
       </categories>
       <tags>
         <tag>企业</tag>
-        <tag>碧蓝航线</tag>
-        <tag>舰娘</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>碧蓝航线同人设定</title>
-    <url>/azur_blog/2026/09/01/%E7%A2%A7%E8%93%9D%E8%88%AA%E7%BA%BF/%E7%A2%A7%E8%93%9D%E8%88%AA%E7%BA%BF%E5%90%8C%E4%BA%BA%E8%AE%BE%E5%AE%9A/</url>
-    <content><![CDATA[<p>本文是对于碧蓝航线世界观的一些补充和修改，用于更好地创作同人文。(其实是单纯感觉官方现在的剧情和设定太乱了，想自己整。单纯为了给碧蓝航线做一个比较合理的世界观)</p>
-<h1 id="《碧蓝航线》同人设定"><a href="#《碧蓝航线》同人设定" class="headerlink" title="《碧蓝航线》同人设定"></a>《碧蓝航线》同人设定</h1><h2 id="核心概念"><a href="#核心概念" class="headerlink" title="核心概念"></a>核心概念</h2><h3 id="心智"><a href="#心智" class="headerlink" title="心智"></a>心智</h3><h4 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h4><p>一种寄宿于历史认知中的概念性物质，可将承载了集体记忆的物体（尤其是军舰）拟人化为具有独立人格的“舰娘”。</p>
-<h4 id="规则"><a href="#规则" class="headerlink" title="规则"></a>规则</h4><ul>
-<li><p>心智与物体的历史烙印强相关：经历的战争越惨烈、被世人铭记越深刻，融合效果越强。二战的军舰因此成为最理想的载体</p>
-</li>
-<li><p>心智融合不可逆，一旦拟人化即永久固定为独立的个体存在</p>
-</li>
-<li><p>心智具有频段特性。舰娘世界与人类世界地理重叠但是心智频段不同，普通人无法感知或进入。</p>
-</li>
-<li><p>舰娘所在的世界是心智映射出的，和人类世界本质上是隔离的两个世界。</p>
-</li>
-<li><p>能够适应心智的人拥有无限的寿命</p>
-</li>
-</ul>
-<h3 id="心智魔方"><a href="#心智魔方" class="headerlink" title="心智魔方"></a>心智魔方</h3><h4 id="定义-1"><a href="#定义-1" class="headerlink" title="定义"></a>定义</h4><p>人类科学家通过研究心智原理制作出的心智载体，可以与将舰船残骸融合，可控地激发舰船拟人化</p>
-<h4 id="规则-1"><a href="#规则-1" class="headerlink" title="规则"></a>规则</h4><ul>
-<li><p>任何舰船都可以被激活</p>
-</li>
-<li><p>融合后的力量和舰船的历史完整性（服役记录、战绩等）正相关</p>
-</li>
-<li><p>心智魔方的制造技术对于人类而言是黑盒的存在</p>
-</li>
-<li><p>虽然人类中断了对心智魔方的研究。但事实证明心智魔方对于舰娘的融合、治疗等都具有很好的效果。在人类于碧蓝航线达成协议之后这项技术被转让给了碧蓝航线。</p>
-</li>
-</ul>
-<h3 id="心智谐振层"><a href="#心智谐振层" class="headerlink" title="心智谐振层"></a>心智谐振层</h3><h4 id="定义-2"><a href="#定义-2" class="headerlink" title="定义"></a>定义</h4><p>心智在三维空间中形成的一种特殊频段层。舰娘世界与人类世界地理重叠，但处于不同的心智频段上，因此互不干涉、互不可见。</p>
-<h4 id="规则-2"><a href="#规则-2" class="headerlink" title="规则"></a>规则</h4><ul>
-<li><p>普通人无法进入舰娘世界，即使进入了也会因为不适应心智和谐振而消散</p>
-</li>
-<li><p>只有指挥官和舰娘可以自由在两个频段之间切换</p>
-</li>
-</ul>
-<h3 id="舰娘"><a href="#舰娘" class="headerlink" title="舰娘"></a>舰娘</h3><h4 id="定义-3"><a href="#定义-3" class="headerlink" title="定义"></a>定义</h4><p>借助心智和军舰映射出的少女，同时具备军舰的力量和人类的身体。</p>
-<h4 id="规则-3"><a href="#规则-3" class="headerlink" title="规则"></a>规则</h4><ul>
-<li><p>舰娘可以随时召唤出舰装进行战斗。外貌和普通人没有差异。</p>
-</li>
-<li><p>在碧蓝航线中，舰娘忠诚于指挥官</p>
-</li>
-<li><p>舰娘在非战斗状态下会像正常人一样生活，也会有看书，画画等爱好</p>
-</li>
-<li><p>舰娘通常具有高于常人的智力，服装和生活习惯于其生前服役的地区有很强关系</p>
-</li>
-</ul>
-<h2 id="历史事件"><a href="#历史事件" class="headerlink" title="历史事件"></a>历史事件</h2><h3 id="二战与心智的觉醒"><a href="#二战与心智的觉醒" class="headerlink" title="二战与心智的觉醒"></a>二战与心智的觉醒</h3><h4 id="核心内容"><a href="#核心内容" class="headerlink" title="核心内容"></a>核心内容</h4><p>第二次世界大战期间，由于海战规模与烈度达到人类历史巅峰，大量军舰的心智在此时期集体觉醒，在“心智谐振层”中形成了最初的舰娘社会雏形</p>
-<h4 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h4><ul>
-<li><p>觉醒并非由人类触发，而是心智对大规模战争记忆的“自然反应”</p>
-</li>
-<li><p>塞壬势力也是在这一时期大量出现</p>
-</li>
-</ul>
-<h3 id="美利坚号事件"><a href="#美利坚号事件" class="headerlink" title="美利坚号事件"></a>美利坚号事件</h3><h4 id="核心内容-1"><a href="#核心内容-1" class="headerlink" title="核心内容"></a>核心内容</h4><p>人类军方首次尝试使用心智魔方融合舰船的实验，但是实验对象美利坚号在融合完成后出现了暴走的情况，在进行几个小时破坏后死亡。</p>
-<h4 id="补充-1"><a href="#补充-1" class="headerlink" title="补充"></a>补充</h4><ul>
-<li><p>这次事件之后人类中断了对于心智的研究</p>
-</li>
-<li><p>失败的原因之一是人类对于心智的利用效果很差，过度放大了历史部分的影响，导致美利坚号极其不稳定</p>
-</li>
-</ul>
-<h3 id="第一次接触"><a href="#第一次接触" class="headerlink" title="第一次接触"></a>第一次接触</h3><h4 id="核心内容-2"><a href="#核心内容-2" class="headerlink" title="核心内容"></a>核心内容</h4><p>在某一场人类舰队对抗塞壬的战斗中，碧蓝航线未来的指挥官（之后简称指挥官）所领导的舰队被塞壬以压倒性优势击败。除了指挥官外的人无一幸存。但是指挥官被突然出现的企业救下，这是人类首次目击舰娘战斗。</p>
-<h4 id="补充-2"><a href="#补充-2" class="headerlink" title="补充"></a>补充</h4><ul>
-<li><p>指挥官之所以能幸存是因为对于心智带来的影响具有很强的适应能力</p>
-</li>
-<li><p>指挥官当时看到了企业的模糊背影，但是企业并没有注意到指挥官</p>
-</li>
-<li><p>因为这次事件，在后续与碧蓝航线合作的时候高层决定让指挥官作为两边沟通桥梁</p>
-</li>
-</ul>
-<h3 id="合作协定的建立"><a href="#合作协定的建立" class="headerlink" title="合作协定的建立"></a>合作协定的建立</h3><h4 id="核心内容-3"><a href="#核心内容-3" class="headerlink" title="核心内容"></a>核心内容</h4><p>人类世界与碧蓝航线之间建立了跨世界合作框架，明确了双方的权利、义务与边界。核心条款包括双方不得互相干涉、指挥官作为唯一的跨世界联络官常驻碧蓝航线，负责协调作战信息与维持通讯、人类定期向碧蓝航线提供物资。</p>
-<h2 id="势力与阵营"><a href="#势力与阵营" class="headerlink" title="势力与阵营"></a>势力与阵营</h2><h3 id="碧蓝航线"><a href="#碧蓝航线" class="headerlink" title="碧蓝航线"></a>碧蓝航线</h3><h4 id="定义-4"><a href="#定义-4" class="headerlink" title="定义"></a>定义</h4><p>由二战时期觉醒的军舰心智自发组建的组织，以抗击塞壬、维护心智谐振层稳定为宗旨</p>
-<h4 id="补充-3"><a href="#补充-3" class="headerlink" title="补充"></a>补充</h4><ul>
-<li><p>碧蓝航线的内部组织与人类的海军阵营划分基本一致，按历史归属分为白鹰、皇家、重樱、铁血等主要阵营。各阵营日常相对独立。</p>
-</li>
-<li><p>舰娘世界存在除了碧蓝航线组织以外的舰娘和阵营，但是规模都远小于碧蓝航线。</p>
-</li>
-</ul>
-<h3 id="塞壬"><a href="#塞壬" class="headerlink" title="塞壬"></a>塞壬</h3><h4 id="定义-5"><a href="#定义-5" class="headerlink" title="定义"></a>定义</h4><p>心智的“自然排异反应”产物。海洋吞噬过无数未经记载的古老船只与生命，那些混沌的、无名的残留意念在心智影响下聚合，形成了敌视一切有序文明的存在</p>
-<h4 id="补充-4"><a href="#补充-4" class="headerlink" title="补充"></a>补充</h4><ul>
-<li>塞壬并不是一个铁板一块的阵营，内部也存在分歧</li>
-</ul>
-<h2 id="一些问题和解答"><a href="#一些问题和解答" class="headerlink" title="一些问题和解答"></a>一些问题和解答</h2><h3 id="舰娘对于人类有敌意吗"><a href="#舰娘对于人类有敌意吗" class="headerlink" title="舰娘对于人类有敌意吗"></a>舰娘对于人类有敌意吗</h3><p>虽然出现了美利坚号事件那样的事，但是大多数舰娘对于人类其实是处于不关心的态度。有点像歌者文明对于人类文明的态度。她们视人类为一种需要被保护但不介入其内部事务的邻近物种——就像人类会保护濒危动物，但不会试图和它们讨论哲学。</p>
-<h3 id="舰娘的战斗能力如何"><a href="#舰娘的战斗能力如何" class="headerlink" title="舰娘的战斗能力如何"></a>舰娘的战斗能力如何</h3><p>经过心智融合之后的舰娘战斗力远非简单的军舰加上人的力量。仅凭企业一人就可以摧毁人类的所有军事设施，给人类文明去军事化。</p>
-<h3 id="为什么在碧蓝航线中，舰娘忠诚于指挥官"><a href="#为什么在碧蓝航线中，舰娘忠诚于指挥官" class="headerlink" title="为什么在碧蓝航线中，舰娘忠诚于指挥官"></a>为什么在碧蓝航线中，舰娘忠诚于指挥官</h3><p>有两个原因。一方面是指挥官具有很出色的领导能力，能够协调好碧蓝航线内部的事务。另一方面指挥官和企业走的很近，企业在舰娘当中很有威望。</p>
-<h3 id="为什么舰娘那么强却没有想着灭掉人类"><a href="#为什么舰娘那么强却没有想着灭掉人类" class="headerlink" title="为什么舰娘那么强却没有想着灭掉人类"></a>为什么舰娘那么强却没有想着灭掉人类</h3><p>因为舰娘的意志本质上是来自于人类，因此不管是处于什么角度都不可能这么做。</p>
-]]></content>
-      <categories>
-        <category>热爱</category>
-      </categories>
-      <tags>
         <tag>碧蓝航线</tag>
         <tag>舰娘</tag>
       </tags>
@@ -727,104 +734,97 @@
       </tags>
   </entry>
   <entry>
-    <title>动手学差分隐私第三章笔记</title>
-    <url>/azur_blog/2026/09/08/%E5%B7%AE%E5%88%86%E9%9A%90%E7%A7%81/%E5%8A%A8%E6%89%8B%E5%AD%A6%E5%B7%AE%E5%88%86%E9%9A%90%E7%A7%81%E7%AC%AC%E4%B8%89%E7%AB%A0%E7%AC%94%E8%AE%B0/</url>
-    <content><![CDATA[<h1 id="第三章：去标识化（De-identification）笔记"><a href="#第三章：去标识化（De-identification）笔记" class="headerlink" title="第三章：去标识化（De-identification）笔记"></a>第三章：去标识化（De-identification）笔记</h1><h2 id="3-1-预备知识"><a href="#3-1-预备知识" class="headerlink" title="3.1 预备知识"></a>3.1 预备知识</h2><ul>
-<li><strong>数据集</strong>：<code>adult_with_pii.csv</code>，包含人口普查数据，其中 <strong>PII（个人可识别信息）</strong> 是虚构的。</li>
-<li><strong>主要列</strong>：姓名、出生日期（DOB）、社保号（SSN）、邮编（Zip）、工作类别等。</li>
+    <title>碧蓝航线同人设定</title>
+    <url>/azur_blog/2026/09/01/%E7%A2%A7%E8%93%9D%E8%88%AA%E7%BA%BF/%E7%A2%A7%E8%93%9D%E8%88%AA%E7%BA%BF%E5%90%8C%E4%BA%BA%E8%AE%BE%E5%AE%9A/</url>
+    <content><![CDATA[<p>本文是对于碧蓝航线世界观的一些补充和修改，用于更好地创作同人文。(其实是单纯感觉官方现在的剧情和设定太乱了，想自己整。单纯为了给碧蓝航线做一个比较合理的世界观)</p>
+<h1 id="《碧蓝航线》同人设定"><a href="#《碧蓝航线》同人设定" class="headerlink" title="《碧蓝航线》同人设定"></a>《碧蓝航线》同人设定</h1><h2 id="核心概念"><a href="#核心概念" class="headerlink" title="核心概念"></a>核心概念</h2><h3 id="心智"><a href="#心智" class="headerlink" title="心智"></a>心智</h3><h4 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h4><p>一种寄宿于历史认知中的概念性物质，可将承载了集体记忆的物体（尤其是军舰）拟人化为具有独立人格的“舰娘”。</p>
+<h4 id="规则"><a href="#规则" class="headerlink" title="规则"></a>规则</h4><ul>
+<li><p>心智与物体的历史烙印强相关：经历的战争越惨烈、被世人铭记越深刻，融合效果越强。二战的军舰因此成为最理想的载体</p>
+</li>
+<li><p>心智融合不可逆，一旦拟人化即永久固定为独立的个体存在</p>
+</li>
+<li><p>心智具有频段特性。舰娘世界与人类世界地理重叠但是心智频段不同，普通人无法感知或进入。</p>
+</li>
+<li><p>舰娘所在的世界是心智映射出的，和人类世界本质上是隔离的两个世界。</p>
+</li>
+<li><p>能够适应心智的人拥有无限的寿命</p>
+</li>
 </ul>
-<hr>
-<h2 id="3-2-去标识化（De-identification）"><a href="#3-2-去标识化（De-identification）" class="headerlink" title="3.2 去标识化（De-identification）"></a>3.2 去标识化（De-identification）</h2><ul>
-<li><strong>定义</strong>：移除数据集中的标识信息（如姓名、SSN 等）的过程，也称匿名化或假名化。</li>
-<li><strong>关键点</strong>：标识信息没有严格的形式化定义，因为<strong>所有信息都可能成为标识信息</strong>（取决于背景知识）。</li>
-<li><strong>常用做法</strong>：直接删除明显标识列（如姓名列和社保号列），例如使用数据框的删除列操作生成新的去标识化数据集。</li>
+<h3 id="心智魔方"><a href="#心智魔方" class="headerlink" title="心智魔方"></a>心智魔方</h3><h4 id="定义-1"><a href="#定义-1" class="headerlink" title="定义"></a>定义</h4><p>人类科学家通过研究心智原理制作出的心智载体，可以与将舰船残骸融合，可控地激发舰船拟人化</p>
+<h4 id="规则-1"><a href="#规则-1" class="headerlink" title="规则"></a>规则</h4><ul>
+<li><p>任何舰船都可以被激活</p>
+</li>
+<li><p>融合后的力量和舰船的历史完整性（服役记录、战绩等）正相关</p>
+</li>
+<li><p>心智魔方的制造技术对于人类而言是黑盒的存在</p>
+</li>
+<li><p>虽然人类中断了对心智魔方的研究。但事实证明心智魔方对于舰娘的融合、治疗等都具有很好的效果。在人类于碧蓝航线达成协议之后这项技术被转让给了碧蓝航线。</p>
+</li>
 </ul>
-<hr>
-<h2 id="3-3-关联攻击（Linkage-Attacks）"><a href="#3-3-关联攻击（Linkage-Attacks）" class="headerlink" title="3.3 关联攻击（Linkage Attacks）"></a>3.3 关联攻击（Linkage Attacks）</h2><p><strong>定义</strong>：攻击者利用辅助信息（auxiliary information）与去标识化数据集中的剩余属性进行连接（join），从而重新识别个体。</p>
-<h3 id="3-3-1-攻击演示"><a href="#3-3-1-攻击演示" class="headerlink" title="3.3.1 攻击演示"></a>3.3.1 攻击演示</h3><ul>
-<li><strong>目标</strong>：找到朋友 Karrie Trusslove 的收入。</li>
-<li><strong>已知辅助信息</strong>：出生日期 + 邮编。</li>
-<li>在去标识化数据中匹配这两个字段，若匹配唯一，则成功重新识别并推断敏感属性（如收入）。具体操作是将已知的单条记录与去标识化数据集按照出生日期和邮编两列进行合并，若结果唯一，即可定位目标个体。</li>
+<h3 id="心智谐振层"><a href="#心智谐振层" class="headerlink" title="心智谐振层"></a>心智谐振层</h3><h4 id="定义-2"><a href="#定义-2" class="headerlink" title="定义"></a>定义</h4><p>心智在三维空间中形成的一种特殊频段层。舰娘世界与人类世界地理重叠，但处于不同的心智频段上，因此互不干涉、互不可见。</p>
+<h4 id="规则-2"><a href="#规则-2" class="headerlink" title="规则"></a>规则</h4><ul>
+<li><p>普通人无法进入舰娘世界，即使进入了也会因为不适应心智和谐振而消散</p>
+</li>
+<li><p>只有指挥官和舰娘可以自由在两个频段之间切换</p>
+</li>
 </ul>
-<h3 id="3-3-2-重新识别的难易程度"><a href="#3-3-2-重新识别的难易程度" class="headerlink" title="3.3.2 重新识别的难易程度"></a>3.3.2 重新识别的难易程度</h3><ul>
-<li><strong>邮编</strong>：在数据集中非常唯一（大部分邮编只出现一次）→ 仅凭邮编即可唯一识别很多人。</li>
-<li><strong>出生日期</strong>：分布较分散，多数日期出现 1~3 次，但也有不少唯一值。</li>
-<li><strong>组合（邮编 + 出生日期）</strong>：几乎能唯一识别整个数据集（实验中仅 2 人重复）。</li>
-<li>引用 <strong>Latanya Sweeney</strong> 的研究：87% 的美国人口可通过“性别 + 出生日期 + 邮编”唯一识别。</li>
+<h3 id="舰娘"><a href="#舰娘" class="headerlink" title="舰娘"></a>舰娘</h3><h4 id="定义-3"><a href="#定义-3" class="headerlink" title="定义"></a>定义</h4><p>借助心智和军舰映射出的少女，同时具备军舰的力量和人类的身体。</p>
+<h4 id="规则-3"><a href="#规则-3" class="headerlink" title="规则"></a>规则</h4><ul>
+<li><p>舰娘可以随时召唤出舰装进行战斗。外貌和普通人没有差异。</p>
+</li>
+<li><p>在碧蓝航线中，舰娘忠诚于指挥官</p>
+</li>
+<li><p>舰娘在非战斗状态下会像正常人一样生活，也会有看书，画画等爱好</p>
+</li>
+<li><p>舰娘通常具有高于常人的智力，服装和生活习惯于其生前服役的地区有很强关系</p>
+</li>
 </ul>
-<h3 id="3-3-3-能重新识别多少人？"><a href="#3-3-3-能重新识别多少人？" class="headerlink" title="3.3.3 能重新识别多少人？"></a>3.3.3 能重新识别多少人？</h3><ul>
-<li>仅用出生日期：约 7000 人可唯一识别，另有 10000 人缩小到 2 个候选。</li>
-<li>用出生日期 + 邮编：基本实现全员唯一识别。</li>
+<h2 id="历史事件"><a href="#历史事件" class="headerlink" title="历史事件"></a>历史事件</h2><h3 id="二战与心智的觉醒"><a href="#二战与心智的觉醒" class="headerlink" title="二战与心智的觉醒"></a>二战与心智的觉醒</h3><h4 id="核心内容"><a href="#核心内容" class="headerlink" title="核心内容"></a>核心内容</h4><p>第二次世界大战期间，由于海战规模与烈度达到人类历史巅峰，大量军舰的心智在此时期集体觉醒，在“心智谐振层”中形成了最初的舰娘社会雏形</p>
+<h4 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h4><ul>
+<li><p>觉醒并非由人类触发，而是心智对大规模战争记忆的“自然反应”</p>
+</li>
+<li><p>塞壬势力也是在这一时期大量出现</p>
+</li>
 </ul>
-<hr>
-<h2 id="3-4-聚合（Aggregation）"><a href="#3-4-聚合（Aggregation）" class="headerlink" title="3.4 聚合（Aggregation）"></a>3.4 聚合（Aggregation）</h2><p><strong>定义</strong>：只发布汇总统计量（如平均值、总和），而非个体记录。</p>
-<p>例如，计算所有记录年龄的平均值。</p>
-<h3 id="3-4-1-小群体问题（Problem-of-Small-Groups）"><a href="#3-4-1-小群体问题（Problem-of-Small-Groups）" class="headerlink" title="3.4.1 小群体问题（Problem of Small Groups）"></a>3.4.1 小群体问题（Problem of Small Groups）</h3><ul>
-<li>若分组过细（如按邮编分组），有些组只有 1 人，则平均值直接泄露该人的年龄。</li>
-<li>在数据集中，很多邮编唯一，导致按邮编求平均年龄实际上暴露了个体年龄。</li>
-<li>美国人口普查局发布的区块级数据中，有些区块人口为零，存在同样问题。</li>
-<li><strong>关键困难</strong>：多大群体才“足够大”？没有明确标准，因为攻击者总能利用小群体。</li>
+<h3 id="美利坚号事件"><a href="#美利坚号事件" class="headerlink" title="美利坚号事件"></a>美利坚号事件</h3><h4 id="核心内容-1"><a href="#核心内容-1" class="headerlink" title="核心内容"></a>核心内容</h4><p>人类军方首次尝试使用心智魔方融合舰船的实验，但是实验对象美利坚号在融合完成后出现了暴走的情况，在进行几个小时破坏后死亡。</p>
+<h4 id="补充-1"><a href="#补充-1" class="headerlink" title="补充"></a>补充</h4><ul>
+<li><p>这次事件之后人类中断了对于心智的研究</p>
+</li>
+<li><p>失败的原因之一是人类对于心智的利用效果很差，过度放大了历史部分的影响，导致美利坚号极其不稳定</p>
+</li>
 </ul>
-<h3 id="3-4-2-差分攻击（Differencing-Attacks）"><a href="#3-4-2-差分攻击（Differencing-Attacks）" class="headerlink" title="3.4.2 差分攻击（Differencing Attacks）"></a>3.4.2 差分攻击（Differencing Attacks）</h3><p>即使是大群体，若发布多个聚合结果，攻击者可通过求差提取个体信息。</p>
-<p><strong>示例</strong>：</p>
-<ul>
-<li>查询1：所有人年龄总和为某个数值。</li>
-<li>查询2：除 Karrie 外所有人年龄总和为另一个数值。</li>
-<li>两者相减，差值即为 Karrie 的精确年龄。</li>
+<h3 id="第一次接触"><a href="#第一次接触" class="headerlink" title="第一次接触"></a>第一次接触</h3><h4 id="核心内容-2"><a href="#核心内容-2" class="headerlink" title="核心内容"></a>核心内容</h4><p>在某一场人类舰队对抗塞壬的战斗中，碧蓝航线未来的指挥官（之后简称指挥官）所领导的舰队被塞壬以压倒性优势击败。除了指挥官外的人无一幸存。但是指挥官被突然出现的企业救下，这是人类首次目击舰娘战斗。</p>
+<h4 id="补充-2"><a href="#补充-2" class="headerlink" title="补充"></a>补充</h4><ul>
+<li><p>指挥官之所以能幸存是因为对于心智带来的影响具有很强的适应能力</p>
+</li>
+<li><p>指挥官当时看到了企业的模糊背影，但是企业并没有注意到指挥官</p>
+</li>
+<li><p>因为这次事件，在后续与碧蓝航线合作的时候高层决定让指挥官作为两边沟通桥梁</p>
+</li>
 </ul>
-<p>这种攻击不依赖于群体大小，只要两个查询只差一条记录即可。</p>
-<h3 id="3-4-3-关于恶意查询（On-Malicious-Queries）"><a href="#3-4-3-关于恶意查询（On-Malicious-Queries）" class="headerlink" title="3.4.3 关于恶意查询（On Malicious Queries）"></a>3.4.3 关于恶意查询（On Malicious Queries）</h3><ul>
-<li>无法区分恶意与非恶意查询：攻击者可以利用一系列看似正常的查询组合来提取隐私。</li>
-<li>系统无法从查询语法判断意图，即使预批准查询也无法防止链式推理。</li>
-<li><strong>差分隐私的设计原则</strong>：不尝试识别恶意查询，而是通过控制输出分布来统一保护隐私，无论查询是否恶意。</li>
+<h3 id="合作协定的建立"><a href="#合作协定的建立" class="headerlink" title="合作协定的建立"></a>合作协定的建立</h3><h4 id="核心内容-3"><a href="#核心内容-3" class="headerlink" title="核心内容"></a>核心内容</h4><p>人类世界与碧蓝航线之间建立了跨世界合作框架，明确了双方的权利、义务与边界。核心条款包括双方不得互相干涉、指挥官作为唯一的跨世界联络官常驻碧蓝航线，负责协调作战信息与维持通讯、人类定期向碧蓝航线提供物资。</p>
+<h2 id="势力与阵营"><a href="#势力与阵营" class="headerlink" title="势力与阵营"></a>势力与阵营</h2><h3 id="碧蓝航线"><a href="#碧蓝航线" class="headerlink" title="碧蓝航线"></a>碧蓝航线</h3><h4 id="定义-4"><a href="#定义-4" class="headerlink" title="定义"></a>定义</h4><p>由二战时期觉醒的军舰心智自发组建的组织，以抗击塞壬、维护心智谐振层稳定为宗旨</p>
+<h4 id="补充-3"><a href="#补充-3" class="headerlink" title="补充"></a>补充</h4><ul>
+<li><p>碧蓝航线的内部组织与人类的海军阵营划分基本一致，按历史归属分为白鹰、皇家、重樱、铁血等主要阵营。各阵营日常相对独立。</p>
+</li>
+<li><p>舰娘世界存在除了碧蓝航线组织以外的舰娘和阵营，但是规模都远小于碧蓝航线。</p>
+</li>
 </ul>
-<hr>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ul>
-<li><strong>链接攻击</strong>：利用辅助信息与去标识化数据进行连接，可高效重新识别个体。</li>
-<li><strong>去标识化</strong>：移除明显标识符并不足以保证安全，因为剩余属性（如邮编、出生日期）具有高度识别力。</li>
-<li><strong>聚合统计</strong>：看似安全，但小群体和差分攻击可轻松泄露个体信息。</li>
-<li><strong>核心教训</strong>：传统方法（去标识化、聚合）无法提供可靠隐私保护，因为它们依赖对攻击者背景知识和查询意图的不现实假设。</li>
+<h3 id="塞壬"><a href="#塞壬" class="headerlink" title="塞壬"></a>塞壬</h3><h4 id="定义-5"><a href="#定义-5" class="headerlink" title="定义"></a>定义</h4><p>心智的“自然排异反应”产物。海洋吞噬过无数未经记载的古老船只与生命，那些混沌的、无名的残留意念在心智影响下聚合，形成了敌视一切有序文明的存在</p>
+<h4 id="补充-4"><a href="#补充-4" class="headerlink" title="补充"></a>补充</h4><ul>
+<li>塞壬并不是一个铁板一块的阵营，内部也存在分歧</li>
 </ul>
-<hr>
-<h2 id="词汇表（Glossary）"><a href="#词汇表（Glossary）" class="headerlink" title="词汇表（Glossary）"></a>词汇表（Glossary）</h2><table>
-<thead>
-<tr>
-<th>术语</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>Join（SQL）</td>
-<td>表连接操作</td>
-</tr>
-<tr>
-<td>Group by</td>
-<td>分组聚合</td>
-</tr>
-<tr>
-<td>Census block</td>
-<td>人口普查区块</td>
-</tr>
-<tr>
-<td>pandas 的 merge 函数</td>
-<td>执行 SQL 风格的连接</td>
-</tr>
-<tr>
-<td>pandas 的 groupby 方法</td>
-<td>分组操作</td>
-</tr>
-<tr>
-<td>pandas 的 read_csv 函数</td>
-<td>读取 CSV 文件</td>
-</tr>
-</tbody></table>
+<h2 id="一些问题和解答"><a href="#一些问题和解答" class="headerlink" title="一些问题和解答"></a>一些问题和解答</h2><h3 id="舰娘对于人类有敌意吗"><a href="#舰娘对于人类有敌意吗" class="headerlink" title="舰娘对于人类有敌意吗"></a>舰娘对于人类有敌意吗</h3><p>虽然出现了美利坚号事件那样的事，但是大多数舰娘对于人类其实是处于不关心的态度。有点像歌者文明对于人类文明的态度。她们视人类为一种需要被保护但不介入其内部事务的邻近物种——就像人类会保护濒危动物，但不会试图和它们讨论哲学。</p>
+<h3 id="舰娘的战斗能力如何"><a href="#舰娘的战斗能力如何" class="headerlink" title="舰娘的战斗能力如何"></a>舰娘的战斗能力如何</h3><p>经过心智融合之后的舰娘战斗力远非简单的军舰加上人的力量。仅凭企业一人就可以摧毁人类的所有军事设施，给人类文明去军事化。</p>
+<h3 id="为什么在碧蓝航线中，舰娘忠诚于指挥官"><a href="#为什么在碧蓝航线中，舰娘忠诚于指挥官" class="headerlink" title="为什么在碧蓝航线中，舰娘忠诚于指挥官"></a>为什么在碧蓝航线中，舰娘忠诚于指挥官</h3><p>有两个原因。一方面是指挥官具有很出色的领导能力，能够协调好碧蓝航线内部的事务。另一方面指挥官和企业走的很近，企业在舰娘当中很有威望。</p>
+<h3 id="为什么舰娘那么强却没有想着灭掉人类"><a href="#为什么舰娘那么强却没有想着灭掉人类" class="headerlink" title="为什么舰娘那么强却没有想着灭掉人类"></a>为什么舰娘那么强却没有想着灭掉人类</h3><p>因为舰娘的意志本质上是来自于人类，因此不管是处于什么角度都不可能这么做。</p>
 ]]></content>
       <categories>
-        <category>学习</category>
+        <category>热爱</category>
       </categories>
       <tags>
-        <tag>差分隐私</tag>
-        <tag>笔记</tag>
+        <tag>碧蓝航线</tag>
+        <tag>舰娘</tag>
       </tags>
   </entry>
   <entry>
@@ -1163,6 +1163,43 @@
       </tags>
   </entry>
   <entry>
+    <title>风从葵花田来</title>
+    <url>/azur_blog/2026/08/27/%E7%A2%A7%E8%93%9D%E8%88%AA%E7%BA%BF%E5%90%8C%E4%BA%BA%E6%96%87%E7%9B%B8%E5%85%B3/%E7%BA%A6%E5%85%8B%E5%9F%8E/%E9%A3%8E%E4%BB%8E%E8%91%B5%E8%8A%B1%E7%94%B0%E6%9D%A5/</url>
+    <content><![CDATA[<p>午后的阳光透过窗户，在会客室的地板上投下明净的光影。我正低头翻看一份港区补给清单，杯中的红茶已经续了第二道。</p>
+<p>“那么，企业小姐，请随我来。”贝尔法斯特的声音一如既往的优雅而平稳，“女仆队的礼仪课程大约需要五个小时。”</p>
+<p>企业站在门口，表情显然有些僵硬。她回头看了我一眼，又看了看安静坐在沙发上的约克城，像是要说些什么，最后只是说：“这种活动真的不太习惯”。</p>
+<p>大门在她们身后轻轻合上。房间里突然安静了下来，只剩墙上的老实挂钟在规律地摆动。</p>
+<p>约克城放下手中的书卷，偏头看向我，唇角带着一丝温和的笑意：“指挥官，下午的时光，要一起出去走走吗？感觉有一段时间没有享受过二人时光了。”</p>
+<p>“是啊，感觉这是一个好机会。”我放下手中的资料，和约克城一同出门了。</p>
+<p>今天的天气很不错，正好适合出门散步。我和约克城打算前往一片荒野看看，因为那里从没去过，也很僻静。约克城显然对于这次出行也很期待。</p>
+<p>正当我和约克城聊的正开心时，身后传来了一个熟悉的声音：“指挥官怎么和姐姐单独出门了，不怕企业姐嫉妒吗？”是大黄蜂的声音。约克城的脸有些红，急忙说：“去忙你的吧，姐姐和指挥官还有话说。”大黄蜂想了一下，便坏笑着走开了。</p>
+<p>“那孩子还真是有趣啊。”我看着约克城红的像苹果一样的脸，调侃道。“感觉得找个机会教训她一下”约克城露出一副不满的表情。</p>
+<p>之后的路程我和她聊起了对于两个妹妹港区的看法。虽然有时候大黄蜂有些调皮，但是约克城对她的评价还是很高的。</p>
+<p>令我没想到的是，居然有人在这片荒野种植了一大片葵花，或许是金狮她们的力量。一片一望无际的向日葵正对着西斜的太阳，金黄色的花盘连成一片温暖的海洋。风从远处吹来花田泛起层层波浪。</p>
+<p>我下意识地侧过头，看见约克城正站在我身旁。她地眼睛里映满了金色的光芒，唇角微微翘起，很久没说话。</p>
+<p>我拉着她的手，走向了葵花田的深处。约克城轻声地问我：“指挥官，以后的日子也会这样，我们什么也不可能失去，对吗？”我用不容置疑的预期回答：“对。”</p>
+<p>看着眼前美丽的景色和身边美丽的约克城，我突然抱住了她。不为别的，只是觉得平常似乎很少关注过她。约克城有些愣住了，但只是默默地感受着时间的流逝。</p>
+<p>许久，我和约克城决定回家，因为感觉时间有些晚了。在路上，约克城开心地说：“我不会要求指挥官像对待企业那样对我，只需要现在这样就好了。”</p>
+<p>推开家门时，我正想开口说“我们回来了”，话却卡在了嗓子里。</p>
+<p>客厅中央，企业正笔直地站着。她穿着一件标准的女仆装————裙摆刚过膝盖，围裙系的一丝不苟，领口的蝴蝶结甚至打了正中央地对称结。但她脸上的表情……有种如临大敌的感觉。</p>
+<p>“指、指挥官，约克城姐姐……”她开口时，声音都比平时高了半个调，“欢迎回来。”</p>
+<p>贝尔法斯特站在一旁，表情平静中带着一丝不易察觉的满意：“企业小姐的学习能力很强，在基础礼仪方面已经达标。我只是提议，或许可以亲自为指挥官和约克城小姐演示一下————当然，这是一个小小的惊喜，企业小姐觉得穿上这身衣服会让两位更开心”</p>
+<p>约克城走上前去，轻轻拉起企业的手，上下打量了一番，才柔声说道：“很适合你。不过……”她侧过头看向我，眼中带着笑意，“我猜指挥官心里在想，这身衣服如果给大黄蜂穿上，怕是不到三分钟就会被撕破。”</p>
+<p>企业听了之后，脸上的紧张终于松弛了一些，嘴角也不自觉地扬起了一个小小的弧度。</p>
+<p>之后，企业帮我们倒了红茶，并行了一个标准的女仆礼。贝尔法斯特在夸赞几句之后便离开了。美好的一天便这样在欢声笑语中结束了。</p>
+]]></content>
+      <categories>
+        <category>热爱</category>
+      </categories>
+      <tags>
+        <tag>企业</tag>
+        <tag>碧蓝航线</tag>
+        <tag>约克城</tag>
+        <tag>贝法</tag>
+        <tag>同人文</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>困意与茶香</title>
     <url>/azur_blog/2026/09/08/%E7%A2%A7%E8%93%9D%E8%88%AA%E7%BA%BF%E5%90%8C%E4%BA%BA%E6%96%87%E7%9B%B8%E5%85%B3/%E4%BC%81%E4%B8%9A/%E5%9B%B0%E6%84%8F%E4%B8%8E%E8%8C%B6%E9%A6%99/</url>
     <content><![CDATA[<h1 id="困意与茶香"><a href="#困意与茶香" class="headerlink" title="困意与茶香"></a>困意与茶香</h1><p>港区的上午总是很安静。海浪拍打岸堤的声音远远传来，像一首不知疲倦的摇篮曲。白发的女子坐在办公桌前，笔尖划过文件的沙沙声是房间里唯一的响动。</p>
@@ -1238,8 +1275,55 @@
         <tag>企业</tag>
         <tag>碧蓝航线</tag>
         <tag>舰娘</tag>
-        <tag>拉菲</tag>
         <tag>同人文</tag>
+        <tag>拉菲</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>灰与金的相遇</title>
+    <url>/azur_blog/2026/09/04/%E7%A2%A7%E8%93%9D%E8%88%AA%E7%BA%BF%E5%90%8C%E4%BA%BA%E6%96%87%E7%9B%B8%E5%85%B3/%E4%BC%81%E4%B8%9A/%E7%81%B0%E4%B8%8E%E9%87%91%E7%9A%84%E7%9B%B8%E9%81%87/</url>
+    <content><![CDATA[<p>在一条小路上，一位白发女子在若有所思地行走着。</p>
+<p>企业今天的心情不太好，因为指挥官和约克城最近去东煌参加一个会议，导致这几天家里只有她一人。因此在处理完政务之后，她决定出来散散心。</p>
+<p>她之前听约克城说有在一个偏远的位置一片很大的葵花田，于是打算借此机会过来看看，因为约克城和指挥官对那里很满意。</p>
+<p>“是……企业小姐吗？”</p>
+<p>听到身后传来陌生的声音，企业在不确定是敌是友的情况下本能地回头查看。</p>
+<p>眼前站着一位金发的舰娘，但不是俾斯麦或者大黄蜂，发丝在午后的光线里泛起柔和的淡金色光泽。她穿着色调温和的衣裙，整个人仿佛刚从一片绿荫里走出来，眉眼间带着与周围草木融为一体的安宁笑意。</p>
+<p>“我是郁金王国的金狮，”她稍微欠欠身，语调像风拂过树叶，“不必紧张，企业小姐。是光告诉我，这条路上有一位心里藏着思绪的旅人，所以我才循着风声过来。”</p>
+<p>企业稍微放松了些，但没有完全放下戒备；“你认识我吗？”</p>
+<p>“能让指挥官挂念得人，我自然知道。”金狮轻轻笑了，抬手在空中虚虚一滑，一缕细碎的光点从她指尖飘散，随即便凝成一只半透明的小鹿，轻盈地跃过企业的脚边，又无声消散，“约克城小姐和指挥官在一片葵花田玩时也提起过你。”</p>
+<p>听到这两个人的名字，企业的神色终于柔和了下来。她点了点头，算是认可。</p>
+<p>“原来约克城姐姐和指挥官还认识这么多人。”企业心里想着。</p>
+<p>“企业小姐这是要去哪里？如果不介意，我可以陪你走一段路。”金狮侧过身，姿态从容，目光却带着某种让人不由自主放松的温润，“这片荒野的路，我比任何人都熟悉。”</p>
+<p>“听说前面有一片葵花田，”企业说，“我姐姐和指挥官之前来过，说很美。”</p>
+<p>金狮眼中漾开一丝真切的笑意：“啊，原来如此。那片花田正是我用藤蔓和光的魔法一点点培育出来的。风把种子带到了荒野，我便让它们生根、舒展、朝太阳转动。现在那里还住着一些小动物，不过它们很乖，不会随便打扰人。”</p>
+<p>企业有些意外地看着她：“你的能力……很特别。”</p>
+<p>“自然地力量本就奇妙，而光会赋予它们形状与温度。”金狮做了一个“请”的手势，“我带你过去吧。这这段路第一次走容易迷路。”</p>
+<p>两人并肩沿小路前行。金狮的步伐轻盈，偶尔会弯腰碰一碰路边探出的野花，像是和它们打招呼。企业沉默地走着，但金狮似乎能从她细微地呼吸里读出什么，过了一阵，她才轻柔开口：“企业小姐今天心里是不是刮着一阵凉风？重要的人不在身边时，再广阔地天地也会显得空荡呢。”</p>
+<p>企业一怔，没有否认。</p>
+<p>“呵呵~没关系，”金狮偏过头看她，金色的发丝在风里轻轻飘扬，“自然之中，万物都有各自地节律。等待也好，思念也罢，都只是时光里的一段呼吸。你听————此刻风声正在替你诉说那些未开口地话呢。”</p>
+<p>企业没接话，但脚步不自觉地慢了下来，仿佛真的在侧耳倾听。</p>
+<p>转过弯道，葵花田豁然出现在眼前。无边的金黄在斜阳下翻涌成浪，每一朵花盘都朝着同一个方向微微颔首，像在低声吟唱。风从深处涌来，裹着青涩的草木香气，把企业的发梢和衣摆都吹得轻轻拂动。</p>
+<p>企业停下脚步，视线久久落在那片金色的海洋上。</p>
+<p>金狮站在她身侧稍后一步，没有说话，只是安静地看着企业的侧脸。过了片刻，她的指尖凝出一只光做的狮子————小得只有巴掌大小，蹲坐在企业肩头，用虚无的爪子碰了碰企业的耳朵。</p>
+<p>企业微微一惊，侧头看去，那小狮子便调皮地跃入空中碎成一片萤火。</p>
+<p>“呵呵~惊扰到你了？”金狮掩唇笑了，“只是觉得，此刻的你和片花田很相称————都在安静地吸收阳光，把那些沉重的枝桠慢慢晒暖。”</p>
+<p>企业的嘴角终于浮起一丝不易察觉的弧度。她蹲下身，伸手碰了碰一朵低垂的向日葵边缘，粗糙的花瓣触感温暖而真实。“我想明白了一些事情。我不能因为身边的人暂时不在就心情沉重，我应该多认识一些友善的人，多看一看世界。这样我想姐姐和指挥官也会高兴的。谢谢你带我来这里。”</p>
+<p>“不必道谢。能和企业小姐共享这一段时间，对我来说也是难得的馈赠。”金狮的声音柔和得像暮色里的溪流，“你看，花朵不会追问你的烦恼，只会把光一点一点递到你的手里。这也是自然教我得道理————有时候，陪伴本身，就是最好的治愈。”</p>
+<p>两人在田埂边站了很久。太阳缓缓沉向远山，花田里得金色逐渐沉淀为蜜糖般的浓暖。企业直起身，拍了拍裙摆沾上的草屑：“我该回去了，家里还有文件。”</p>
+<p>金狮点头，送企业回到最初相遇的那条小路。分别时，企业顿了顿，说：“如果下次还想来看花，我……还会来的。”</p>
+<p>金狮微微睁大了眼，随机弯起唇角，像新月一般温柔：“那我会让藤蔓把路边的野花都开得更旺盛一些，好迎接你。后会有期，企业小姐————愿自然的庇护，始终与你同在。”</p>
+<p>企业转身朝港区走去，走了几步又回头看了一眼。金狮还站在原地，身周浮起点点光尘，一只光凝的小鹿正绕着她的裙摆打转。她朝企业轻轻挥手，笑意盈盈。</p>
+<p>企业也抬手回应了一下，然后加快脚步走进渐浓的暮色里。晚风从葵花田的方向追上来，带着最后一缕阳光的余温和隐约的花香，像一句无声的耳语，轻轻拂过她的鬓角。</p>
+]]></content>
+      <categories>
+        <category>热爱</category>
+      </categories>
+      <tags>
+        <tag>企业</tag>
+        <tag>碧蓝航线</tag>
+        <tag>舰娘</tag>
+        <tag>同人文</tag>
+        <tag>金狮</tag>
       </tags>
   </entry>
   <entry>
@@ -1326,92 +1410,8 @@
         <tag>企业</tag>
         <tag>碧蓝航线</tag>
         <tag>舰娘</tag>
-        <tag>同人文</tag>
         <tag>约克城</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>灰与金的相遇</title>
-    <url>/azur_blog/2026/09/04/%E7%A2%A7%E8%93%9D%E8%88%AA%E7%BA%BF%E5%90%8C%E4%BA%BA%E6%96%87%E7%9B%B8%E5%85%B3/%E4%BC%81%E4%B8%9A/%E7%81%B0%E4%B8%8E%E9%87%91%E7%9A%84%E7%9B%B8%E9%81%87/</url>
-    <content><![CDATA[<p>在一条小路上，一位白发女子在若有所思地行走着。</p>
-<p>企业今天的心情不太好，因为指挥官和约克城最近去东煌参加一个会议，导致这几天家里只有她一人。因此在处理完政务之后，她决定出来散散心。</p>
-<p>她之前听约克城说有在一个偏远的位置一片很大的葵花田，于是打算借此机会过来看看，因为约克城和指挥官对那里很满意。</p>
-<p>“是……企业小姐吗？”</p>
-<p>听到身后传来陌生的声音，企业在不确定是敌是友的情况下本能地回头查看。</p>
-<p>眼前站着一位金发的舰娘，但不是俾斯麦或者大黄蜂，发丝在午后的光线里泛起柔和的淡金色光泽。她穿着色调温和的衣裙，整个人仿佛刚从一片绿荫里走出来，眉眼间带着与周围草木融为一体的安宁笑意。</p>
-<p>“我是郁金王国的金狮，”她稍微欠欠身，语调像风拂过树叶，“不必紧张，企业小姐。是光告诉我，这条路上有一位心里藏着思绪的旅人，所以我才循着风声过来。”</p>
-<p>企业稍微放松了些，但没有完全放下戒备；“你认识我吗？”</p>
-<p>“能让指挥官挂念得人，我自然知道。”金狮轻轻笑了，抬手在空中虚虚一滑，一缕细碎的光点从她指尖飘散，随即便凝成一只半透明的小鹿，轻盈地跃过企业的脚边，又无声消散，“约克城小姐和指挥官在一片葵花田玩时也提起过你。”</p>
-<p>听到这两个人的名字，企业的神色终于柔和了下来。她点了点头，算是认可。</p>
-<p>“原来约克城姐姐和指挥官还认识这么多人。”企业心里想着。</p>
-<p>“企业小姐这是要去哪里？如果不介意，我可以陪你走一段路。”金狮侧过身，姿态从容，目光却带着某种让人不由自主放松的温润，“这片荒野的路，我比任何人都熟悉。”</p>
-<p>“听说前面有一片葵花田，”企业说，“我姐姐和指挥官之前来过，说很美。”</p>
-<p>金狮眼中漾开一丝真切的笑意：“啊，原来如此。那片花田正是我用藤蔓和光的魔法一点点培育出来的。风把种子带到了荒野，我便让它们生根、舒展、朝太阳转动。现在那里还住着一些小动物，不过它们很乖，不会随便打扰人。”</p>
-<p>企业有些意外地看着她：“你的能力……很特别。”</p>
-<p>“自然地力量本就奇妙，而光会赋予它们形状与温度。”金狮做了一个“请”的手势，“我带你过去吧。这这段路第一次走容易迷路。”</p>
-<p>两人并肩沿小路前行。金狮的步伐轻盈，偶尔会弯腰碰一碰路边探出的野花，像是和它们打招呼。企业沉默地走着，但金狮似乎能从她细微地呼吸里读出什么，过了一阵，她才轻柔开口：“企业小姐今天心里是不是刮着一阵凉风？重要的人不在身边时，再广阔地天地也会显得空荡呢。”</p>
-<p>企业一怔，没有否认。</p>
-<p>“呵呵~没关系，”金狮偏过头看她，金色的发丝在风里轻轻飘扬，“自然之中，万物都有各自地节律。等待也好，思念也罢，都只是时光里的一段呼吸。你听————此刻风声正在替你诉说那些未开口地话呢。”</p>
-<p>企业没接话，但脚步不自觉地慢了下来，仿佛真的在侧耳倾听。</p>
-<p>转过弯道，葵花田豁然出现在眼前。无边的金黄在斜阳下翻涌成浪，每一朵花盘都朝着同一个方向微微颔首，像在低声吟唱。风从深处涌来，裹着青涩的草木香气，把企业的发梢和衣摆都吹得轻轻拂动。</p>
-<p>企业停下脚步，视线久久落在那片金色的海洋上。</p>
-<p>金狮站在她身侧稍后一步，没有说话，只是安静地看着企业的侧脸。过了片刻，她的指尖凝出一只光做的狮子————小得只有巴掌大小，蹲坐在企业肩头，用虚无的爪子碰了碰企业的耳朵。</p>
-<p>企业微微一惊，侧头看去，那小狮子便调皮地跃入空中碎成一片萤火。</p>
-<p>“呵呵~惊扰到你了？”金狮掩唇笑了，“只是觉得，此刻的你和片花田很相称————都在安静地吸收阳光，把那些沉重的枝桠慢慢晒暖。”</p>
-<p>企业的嘴角终于浮起一丝不易察觉的弧度。她蹲下身，伸手碰了碰一朵低垂的向日葵边缘，粗糙的花瓣触感温暖而真实。“我想明白了一些事情。我不能因为身边的人暂时不在就心情沉重，我应该多认识一些友善的人，多看一看世界。这样我想姐姐和指挥官也会高兴的。谢谢你带我来这里。”</p>
-<p>“不必道谢。能和企业小姐共享这一段时间，对我来说也是难得的馈赠。”金狮的声音柔和得像暮色里的溪流，“你看，花朵不会追问你的烦恼，只会把光一点一点递到你的手里。这也是自然教我得道理————有时候，陪伴本身，就是最好的治愈。”</p>
-<p>两人在田埂边站了很久。太阳缓缓沉向远山，花田里得金色逐渐沉淀为蜜糖般的浓暖。企业直起身，拍了拍裙摆沾上的草屑：“我该回去了，家里还有文件。”</p>
-<p>金狮点头，送企业回到最初相遇的那条小路。分别时，企业顿了顿，说：“如果下次还想来看花，我……还会来的。”</p>
-<p>金狮微微睁大了眼，随机弯起唇角，像新月一般温柔：“那我会让藤蔓把路边的野花都开得更旺盛一些，好迎接你。后会有期，企业小姐————愿自然的庇护，始终与你同在。”</p>
-<p>企业转身朝港区走去，走了几步又回头看了一眼。金狮还站在原地，身周浮起点点光尘，一只光凝的小鹿正绕着她的裙摆打转。她朝企业轻轻挥手，笑意盈盈。</p>
-<p>企业也抬手回应了一下，然后加快脚步走进渐浓的暮色里。晚风从葵花田的方向追上来，带着最后一缕阳光的余温和隐约的花香，像一句无声的耳语，轻轻拂过她的鬓角。</p>
-]]></content>
-      <categories>
-        <category>热爱</category>
-      </categories>
-      <tags>
-        <tag>企业</tag>
-        <tag>碧蓝航线</tag>
-        <tag>舰娘</tag>
         <tag>同人文</tag>
-        <tag>金狮</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>风从葵花田来</title>
-    <url>/azur_blog/2026/08/27/%E7%A2%A7%E8%93%9D%E8%88%AA%E7%BA%BF%E5%90%8C%E4%BA%BA%E6%96%87%E7%9B%B8%E5%85%B3/%E7%BA%A6%E5%85%8B%E5%9F%8E/%E9%A3%8E%E4%BB%8E%E8%91%B5%E8%8A%B1%E7%94%B0%E6%9D%A5/</url>
-    <content><![CDATA[<p>午后的阳光透过窗户，在会客室的地板上投下明净的光影。我正低头翻看一份港区补给清单，杯中的红茶已经续了第二道。</p>
-<p>“那么，企业小姐，请随我来。”贝尔法斯特的声音一如既往的优雅而平稳，“女仆队的礼仪课程大约需要五个小时。”</p>
-<p>企业站在门口，表情显然有些僵硬。她回头看了我一眼，又看了看安静坐在沙发上的约克城，像是要说些什么，最后只是说：“这种活动真的不太习惯”。</p>
-<p>大门在她们身后轻轻合上。房间里突然安静了下来，只剩墙上的老实挂钟在规律地摆动。</p>
-<p>约克城放下手中的书卷，偏头看向我，唇角带着一丝温和的笑意：“指挥官，下午的时光，要一起出去走走吗？感觉有一段时间没有享受过二人时光了。”</p>
-<p>“是啊，感觉这是一个好机会。”我放下手中的资料，和约克城一同出门了。</p>
-<p>今天的天气很不错，正好适合出门散步。我和约克城打算前往一片荒野看看，因为那里从没去过，也很僻静。约克城显然对于这次出行也很期待。</p>
-<p>正当我和约克城聊的正开心时，身后传来了一个熟悉的声音：“指挥官怎么和姐姐单独出门了，不怕企业姐嫉妒吗？”是大黄蜂的声音。约克城的脸有些红，急忙说：“去忙你的吧，姐姐和指挥官还有话说。”大黄蜂想了一下，便坏笑着走开了。</p>
-<p>“那孩子还真是有趣啊。”我看着约克城红的像苹果一样的脸，调侃道。“感觉得找个机会教训她一下”约克城露出一副不满的表情。</p>
-<p>之后的路程我和她聊起了对于两个妹妹港区的看法。虽然有时候大黄蜂有些调皮，但是约克城对她的评价还是很高的。</p>
-<p>令我没想到的是，居然有人在这片荒野种植了一大片葵花，或许是金狮她们的力量。一片一望无际的向日葵正对着西斜的太阳，金黄色的花盘连成一片温暖的海洋。风从远处吹来花田泛起层层波浪。</p>
-<p>我下意识地侧过头，看见约克城正站在我身旁。她地眼睛里映满了金色的光芒，唇角微微翘起，很久没说话。</p>
-<p>我拉着她的手，走向了葵花田的深处。约克城轻声地问我：“指挥官，以后的日子也会这样，我们什么也不可能失去，对吗？”我用不容置疑的预期回答：“对。”</p>
-<p>看着眼前美丽的景色和身边美丽的约克城，我突然抱住了她。不为别的，只是觉得平常似乎很少关注过她。约克城有些愣住了，但只是默默地感受着时间的流逝。</p>
-<p>许久，我和约克城决定回家，因为感觉时间有些晚了。在路上，约克城开心地说：“我不会要求指挥官像对待企业那样对我，只需要现在这样就好了。”</p>
-<p>推开家门时，我正想开口说“我们回来了”，话却卡在了嗓子里。</p>
-<p>客厅中央，企业正笔直地站着。她穿着一件标准的女仆装————裙摆刚过膝盖，围裙系的一丝不苟，领口的蝴蝶结甚至打了正中央地对称结。但她脸上的表情……有种如临大敌的感觉。</p>
-<p>“指、指挥官，约克城姐姐……”她开口时，声音都比平时高了半个调，“欢迎回来。”</p>
-<p>贝尔法斯特站在一旁，表情平静中带着一丝不易察觉的满意：“企业小姐的学习能力很强，在基础礼仪方面已经达标。我只是提议，或许可以亲自为指挥官和约克城小姐演示一下————当然，这是一个小小的惊喜，企业小姐觉得穿上这身衣服会让两位更开心”</p>
-<p>约克城走上前去，轻轻拉起企业的手，上下打量了一番，才柔声说道：“很适合你。不过……”她侧过头看向我，眼中带着笑意，“我猜指挥官心里在想，这身衣服如果给大黄蜂穿上，怕是不到三分钟就会被撕破。”</p>
-<p>企业听了之后，脸上的紧张终于松弛了一些，嘴角也不自觉地扬起了一个小小的弧度。</p>
-<p>之后，企业帮我们倒了红茶，并行了一个标准的女仆礼。贝尔法斯特在夸赞几句之后便离开了。美好的一天便这样在欢声笑语中结束了。</p>
-]]></content>
-      <categories>
-        <category>热爱</category>
-      </categories>
-      <tags>
-        <tag>企业</tag>
-        <tag>碧蓝航线</tag>
-        <tag>同人文</tag>
-        <tag>约克城</tag>
-        <tag>贝法</tag>
       </tags>
   </entry>
 </search>
