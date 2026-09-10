@@ -27,12 +27,16 @@ if errorlevel 1 (
     exit /b 1
 )
 
-echo %CYAN%[2/5] hexo generate%RESET%
-call hexo generate
+echo %CYAN%[2/5] hexo generate -c 4%RESET%
+call hexo generate -c 4
 if errorlevel 1 (
-    echo %RED%[ERROR] Build failed%RESET%
-    pause
-    exit /b 1
+    echo %YELLOW%[WARNING] 并发构建失败，尝试串行构建...%RESET%
+    call hexo generate -c 1
+    if errorlevel 1 (
+        echo %RED%[ERROR] Build failed%RESET%
+        pause
+        exit /b 1
+    )
 )
 
 :: ========== 2. 部署到 GitHub Pages ==========
