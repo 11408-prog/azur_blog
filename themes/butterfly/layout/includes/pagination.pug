@@ -34,5 +34,5 @@ if page.total !== 1
     nav#pagination
       .pagination
         if globalPageType === 'home'
-          - options.format = 'page/%d/#content-inner'
+          - options.format = 'page/%d/'
         !=paginator(options)
