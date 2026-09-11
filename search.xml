@@ -1,6 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>常用指令</title>
+    <url>/azur_blog/2026/08/11/%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4/</url>
+    <content><![CDATA[<h1 id="hexo"><a href="#hexo" class="headerlink" title="hexo"></a>hexo</h1><h2 id="创建文章"><a href="#创建文章" class="headerlink" title="创建文章"></a>创建文章</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo new <span class="string">&quot;标题&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="更新网站"><a href="#更新网站" class="headerlink" title="更新网站"></a>更新网站</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git add .</span><br><span class="line"></span><br><span class="line">git commit -m <span class="string">&quot;更新&quot;</span></span><br><span class="line"></span><br><span class="line">git push origin main</span><br><span class="line"></span><br><span class="line">hexo clean</span><br><span class="line"></span><br><span class="line">hexo generate</span><br><span class="line"></span><br><span class="line">hexo deploy</span><br></pre></td></tr></table></figure>
+
+<h2 id="创建一个独立页面"><a href="#创建一个独立页面" class="headerlink" title="创建一个独立页面"></a>创建一个独立页面</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo new page 页面名称</span><br></pre></td></tr></table></figure>
+
+<h2 id="列出所有文章（可以替换成页面，路由，标签，分类）"><a href="#列出所有文章（可以替换成页面，路由，标签，分类）" class="headerlink" title="列出所有文章（可以替换成页面，路由，标签，分类）"></a>列出所有文章（可以替换成页面，路由，标签，分类）</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo list post</span><br></pre></td></tr></table></figure>
+
+<h1 id="deepseek"><a href="#deepseek" class="headerlink" title="deepseek"></a>deepseek</h1><h2 id="启动deepseek-harness"><a href="#启动deepseek-harness" class="headerlink" title="启动deepseek harness"></a>启动deepseek harness</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">dsh web </span><br></pre></td></tr></table></figure>
+
+<p>如果未安装可以先输入</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">nvm install 24.11.1 </span><br><span class="line">nvm use 24.11.1</span><br><span class="line">npm install -g @deepseek-ai/dsh</span><br></pre></td></tr></table></figure>
+<p>再执行上面的命令</p>
+<h1 id="windows"><a href="#windows" class="headerlink" title="windows"></a>windows</h1><h2 id="强制刷新网页："><a href="#强制刷新网页：" class="headerlink" title="强制刷新网页："></a>强制刷新网页：</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ctrl + shift + r</span><br></pre></td></tr></table></figure>
+
+<h1 id="npm"><a href="#npm" class="headerlink" title="npm"></a>npm</h1><h2 id="执行目录下的测试脚本"><a href="#执行目录下的测试脚本" class="headerlink" title="执行目录下的测试脚本"></a>执行目录下的测试脚本</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm run clean </span><br><span class="line"></span><br><span class="line">npm run build</span><br><span class="line"></span><br><span class="line">npm test</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>学习</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+        <tag>windows</tag>
+        <tag>deepseek</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>学习遇到的问题及解答</title>
     <url>/azur_blog/2026/08/11/%E5%AD%A6%E4%B9%A0%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98%E5%8F%8A%E8%A7%A3%E7%AD%94/</url>
     <content><![CDATA[<h1 id="hexo"><a href="#hexo" class="headerlink" title="hexo"></a>hexo</h1><p><strong>Q: tags和categories有什么区别</strong><br><br>A:tags表示关键词和特征，categories表示大方向和目录。tags不需要事先定义，但是categoties需要事先定义</p>
@@ -32,33 +62,163 @@
       </tags>
   </entry>
   <entry>
-    <title>常用指令</title>
-    <url>/azur_blog/2026/08/11/%E5%B8%B8%E7%94%A8%E6%8C%87%E4%BB%A4/</url>
-    <content><![CDATA[<h1 id="hexo"><a href="#hexo" class="headerlink" title="hexo"></a>hexo</h1><h2 id="创建文章"><a href="#创建文章" class="headerlink" title="创建文章"></a>创建文章</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo new <span class="string">&quot;标题&quot;</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="更新网站"><a href="#更新网站" class="headerlink" title="更新网站"></a>更新网站</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git add .</span><br><span class="line"></span><br><span class="line">git commit -m <span class="string">&quot;更新&quot;</span></span><br><span class="line"></span><br><span class="line">git push origin main</span><br><span class="line"></span><br><span class="line">hexo clean</span><br><span class="line"></span><br><span class="line">hexo generate</span><br><span class="line"></span><br><span class="line">hexo deploy</span><br></pre></td></tr></table></figure>
-
-<h2 id="创建一个独立页面"><a href="#创建一个独立页面" class="headerlink" title="创建一个独立页面"></a>创建一个独立页面</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo new page 页面名称</span><br></pre></td></tr></table></figure>
-
-<h2 id="列出所有文章（可以替换成页面，路由，标签，分类）"><a href="#列出所有文章（可以替换成页面，路由，标签，分类）" class="headerlink" title="列出所有文章（可以替换成页面，路由，标签，分类）"></a>列出所有文章（可以替换成页面，路由，标签，分类）</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo list post</span><br></pre></td></tr></table></figure>
-
-<h1 id="deepseek"><a href="#deepseek" class="headerlink" title="deepseek"></a>deepseek</h1><h2 id="启动deepseek-harness"><a href="#启动deepseek-harness" class="headerlink" title="启动deepseek harness"></a>启动deepseek harness</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">dsh web </span><br></pre></td></tr></table></figure>
-
-<p>如果未安装可以先输入</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">nvm install 24.11.1 </span><br><span class="line">nvm use 24.11.1</span><br><span class="line">npm install -g @deepseek-ai/dsh</span><br></pre></td></tr></table></figure>
-<p>再执行上面的命令</p>
-<h1 id="windows"><a href="#windows" class="headerlink" title="windows"></a>windows</h1><h2 id="强制刷新网页："><a href="#强制刷新网页：" class="headerlink" title="强制刷新网页："></a>强制刷新网页：</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ctrl + shift + r</span><br></pre></td></tr></table></figure>
-
-<h1 id="npm"><a href="#npm" class="headerlink" title="npm"></a>npm</h1><h2 id="执行目录下的测试脚本"><a href="#执行目录下的测试脚本" class="headerlink" title="执行目录下的测试脚本"></a>执行目录下的测试脚本</h2><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">npm run clean </span><br><span class="line"></span><br><span class="line">npm run build</span><br><span class="line"></span><br><span class="line">npm test</span><br></pre></td></tr></table></figure>
-
+    <title>差分隐私第五章笔记</title>
+    <url>/azur_blog/2026/09/11/%E5%B7%AE%E5%88%86%E9%9A%90%E7%A7%81/%E5%8A%A8%E6%89%8B%E5%AD%A6%E5%B7%AE%E5%88%86%E9%9A%90%E7%A7%81%E7%AC%AC%E4%BA%94%E7%AB%A0%E7%AC%94%E8%AE%B0/</url>
+    <content><![CDATA[<h1 id="第五章：差分隐私（Differential-Privacy）笔记"><a href="#第五章：差分隐私（Differential-Privacy）笔记" class="headerlink" title="第五章：差分隐私（Differential Privacy）笔记"></a>第五章：差分隐私（Differential Privacy）笔记</h1><h2 id="5-1-差分隐私的定义"><a href="#5-1-差分隐私的定义" class="headerlink" title="5.1 差分隐私的定义"></a>5.1 差分隐私的定义</h2><ul>
+<li><strong>差分隐私是算法的性质，不是数据的性质</strong>。要说明一个数据集满足差分隐私，必须说明生成它的算法满足差分隐私。</li>
+<li><strong>机制（Mechanism）</strong>：满足差分隐私的随机化函数，通常记为 (F)。</li>
+<li><strong>相邻数据集</strong>：只差一个隐私单位的数据集。常见假设是“每个人的数据恰好在一行”，此时相邻数据集只差一行。</li>
+<li><strong>(\epsilon)-差分隐私形式化定义</strong>：</li>
+</ul>
+<p>[<br>\frac{\Pr[F(x)\in S]}{\Pr[F(x’)\in S]} \le e^\epsilon<br>]</p>
+<p>  对任意相邻数据集 (x,x’) 和任意输出集合 (S) 都成立。</p>
+<ul>
+<li>若输出是离散的，也可写成单点形式：</li>
+</ul>
+<p>[<br>\frac{\Pr[F(x)&#x3D;s]}{\Pr[F(x’)&#x3D;s]} \le e^\epsilon<br>]</p>
+<ul>
+<li><strong>隐私参数 (\epsilon)</strong>：<ul>
+<li>(\epsilon) 越小，两个输出分布越接近，隐私保护越强；</li>
+<li>但需要加入更大的噪声，数据可用性越低；</li>
+<li>通常建议 (\epsilon) 取 1 左右或更小，大于 10 可能保护有限。</li>
+</ul>
+</li>
+</ul>
+<h2 id="5-2-多少噪声才够？"><a href="#5-2-多少噪声才够？" class="headerlink" title="5.2 多少噪声才够？"></a>5.2 多少噪声才够？</h2><ul>
+<li>书中用恶意查询验证噪声是否足够：查询 Karrie 的收入是否 (\le 50K)。</li>
+<li>真实答案是 1；用拉普拉斯机制加噪后得到 5.43，攻击者无法判断真实是 0 还是 1。</li>
+<li>结论：<strong>差分隐私不拒绝恶意查询，而是加噪让所有查询结果都变得不可靠</strong>。</li>
+<li><strong>随机性与可复现性</strong>：<ul>
+<li>差分隐私依赖随机性，每次运行结果不同；</li>
+<li>这是隐私保护的必要条件；</li>
+<li>如需复现实验可设随机种子，但实际部署中不应公开或固定种子。</li>
+</ul>
+</li>
+</ul>
+<h2 id="5-3-拉普拉斯机制"><a href="#5-3-拉普拉斯机制" class="headerlink" title="5.3 拉普拉斯机制"></a>5.3 拉普拉斯机制</h2><ul>
+<li><strong>公式</strong>：</li>
+</ul>
+<p>[<br>F(x) &#x3D; f(x) + \operatorname{Lap}\left(\frac{s}{\epsilon}\right)<br>]</p>
+<ul>
+<li>(f(x))：真实查询结果；</li>
+<li>(s)：查询的敏感度；</li>
+<li>(\epsilon)：隐私预算；</li>
+<li>(\operatorname{Lap}(s&#x2F;\epsilon))：从中心 0、尺度 (b&#x3D;s&#x2F;\epsilon) 的拉普拉斯分布采样噪声。</li>
+<li><strong>敏感度 (s)</strong>：相邻数据集上，函数输出的最大变化量。<ul>
+<li>计数查询的敏感度通常为 1；</li>
+<li>求和查询若属性无上下界，敏感度无界，需先裁剪；</li>
+<li>均值查询通常拆成“噪声求和 &#x2F; 噪声计数”，再相除，按顺序组合消耗预算。</li>
+</ul>
+</li>
+<li><strong>拉普拉斯分布 PDF</strong>：</li>
+</ul>
+<p>[<br>p(z)&#x3D;\frac{1}{2b}\exp\left(-\frac{|z|}{b}\right)<br>]</p>
+<ul>
+<li><strong>密度比证明思路</strong>：</li>
+</ul>
+<h1 id="frac-p-F-x-y-p-F-x’-y"><a href="#frac-p-F-x-y-p-F-x’-y" class="headerlink" title="[\frac{p_{F(x)}(y)}{p_{F(x’)}(y)}"></a>[<br>\frac{p_{F(x)}(y)}{p_{F(x’)}(y)}</h1><h1 id="exp-left-frac-y-f-x’-y-f-x-b-right-le-exp-left-frac-s-b-right"><a href="#exp-left-frac-y-f-x’-y-f-x-b-right-le-exp-left-frac-s-b-right" class="headerlink" title="\exp\left(\frac{|y-f(x’)|-|y-f(x)|}{b}\right)\le\exp\left(\frac{s}{b}\right)"></a>\exp\left(\frac{|y-f(x’)|-|y-f(x)|}{b}\right)<br>\le<br>\exp\left(\frac{s}{b}\right)</h1><p>e^\epsilon<br>]</p>
+<p>  因此拉普拉斯机制满足 (\epsilon)-差分隐私。</p>
+<h2 id="5-4-隐私单位"><a href="#5-4-隐私单位" class="headerlink" title="5.4 隐私单位"></a>5.4 隐私单位</h2><ul>
+<li><strong>隐私单位</strong>：定义“相邻数据集”中到底相差多少数据。</li>
+<li>最常见：<strong>一个人（user-level privacy）</strong>，保护整个人的全部数据，永久有效。</li>
+<li>Apple 使用 <strong>person-day</strong>，只保护一个人一天提交的数据；跨天趋势不受保护。</li>
+<li>通常假设“每个人的数据恰好在一行”，以便形式化。</li>
+<li>如果假设不成立，应转换数据或查询，尽量保持“一个人”的隐私单位。</li>
+</ul>
+<h2 id="5-5-替换相邻与增删相邻"><a href="#5-5-替换相邻与增删相邻" class="headerlink" title="5.5 替换相邻与增删相邻"></a>5.5 替换相邻与增删相邻</h2><ul>
+<li><strong>替换相邻（Substitution Adjacency）</strong>：<ul>
+<li>两个数据集大小相同；</li>
+<li>修改一行得到另一个；</li>
+<li>对应“某个人的数据被改成另一个值”。</li>
+</ul>
+</li>
+<li><strong>增删相邻（Add-Remove Adjacency）</strong>：<ul>
+<li>两个数据集大小相差 1；</li>
+<li>增加或删除一行得到另一个；</li>
+<li>对应“某个人的数据存在或不存在”。</li>
+</ul>
+</li>
+<li>在对称差距离下：<ul>
+<li>增加或删除一行 → 距离为 1；</li>
+<li>修改一行 → 距离为 2。</li>
+</ul>
+</li>
+<li>两种定义会影响敏感度计算和差分隐私的具体形式，需在整个隐私分析中保持一致。</li>
+</ul>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ul>
+<li>差分隐私是<strong>算法性质</strong>，不是数据性质。</li>
+<li>机制是满足差分隐私的随机化函数。</li>
+<li>实现差分隐私的一种基本方法是加随机噪声，如拉普拉斯机制。</li>
+<li>噪声大小由敏感度和 (\epsilon) 决定：(\epsilon) 越小，噪声越大，隐私越强，可用性越低。</li>
+<li>隐私单位决定“相邻”的含义，默认应使用“一个人”。</li>
+<li>替换相邻和增删相邻是两种相邻数据集定义，影响敏感度计算。</li>
+</ul>
+<h2 id="Q-A"><a href="#Q-A" class="headerlink" title="Q&amp;A"></a>Q&amp;A</h2><h3 id="差分隐私是数据属性还是算法属性？"><a href="#差分隐私是数据属性还是算法属性？" class="headerlink" title="差分隐私是数据属性还是算法属性？"></a>差分隐私是数据属性还是算法属性？</h3><p>算法属性。它描述的是随机化机制在相邻数据集上的输出分布不可区分。</p>
+<h3 id="拉普拉斯机制为什么满足-epsilon-差分隐私？"><a href="#拉普拉斯机制为什么满足-epsilon-差分隐私？" class="headerlink" title="拉普拉斯机制为什么满足 (\epsilon)-差分隐私？"></a>拉普拉斯机制为什么满足 (\epsilon)-差分隐私？</h3><p>因为拉普拉斯分布的密度比可以用敏感度 (s) 控制，当噪声尺度 (b&#x3D;s&#x2F;\epsilon) 时，密度比不超过 (e^\epsilon)。</p>
+<h3 id="epsilon-越小越好吗？"><a href="#epsilon-越小越好吗？" class="headerlink" title="(\epsilon) 越小越好吗？"></a>(\epsilon) 越小越好吗？</h3><p>不是。(\epsilon) 越小隐私越强，但噪声越大，数据可用性越低。需要根据场景权衡。</p>
+<h3 id="什么是隐私单位？"><a href="#什么是隐私单位？" class="headerlink" title="什么是隐私单位？"></a>什么是隐私单位？</h3><p>隐私单位定义相邻数据集相差多少数据，比如一个人、一行、一张图像、一天的数据等。</p>
+<h3 id="替换相邻和增删相邻有什么区别？"><a href="#替换相邻和增删相邻有什么区别？" class="headerlink" title="替换相邻和增删相邻有什么区别？"></a>替换相邻和增删相邻有什么区别？</h3><p>替换相邻是修改一行，数据集大小不变；增删相邻是增加或删除一行，数据集大小相差 1。</p>
+<h3 id="为什么计数查询的敏感度通常是-1？"><a href="#为什么计数查询的敏感度通常是-1？" class="headerlink" title="为什么计数查询的敏感度通常是 1？"></a>为什么计数查询的敏感度通常是 1？</h3><p>因为增加或删除一行，计数最多变化 1：新行满足条件则加 1，不满足则不变。</p>
+<h2 id="词汇表"><a href="#词汇表" class="headerlink" title="词汇表"></a>词汇表</h2><table>
+<thead>
+<tr>
+<th>术语</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>差分隐私</td>
+<td>算法性质，相邻数据集输出分布不可区分</td>
+</tr>
+<tr>
+<td>机制</td>
+<td>满足差分隐私的随机化函数</td>
+</tr>
+<tr>
+<td>相邻数据集</td>
+<td>只差一个隐私单位的数据集</td>
+</tr>
+<tr>
+<td>隐私参数 (\epsilon)</td>
+<td>控制隐私强度，越小隐私越强，噪声越大</td>
+</tr>
+<tr>
+<td>敏感度</td>
+<td>相邻数据集上函数输出的最大变化量</td>
+</tr>
+<tr>
+<td>拉普拉斯机制</td>
+<td>加拉普拉斯噪声的差分隐私机制</td>
+</tr>
+<tr>
+<td>拉普拉斯分布</td>
+<td>中心 0、尺度 (b) 的对称指数分布</td>
+</tr>
+<tr>
+<td>隐私单位</td>
+<td>相邻数据集相差的数据量，如一个人、一天</td>
+</tr>
+<tr>
+<td>替换相邻</td>
+<td>修改一行，数据集大小相同</td>
+</tr>
+<tr>
+<td>增删相邻</td>
+<td>增加或删除一行，数据集大小相差 1</td>
+</tr>
+<tr>
+<td>随机性</td>
+<td>差分隐私机制内部噪声的来源，保证输出不可预测</td>
+</tr>
+</tbody></table>
 ]]></content>
       <categories>
         <category>学习</category>
       </categories>
       <tags>
-        <tag>hexo</tag>
-        <tag>windows</tag>
-        <tag>deepseek</tag>
+        <tag>差分隐私</tag>
+        <tag>拉普拉斯机制</tag>
+        <tag>笔记</tag>
       </tags>
   </entry>
   <entry>
@@ -141,82 +301,6 @@
         <tag>字典</tag>
         <tag>堆</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>cookbook第二章笔记</title>
-    <url>/azur_blog/2026/08/21/python/cookbook%E7%AC%AC%E4%BA%8C%E7%AB%A0%E7%AC%94%E8%AE%B0/</url>
-    <content><![CDATA[<p>本章讲述了如何高效、优雅地处理现实世界中“不规矩”的文本数据</p>
-<h2 id="名词解释"><a href="#名词解释" class="headerlink" title="名词解释"></a>名词解释</h2><h3 id="正则修饰符"><a href="#正则修饰符" class="headerlink" title="正则修饰符"></a>正则修饰符</h3><p>定义:用于改变正则表达式引擎默认匹配行为的额外参数或内联指令。它只改变匹配的方式和规则，如是否忽略大小写等。</p>
-<h2 id="2-1-使用多个界定字符分割字符串"><a href="#2-1-使用多个界定字符分割字符串" class="headerlink" title="2.1 使用多个界定字符分割字符串"></a>2.1 使用多个界定字符分割字符串</h2><p>split()方法不允许有多个分割符或者不确定的空格。建议使用re.split()。<br>使用方法为：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">re.split(pattern, string, maxsplit=<span class="number">0</span>, flags=<span class="number">0</span>)</span><br></pre></td></tr></table></figure>
-<p>其中，pattern表示正则表达式，string表示要分割的字符串，maxsplit表示最大分割次数，flags表示正则修饰符。</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>line = <span class="string">&#x27;asdf fjdk; afed, fjek,asdf, foo&#x27;</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> re</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>re.split(<span class="string">r&#x27;[;,\s]\s*&#x27;</span>, line)</span><br><span class="line">[<span class="string">&#x27;asdf&#x27;</span>, <span class="string">&#x27;fjdk&#x27;</span>, <span class="string">&#x27;afed&#x27;</span>, <span class="string">&#x27;fjek&#x27;</span>, <span class="string">&#x27;asdf&#x27;</span>, <span class="string">&#x27;foo&#x27;</span>]</span><br></pre></td></tr></table></figure>
-
-<h2 id="2-2-字符串开头或结尾匹配"><a href="#2-2-字符串开头或结尾匹配" class="headerlink" title="2.2 字符串开头或结尾匹配"></a>2.2 字符串开头或结尾匹配</h2><p>使用str.startswith()或者str.endswith()。</p>
-<p>‘’’python<br>url &#x3D; ‘<a href="http://www.python.org/">http://www.python.org</a>‘</p>
-<p>print(url.endswith(‘com’))<br>print(url.startswith(‘http’))<br>‘’’</p>
-<h2 id="2-3-用shell通配符匹配字符串"><a href="#2-3-用shell通配符匹配字符串" class="headerlink" title="2.3 用shell通配符匹配字符串"></a>2.3 用shell通配符匹配字符串</h2><p>fnmatch模块提供了fnmatch()和fnmatchcase()来实现。相比于前者，后者会严格按照的你用的模式的大小写匹配。前者使用操作系统的大小写敏感规则来匹配模式。</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> fnmatch <span class="keyword">import</span> fnmatch,fnmatchcase</span><br><span class="line"></span><br><span class="line">names = [<span class="string">&#x27;Dat1.csv&#x27;</span>, <span class="string">&#x27;Dat2.csv&#x27;</span>, <span class="string">&#x27;config.ini&#x27;</span>, <span class="string">&#x27;foo.py&#x27;</span>]</span><br><span class="line"><span class="built_in">print</span>([name <span class="keyword">for</span> name <span class="keyword">in</span> names <span class="keyword">if</span> fnmatch(name, <span class="string">&#x27;Dat*.csv&#x27;</span>)])</span><br><span class="line"><span class="comment">#输出[&#x27;Dat1.csv&#x27;, &#x27;Dat2.csv&#x27;]</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(fnmatch(<span class="string">&#x27;foot.txt&#x27;</span>,<span class="string">&#x27;*.txt&#x27;</span>))</span><br><span class="line"><span class="built_in">print</span>(fnmatch(<span class="string">&#x27;foot.txt&#x27;</span>,<span class="string">&#x27;*.TXT&#x27;</span>))</span><br><span class="line"><span class="built_in">print</span>(fnmatchcase(<span class="string">&#x27;foot.txt&#x27;</span>,<span class="string">&#x27;*.txt&#x27;</span>))</span><br><span class="line"><span class="built_in">print</span>(fnmatchcase(<span class="string">&#x27;foot.txt&#x27;</span>,<span class="string">&#x27;*.TXT&#x27;</span>))</span><br></pre></td></tr></table></figure>
-
-<h2 id="2-4-字符串匹配搜索"><a href="#2-4-字符串匹配搜索" class="headerlink" title="2.4 字符串匹配搜索"></a>2.4 字符串匹配搜索</h2><p>需要调用str.find() , str.endswith() , str.startswith() 或者类似的方法。</p>
-<p>需要注意的是，如果你打算做大量的匹配和搜索操作的话，最好先编译正则表达式，然后再重复使用它。 模块级别的函数会将最近编译过的模式缓存起来，因此并不会消耗太多的性能， 但是如果使用预编译模式的话，你将会减少查找和一些额外的处理损耗。</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>text = <span class="string">&#x27;yeah, but no, but yeah, but no, but yeah&#x27;</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="comment"># Exact match</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>text == <span class="string">&#x27;yeah&#x27;</span></span><br><span class="line"><span class="literal">False</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="comment"># Match at start or end</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>text.startswith(<span class="string">&#x27;yeah&#x27;</span>)</span><br><span class="line"><span class="literal">True</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>text.endswith(<span class="string">&#x27;no&#x27;</span>)</span><br><span class="line"><span class="literal">False</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="comment"># Search for the location of the first occurrence</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>text.find(<span class="string">&#x27;no&#x27;</span>)</span><br><span class="line"><span class="number">10</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="2-5-字符串搜索和替换"><a href="#2-5-字符串搜索和替换" class="headerlink" title="2.5 字符串搜索和替换"></a>2.5 字符串搜索和替换</h2><p>使用str.replace()或者re.sub()</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">text = <span class="string">&#x27;yeah , but no , but yeah , but no , but yeah&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># replace操作之后不会改变原来的值</span></span><br><span class="line"><span class="built_in">print</span>(text.replace(<span class="string">&#x27;yeah&#x27;</span>,<span class="string">&#x27;yep&#x27;</span>))</span><br><span class="line"><span class="built_in">print</span>(text)</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line">text = <span class="string">&#x27;Today is 11/27/2012. PyCon starts 3/13/2013.&#x27;</span></span><br><span class="line"><span class="built_in">print</span>(re.sub(<span class="string">r&#x27;(\d+)/(\d+)/(\d+)&#x27;</span>, <span class="string">r&#x27;\3-\1-\2&#x27;</span>, text))</span><br><span class="line"><span class="built_in">print</span>(text)</span><br></pre></td></tr></table></figure>
-
-
-]]></content>
-      <categories>
-        <category>学习</category>
-      </categories>
-      <tags>
-        <tag>python</tag>
-        <tag>字符串文本</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>css常见调参函数</title>
-    <url>/azur_blog/2026/08/14/%E5%8D%9A%E5%AE%A2%E5%88%B6%E4%BD%9C%E7%9B%B8%E5%85%B3/css%E5%B8%B8%E8%A7%81%E8%B0%83%E5%8F%82%E5%87%BD%E6%95%B0/</url>
-    <content><![CDATA[<h2 id="reba-红绿蓝透明度"><a href="#reba-红绿蓝透明度" class="headerlink" title="reba &#x2F; 红绿蓝透明度"></a>reba &#x2F; 红绿蓝透明度</h2><p>用法：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">reba(红色，绿色，蓝色，不透明度)</span><br></pre></td></tr></table></figure>
-<p>前三者都是0 ~ 255 ，数越大越接近白色。不透明度是越低越透明。</p>
-<h2 id="backdrop-filter-对元素背后的区域采用滤镜效果"><a href="#backdrop-filter-对元素背后的区域采用滤镜效果" class="headerlink" title="backdrop-filter &#x2F; 对元素背后的区域采用滤镜效果"></a>backdrop-filter &#x2F; 对元素背后的区域采用滤镜效果</h2><p>用法:</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">backdrop-filter: blur(12px)</span><br></pre></td></tr></table></figure>
-<p>模糊半径（xxpx）越大内容越糊</p>
-]]></content>
-      <categories>
-        <category>学习</category>
-      </categories>
-      <tags>
-        <tag>css</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>博客制作注意事项</title>
-    <url>/azur_blog/2026/08/11/%E5%8D%9A%E5%AE%A2%E5%88%B6%E4%BD%9C%E7%9B%B8%E5%85%B3/%E5%8D%9A%E5%AE%A2%E5%88%B6%E4%BD%9C%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/</url>
-    <content><![CDATA[<h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>今天尝试搭建好了博客的环境，并制作了一个大概的样子。在开发过程中遇到了如下两个问题：</p>
-<h2 id="1-欢迎动画无法循环播放"><a href="#1-欢迎动画无法循环播放" class="headerlink" title="1.欢迎动画无法循环播放"></a>1.欢迎动画无法循环播放</h2><p>在css动画属性中用了forwards,应该改为infinite<br>最后的效果如下：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">.welcome-text.animate &#123;</span><br><span class="line">  animation: welcome-reveal 6s ease-in-out infinite;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="2-将路径或者一些文件弄混"><a href="#2-将路径或者一些文件弄混" class="headerlink" title="2.将路径或者一些文件弄混"></a>2.将路径或者一些文件弄混</h2><p>目前的结构有点像是一个嵌套的结构，因此一定要记录好架构，目前的架构为</p>
-<p>  blog&#x2F;                                    ← 整个博客项目<br>  ├── _config.yml                          ← ① 站点配置（博客”本体”的设置）<br>  ├── package.json                         ← Node 依赖清单（hexo<br>  本体、渲染插件）<br>  ├── package-lock.json                    ← 依赖锁定文件（不用管）<br>  ├── node_modules&#x2F;                        ← 已安装的依赖（不用管，别删）<br>  │<br>  ├── scaffolds&#x2F;                           ← 新建文章&#x2F;页面的”模板”<br>  │   ├── post.md                         （新建文章时套用）<br>  │   ├── page.md                         （新建页面时套用）<br>  │   └── draft.md                        （新建草稿时套用）<br>  │<br>  ├── source&#x2F;                              ← ② 你的”原料”都在这里<br>  │   ├── _posts&#x2F;                         ← ★ 你的文章（Markdown 文件）<br>  │   │   └── 我的第一篇博客.md<br>  │   ├── img&#x2F;                            ← 你的图片（avatar.png 头像在这）<br>  │   ├── tags&#x2F;index.md                   ← “标签”页面<br>  │   ├── categories&#x2F;index.md             ← “分类”页面<br>  │   └── _data&#x2F;butterfly.yml             ← 主题备用配置（目前是空文件）<br>  │<br>  ├── themes&#x2F;                              ← ③ 主题（决定网站长什么样）<br>  │   └── butterfly&#x2F;<br>  │       ├── _config.yml                 ← ★★ 主题配置（最常改的）<br>  │       ├── layout&#x2F;                     ← 页面模板（Pug，一般不用动）<br>  │       ├── source&#x2F;                     ← 主题自己的 CSS&#x2F;JS&#x2F;默认图<br>  │       └── scripts&#x2F;                    ← 主题辅助脚本<br>  │<br>  ├── public&#x2F;                              ← ④<br>  生成出的”成品网站”（自动生成，别手动改）<br>  ├── db.json                              ← 缓存（不用管）<br>  ├── .git&#x2F;                                ← 版本控制（上次已 init 并提交）<br>  └── .github&#x2F;                             ← GitHub 自动更新依赖的配置</p>
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>js</tag>
-        <tag>开发</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>我的第一篇博客</title>
-    <url>/azur_blog/2026/08/11/%E5%8D%9A%E5%AE%A2%E5%88%B6%E4%BD%9C%E7%9B%B8%E5%85%B3/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/</url>
-    <content><![CDATA[<p>这个网站打算用来记录一些学习笔记，同人文等。</p>
-<span id="more"></span>
-
-<h1 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h1><p>博客这个东西是我在网上无意中看到的，感觉很有意思，于是打算自己做一下。我本人很喜欢用代码做东西，同时很喜欢碧蓝航线中一个叫企业的角色。平时的爱好就是看小说，写代码，写同人文。希望能打造出一个碧蓝航线风格的博客，也能用来记录自己提升的过程。</p>
-]]></content>
   </entry>
   <entry>
     <title>动手学差分隐私第三章笔记</title>
@@ -422,190 +506,36 @@
       </tags>
   </entry>
   <entry>
-    <title>差分隐私第五章笔记</title>
-    <url>/azur_blog/2026/09/11/%E5%B7%AE%E5%88%86%E9%9A%90%E7%A7%81/%E5%8A%A8%E6%89%8B%E5%AD%A6%E5%B7%AE%E5%88%86%E9%9A%90%E7%A7%81%E7%AC%AC%E4%BA%94%E7%AB%A0%E7%AC%94%E8%AE%B0/</url>
-    <content><![CDATA[<h1 id="第五章：差分隐私（Differential-Privacy）笔记"><a href="#第五章：差分隐私（Differential-Privacy）笔记" class="headerlink" title="第五章：差分隐私（Differential Privacy）笔记"></a>第五章：差分隐私（Differential Privacy）笔记</h1><h2 id="5-1-差分隐私的定义"><a href="#5-1-差分隐私的定义" class="headerlink" title="5.1 差分隐私的定义"></a>5.1 差分隐私的定义</h2><ul>
-<li><strong>差分隐私是算法的性质，不是数据的性质</strong>。要说明一个数据集满足差分隐私，必须说明生成它的算法满足差分隐私。</li>
-<li><strong>机制（Mechanism）</strong>：满足差分隐私的随机化函数，通常记为 (F)。</li>
-<li><strong>相邻数据集</strong>：只差一个隐私单位的数据集。常见假设是“每个人的数据恰好在一行”，此时相邻数据集只差一行。</li>
-<li><strong>(\epsilon)-差分隐私形式化定义</strong>：</li>
-</ul>
-<p>[<br>\frac{\Pr[F(x)\in S]}{\Pr[F(x’)\in S]} \le e^\epsilon<br>]</p>
-<p>  对任意相邻数据集 (x,x’) 和任意输出集合 (S) 都成立。</p>
-<ul>
-<li>若输出是离散的，也可写成单点形式：</li>
-</ul>
-<p>[<br>\frac{\Pr[F(x)&#x3D;s]}{\Pr[F(x’)&#x3D;s]} \le e^\epsilon<br>]</p>
-<ul>
-<li><strong>隐私参数 (\epsilon)</strong>：<ul>
-<li>(\epsilon) 越小，两个输出分布越接近，隐私保护越强；</li>
-<li>但需要加入更大的噪声，数据可用性越低；</li>
-<li>通常建议 (\epsilon) 取 1 左右或更小，大于 10 可能保护有限。</li>
-</ul>
-</li>
-</ul>
-<h2 id="5-2-多少噪声才够？"><a href="#5-2-多少噪声才够？" class="headerlink" title="5.2 多少噪声才够？"></a>5.2 多少噪声才够？</h2><ul>
-<li>书中用恶意查询验证噪声是否足够：查询 Karrie 的收入是否 (\le 50K)。</li>
-<li>真实答案是 1；用拉普拉斯机制加噪后得到 5.43，攻击者无法判断真实是 0 还是 1。</li>
-<li>结论：<strong>差分隐私不拒绝恶意查询，而是加噪让所有查询结果都变得不可靠</strong>。</li>
-<li><strong>随机性与可复现性</strong>：<ul>
-<li>差分隐私依赖随机性，每次运行结果不同；</li>
-<li>这是隐私保护的必要条件；</li>
-<li>如需复现实验可设随机种子，但实际部署中不应公开或固定种子。</li>
-</ul>
-</li>
-</ul>
-<h2 id="5-3-拉普拉斯机制"><a href="#5-3-拉普拉斯机制" class="headerlink" title="5.3 拉普拉斯机制"></a>5.3 拉普拉斯机制</h2><ul>
-<li><strong>公式</strong>：</li>
-</ul>
-<p>[<br>F(x) &#x3D; f(x) + \operatorname{Lap}\left(\frac{s}{\epsilon}\right)<br>]</p>
-<ul>
-<li>(f(x))：真实查询结果；</li>
-<li>(s)：查询的敏感度；</li>
-<li>(\epsilon)：隐私预算；</li>
-<li>(\operatorname{Lap}(s&#x2F;\epsilon))：从中心 0、尺度 (b&#x3D;s&#x2F;\epsilon) 的拉普拉斯分布采样噪声。</li>
-<li><strong>敏感度 (s)</strong>：相邻数据集上，函数输出的最大变化量。<ul>
-<li>计数查询的敏感度通常为 1；</li>
-<li>求和查询若属性无上下界，敏感度无界，需先裁剪；</li>
-<li>均值查询通常拆成“噪声求和 &#x2F; 噪声计数”，再相除，按顺序组合消耗预算。</li>
-</ul>
-</li>
-<li><strong>拉普拉斯分布 PDF</strong>：</li>
-</ul>
-<p>[<br>p(z)&#x3D;\frac{1}{2b}\exp\left(-\frac{|z|}{b}\right)<br>]</p>
-<ul>
-<li><strong>密度比证明思路</strong>：</li>
-</ul>
-<h1 id="frac-p-F-x-y-p-F-x’-y"><a href="#frac-p-F-x-y-p-F-x’-y" class="headerlink" title="[\frac{p_{F(x)}(y)}{p_{F(x’)}(y)}"></a>[<br>\frac{p_{F(x)}(y)}{p_{F(x’)}(y)}</h1><h1 id="exp-left-frac-y-f-x’-y-f-x-b-right-le-exp-left-frac-s-b-right"><a href="#exp-left-frac-y-f-x’-y-f-x-b-right-le-exp-left-frac-s-b-right" class="headerlink" title="\exp\left(\frac{|y-f(x’)|-|y-f(x)|}{b}\right)\le\exp\left(\frac{s}{b}\right)"></a>\exp\left(\frac{|y-f(x’)|-|y-f(x)|}{b}\right)<br>\le<br>\exp\left(\frac{s}{b}\right)</h1><p>e^\epsilon<br>]</p>
-<p>  因此拉普拉斯机制满足 (\epsilon)-差分隐私。</p>
-<h2 id="5-4-隐私单位"><a href="#5-4-隐私单位" class="headerlink" title="5.4 隐私单位"></a>5.4 隐私单位</h2><ul>
-<li><strong>隐私单位</strong>：定义“相邻数据集”中到底相差多少数据。</li>
-<li>最常见：<strong>一个人（user-level privacy）</strong>，保护整个人的全部数据，永久有效。</li>
-<li>Apple 使用 <strong>person-day</strong>，只保护一个人一天提交的数据；跨天趋势不受保护。</li>
-<li>通常假设“每个人的数据恰好在一行”，以便形式化。</li>
-<li>如果假设不成立，应转换数据或查询，尽量保持“一个人”的隐私单位。</li>
-</ul>
-<h2 id="5-5-替换相邻与增删相邻"><a href="#5-5-替换相邻与增删相邻" class="headerlink" title="5.5 替换相邻与增删相邻"></a>5.5 替换相邻与增删相邻</h2><ul>
-<li><strong>替换相邻（Substitution Adjacency）</strong>：<ul>
-<li>两个数据集大小相同；</li>
-<li>修改一行得到另一个；</li>
-<li>对应“某个人的数据被改成另一个值”。</li>
-</ul>
-</li>
-<li><strong>增删相邻（Add-Remove Adjacency）</strong>：<ul>
-<li>两个数据集大小相差 1；</li>
-<li>增加或删除一行得到另一个；</li>
-<li>对应“某个人的数据存在或不存在”。</li>
-</ul>
-</li>
-<li>在对称差距离下：<ul>
-<li>增加或删除一行 → 距离为 1；</li>
-<li>修改一行 → 距离为 2。</li>
-</ul>
-</li>
-<li>两种定义会影响敏感度计算和差分隐私的具体形式，需在整个隐私分析中保持一致。</li>
-</ul>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ul>
-<li>差分隐私是<strong>算法性质</strong>，不是数据性质。</li>
-<li>机制是满足差分隐私的随机化函数。</li>
-<li>实现差分隐私的一种基本方法是加随机噪声，如拉普拉斯机制。</li>
-<li>噪声大小由敏感度和 (\epsilon) 决定：(\epsilon) 越小，噪声越大，隐私越强，可用性越低。</li>
-<li>隐私单位决定“相邻”的含义，默认应使用“一个人”。</li>
-<li>替换相邻和增删相邻是两种相邻数据集定义，影响敏感度计算。</li>
-</ul>
-<h2 id="Q-A"><a href="#Q-A" class="headerlink" title="Q&amp;A"></a>Q&amp;A</h2><h3 id="差分隐私是数据属性还是算法属性？"><a href="#差分隐私是数据属性还是算法属性？" class="headerlink" title="差分隐私是数据属性还是算法属性？"></a>差分隐私是数据属性还是算法属性？</h3><p>算法属性。它描述的是随机化机制在相邻数据集上的输出分布不可区分。</p>
-<h3 id="拉普拉斯机制为什么满足-epsilon-差分隐私？"><a href="#拉普拉斯机制为什么满足-epsilon-差分隐私？" class="headerlink" title="拉普拉斯机制为什么满足 (\epsilon)-差分隐私？"></a>拉普拉斯机制为什么满足 (\epsilon)-差分隐私？</h3><p>因为拉普拉斯分布的密度比可以用敏感度 (s) 控制，当噪声尺度 (b&#x3D;s&#x2F;\epsilon) 时，密度比不超过 (e^\epsilon)。</p>
-<h3 id="epsilon-越小越好吗？"><a href="#epsilon-越小越好吗？" class="headerlink" title="(\epsilon) 越小越好吗？"></a>(\epsilon) 越小越好吗？</h3><p>不是。(\epsilon) 越小隐私越强，但噪声越大，数据可用性越低。需要根据场景权衡。</p>
-<h3 id="什么是隐私单位？"><a href="#什么是隐私单位？" class="headerlink" title="什么是隐私单位？"></a>什么是隐私单位？</h3><p>隐私单位定义相邻数据集相差多少数据，比如一个人、一行、一张图像、一天的数据等。</p>
-<h3 id="替换相邻和增删相邻有什么区别？"><a href="#替换相邻和增删相邻有什么区别？" class="headerlink" title="替换相邻和增删相邻有什么区别？"></a>替换相邻和增删相邻有什么区别？</h3><p>替换相邻是修改一行，数据集大小不变；增删相邻是增加或删除一行，数据集大小相差 1。</p>
-<h3 id="为什么计数查询的敏感度通常是-1？"><a href="#为什么计数查询的敏感度通常是-1？" class="headerlink" title="为什么计数查询的敏感度通常是 1？"></a>为什么计数查询的敏感度通常是 1？</h3><p>因为增加或删除一行，计数最多变化 1：新行满足条件则加 1，不满足则不变。</p>
-<h2 id="词汇表"><a href="#词汇表" class="headerlink" title="词汇表"></a>词汇表</h2><table>
-<thead>
-<tr>
-<th>术语</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>差分隐私</td>
-<td>算法性质，相邻数据集输出分布不可区分</td>
-</tr>
-<tr>
-<td>机制</td>
-<td>满足差分隐私的随机化函数</td>
-</tr>
-<tr>
-<td>相邻数据集</td>
-<td>只差一个隐私单位的数据集</td>
-</tr>
-<tr>
-<td>隐私参数 (\epsilon)</td>
-<td>控制隐私强度，越小隐私越强，噪声越大</td>
-</tr>
-<tr>
-<td>敏感度</td>
-<td>相邻数据集上函数输出的最大变化量</td>
-</tr>
-<tr>
-<td>拉普拉斯机制</td>
-<td>加拉普拉斯噪声的差分隐私机制</td>
-</tr>
-<tr>
-<td>拉普拉斯分布</td>
-<td>中心 0、尺度 (b) 的对称指数分布</td>
-</tr>
-<tr>
-<td>隐私单位</td>
-<td>相邻数据集相差的数据量，如一个人、一天</td>
-</tr>
-<tr>
-<td>替换相邻</td>
-<td>修改一行，数据集大小相同</td>
-</tr>
-<tr>
-<td>增删相邻</td>
-<td>增加或删除一行，数据集大小相差 1</td>
-</tr>
-<tr>
-<td>随机性</td>
-<td>差分隐私机制内部噪声的来源，保证输出不可预测</td>
-</tr>
-</tbody></table>
+    <title>cookbook第二章笔记</title>
+    <url>/azur_blog/2026/08/21/python/cookbook%E7%AC%AC%E4%BA%8C%E7%AB%A0%E7%AC%94%E8%AE%B0/</url>
+    <content><![CDATA[<p>本章讲述了如何高效、优雅地处理现实世界中“不规矩”的文本数据</p>
+<h2 id="名词解释"><a href="#名词解释" class="headerlink" title="名词解释"></a>名词解释</h2><h3 id="正则修饰符"><a href="#正则修饰符" class="headerlink" title="正则修饰符"></a>正则修饰符</h3><p>定义:用于改变正则表达式引擎默认匹配行为的额外参数或内联指令。它只改变匹配的方式和规则，如是否忽略大小写等。</p>
+<h2 id="2-1-使用多个界定字符分割字符串"><a href="#2-1-使用多个界定字符分割字符串" class="headerlink" title="2.1 使用多个界定字符分割字符串"></a>2.1 使用多个界定字符分割字符串</h2><p>split()方法不允许有多个分割符或者不确定的空格。建议使用re.split()。<br>使用方法为：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">re.split(pattern, string, maxsplit=<span class="number">0</span>, flags=<span class="number">0</span>)</span><br></pre></td></tr></table></figure>
+<p>其中，pattern表示正则表达式，string表示要分割的字符串，maxsplit表示最大分割次数，flags表示正则修饰符。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>line = <span class="string">&#x27;asdf fjdk; afed, fjek,asdf, foo&#x27;</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> re</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>re.split(<span class="string">r&#x27;[;,\s]\s*&#x27;</span>, line)</span><br><span class="line">[<span class="string">&#x27;asdf&#x27;</span>, <span class="string">&#x27;fjdk&#x27;</span>, <span class="string">&#x27;afed&#x27;</span>, <span class="string">&#x27;fjek&#x27;</span>, <span class="string">&#x27;asdf&#x27;</span>, <span class="string">&#x27;foo&#x27;</span>]</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-2-字符串开头或结尾匹配"><a href="#2-2-字符串开头或结尾匹配" class="headerlink" title="2.2 字符串开头或结尾匹配"></a>2.2 字符串开头或结尾匹配</h2><p>使用str.startswith()或者str.endswith()。</p>
+<p>‘’’python<br>url &#x3D; ‘<a href="http://www.python.org/">http://www.python.org</a>‘</p>
+<p>print(url.endswith(‘com’))<br>print(url.startswith(‘http’))<br>‘’’</p>
+<h2 id="2-3-用shell通配符匹配字符串"><a href="#2-3-用shell通配符匹配字符串" class="headerlink" title="2.3 用shell通配符匹配字符串"></a>2.3 用shell通配符匹配字符串</h2><p>fnmatch模块提供了fnmatch()和fnmatchcase()来实现。相比于前者，后者会严格按照的你用的模式的大小写匹配。前者使用操作系统的大小写敏感规则来匹配模式。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> fnmatch <span class="keyword">import</span> fnmatch,fnmatchcase</span><br><span class="line"></span><br><span class="line">names = [<span class="string">&#x27;Dat1.csv&#x27;</span>, <span class="string">&#x27;Dat2.csv&#x27;</span>, <span class="string">&#x27;config.ini&#x27;</span>, <span class="string">&#x27;foo.py&#x27;</span>]</span><br><span class="line"><span class="built_in">print</span>([name <span class="keyword">for</span> name <span class="keyword">in</span> names <span class="keyword">if</span> fnmatch(name, <span class="string">&#x27;Dat*.csv&#x27;</span>)])</span><br><span class="line"><span class="comment">#输出[&#x27;Dat1.csv&#x27;, &#x27;Dat2.csv&#x27;]</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(fnmatch(<span class="string">&#x27;foot.txt&#x27;</span>,<span class="string">&#x27;*.txt&#x27;</span>))</span><br><span class="line"><span class="built_in">print</span>(fnmatch(<span class="string">&#x27;foot.txt&#x27;</span>,<span class="string">&#x27;*.TXT&#x27;</span>))</span><br><span class="line"><span class="built_in">print</span>(fnmatchcase(<span class="string">&#x27;foot.txt&#x27;</span>,<span class="string">&#x27;*.txt&#x27;</span>))</span><br><span class="line"><span class="built_in">print</span>(fnmatchcase(<span class="string">&#x27;foot.txt&#x27;</span>,<span class="string">&#x27;*.TXT&#x27;</span>))</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-4-字符串匹配搜索"><a href="#2-4-字符串匹配搜索" class="headerlink" title="2.4 字符串匹配搜索"></a>2.4 字符串匹配搜索</h2><p>需要调用str.find() , str.endswith() , str.startswith() 或者类似的方法。</p>
+<p>需要注意的是，如果你打算做大量的匹配和搜索操作的话，最好先编译正则表达式，然后再重复使用它。 模块级别的函数会将最近编译过的模式缓存起来，因此并不会消耗太多的性能， 但是如果使用预编译模式的话，你将会减少查找和一些额外的处理损耗。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="meta">&gt;&gt;&gt; </span>text = <span class="string">&#x27;yeah, but no, but yeah, but no, but yeah&#x27;</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="comment"># Exact match</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>text == <span class="string">&#x27;yeah&#x27;</span></span><br><span class="line"><span class="literal">False</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="comment"># Match at start or end</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>text.startswith(<span class="string">&#x27;yeah&#x27;</span>)</span><br><span class="line"><span class="literal">True</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>text.endswith(<span class="string">&#x27;no&#x27;</span>)</span><br><span class="line"><span class="literal">False</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span><span class="comment"># Search for the location of the first occurrence</span></span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>text.find(<span class="string">&#x27;no&#x27;</span>)</span><br><span class="line"><span class="number">10</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="2-5-字符串搜索和替换"><a href="#2-5-字符串搜索和替换" class="headerlink" title="2.5 字符串搜索和替换"></a>2.5 字符串搜索和替换</h2><p>使用str.replace()或者re.sub()</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">text = <span class="string">&#x27;yeah , but no , but yeah , but no , but yeah&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># replace操作之后不会改变原来的值</span></span><br><span class="line"><span class="built_in">print</span>(text.replace(<span class="string">&#x27;yeah&#x27;</span>,<span class="string">&#x27;yep&#x27;</span>))</span><br><span class="line"><span class="built_in">print</span>(text)</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line">text = <span class="string">&#x27;Today is 11/27/2012. PyCon starts 3/13/2013.&#x27;</span></span><br><span class="line"><span class="built_in">print</span>(re.sub(<span class="string">r&#x27;(\d+)/(\d+)/(\d+)&#x27;</span>, <span class="string">r&#x27;\3-\1-\2&#x27;</span>, text))</span><br><span class="line"><span class="built_in">print</span>(text)</span><br></pre></td></tr></table></figure>
+
+
 ]]></content>
       <categories>
         <category>学习</category>
       </categories>
       <tags>
-        <tag>差分隐私</tag>
-        <tag>笔记</tag>
-        <tag>拉普拉斯机制</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>借助开源项目petra制作桌面l2d小人的教程</title>
-    <url>/azur_blog/2026/09/02/%E6%95%99%E7%A8%8B/%E5%80%9F%E5%8A%A9%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AEpetra%E5%88%B6%E4%BD%9Cl2d%E5%B0%8F%E4%BA%BA%E7%9A%84%E6%95%99%E7%A8%8B/</url>
-    <content><![CDATA[<p>本教程借助github上的开源项目petra来实现，下载地址为</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">https://github.com/Wumiu/Petra/releases</span><br></pre></td></tr></table></figure>
-
-<h1 id="制作PSD"><a href="#制作PSD" class="headerlink" title="制作PSD"></a>制作PSD</h1><p>PSD可以理解为将一张立绘按部件（头发、眼睛、身体等）拆分成独立图层的分层文件。</p>
-<p>推荐使用：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">https://huggingface.co/spaces/24yearsold/see-through-demo </span><br></pre></td></tr></table></figure>
-
-<p>每天可以免费使用一次</p>
-<p>如果从手机下载传到电脑上可能名称会变成一串数字，建议重新命名为一个后缀是psd的文件</p>
-<h1 id="调整"><a href="#调整" class="headerlink" title="调整"></a>调整</h1><p>建议使用：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">https://www.photopea.com/</span><br></pre></td></tr></table></figure>
-<p>由于一些原因，生成的psd的图层有时候会顺序混乱，例如不显示眼睛，或者帽子被拆成了两部分。这时候需要通过修图软件修改一下图层。</p>
-<p>需要检查一下各图层的命名是否符合petra的文档要求的规范，否则在下一步可能会出现显示异常的问题</p>
-<h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><p>在点开petra之后于模型设置部分导入修改好的psd即可</p>
-]]></content>
-      <categories>
-        <category>学习</category>
-      </categories>
-      <tags>
-        <tag>l2d</tag>
-        <tag>教程</tag>
-        <tag>桌宠</tag>
+        <tag>python</tag>
+        <tag>字符串文本</tag>
       </tags>
   </entry>
   <entry>
@@ -764,77 +694,73 @@
       </tags>
   </entry>
   <entry>
-    <title>企业(海上传奇)技能和台词设计</title>
-    <url>/azur_blog/2026/08/20/%E7%A2%A7%E8%93%9D%E8%88%AA%E7%BA%BF/%E4%BC%81%E4%B8%9A-%E6%B5%B7%E4%B8%8A%E4%BC%A0%E5%A5%87-%E6%8A%80%E8%83%BD%E5%92%8C%E5%8F%B0%E8%AF%8D%E8%AE%BE%E8%AE%A1/</url>
-    <content><![CDATA[<h2 id="技能"><a href="#技能" class="headerlink" title="技能"></a>技能</h2><h3 id="幸运眷顾的幽灵-蓝"><a href="#幸运眷顾的幽灵-蓝" class="headerlink" title="幸运眷顾的幽灵 (蓝)"></a>幸运眷顾的幽灵 (蓝)</h3><p>企业进入战斗时处于”灰色幽灵”状态。企业发动空袭时有50%的概率进入”Lucky E++”状态，否则进入”灰色幽灵”状态。</p>
-<p>“灰色幽灵”:免疫所有伤害，装填增加50%,伤害增加20%。如果空袭后仍处于”灰色幽灵”状态，进入”Lucky E++”状态的概率增加10%(可累积增加)。进入”Lucky E++”状态时，额外释放一轮不触发本技能的空袭，将进入”Lucky E++”状态的概率重置为50%。</p>
-<p>Lucky E++:每次空袭附带一轮特殊弹幕，伤害加50%，装填加20%。如果空袭后仍处于”Lucky E++”状态，进入”灰色幽灵”状态的概率增加10%(可累积增加)。进入”灰色幽灵”状态时，额外释放一轮不触发本技能的空袭，将进入”灰色幽灵”状态的概率重置为50%。</p>
-<h3 id="身经百战的战士-红"><a href="#身经百战的战士-红" class="headerlink" title="身经百战的战士 (红)"></a>身经百战的战士 (红)</h3><p>自身或其它编队进入战斗后。每隔20秒进行一次判定，如果场上敌人数大于3，企业将派出F6F地狱猫(HVAR搭载型)进行一轮攻击，额外使全场敌人移速减少5%，生命值减少5%。否则编队所有舰船装填加10%，攻击加5%。</p>
-<h3 id="照亮黑暗的灯塔-黄"><a href="#照亮黑暗的灯塔-黄" class="headerlink" title="照亮黑暗的灯塔 (黄)"></a>照亮黑暗的灯塔 (黄)</h3><p>企业每次空袭后使自身所在编队的所有角色生命值恢复4%，并获得最大生命值2%的护盾，持续10秒(可以叠加)。企业的存在鼓舞着每一位同伴，编队内所有舰船装填、伤害、闪避加5%。</p>
-<h2 id="台词"><a href="#台词" class="headerlink" title="台词"></a>台词</h2><h3 id="登录界面"><a href="#登录界面" class="headerlink" title="登录界面"></a>登录界面</h3><p>碧蓝航线！</p>
-<h3 id="舰船型号"><a href="#舰船型号" class="headerlink" title="舰船型号"></a>舰船型号</h3><p>约克城级航空母舰————企业，弦号CV-6</p>
-<h3 id="自我介绍"><a href="#自我介绍" class="headerlink" title="自我介绍"></a>自我介绍</h3><p>虽然我有了更强的力量，但是还是要牢记自己的使命。指挥官，感谢你一直陪在我身边。</p>
-<h3 id="获取台词"><a href="#获取台词" class="headerlink" title="获取台词"></a>获取台词</h3><p>约克城级二号舰，企业，向您报道。以后的日子，请让我们一同携手迈向未来。</p>
-<h3 id="登陆台词-1"><a href="#登陆台词-1" class="headerlink" title="登陆台词-1"></a>登陆台词-1</h3><p>今天的风很温和，很适合航行。指挥官，准备好出发了吗？</p>
-<h3 id="登陆台词-2"><a href="#登陆台词-2" class="headerlink" title="登陆台词-2"></a>登陆台词-2</h3><p>你来了。书架上的书我已经挑了好几本，如果任务不急的话……晚上可以一起看。</p>
-<h3 id="查看详情-1"><a href="#查看详情-1" class="headerlink" title="查看详情-1"></a>查看详情-1</h3><p>二十枚战役之星……比起拿在身边数，我更希望收藏起来。数字太多代表太多人没能回来。</p>
-<h3 id="查看详情-2"><a href="#查看详情-2" class="headerlink" title="查看详情-2"></a>查看详情-2</h3><p>“灰色幽灵”这个绰号……我不讨厌它。只是偶尔会想，如果能以普通人的身份认识大家就好了</p>
-<h3 id="主界面-1"><a href="#主界面-1" class="headerlink" title="主界面-1"></a>主界面-1</h3><p>我们需要一个灯塔，指挥官。灯塔是必要的。</p>
-<h3 id="主界面-2"><a href="#主界面-2" class="headerlink" title="主界面-2"></a>主界面-2</h3><p>运气也是决定胜负的关键。能将好运带给同伴何尝不是一种运气好呢。</p>
-<h3 id="主界面-3"><a href="#主界面-3" class="headerlink" title="主界面-3"></a>主界面-3</h3><p>虽然指挥官是我最重要的人，但是约克城姐姐她们也是。我不能独占指挥官，指挥官也要多照顾照顾她们。</p>
-<h3 id="主界面-4"><a href="#主界面-4" class="headerlink" title="主界面-4"></a>主界面-4</h3><p>我打算和约克城姐姐去图书馆看一会书，指挥官要一起吗?</p>
-<h3 id="主界面-5"><a href="#主界面-5" class="headerlink" title="主界面-5"></a>主界面-5</h3><p>从珍珠港到冲绳，我走过太远的路。但只要有你在，我就知道方向是对的。</p>
-<h3 id="主界面-6"><a href="#主界面-6" class="headerlink" title="主界面-6"></a>主界面-6</h3><p>今天埃塞克斯对我说自从我变强了之后她提升自我的动力更足了，那孩子的好胜心真的很强。</p>
-<h3 id="主界面-7"><a href="#主界面-7" class="headerlink" title="主界面-7"></a>主界面-7</h3><p>今天的天气很好，适合出去散步，说不定还能偶遇大黄蜂。</p>
-<h3 id="主界面-8"><a href="#主界面-8" class="headerlink" title="主界面-8"></a>主界面-8</h3><p>你知道吗？有时我觉得，这片海记得我们所有人的名字。风平浪静的时候，能听见它们。</p>
-<h3 id="触摸台词-1"><a href="#触摸台词-1" class="headerlink" title="触摸台词-1"></a>触摸台词-1</h3><p>约克城姐姐说我最近学会偷懒了……其实我只是在学着享受战斗以外的时光而已。</p>
-<h3 id="触摸台词-2"><a href="#触摸台词-2" class="headerlink" title="触摸台词-2"></a>触摸台词-2</h3><p>我会一直待在你身边，和你留下美好的回忆。</p>
-<h3 id="特殊触摸-1"><a href="#特殊触摸-1" class="headerlink" title="特殊触摸-1"></a>特殊触摸-1</h3><p>偶尔的放松是有必要的，但是也不能太松弛。</p>
-<h3 id="特殊触摸-2"><a href="#特殊触摸-2" class="headerlink" title="特殊触摸-2"></a>特殊触摸-2</h3><p>感觉有时候指挥官需要“惩罚”一下呢。</p>
-<h3 id="摸头台词"><a href="#摸头台词" class="headerlink" title="摸头台词"></a>摸头台词</h3><p>偶尔像小孩子一样撒娇也不错。</p>
-<h3 id="任务提醒"><a href="#任务提醒" class="headerlink" title="任务提醒"></a>任务提醒</h3><p>还有任务没有完成，我们快去解决一下。</p>
-<h3 id="任务完成"><a href="#任务完成" class="headerlink" title="任务完成"></a>任务完成</h3><p>虽然任务完成了，但是也要注意复盘，下次行动起来才能更默契。</p>
-<h3 id="邮件提醒"><a href="#邮件提醒" class="headerlink" title="邮件提醒"></a>邮件提醒</h3><p>指挥官，不要忘了查看邮件。</p>
-<h3 id="回港台词-1"><a href="#回港台词-1" class="headerlink" title="回港台词-1"></a>回港台词-1</h3><p>虽然还会有下一场战斗，但至少，我们现在是放松的。指挥官，我们快去享受一下来之不易的时光吧。</p>
-<h3 id="回港台词-2"><a href="#回港台词-2" class="headerlink" title="回港台词-2"></a>回港台词-2</h3><p>回来之后赶快休息吧，我来负责善后。我可不希望指挥官又被约克城姐姐调侃“变得有点像企业一样”。</p>
-<h3 id="好感度-失望"><a href="#好感度-失望" class="headerlink" title="好感度-失望"></a>好感度-失望</h3><p>每个人都有状态不好的时候。指挥官，一定要早点调整好状态。</p>
-<h3 id="好感度-陌生"><a href="#好感度-陌生" class="headerlink" title="好感度-陌生"></a>好感度-陌生</h3><p>指挥官，有什么任务请尽管吩咐。我会做好自己的本分。</p>
-<h3 id="好感度-友好"><a href="#好感度-友好" class="headerlink" title="好感度-友好"></a>好感度-友好</h3><p>你最近和约克城姐姐走的挺近的……挺好的。看到她开心，我也会很安心。</p>
-<h3 id="好感度-喜欢"><a href="#好感度-喜欢" class="headerlink" title="好感度-喜欢"></a>好感度-喜欢</h3><p>以前我只会在意战斗。现在……我发现自己开始在意你有没有好好吃饭了。约克城姐姐也说我最近有点太关注你了。</p>
-<h3 id="好感度-爱"><a href="#好感度-爱" class="headerlink" title="好感度-爱"></a>好感度-爱</h3><p>指挥官，我经历过的战斗告诉我，命运从不会提前许诺什么。但是，无论未来怎么样，我都会选择在你身边。不是命令，不是使命，是我自己的决定。</p>
-<h3 id="誓约台词"><a href="#誓约台词" class="headerlink" title="誓约台词"></a>誓约台词</h3><p>我接受这枚戒指。不是为了奖励或纪念，而是为了确定一件事：在你身边，我不再只是幸运的幽灵，而是真正活着的人。指挥官，谢谢你。</p>
-<h3 id="礼物台词"><a href="#礼物台词" class="headerlink" title="礼物台词"></a>礼物台词</h3><p>我很喜欢这份礼物。如果指挥官有想要的也可以告诉我。</p>
-<h3 id="委托完成-1"><a href="#委托完成-1" class="headerlink" title="委托完成-1"></a>委托完成-1</h3><p>正如同我的身后有指挥官辛苦付出一样，指挥官也要重视幕后那些姐妹的辛苦付出。快去迎接她们吧，指挥官。</p>
-<h3 id="委托完成-2"><a href="#委托完成-2" class="headerlink" title="委托完成-2"></a>委托完成-2</h3><p>经过了这么多战争，指挥官肯定明白后勤的重要性。一起去迎接她们吧。</p>
-<h3 id="强化成功"><a href="#强化成功" class="headerlink" title="强化成功"></a>强化成功</h3><p>现在我感觉自己的感知能力更强了，希望能用这份力量更好地保护指挥官。</p>
-<h3 id="旗舰开战"><a href="#旗舰开战" class="headerlink" title="旗舰开战"></a>旗舰开战</h3><p>天佑白鹰！</p>
-<h3 id="胜利台词-1"><a href="#胜利台词-1" class="headerlink" title="胜利台词-1"></a>胜利台词-1</h3><p>想要什么奖励？让我独占指挥官一个小时可以吗。</p>
-<h3 id="胜利台词-2"><a href="#胜利台词-2" class="headerlink" title="胜利台词-2"></a>胜利台词-2</h3><p>多亏了指挥官的战术，才能取得胜利。</p>
-<h3 id="失败台词"><a href="#失败台词" class="headerlink" title="失败台词"></a>失败台词</h3><p>即使在最黑暗的时刻，也不能放弃希望。</p>
-<h3 id="技能台词"><a href="#技能台词" class="headerlink" title="技能台词"></a>技能台词</h3><p>直面命运吧！</p>
-<h3 id="彩蛋台词"><a href="#彩蛋台词" class="headerlink" title="彩蛋台词"></a>彩蛋台词</h3><p>（约克城）虽然姐姐也变强了，但是还是由我来保护。</p>
-<p>（大黄蜂）要注意安全。至少，要在我能看到的地方。</p>
-<p>（埃塞克斯）证明自己的时候到了！</p>
-<h2 id="设计理念"><a href="#设计理念" class="headerlink" title="设计理念"></a>设计理念</h2><h3 id="技能-1"><a href="#技能-1" class="headerlink" title="技能"></a>技能</h3><h4 id="幸运眷顾的幽灵"><a href="#幸运眷顾的幽灵" class="headerlink" title="幸运眷顾的幽灵"></a>幸运眷顾的幽灵</h4><p>由于原版中企业仅有Lucky E 一个技能，而且收益不稳定。因此我将原本一个技能的两个收益解耦，确保每次发动技能都有稳定收益。将两个状态分别命名为灰色幽灵和Lucky E++，前者是因为日军曾多次宣称击沉企业号，但她始终奇迹般地出现在战场上。后者是对于Lucky E的致敬，这里其实也参考了c++，因为c++的理念是打造为c的超集，但实际上和c的差异很大，这里亦是如此。状态的反复变化体现了命运对于企业的无常，也寓意着无论处于什么状态，企业始终会全力以赴击败敌人。</p>
-<h4 id="身经百战的战士"><a href="#身经百战的战士" class="headerlink" title="身经百战的战士"></a>身经百战的战士</h4><p>在历史上，企业不止参加过一些大型战役，也执行过一些护航任务(如1942年1月11日，企业号所在的特混舰队执行了保护前往萨摩亚群岛的运输船队的任务)，企业不止是一位战士，也是一位守护者。所以企业的应用场景不应该局限于boss战，应当在道中战也有发挥空间。但是如果只是一味地增加特殊弹幕难免有些俗套，因此这里设计为派出F6F发动攻击或者“乘胜追击”，同时附带一点属性加成作为添头，具有角色自身的特色，更符合企业对于敌人不会同情也不会手下留情的人设。</p>
-<h4 id="照亮黑暗的灯塔"><a href="#照亮黑暗的灯塔" class="headerlink" title="照亮黑暗的灯塔"></a>照亮黑暗的灯塔</h4><p>企业对于太平洋战争乃至反法西斯战争做出了巨大贡献，是美国海军在太平洋战争中不屈不挠精神的象征。这个技能增强了企业的团队收益，无论是道中还是boss战都是万金油的存在。</p>
-<h3 id="台词-1"><a href="#台词-1" class="headerlink" title="台词"></a>台词</h3><h4 id="主界面-1-1"><a href="#主界面-1-1" class="headerlink" title="主界面-1"></a>主界面-1</h4><p>这里致敬了《迪迦奥特曼》中奥特之星那一集的经典台词：“我们需要一个英雄，金城，英雄是有必要的”。企业和迪迦都是正义的象征，因此想到了参考这句话。这里想体现的是企业在太平洋战争中精神支柱的作用。也可以指指挥官在港区起到的重要作用之一。</p>
-<h4 id="主界面-2-1"><a href="#主界面-2-1" class="headerlink" title="主界面-2"></a>主界面-2</h4><p>企业原皮的主界面台词提到过希望将运气分给姐姐一部分。因此这里加了一个有些唯心的设定：企业可以给同伴带来好运。不过在历史上也是有体现的。</p>
-<h4 id="主界面-3-1"><a href="#主界面-3-1" class="headerlink" title="主界面-3"></a>主界面-3</h4><p>企业在22年23年的情人节台词提到过，不希望独占指挥官。而且约克城和大黄蜂等舰娘的台词透露着对于企业的关心。所以企业希望指挥官也能多照顾她们是合情合理的。</p>
-<h4 id="主界面-4-1"><a href="#主界面-4-1" class="headerlink" title="主界面-4"></a>主界面-4</h4><p>这一句是希望能完善一下企业的形象，企业在婚纱那件皮肤说过她并不是除了战斗一无是处的存在，可是其它皮肤并没有过多的展示企业的兴趣爱好。因此我希望给企业加上一个喜欢看书学习的设定（身为那么强大的存在，善于学习肯定是必要的）。</p>
-<h4 id="主界面-5-1"><a href="#主界面-5-1" class="headerlink" title="主界面-5"></a>主界面-5</h4><p>历史上，企业经历过过很多战斗。原皮也体现了那种迷茫（“一场战斗之后还有下一场战斗吗”）。但是指挥官让企业明白了舰娘的意义不止是战斗，也可以像正常人一样生活。</p>
-<h4 id="主界面-6-1"><a href="#主界面-6-1" class="headerlink" title="主界面-6"></a>主界面-6</h4><p>在碧蓝航线中，埃塞克斯始终视企业前辈为榜样。在企业变强之后自然会希望能更快提升自己</p>
-<h4 id="主界面-7-1"><a href="#主界面-7-1" class="headerlink" title="主界面-7"></a>主界面-7</h4><p>主动邀请指挥官散步，体现了企业和指挥官逐渐熟悉。这句话也体现了大黄蜂喜欢像牛仔一样到处乱转的特点。</p>
-<h4 id="主界面-8-1"><a href="#主界面-8-1" class="headerlink" title="主界面-8"></a>主界面-8</h4><p>企业见证了无数同伴的牺牲和离别。这句话可以表达企业始终铭记自身的使命。</p>
-<h3 id="其它"><a href="#其它" class="headerlink" title="其它"></a>其它</h3><p>1.由于不懂设计数值，因此数值设定为和约克城Ⅱ的数值相等。<br>2.技能展示的都是10级的效果<br>3.设定为1943年7月经过改造后的企业<br>4.我认为黄鸡目前没有能力设计出好的台词和技能，所以想自己试一下<br>5.写到一半突然发现碧蓝的很多角色其实人设很单薄。就拿企业来说，所有皮肤的台词都没有体现出过她有什么兴趣爱好，这是很糟糕的事情。我肯定希望她围着我转，但是我也希望她能有一些自己的爱好，比如看书、健身。</p>
+    <title>我的第一篇博客</title>
+    <url>/azur_blog/2026/08/11/%E5%8D%9A%E5%AE%A2%E5%88%B6%E4%BD%9C%E7%9B%B8%E5%85%B3/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/</url>
+    <content><![CDATA[<p>这个网站打算用来记录一些学习笔记，同人文等。</p>
+<span id="more"></span>
+
+<h1 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h1><p>博客这个东西是我在网上无意中看到的，感觉很有意思，于是打算自己做一下。我本人很喜欢用代码做东西，同时很喜欢碧蓝航线中一个叫企业的角色。平时的爱好就是看小说，写代码，写同人文。希望能打造出一个碧蓝航线风格的博客，也能用来记录自己提升的过程。</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>css常见调参函数</title>
+    <url>/azur_blog/2026/08/14/%E5%8D%9A%E5%AE%A2%E5%88%B6%E4%BD%9C%E7%9B%B8%E5%85%B3/css%E5%B8%B8%E8%A7%81%E8%B0%83%E5%8F%82%E5%87%BD%E6%95%B0/</url>
+    <content><![CDATA[<h2 id="reba-红绿蓝透明度"><a href="#reba-红绿蓝透明度" class="headerlink" title="reba &#x2F; 红绿蓝透明度"></a>reba &#x2F; 红绿蓝透明度</h2><p>用法：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">reba(红色，绿色，蓝色，不透明度)</span><br></pre></td></tr></table></figure>
+<p>前三者都是0 ~ 255 ，数越大越接近白色。不透明度是越低越透明。</p>
+<h2 id="backdrop-filter-对元素背后的区域采用滤镜效果"><a href="#backdrop-filter-对元素背后的区域采用滤镜效果" class="headerlink" title="backdrop-filter &#x2F; 对元素背后的区域采用滤镜效果"></a>backdrop-filter &#x2F; 对元素背后的区域采用滤镜效果</h2><p>用法:</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">backdrop-filter: blur(12px)</span><br></pre></td></tr></table></figure>
+<p>模糊半径（xxpx）越大内容越糊</p>
 ]]></content>
       <categories>
-        <category>热爱</category>
+        <category>学习</category>
       </categories>
       <tags>
-        <tag>企业</tag>
-        <tag>碧蓝航线</tag>
-        <tag>舰娘</tag>
+        <tag>css</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>博客制作注意事项</title>
+    <url>/azur_blog/2026/08/11/%E5%8D%9A%E5%AE%A2%E5%88%B6%E4%BD%9C%E7%9B%B8%E5%85%B3/%E5%8D%9A%E5%AE%A2%E5%88%B6%E4%BD%9C%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/</url>
+    <content><![CDATA[<h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>今天尝试搭建好了博客的环境，并制作了一个大概的样子。在开发过程中遇到了如下两个问题：</p>
+<h2 id="1-欢迎动画无法循环播放"><a href="#1-欢迎动画无法循环播放" class="headerlink" title="1.欢迎动画无法循环播放"></a>1.欢迎动画无法循环播放</h2><p>在css动画属性中用了forwards,应该改为infinite<br>最后的效果如下：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">.welcome-text.animate &#123;</span><br><span class="line">  animation: welcome-reveal 6s ease-in-out infinite;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="2-将路径或者一些文件弄混"><a href="#2-将路径或者一些文件弄混" class="headerlink" title="2.将路径或者一些文件弄混"></a>2.将路径或者一些文件弄混</h2><p>目前的结构有点像是一个嵌套的结构，因此一定要记录好架构，目前的架构为</p>
+<p>  blog&#x2F;                                    ← 整个博客项目<br>  ├── _config.yml                          ← ① 站点配置（博客”本体”的设置）<br>  ├── package.json                         ← Node 依赖清单（hexo<br>  本体、渲染插件）<br>  ├── package-lock.json                    ← 依赖锁定文件（不用管）<br>  ├── node_modules&#x2F;                        ← 已安装的依赖（不用管，别删）<br>  │<br>  ├── scaffolds&#x2F;                           ← 新建文章&#x2F;页面的”模板”<br>  │   ├── post.md                         （新建文章时套用）<br>  │   ├── page.md                         （新建页面时套用）<br>  │   └── draft.md                        （新建草稿时套用）<br>  │<br>  ├── source&#x2F;                              ← ② 你的”原料”都在这里<br>  │   ├── _posts&#x2F;                         ← ★ 你的文章（Markdown 文件）<br>  │   │   └── 我的第一篇博客.md<br>  │   ├── img&#x2F;                            ← 你的图片（avatar.png 头像在这）<br>  │   ├── tags&#x2F;index.md                   ← “标签”页面<br>  │   ├── categories&#x2F;index.md             ← “分类”页面<br>  │   └── _data&#x2F;butterfly.yml             ← 主题备用配置（目前是空文件）<br>  │<br>  ├── themes&#x2F;                              ← ③ 主题（决定网站长什么样）<br>  │   └── butterfly&#x2F;<br>  │       ├── _config.yml                 ← ★★ 主题配置（最常改的）<br>  │       ├── layout&#x2F;                     ← 页面模板（Pug，一般不用动）<br>  │       ├── source&#x2F;                     ← 主题自己的 CSS&#x2F;JS&#x2F;默认图<br>  │       └── scripts&#x2F;                    ← 主题辅助脚本<br>  │<br>  ├── public&#x2F;                              ← ④<br>  生成出的”成品网站”（自动生成，别手动改）<br>  ├── db.json                              ← 缓存（不用管）<br>  ├── .git&#x2F;                                ← 版本控制（上次已 init 并提交）<br>  └── .github&#x2F;                             ← GitHub 自动更新依赖的配置</p>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>js</tag>
+        <tag>开发</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>借助开源项目petra制作桌面l2d小人的教程</title>
+    <url>/azur_blog/2026/09/02/%E6%95%99%E7%A8%8B/%E5%80%9F%E5%8A%A9%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AEpetra%E5%88%B6%E4%BD%9Cl2d%E5%B0%8F%E4%BA%BA%E7%9A%84%E6%95%99%E7%A8%8B/</url>
+    <content><![CDATA[<p>本教程借助github上的开源项目petra来实现，下载地址为</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">https://github.com/Wumiu/Petra/releases</span><br></pre></td></tr></table></figure>
+
+<h1 id="制作PSD"><a href="#制作PSD" class="headerlink" title="制作PSD"></a>制作PSD</h1><p>PSD可以理解为将一张立绘按部件（头发、眼睛、身体等）拆分成独立图层的分层文件。</p>
+<p>推荐使用：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">https://huggingface.co/spaces/24yearsold/see-through-demo </span><br></pre></td></tr></table></figure>
+
+<p>每天可以免费使用一次</p>
+<p>如果从手机下载传到电脑上可能名称会变成一串数字，建议重新命名为一个后缀是psd的文件</p>
+<h1 id="调整"><a href="#调整" class="headerlink" title="调整"></a>调整</h1><p>建议使用：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">https://www.photopea.com/</span><br></pre></td></tr></table></figure>
+<p>由于一些原因，生成的psd的图层有时候会顺序混乱，例如不显示眼睛，或者帽子被拆成了两部分。这时候需要通过修图软件修改一下图层。</p>
+<p>需要检查一下各图层的命名是否符合petra的文档要求的规范，否则在下一步可能会出现显示异常的问题</p>
+<h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><p>在点开petra之后于模型设置部分导入修改好的psd即可</p>
+]]></content>
+      <categories>
+        <category>学习</category>
+      </categories>
+      <tags>
+        <tag>l2d</tag>
+        <tag>教程</tag>
+        <tag>桌宠</tag>
       </tags>
   </entry>
   <entry>
@@ -1086,6 +1012,80 @@
         <category>热爱</category>
       </categories>
       <tags>
+        <tag>碧蓝航线</tag>
+        <tag>舰娘</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>企业(海上传奇)技能和台词设计</title>
+    <url>/azur_blog/2026/08/20/%E7%A2%A7%E8%93%9D%E8%88%AA%E7%BA%BF/%E4%BC%81%E4%B8%9A-%E6%B5%B7%E4%B8%8A%E4%BC%A0%E5%A5%87-%E6%8A%80%E8%83%BD%E5%92%8C%E5%8F%B0%E8%AF%8D%E8%AE%BE%E8%AE%A1/</url>
+    <content><![CDATA[<h2 id="技能"><a href="#技能" class="headerlink" title="技能"></a>技能</h2><h3 id="幸运眷顾的幽灵-蓝"><a href="#幸运眷顾的幽灵-蓝" class="headerlink" title="幸运眷顾的幽灵 (蓝)"></a>幸运眷顾的幽灵 (蓝)</h3><p>企业进入战斗时处于”灰色幽灵”状态。企业发动空袭时有50%的概率进入”Lucky E++”状态，否则进入”灰色幽灵”状态。</p>
+<p>“灰色幽灵”:免疫所有伤害，装填增加50%,伤害增加20%。如果空袭后仍处于”灰色幽灵”状态，进入”Lucky E++”状态的概率增加10%(可累积增加)。进入”Lucky E++”状态时，额外释放一轮不触发本技能的空袭，将进入”Lucky E++”状态的概率重置为50%。</p>
+<p>Lucky E++:每次空袭附带一轮特殊弹幕，伤害加50%，装填加20%。如果空袭后仍处于”Lucky E++”状态，进入”灰色幽灵”状态的概率增加10%(可累积增加)。进入”灰色幽灵”状态时，额外释放一轮不触发本技能的空袭，将进入”灰色幽灵”状态的概率重置为50%。</p>
+<h3 id="身经百战的战士-红"><a href="#身经百战的战士-红" class="headerlink" title="身经百战的战士 (红)"></a>身经百战的战士 (红)</h3><p>自身或其它编队进入战斗后。每隔20秒进行一次判定，如果场上敌人数大于3，企业将派出F6F地狱猫(HVAR搭载型)进行一轮攻击，额外使全场敌人移速减少5%，生命值减少5%。否则编队所有舰船装填加10%，攻击加5%。</p>
+<h3 id="照亮黑暗的灯塔-黄"><a href="#照亮黑暗的灯塔-黄" class="headerlink" title="照亮黑暗的灯塔 (黄)"></a>照亮黑暗的灯塔 (黄)</h3><p>企业每次空袭后使自身所在编队的所有角色生命值恢复4%，并获得最大生命值2%的护盾，持续10秒(可以叠加)。企业的存在鼓舞着每一位同伴，编队内所有舰船装填、伤害、闪避加5%。</p>
+<h2 id="台词"><a href="#台词" class="headerlink" title="台词"></a>台词</h2><h3 id="登录界面"><a href="#登录界面" class="headerlink" title="登录界面"></a>登录界面</h3><p>碧蓝航线！</p>
+<h3 id="舰船型号"><a href="#舰船型号" class="headerlink" title="舰船型号"></a>舰船型号</h3><p>约克城级航空母舰————企业，弦号CV-6</p>
+<h3 id="自我介绍"><a href="#自我介绍" class="headerlink" title="自我介绍"></a>自我介绍</h3><p>虽然我有了更强的力量，但是还是要牢记自己的使命。指挥官，感谢你一直陪在我身边。</p>
+<h3 id="获取台词"><a href="#获取台词" class="headerlink" title="获取台词"></a>获取台词</h3><p>约克城级二号舰，企业，向您报道。以后的日子，请让我们一同携手迈向未来。</p>
+<h3 id="登陆台词-1"><a href="#登陆台词-1" class="headerlink" title="登陆台词-1"></a>登陆台词-1</h3><p>今天的风很温和，很适合航行。指挥官，准备好出发了吗？</p>
+<h3 id="登陆台词-2"><a href="#登陆台词-2" class="headerlink" title="登陆台词-2"></a>登陆台词-2</h3><p>你来了。书架上的书我已经挑了好几本，如果任务不急的话……晚上可以一起看。</p>
+<h3 id="查看详情-1"><a href="#查看详情-1" class="headerlink" title="查看详情-1"></a>查看详情-1</h3><p>二十枚战役之星……比起拿在身边数，我更希望收藏起来。数字太多代表太多人没能回来。</p>
+<h3 id="查看详情-2"><a href="#查看详情-2" class="headerlink" title="查看详情-2"></a>查看详情-2</h3><p>“灰色幽灵”这个绰号……我不讨厌它。只是偶尔会想，如果能以普通人的身份认识大家就好了</p>
+<h3 id="主界面-1"><a href="#主界面-1" class="headerlink" title="主界面-1"></a>主界面-1</h3><p>我们需要一个灯塔，指挥官。灯塔是必要的。</p>
+<h3 id="主界面-2"><a href="#主界面-2" class="headerlink" title="主界面-2"></a>主界面-2</h3><p>运气也是决定胜负的关键。能将好运带给同伴何尝不是一种运气好呢。</p>
+<h3 id="主界面-3"><a href="#主界面-3" class="headerlink" title="主界面-3"></a>主界面-3</h3><p>虽然指挥官是我最重要的人，但是约克城姐姐她们也是。我不能独占指挥官，指挥官也要多照顾照顾她们。</p>
+<h3 id="主界面-4"><a href="#主界面-4" class="headerlink" title="主界面-4"></a>主界面-4</h3><p>我打算和约克城姐姐去图书馆看一会书，指挥官要一起吗?</p>
+<h3 id="主界面-5"><a href="#主界面-5" class="headerlink" title="主界面-5"></a>主界面-5</h3><p>从珍珠港到冲绳，我走过太远的路。但只要有你在，我就知道方向是对的。</p>
+<h3 id="主界面-6"><a href="#主界面-6" class="headerlink" title="主界面-6"></a>主界面-6</h3><p>今天埃塞克斯对我说自从我变强了之后她提升自我的动力更足了，那孩子的好胜心真的很强。</p>
+<h3 id="主界面-7"><a href="#主界面-7" class="headerlink" title="主界面-7"></a>主界面-7</h3><p>今天的天气很好，适合出去散步，说不定还能偶遇大黄蜂。</p>
+<h3 id="主界面-8"><a href="#主界面-8" class="headerlink" title="主界面-8"></a>主界面-8</h3><p>你知道吗？有时我觉得，这片海记得我们所有人的名字。风平浪静的时候，能听见它们。</p>
+<h3 id="触摸台词-1"><a href="#触摸台词-1" class="headerlink" title="触摸台词-1"></a>触摸台词-1</h3><p>约克城姐姐说我最近学会偷懒了……其实我只是在学着享受战斗以外的时光而已。</p>
+<h3 id="触摸台词-2"><a href="#触摸台词-2" class="headerlink" title="触摸台词-2"></a>触摸台词-2</h3><p>我会一直待在你身边，和你留下美好的回忆。</p>
+<h3 id="特殊触摸-1"><a href="#特殊触摸-1" class="headerlink" title="特殊触摸-1"></a>特殊触摸-1</h3><p>偶尔的放松是有必要的，但是也不能太松弛。</p>
+<h3 id="特殊触摸-2"><a href="#特殊触摸-2" class="headerlink" title="特殊触摸-2"></a>特殊触摸-2</h3><p>感觉有时候指挥官需要“惩罚”一下呢。</p>
+<h3 id="摸头台词"><a href="#摸头台词" class="headerlink" title="摸头台词"></a>摸头台词</h3><p>偶尔像小孩子一样撒娇也不错。</p>
+<h3 id="任务提醒"><a href="#任务提醒" class="headerlink" title="任务提醒"></a>任务提醒</h3><p>还有任务没有完成，我们快去解决一下。</p>
+<h3 id="任务完成"><a href="#任务完成" class="headerlink" title="任务完成"></a>任务完成</h3><p>虽然任务完成了，但是也要注意复盘，下次行动起来才能更默契。</p>
+<h3 id="邮件提醒"><a href="#邮件提醒" class="headerlink" title="邮件提醒"></a>邮件提醒</h3><p>指挥官，不要忘了查看邮件。</p>
+<h3 id="回港台词-1"><a href="#回港台词-1" class="headerlink" title="回港台词-1"></a>回港台词-1</h3><p>虽然还会有下一场战斗，但至少，我们现在是放松的。指挥官，我们快去享受一下来之不易的时光吧。</p>
+<h3 id="回港台词-2"><a href="#回港台词-2" class="headerlink" title="回港台词-2"></a>回港台词-2</h3><p>回来之后赶快休息吧，我来负责善后。我可不希望指挥官又被约克城姐姐调侃“变得有点像企业一样”。</p>
+<h3 id="好感度-失望"><a href="#好感度-失望" class="headerlink" title="好感度-失望"></a>好感度-失望</h3><p>每个人都有状态不好的时候。指挥官，一定要早点调整好状态。</p>
+<h3 id="好感度-陌生"><a href="#好感度-陌生" class="headerlink" title="好感度-陌生"></a>好感度-陌生</h3><p>指挥官，有什么任务请尽管吩咐。我会做好自己的本分。</p>
+<h3 id="好感度-友好"><a href="#好感度-友好" class="headerlink" title="好感度-友好"></a>好感度-友好</h3><p>你最近和约克城姐姐走的挺近的……挺好的。看到她开心，我也会很安心。</p>
+<h3 id="好感度-喜欢"><a href="#好感度-喜欢" class="headerlink" title="好感度-喜欢"></a>好感度-喜欢</h3><p>以前我只会在意战斗。现在……我发现自己开始在意你有没有好好吃饭了。约克城姐姐也说我最近有点太关注你了。</p>
+<h3 id="好感度-爱"><a href="#好感度-爱" class="headerlink" title="好感度-爱"></a>好感度-爱</h3><p>指挥官，我经历过的战斗告诉我，命运从不会提前许诺什么。但是，无论未来怎么样，我都会选择在你身边。不是命令，不是使命，是我自己的决定。</p>
+<h3 id="誓约台词"><a href="#誓约台词" class="headerlink" title="誓约台词"></a>誓约台词</h3><p>我接受这枚戒指。不是为了奖励或纪念，而是为了确定一件事：在你身边，我不再只是幸运的幽灵，而是真正活着的人。指挥官，谢谢你。</p>
+<h3 id="礼物台词"><a href="#礼物台词" class="headerlink" title="礼物台词"></a>礼物台词</h3><p>我很喜欢这份礼物。如果指挥官有想要的也可以告诉我。</p>
+<h3 id="委托完成-1"><a href="#委托完成-1" class="headerlink" title="委托完成-1"></a>委托完成-1</h3><p>正如同我的身后有指挥官辛苦付出一样，指挥官也要重视幕后那些姐妹的辛苦付出。快去迎接她们吧，指挥官。</p>
+<h3 id="委托完成-2"><a href="#委托完成-2" class="headerlink" title="委托完成-2"></a>委托完成-2</h3><p>经过了这么多战争，指挥官肯定明白后勤的重要性。一起去迎接她们吧。</p>
+<h3 id="强化成功"><a href="#强化成功" class="headerlink" title="强化成功"></a>强化成功</h3><p>现在我感觉自己的感知能力更强了，希望能用这份力量更好地保护指挥官。</p>
+<h3 id="旗舰开战"><a href="#旗舰开战" class="headerlink" title="旗舰开战"></a>旗舰开战</h3><p>天佑白鹰！</p>
+<h3 id="胜利台词-1"><a href="#胜利台词-1" class="headerlink" title="胜利台词-1"></a>胜利台词-1</h3><p>想要什么奖励？让我独占指挥官一个小时可以吗。</p>
+<h3 id="胜利台词-2"><a href="#胜利台词-2" class="headerlink" title="胜利台词-2"></a>胜利台词-2</h3><p>多亏了指挥官的战术，才能取得胜利。</p>
+<h3 id="失败台词"><a href="#失败台词" class="headerlink" title="失败台词"></a>失败台词</h3><p>即使在最黑暗的时刻，也不能放弃希望。</p>
+<h3 id="技能台词"><a href="#技能台词" class="headerlink" title="技能台词"></a>技能台词</h3><p>直面命运吧！</p>
+<h3 id="彩蛋台词"><a href="#彩蛋台词" class="headerlink" title="彩蛋台词"></a>彩蛋台词</h3><p>（约克城）虽然姐姐也变强了，但是还是由我来保护。</p>
+<p>（大黄蜂）要注意安全。至少，要在我能看到的地方。</p>
+<p>（埃塞克斯）证明自己的时候到了！</p>
+<h2 id="设计理念"><a href="#设计理念" class="headerlink" title="设计理念"></a>设计理念</h2><h3 id="技能-1"><a href="#技能-1" class="headerlink" title="技能"></a>技能</h3><h4 id="幸运眷顾的幽灵"><a href="#幸运眷顾的幽灵" class="headerlink" title="幸运眷顾的幽灵"></a>幸运眷顾的幽灵</h4><p>由于原版中企业仅有Lucky E 一个技能，而且收益不稳定。因此我将原本一个技能的两个收益解耦，确保每次发动技能都有稳定收益。将两个状态分别命名为灰色幽灵和Lucky E++，前者是因为日军曾多次宣称击沉企业号，但她始终奇迹般地出现在战场上。后者是对于Lucky E的致敬，这里其实也参考了c++，因为c++的理念是打造为c的超集，但实际上和c的差异很大，这里亦是如此。状态的反复变化体现了命运对于企业的无常，也寓意着无论处于什么状态，企业始终会全力以赴击败敌人。</p>
+<h4 id="身经百战的战士"><a href="#身经百战的战士" class="headerlink" title="身经百战的战士"></a>身经百战的战士</h4><p>在历史上，企业不止参加过一些大型战役，也执行过一些护航任务(如1942年1月11日，企业号所在的特混舰队执行了保护前往萨摩亚群岛的运输船队的任务)，企业不止是一位战士，也是一位守护者。所以企业的应用场景不应该局限于boss战，应当在道中战也有发挥空间。但是如果只是一味地增加特殊弹幕难免有些俗套，因此这里设计为派出F6F发动攻击或者“乘胜追击”，同时附带一点属性加成作为添头，具有角色自身的特色，更符合企业对于敌人不会同情也不会手下留情的人设。</p>
+<h4 id="照亮黑暗的灯塔"><a href="#照亮黑暗的灯塔" class="headerlink" title="照亮黑暗的灯塔"></a>照亮黑暗的灯塔</h4><p>企业对于太平洋战争乃至反法西斯战争做出了巨大贡献，是美国海军在太平洋战争中不屈不挠精神的象征。这个技能增强了企业的团队收益，无论是道中还是boss战都是万金油的存在。</p>
+<h3 id="台词-1"><a href="#台词-1" class="headerlink" title="台词"></a>台词</h3><h4 id="主界面-1-1"><a href="#主界面-1-1" class="headerlink" title="主界面-1"></a>主界面-1</h4><p>这里致敬了《迪迦奥特曼》中奥特之星那一集的经典台词：“我们需要一个英雄，金城，英雄是有必要的”。企业和迪迦都是正义的象征，因此想到了参考这句话。这里想体现的是企业在太平洋战争中精神支柱的作用。也可以指指挥官在港区起到的重要作用之一。</p>
+<h4 id="主界面-2-1"><a href="#主界面-2-1" class="headerlink" title="主界面-2"></a>主界面-2</h4><p>企业原皮的主界面台词提到过希望将运气分给姐姐一部分。因此这里加了一个有些唯心的设定：企业可以给同伴带来好运。不过在历史上也是有体现的。</p>
+<h4 id="主界面-3-1"><a href="#主界面-3-1" class="headerlink" title="主界面-3"></a>主界面-3</h4><p>企业在22年23年的情人节台词提到过，不希望独占指挥官。而且约克城和大黄蜂等舰娘的台词透露着对于企业的关心。所以企业希望指挥官也能多照顾她们是合情合理的。</p>
+<h4 id="主界面-4-1"><a href="#主界面-4-1" class="headerlink" title="主界面-4"></a>主界面-4</h4><p>这一句是希望能完善一下企业的形象，企业在婚纱那件皮肤说过她并不是除了战斗一无是处的存在，可是其它皮肤并没有过多的展示企业的兴趣爱好。因此我希望给企业加上一个喜欢看书学习的设定（身为那么强大的存在，善于学习肯定是必要的）。</p>
+<h4 id="主界面-5-1"><a href="#主界面-5-1" class="headerlink" title="主界面-5"></a>主界面-5</h4><p>历史上，企业经历过过很多战斗。原皮也体现了那种迷茫（“一场战斗之后还有下一场战斗吗”）。但是指挥官让企业明白了舰娘的意义不止是战斗，也可以像正常人一样生活。</p>
+<h4 id="主界面-6-1"><a href="#主界面-6-1" class="headerlink" title="主界面-6"></a>主界面-6</h4><p>在碧蓝航线中，埃塞克斯始终视企业前辈为榜样。在企业变强之后自然会希望能更快提升自己</p>
+<h4 id="主界面-7-1"><a href="#主界面-7-1" class="headerlink" title="主界面-7"></a>主界面-7</h4><p>主动邀请指挥官散步，体现了企业和指挥官逐渐熟悉。这句话也体现了大黄蜂喜欢像牛仔一样到处乱转的特点。</p>
+<h4 id="主界面-8-1"><a href="#主界面-8-1" class="headerlink" title="主界面-8"></a>主界面-8</h4><p>企业见证了无数同伴的牺牲和离别。这句话可以表达企业始终铭记自身的使命。</p>
+<h3 id="其它"><a href="#其它" class="headerlink" title="其它"></a>其它</h3><p>1.由于不懂设计数值，因此数值设定为和约克城Ⅱ的数值相等。<br>2.技能展示的都是10级的效果<br>3.设定为1943年7月经过改造后的企业<br>4.我认为黄鸡目前没有能力设计出好的台词和技能，所以想自己试一下<br>5.写到一半突然发现碧蓝的很多角色其实人设很单薄。就拿企业来说，所有皮肤的台词都没有体现出过她有什么兴趣爱好，这是很糟糕的事情。我肯定希望她围着我转，但是我也希望她能有一些自己的爱好，比如看书、健身。</p>
+]]></content>
+      <categories>
+        <category>热爱</category>
+      </categories>
+      <tags>
+        <tag>企业</tag>
         <tag>碧蓝航线</tag>
         <tag>舰娘</tag>
       </tags>
@@ -1506,53 +1506,6 @@
       </tags>
   </entry>
   <entry>
-    <title>灰与金的相遇</title>
-    <url>/azur_blog/2026/09/04/%E7%A2%A7%E8%93%9D%E8%88%AA%E7%BA%BF%E5%90%8C%E4%BA%BA%E6%96%87%E7%9B%B8%E5%85%B3/%E4%BC%81%E4%B8%9A/%E7%81%B0%E4%B8%8E%E9%87%91%E7%9A%84%E7%9B%B8%E9%81%87/</url>
-    <content><![CDATA[<p>在一条小路上，一位白发女子在若有所思地行走着。</p>
-<p>企业今天的心情不太好，因为指挥官和约克城最近去东煌参加一个会议，导致这几天家里只有她一人。因此在处理完政务之后，她决定出来散散心。</p>
-<p>她之前听约克城说有在一个偏远的位置一片很大的葵花田，于是打算借此机会过来看看，因为约克城和指挥官对那里很满意。</p>
-<p>“是……企业小姐吗？”</p>
-<p>听到身后传来陌生的声音，企业在不确定是敌是友的情况下本能地回头查看。</p>
-<p>眼前站着一位金发的舰娘，但不是俾斯麦或者大黄蜂，发丝在午后的光线里泛起柔和的淡金色光泽。她穿着色调温和的衣裙，整个人仿佛刚从一片绿荫里走出来，眉眼间带着与周围草木融为一体的安宁笑意。</p>
-<p>“我是郁金王国的金狮，”她稍微欠欠身，语调像风拂过树叶，“不必紧张，企业小姐。是光告诉我，这条路上有一位心里藏着思绪的旅人，所以我才循着风声过来。”</p>
-<p>企业稍微放松了些，但没有完全放下戒备；“你认识我吗？”</p>
-<p>“能让指挥官挂念得人，我自然知道。”金狮轻轻笑了，抬手在空中虚虚一滑，一缕细碎的光点从她指尖飘散，随即便凝成一只半透明的小鹿，轻盈地跃过企业的脚边，又无声消散，“约克城小姐和指挥官在一片葵花田玩时也提起过你。”</p>
-<p>听到这两个人的名字，企业的神色终于柔和了下来。她点了点头，算是认可。</p>
-<p>“原来约克城姐姐和指挥官还认识这么多人。”企业心里想着。</p>
-<p>“企业小姐这是要去哪里？如果不介意，我可以陪你走一段路。”金狮侧过身，姿态从容，目光却带着某种让人不由自主放松的温润，“这片荒野的路，我比任何人都熟悉。”</p>
-<p>“听说前面有一片葵花田，”企业说，“我姐姐和指挥官之前来过，说很美。”</p>
-<p>金狮眼中漾开一丝真切的笑意：“啊，原来如此。那片花田正是我用藤蔓和光的魔法一点点培育出来的。风把种子带到了荒野，我便让它们生根、舒展、朝太阳转动。现在那里还住着一些小动物，不过它们很乖，不会随便打扰人。”</p>
-<p>企业有些意外地看着她：“你的能力……很特别。”</p>
-<p>“自然地力量本就奇妙，而光会赋予它们形状与温度。”金狮做了一个“请”的手势，“我带你过去吧。这这段路第一次走容易迷路。”</p>
-<p>两人并肩沿小路前行。金狮的步伐轻盈，偶尔会弯腰碰一碰路边探出的野花，像是和它们打招呼。企业沉默地走着，但金狮似乎能从她细微地呼吸里读出什么，过了一阵，她才轻柔开口：“企业小姐今天心里是不是刮着一阵凉风？重要的人不在身边时，再广阔地天地也会显得空荡呢。”</p>
-<p>企业一怔，没有否认。</p>
-<p>“呵呵~没关系，”金狮偏过头看她，金色的发丝在风里轻轻飘扬，“自然之中，万物都有各自地节律。等待也好，思念也罢，都只是时光里的一段呼吸。你听————此刻风声正在替你诉说那些未开口地话呢。”</p>
-<p>企业没接话，但脚步不自觉地慢了下来，仿佛真的在侧耳倾听。</p>
-<p>转过弯道，葵花田豁然出现在眼前。无边的金黄在斜阳下翻涌成浪，每一朵花盘都朝着同一个方向微微颔首，像在低声吟唱。风从深处涌来，裹着青涩的草木香气，把企业的发梢和衣摆都吹得轻轻拂动。</p>
-<p>企业停下脚步，视线久久落在那片金色的海洋上。</p>
-<p>金狮站在她身侧稍后一步，没有说话，只是安静地看着企业的侧脸。过了片刻，她的指尖凝出一只光做的狮子————小得只有巴掌大小，蹲坐在企业肩头，用虚无的爪子碰了碰企业的耳朵。</p>
-<p>企业微微一惊，侧头看去，那小狮子便调皮地跃入空中碎成一片萤火。</p>
-<p>“呵呵~惊扰到你了？”金狮掩唇笑了，“只是觉得，此刻的你和片花田很相称————都在安静地吸收阳光，把那些沉重的枝桠慢慢晒暖。”</p>
-<p>企业的嘴角终于浮起一丝不易察觉的弧度。她蹲下身，伸手碰了碰一朵低垂的向日葵边缘，粗糙的花瓣触感温暖而真实。“我想明白了一些事情。我不能因为身边的人暂时不在就心情沉重，我应该多认识一些友善的人，多看一看世界。这样我想姐姐和指挥官也会高兴的。谢谢你带我来这里。”</p>
-<p>“不必道谢。能和企业小姐共享这一段时间，对我来说也是难得的馈赠。”金狮的声音柔和得像暮色里的溪流，“你看，花朵不会追问你的烦恼，只会把光一点一点递到你的手里。这也是自然教我得道理————有时候，陪伴本身，就是最好的治愈。”</p>
-<p>两人在田埂边站了很久。太阳缓缓沉向远山，花田里得金色逐渐沉淀为蜜糖般的浓暖。企业直起身，拍了拍裙摆沾上的草屑：“我该回去了，家里还有文件。”</p>
-<p>金狮点头，送企业回到最初相遇的那条小路。分别时，企业顿了顿，说：“如果下次还想来看花，我……还会来的。”</p>
-<p>金狮微微睁大了眼，随机弯起唇角，像新月一般温柔：“那我会让藤蔓把路边的野花都开得更旺盛一些，好迎接你。后会有期，企业小姐————愿自然的庇护，始终与你同在。”</p>
-<p>企业转身朝港区走去，走了几步又回头看了一眼。金狮还站在原地，身周浮起点点光尘，一只光凝的小鹿正绕着她的裙摆打转。她朝企业轻轻挥手，笑意盈盈。</p>
-<p>企业也抬手回应了一下，然后加快脚步走进渐浓的暮色里。晚风从葵花田的方向追上来，带着最后一缕阳光的余温和隐约的花香，像一句无声的耳语，轻轻拂过她的鬓角。</p>
-]]></content>
-      <categories>
-        <category>热爱</category>
-      </categories>
-      <tags>
-        <tag>企业</tag>
-        <tag>碧蓝航线</tag>
-        <tag>舰娘</tag>
-        <tag>同人文</tag>
-        <tag>金狮</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>姐妹间的神秘游戏</title>
     <url>/azur_blog/2026/08/31/%E7%A2%A7%E8%93%9D%E8%88%AA%E7%BA%BF%E5%90%8C%E4%BA%BA%E6%96%87%E7%9B%B8%E5%85%B3/%E4%BC%81%E4%B8%9A/%E5%A7%90%E5%A6%B9%E9%97%B4%E7%9A%84%E7%A5%9E%E7%A7%98%E6%B8%B8%E6%88%8F/</url>
     <content><![CDATA[<p>本篇为企业第一人称</p>
@@ -1638,6 +1591,53 @@
         <tag>舰娘</tag>
         <tag>同人文</tag>
         <tag>约克城</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>灰与金的相遇</title>
+    <url>/azur_blog/2026/09/04/%E7%A2%A7%E8%93%9D%E8%88%AA%E7%BA%BF%E5%90%8C%E4%BA%BA%E6%96%87%E7%9B%B8%E5%85%B3/%E4%BC%81%E4%B8%9A/%E7%81%B0%E4%B8%8E%E9%87%91%E7%9A%84%E7%9B%B8%E9%81%87/</url>
+    <content><![CDATA[<p>在一条小路上，一位白发女子在若有所思地行走着。</p>
+<p>企业今天的心情不太好，因为指挥官和约克城最近去东煌参加一个会议，导致这几天家里只有她一人。因此在处理完政务之后，她决定出来散散心。</p>
+<p>她之前听约克城说有在一个偏远的位置一片很大的葵花田，于是打算借此机会过来看看，因为约克城和指挥官对那里很满意。</p>
+<p>“是……企业小姐吗？”</p>
+<p>听到身后传来陌生的声音，企业在不确定是敌是友的情况下本能地回头查看。</p>
+<p>眼前站着一位金发的舰娘，但不是俾斯麦或者大黄蜂，发丝在午后的光线里泛起柔和的淡金色光泽。她穿着色调温和的衣裙，整个人仿佛刚从一片绿荫里走出来，眉眼间带着与周围草木融为一体的安宁笑意。</p>
+<p>“我是郁金王国的金狮，”她稍微欠欠身，语调像风拂过树叶，“不必紧张，企业小姐。是光告诉我，这条路上有一位心里藏着思绪的旅人，所以我才循着风声过来。”</p>
+<p>企业稍微放松了些，但没有完全放下戒备；“你认识我吗？”</p>
+<p>“能让指挥官挂念得人，我自然知道。”金狮轻轻笑了，抬手在空中虚虚一滑，一缕细碎的光点从她指尖飘散，随即便凝成一只半透明的小鹿，轻盈地跃过企业的脚边，又无声消散，“约克城小姐和指挥官在一片葵花田玩时也提起过你。”</p>
+<p>听到这两个人的名字，企业的神色终于柔和了下来。她点了点头，算是认可。</p>
+<p>“原来约克城姐姐和指挥官还认识这么多人。”企业心里想着。</p>
+<p>“企业小姐这是要去哪里？如果不介意，我可以陪你走一段路。”金狮侧过身，姿态从容，目光却带着某种让人不由自主放松的温润，“这片荒野的路，我比任何人都熟悉。”</p>
+<p>“听说前面有一片葵花田，”企业说，“我姐姐和指挥官之前来过，说很美。”</p>
+<p>金狮眼中漾开一丝真切的笑意：“啊，原来如此。那片花田正是我用藤蔓和光的魔法一点点培育出来的。风把种子带到了荒野，我便让它们生根、舒展、朝太阳转动。现在那里还住着一些小动物，不过它们很乖，不会随便打扰人。”</p>
+<p>企业有些意外地看着她：“你的能力……很特别。”</p>
+<p>“自然地力量本就奇妙，而光会赋予它们形状与温度。”金狮做了一个“请”的手势，“我带你过去吧。这这段路第一次走容易迷路。”</p>
+<p>两人并肩沿小路前行。金狮的步伐轻盈，偶尔会弯腰碰一碰路边探出的野花，像是和它们打招呼。企业沉默地走着，但金狮似乎能从她细微地呼吸里读出什么，过了一阵，她才轻柔开口：“企业小姐今天心里是不是刮着一阵凉风？重要的人不在身边时，再广阔地天地也会显得空荡呢。”</p>
+<p>企业一怔，没有否认。</p>
+<p>“呵呵~没关系，”金狮偏过头看她，金色的发丝在风里轻轻飘扬，“自然之中，万物都有各自地节律。等待也好，思念也罢，都只是时光里的一段呼吸。你听————此刻风声正在替你诉说那些未开口地话呢。”</p>
+<p>企业没接话，但脚步不自觉地慢了下来，仿佛真的在侧耳倾听。</p>
+<p>转过弯道，葵花田豁然出现在眼前。无边的金黄在斜阳下翻涌成浪，每一朵花盘都朝着同一个方向微微颔首，像在低声吟唱。风从深处涌来，裹着青涩的草木香气，把企业的发梢和衣摆都吹得轻轻拂动。</p>
+<p>企业停下脚步，视线久久落在那片金色的海洋上。</p>
+<p>金狮站在她身侧稍后一步，没有说话，只是安静地看着企业的侧脸。过了片刻，她的指尖凝出一只光做的狮子————小得只有巴掌大小，蹲坐在企业肩头，用虚无的爪子碰了碰企业的耳朵。</p>
+<p>企业微微一惊，侧头看去，那小狮子便调皮地跃入空中碎成一片萤火。</p>
+<p>“呵呵~惊扰到你了？”金狮掩唇笑了，“只是觉得，此刻的你和片花田很相称————都在安静地吸收阳光，把那些沉重的枝桠慢慢晒暖。”</p>
+<p>企业的嘴角终于浮起一丝不易察觉的弧度。她蹲下身，伸手碰了碰一朵低垂的向日葵边缘，粗糙的花瓣触感温暖而真实。“我想明白了一些事情。我不能因为身边的人暂时不在就心情沉重，我应该多认识一些友善的人，多看一看世界。这样我想姐姐和指挥官也会高兴的。谢谢你带我来这里。”</p>
+<p>“不必道谢。能和企业小姐共享这一段时间，对我来说也是难得的馈赠。”金狮的声音柔和得像暮色里的溪流，“你看，花朵不会追问你的烦恼，只会把光一点一点递到你的手里。这也是自然教我得道理————有时候，陪伴本身，就是最好的治愈。”</p>
+<p>两人在田埂边站了很久。太阳缓缓沉向远山，花田里得金色逐渐沉淀为蜜糖般的浓暖。企业直起身，拍了拍裙摆沾上的草屑：“我该回去了，家里还有文件。”</p>
+<p>金狮点头，送企业回到最初相遇的那条小路。分别时，企业顿了顿，说：“如果下次还想来看花，我……还会来的。”</p>
+<p>金狮微微睁大了眼，随机弯起唇角，像新月一般温柔：“那我会让藤蔓把路边的野花都开得更旺盛一些，好迎接你。后会有期，企业小姐————愿自然的庇护，始终与你同在。”</p>
+<p>企业转身朝港区走去，走了几步又回头看了一眼。金狮还站在原地，身周浮起点点光尘，一只光凝的小鹿正绕着她的裙摆打转。她朝企业轻轻挥手，笑意盈盈。</p>
+<p>企业也抬手回应了一下，然后加快脚步走进渐浓的暮色里。晚风从葵花田的方向追上来，带着最后一缕阳光的余温和隐约的花香，像一句无声的耳语，轻轻拂过她的鬓角。</p>
+]]></content>
+      <categories>
+        <category>热爱</category>
+      </categories>
+      <tags>
+        <tag>企业</tag>
+        <tag>碧蓝航线</tag>
+        <tag>舰娘</tag>
+        <tag>同人文</tag>
+        <tag>金狮</tag>
       </tags>
   </entry>
   <entry>
