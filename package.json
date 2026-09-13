@@ -7,7 +7,9 @@
     "clean": "hexo clean",
     "deploy": "hexo deploy",
     "server": "hexo server",
-    "test": "node test/validate-build.js"
+    "test": "node test/validate-build.js",
+    "test:build": "npm run clean && npm run build && npm test",
+    "test:quick": "node test/validate-build.js --quick"
   },
   "hexo": {
     "version": "8.1.2"
@@ -15,6 +17,7 @@
   "dependencies": {
     "hexo": "^8.0.0",
     "hexo-deployer-git": "^4.0.0",
+    "hexo-filter-mathjax": "^0.11.1",
     "hexo-generator-archive": "^2.0.0",
     "hexo-generator-category": "^2.0.0",
     "hexo-generator-index": "^4.0.0",
