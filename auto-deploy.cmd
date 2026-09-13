@@ -25,7 +25,7 @@ echo %BOLD%%BLUE%========================================%RESET%
 echo.
 
 :: ========== 1. Clean and generate ==========
-echo %CYAN%[1/5] hexo clean%RESET%
+echo %CYAN%[1/6] hexo clean%RESET%
 call hexo clean
 if errorlevel 1 (
     echo %RED%[ERROR] Clean failed%RESET%
@@ -33,7 +33,7 @@ if errorlevel 1 (
     exit /b 1
 )
 
-echo %CYAN%[2/5] hexo generate -c 4%RESET%
+echo %CYAN%[2/6] hexo generate -c 4%RESET%
 call hexo generate -c 4
 if errorlevel 1 (
     echo %YELLOW%[WARNING] Concurrent build failed, trying serial build...%RESET%
@@ -45,8 +45,17 @@ if errorlevel 1 (
     )
 )
 
-:: ========== 2. Deploy to GitHub Pages ==========
-echo %CYAN%[3/5] Deploy to GitHub Pages via hexo deploy...%RESET%
+:: ========== 3. Validate build ==========
+echo %CYAN%[3/6] Running build validation...%RESET%
+call node test/validate-build.js
+if errorlevel 1 (
+    echo %RED%[ERROR] Build validation failed. Fix errors before deploying.%RESET%
+    pause
+    exit /b 1
+)
+
+:: ========== 4. Deploy to GitHub Pages ==========
+echo %CYAN%[4/6] Deploy to GitHub Pages via hexo deploy...%RESET%
 call hexo deploy
 if errorlevel 1 (
     echo %YELLOW%[WARNING] hexo deploy failed. Check _config.yml deploy settings.%RESET%
@@ -55,8 +64,8 @@ if errorlevel 1 (
     echo %GREEN%[OK] GitHub Pages deployed successfully.%RESET%
 )
 
-:: ========== 3. Push source code ==========
-echo %CYAN%[4/5] Push source code to GitHub repository...%RESET%
+:: ========== 5. Push source code ==========
+echo %CYAN%[5/6] Push source code to GitHub repository...%RESET%
 git add .
 git commit -m "Auto deploy: %date% %time%"
 git push origin main
@@ -66,8 +75,8 @@ if errorlevel 1 (
     echo %GREEN%[OK] Source code pushed to GitHub.%RESET%
 )
 
-:: ========== 4. Deploy to Cloudflare Pages ==========
-echo %CYAN%[5/5] Deploy to Cloudflare Pages...%RESET%
+:: ========== 6. Deploy to Cloudflare Pages ==========
+echo %CYAN%[6/6] Deploy to Cloudflare Pages...%RESET%
 where wrangler >nul 2>nul
 if %ERRORLEVEL% NEQ 0 (
     echo %RED%[ERROR] wrangler not found. Install it first:%RESET%
@@ -86,7 +95,7 @@ if errorlevel 1 (
     exit /b 1
 )
 
-:: ========== 5. Optional: Deploy to Netlify ==========
+:: ========== Optional: Deploy to Netlify ==========
 if "%DEPLOY_NETLIFY%"=="1" (
     echo %CYAN%[Optional] Deploy to Netlify...%RESET%
     where netlify >nul 2>nul

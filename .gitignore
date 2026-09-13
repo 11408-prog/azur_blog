@@ -41,8 +41,6 @@ daily_log/
 
 指令.txt
 
-# 测试模块
-
-test/
+# 测试模块（已放行，validate-build.js 需入库）
 # Local Netlify folder
 .netlify
