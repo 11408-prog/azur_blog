@@ -1,121 +1,246 @@
+
 @echo off
-chcp 65001 >nul 2>&1   REM Switch to UTF-8 encoding to avoid special character issues
+setlocal
 
-:: ========== Get ANSI escape character ==========
-for /F %%i in ('echo prompt $E ^| cmd') do set "ESC=%%i"
+chcp 65001 >nul 2>&1
 
-:: ========== Define colors (blue theme) ==========
-set "BLUE=%ESC%[94m"      REM Bright blue (main color)
-set "CYAN=%ESC%[96m"      REM Bright cyan (secondary)
-set "GREEN=%ESC%[92m"     REM Bright green (success)
-set "YELLOW=%ESC%[93m"    REM Bright yellow (warning)
-set "RED=%ESC%[91m"       REM Bright red (error)
-set "BOLD=%ESC%[1m"       REM Bold
-set "RESET=%ESC%[0m"      REM Reset color
-
-:: ========== Ask whether to deploy to Netlify ==========
-set DEPLOY_NETLIFY=0
-set /p DEPLOY_NETLIFY="Also deploy to Netlify? (0=No, 1=Yes, default 0): "
-if "%DEPLOY_NETLIFY%"=="" set DEPLOY_NETLIFY=0
-if not "%DEPLOY_NETLIFY%"=="0" if not "%DEPLOY_NETLIFY%"=="1" set DEPLOY_NETLIFY=0
-
-echo %BOLD%%BLUE%========================================%RESET%
-echo %BOLD%%BLUE%Hexo Multi-Deploy Script%RESET%
-echo %BOLD%%BLUE%========================================%RESET%
+echo ========================================
+echo        Hexo Multi-Deploy Script
+echo ========================================
 echo.
 
-:: ========== 1. Clean and generate ==========
-echo %CYAN%[1/6] hexo clean%RESET%
+REM ========================================
+REM Ask whether to deploy to Netlify
+REM ========================================
+set "DEPLOY_NETLIFY=0"
+set /p "DEPLOY_NETLIFY=Also deploy to Netlify? (0=No, 1=Yes, default 0): "
+
+if not "%DEPLOY_NETLIFY%"=="1" (
+    set "DEPLOY_NETLIFY=0"
+)
+
+echo.
+echo ========================================
+echo [1/6] Cleaning Hexo build files...
+echo ========================================
+
 call hexo clean
+
 if errorlevel 1 (
-    echo %RED%[ERROR] Clean failed%RESET%
+    echo.
+    echo [ERROR] Hexo clean failed.
+    echo.
     pause
     exit /b 1
 )
 
-echo %CYAN%[2/6] hexo generate -c 4%RESET%
+echo [OK] Hexo clean completed.
+echo.
+
+REM ========================================
+REM Generate
+REM ========================================
+echo ========================================
+echo [2/6] Generating Hexo site...
+echo ========================================
+
 call hexo generate -c 4
+
 if errorlevel 1 (
-    echo %YELLOW%[WARNING] Concurrent build failed, trying serial build...%RESET%
+    echo.
+    echo [WARNING] Concurrent build failed.
+    echo [INFO] Trying serial build...
+    echo.
+
     call hexo generate -c 1
+
     if errorlevel 1 (
-        echo %RED%[ERROR] Build failed%RESET%
+        echo.
+        echo [ERROR] Hexo build failed.
+        echo.
         pause
         exit /b 1
     )
 )
 
-:: ========== 3. Validate build ==========
-echo %CYAN%[3/6] Running build validation...%RESET%
-call node test/validate-build.js
-if errorlevel 1 (
-    echo %RED%[ERROR] Build validation failed. Fix errors before deploying.%RESET%
-    pause
-    exit /b 1
+echo.
+echo [OK] Hexo build completed.
+echo.
+
+REM ========================================
+REM Validate
+REM ========================================
+echo ========================================
+echo [3/6] Validating build...
+echo ========================================
+
+if not exist "test\validate-build.js" (
+    echo [WARNING] test\validate-build.js not found.
+    echo [INFO] Skipping build validation.
+) else (
+    call node test\validate-build.js
+
+    if errorlevel 1 (
+        echo.
+        echo [ERROR] Build validation failed.
+        echo [INFO] Fix the errors before deploying.
+        echo.
+        pause
+        exit /b 1
+    )
+
+    echo [OK] Build validation passed.
 )
 
-:: ========== 4. Deploy to GitHub Pages ==========
-echo %CYAN%[4/6] Deploy to GitHub Pages via hexo deploy...%RESET%
+echo.
+
+REM ========================================
+REM GitHub Pages
+REM ========================================
+echo ========================================
+echo [4/6] Deploying to GitHub Pages...
+echo ========================================
+
 call hexo deploy
+
 if errorlevel 1 (
-    echo %YELLOW%[WARNING] hexo deploy failed. Check _config.yml deploy settings.%RESET%
-    echo %YELLOW%Continuing with Cloudflare Pages deploy...%RESET%
+    echo [WARNING] GitHub Pages deployment failed.
+    echo [INFO] Continuing with other deployments...
+    set "GITHUB_PAGES=FAILED"
 ) else (
-    echo %GREEN%[OK] GitHub Pages deployed successfully.%RESET%
+    echo [OK] GitHub Pages deployed successfully.
+    set "GITHUB_PAGES=SUCCESS"
 )
 
-:: ========== 5. Push source code ==========
-echo %CYAN%[5/6] Push source code to GitHub repository...%RESET%
+echo.
+
+REM ========================================
+REM Git source repository
+REM ========================================
+echo ========================================
+echo [5/6] Pushing source code to GitHub...
+echo ========================================
+
 git add .
-git commit -m "Auto deploy: %date% %time%"
-git push origin main
+
+git diff --cached --quiet
+
 if errorlevel 1 (
-    echo %YELLOW%[WARNING] Source push failed. Make sure git is configured.%RESET%
-) else (
-    echo %GREEN%[OK] Source code pushed to GitHub.%RESET%
-)
+    git commit -m "Auto deploy: %date% %time%"
 
-:: ========== 6. Deploy to Cloudflare Pages ==========
-echo %CYAN%[6/6] Deploy to Cloudflare Pages...%RESET%
-where wrangler >nul 2>nul
-if %ERRORLEVEL% NEQ 0 (
-    echo %RED%[ERROR] wrangler not found. Install it first:%RESET%
-    echo   npm install -g wrangler
-    echo Then login once:
-    echo   wrangler login
-    pause
-    exit /b 1
-)
-
-call wrangler pages deploy ./public --project-name=azurlane-enterprise --branch=main
-if errorlevel 1 (
-    echo %RED%[ERROR] Cloudflare Pages deploy failed.%RESET%
-    echo Make sure you ran: wrangler login
-    pause
-    exit /b 1
-)
-
-:: ========== Optional: Deploy to Netlify ==========
-if "%DEPLOY_NETLIFY%"=="1" (
-    echo %CYAN%[Optional] Deploy to Netlify...%RESET%
-    where netlify >nul 2>nul
-    if %ERRORLEVEL% NEQ 0 (
-        echo %YELLOW%[WARNING] netlify-cli not found. Skipping Netlify deploy.%RESET%
+    if errorlevel 1 (
+        echo [WARNING] Git commit failed.
+        set "GITHUB_SOURCE=FAILED"
     ) else (
-        call netlify deploy --dir=public --prod
+        git push origin main
+
         if errorlevel 1 (
-            echo %YELLOW%[WARNING] Netlify deploy failed. It may have exceeded the free quota.%RESET%
+            echo [WARNING] Git push failed.
+            set "GITHUB_SOURCE=FAILED"
         ) else (
-            echo %GREEN%[OK] Netlify deployed successfully.%RESET%
+            echo [OK] Source code pushed successfully.
+            set "GITHUB_SOURCE=SUCCESS"
         )
+    )
+) else (
+    echo [INFO] No source changes to commit.
+    set "GITHUB_SOURCE=NO CHANGES"
+)
+
+echo.
+
+REM ========================================
+REM Count commits
+REM ========================================
+set "TOTAL_COMMITS=0"
+
+for /f %%c in ('git rev-list --count HEAD 2^>nul') do (
+    set "TOTAL_COMMITS=%%c"
+)
+
+REM ========================================
+REM Cloudflare Pages
+REM ========================================
+echo ========================================
+echo [6/6] Deploying to Cloudflare Pages...
+echo ========================================
+
+where wrangler >nul 2>&1
+
+if errorlevel 1 (
+    echo [ERROR] Wrangler was not found.
+    echo.
+    echo Install it with:
+    echo npm install -g wrangler
+    echo.
+    echo Then login with:
+    echo wrangler login
+    echo.
+    set "CLOUDFLARE=FAILED"
+) else (
+    call wrangler pages deploy ./public --project-name=azurlane-enterprise --branch=main
+
+    if errorlevel 1 (
+        echo [ERROR] Cloudflare Pages deployment failed.
+        echo [INFO] Make sure you have run: wrangler login
+        set "CLOUDFLARE=FAILED"
+    ) else (
+        echo [OK] Cloudflare Pages deployed successfully.
+        set "CLOUDFLARE=SUCCESS"
     )
 )
 
-echo %BOLD%%BLUE%========================================%RESET%
-echo %BOLD%%BLUE%All deployments completed!%RESET%
-echo %BLUE%  - GitHub Pages: via hexo deploy%RESET%
-echo %BLUE%  - Source Code: pushed to GitHub repo%RESET%
-echo %BLUE%  - Cloudflare Pages: deployed via wrangler%RESET%
-if "%DEPLOY_NETLIFY%"=="1" echo %BLUE%  - Netlify: attempted (check logs above)%RESET%
-echo %BOLD%%BLUE%========================================%RESET%
+echo.
+
+REM ========================================
+REM Optional Netlify
+REM ========================================
+if "%DEPLOY_NETLIFY%"=="1" (
+    echo ========================================
+    echo [Optional] Deploying to Netlify...
+    echo ========================================
+
+    where netlify >nul 2>&1
+
+    if errorlevel 1 (
+        echo [WARNING] Netlify CLI was not found.
+        echo [INFO] Skipping Netlify deployment.
+        set "NETLIFY=SKIPPED"
+    ) else (
+        call netlify deploy --dir=public --prod
+
+        if errorlevel 1 (
+            echo [WARNING] Netlify deployment failed.
+            set "NETLIFY=FAILED"
+        ) else (
+            echo [OK] Netlify deployed successfully.
+            set "NETLIFY=SUCCESS"
+        )
+    )
+
+    echo.
+) else (
+    set "NETLIFY=NOT REQUESTED"
+)
+
+REM ========================================
+REM Summary
+REM ========================================
+echo ========================================
+echo           Deployment Summary
+echo ========================================
+echo.
+echo GitHub Pages    : %GITHUB_PAGES%
+echo GitHub Source   : %GITHUB_SOURCE%
+echo Cloudflare Pages: %CLOUDFLARE%
+echo Netlify         : %NETLIFY%
+echo.
+echo Total commits   : %TOTAL_COMMITS%
+echo.
+echo ========================================
+echo           Deployment Finished
+echo ========================================
+echo.
+
 pause
+exit /b 0

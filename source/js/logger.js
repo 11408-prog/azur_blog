@@ -17,8 +17,14 @@
   var BUFFER_KEY = 'blog_log_buffer';
   var MAX_MEMORY = 500;
   var MAX_STORAGE = 200;
+  // 持久化节流：内存 Buffer 与 localStorage 分离，避免每条日志都同步写盘
+  var FLUSH_INTERVAL = 5000;  // 定时器兜底间隔（ms）
+  var FLUSH_THRESHOLD = 20;   // 累计新增条数达到即写
   var debugMode = false;
   var _buffer = [];
+  var _dirty = false;         // 内存 Buffer 是否有未持久化的改动
+  var _pendingCount = 0;      // 距上次持久化新增的条数
+  var _flushTimer = null;
 
   try {
     debugMode =
@@ -95,44 +101,73 @@
     if (_buffer.length > MAX_MEMORY) {
       _buffer = _buffer.slice(_buffer.length - MAX_MEMORY);
     }
-    // 同步到 localStorage（最近 200 条）
+    // 只标记待持久化，真正的 localStorage 写入由 flushToStorage() 批量完成
+    _dirty = true;
+    _pendingCount++;
+    scheduleFlush();
+  }
+
+  // 将内存 Buffer 的最近 MAX_STORAGE 条写入 localStorage（同步 API，故需节流）
+  function flushToStorage() {
+    if (!_dirty) return;
+    _dirty = false;
+    _pendingCount = 0;
     try {
-      var toStore = _buffer.slice(-MAX_STORAGE);
-      localStorage.setItem(BUFFER_KEY, JSON.stringify(toStore));
+      localStorage.setItem(BUFFER_KEY, JSON.stringify(_buffer.slice(-MAX_STORAGE)));
     } catch (e) { /* 隐私模式或容量不足时忽略 */ }
   }
 
-  function out(level, module, msg, color, extra) {
-    // 写入缓存
+  // 节流调度：达到条数阈值立即写，否则等定时器兜底
+  function scheduleFlush() {
+    if (_pendingCount >= FLUSH_THRESHOLD) {
+      flushToStorage();
+      return;
+    }
+    if (_flushTimer === null) {
+      _flushTimer = setTimeout(function () {
+        _flushTimer = null;
+        flushToStorage();
+      }, FLUSH_INTERVAL);
+    }
+  }
+
+  // 页面离开时确保日志落地（定时器可能尚未触发）
+  window.addEventListener('pagehide', flushToStorage);
+  document.addEventListener('visibilitychange', function () {
+    if (document.visibilityState === 'hidden') flushToStorage();
+  });
+
+  // 唯一的 Buffer 写入入口：所有级别都经由此函数入缓存
+  // printToConsole 为 false 时只入缓存、不打印（debug/info 在非调试模式下如此）
+  // printExtra 为 false 时不把 extra 打到控制台（全局错误捕获沿用原行为：只入缓存不打印）
+  function out(level, module, msg, color, extra, printToConsole, printExtra) {
     pushBuffer(level, module, msg, extra);
 
     // 控制台输出
+    if (printToConsole === false) return;
     var args = [
       '%c[' + ts() + '][' + level.toUpperCase() + '][' + module + '] ' + msg + '%c',
       'color:' + color + ';font-weight:bold',
       'color:inherit'
     ];
-    if (extra !== undefined) args.push(extra);
+    if (extra !== undefined && printExtra !== false) args.push(extra);
     var fn = console[level] || console.log;
     if (typeof fn === 'function') fn.apply(console, args);
   }
 
   window.DSLog = {
     debug: function (m, msg, extra) {
-      pushBuffer('debug', m, msg, extra);
-      if (debugMode) out('debug', m, msg, '#9ca3af', extra);
+      // 是否打印由 debugMode 决定；Buffer 一定写入（此前 debugMode 为 false 时也要入缓存）
+      out('debug', m, msg, '#9ca3af', extra, debugMode);
     },
     info: function (m, msg, extra) {
-      pushBuffer('info', m, msg, extra);
-      if (debugMode) out('info', m, msg, '#60a5fa', extra);
+      out('info', m, msg, '#60a5fa', extra, debugMode);
     },
     warn: function (m, msg, extra) {
-      pushBuffer('warn', m, msg, extra);
-      out('warn', m, msg, '#fbbf24', extra);
+      out('warn', m, msg, '#fbbf24', extra, true);
     },
     error: function (m, msg, extra) {
-      pushBuffer('error', m, msg, extra);
-      out('error', m, msg, '#f87171', extra);
+      out('error', m, msg, '#f87171', extra, true);
     },
     isDebug: function () { return debugMode; },
     enableDebug: function () {
@@ -180,19 +215,21 @@
   };
 
   // ---------- 全局错误捕获（常显） ----------
+  // 只调用 out()：Buffer 写入由 out() 统一负责，避免与 pushBuffer() 重复
+  // 第 7 个参数 printExtra=false 保持与原实现一致的控制台输出（不额外打印对象）
   window.addEventListener('error', function (e) {
     var msg = '未捕获错误: ' + sanitize(e.message || 'unknown') +
       ' @ ' + sanitize(e.filename || '') + ':' + (e.lineno || 0);
-    pushBuffer('error', 'global', msg, { filename: e.filename, lineno: e.lineno, colno: e.colno });
-    out('error', 'global', msg);
+    out('error', 'global', msg, '#f87171',
+      { filename: e.filename, lineno: e.lineno, colno: e.colno }, true, false);
   });
 
   window.addEventListener('unhandledrejection', function (e) {
     var r = e.reason;
     var msg = '未处理的 Promise 拒绝: ' +
       (r && r.message ? sanitize(r.message) : sanitize(String(r)));
-    pushBuffer('error', 'global', msg, { reason: r && r.stack ? sanitize(r.stack) : String(r) });
-    out('error', 'global', msg);
+    out('error', 'global', msg, '#f87171',
+      { reason: r && r.stack ? sanitize(r.stack) : String(r) }, true, false);
   });
 
   out('info', 'DSLog', '日志系统就绪' + (debugMode ? '（调试模式）' : '（默认隐藏 debug/info，DSLog.enableDebug() 开启）'));

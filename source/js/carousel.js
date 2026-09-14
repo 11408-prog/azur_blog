@@ -2,6 +2,11 @@
 (function () {
   'use strict';
 
+  // 路径统一由 BlogConfig 派生（见 blog-config.js），不硬编码 /azur_blog/
+  function u(p) {
+    return window.BlogConfig ? window.BlogConfig.url(p) : '/azur_blog/' + p;
+  }
+
   function init() {
     // 画廊页：渲染轮播到 #gallery-carousel
     var galleryBox = document.getElementById('gallery-carousel');
@@ -21,7 +26,7 @@
     var old = container.querySelector('.carousel');
     if (old) old.remove();
 
-    fetch('/azur_blog/carousel-list.json')
+    fetch(u('carousel-list.json'))
       .then(function (r) { return r.json(); })
       .then(function (data) {
         var imgs = (data && data.images) || [];
@@ -148,8 +153,8 @@
     grid.className = 'tiles-grid';
 
     var items = [
-{ title: '学习', bg: '/azur_blog/img/study.jpg', link: '/azur_blog/categories/学习/' },
-{ title: '热爱', bg: '/azur_blog/img/love.jpg', link: '/azur_blog/categories/热爱/' }    ];
+{ title: '学习', bg: u('img/study.jpg'), link: u('categories/学习/') },
+{ title: '热爱', bg: u('img/love.jpg'), link: u('categories/热爱/') }    ];
 
     items.forEach(function (item) {
       var el = document.createElement('a');

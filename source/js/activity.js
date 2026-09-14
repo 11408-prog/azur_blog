@@ -2,7 +2,10 @@
 (function () {
   'use strict';
 
-  var DATA_URL = '/azur_blog/data/activity.json';
+  // 路径统一由 BlogConfig 派生（见 blog-config.js），不硬编码 /azur_blog/
+  var DATA_URL = window.BlogConfig
+    ? window.BlogConfig.url('data/activity.json')
+    : '/azur_blog/data/activity.json';
   var SEASONS = [
     { name: '春', startMonth: 0, endMonth: 2 },
     { name: '夏', startMonth: 3, endMonth: 5 },
