@@ -22,7 +22,7 @@ hexo.extend.generator.register('gallery-list', async function () {
 
   // 生成可安全用于 URL 的路径：空格/中文交给 encodeURI，# 会被当锚点截断必须编码
   function safeUrl(f) {
-    return '/azur_blog/carousel/' + encodeURI(f).replace(/#/g, '%23');
+    return (hexo.config.root || '/') + 'carousel/' + encodeURI(f).replace(/#/g, '%23');
   }
 
   const images = [];

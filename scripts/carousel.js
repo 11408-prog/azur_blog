@@ -26,7 +26,11 @@ hexo.extend.generator.register('carousel-images', function () {
     [files[i], files[j]] = [files[j], files[i]];
   }
 
-  const images = files.map((f) => '/azur_blog/carousel/' + f);
+  // 根路径统一从 Hexo 配置派生，不硬编码 /azur_blog/
+  // （前端由 source/js/blog-config.js 读取同一份 GLOBAL_CONFIG.root）
+  const root = hexo.config.root || '/';
+
+  const images = files.map((f) => root + 'carousel/' + f);
 
   return {
     path: 'carousel-list.json',

@@ -18,6 +18,27 @@ const error = (msg) => results.push({ level: 'error', msg });
 
 const QUICK = process.argv.includes('--quick');
 
+/**
+ * 从 _config.yml 读取 root（前端资源前缀）。
+ * 路径硬编码治理后（见《需要解决的问题.md》P1-8），前端 JS 与构建脚本
+ * 均从同一份 root 派生，校验脚本也不应再写死 '/azur_blog/'。
+ * 读取失败时退回默认值，避免校验本身崩溃。
+ */
+function readSiteRoot() {
+  const file = path.join(ROOT, '_config.yml');
+  try {
+    const m = fs.readFileSync(file, 'utf-8').match(/^root:\s*(\S+)/m);
+    if (!m) return '/azur_blog/';
+    let r = m[1].replace(/['"]/g, '');
+    if (!r.startsWith('/')) r = '/' + r;
+    if (!r.endsWith('/')) r = r + '/';
+    return r;
+  } catch (e) {
+    return '/azur_blog/';
+  }
+}
+const SITE_ROOT = readSiteRoot();
+
 // ─── 工具函数 ───────────────────────────────────────────────
 
 function readJson(filePath) {
@@ -77,14 +98,14 @@ function extractInjectRefs() {
   const css = [], js = [];
   const lines = section.split('\n');
   for (const line of lines) {
-    // href="/azur_blog/css/xxx.css?v=1.2"
+    // href="<root>css/xxx.css?v=1.2"
     const hrefMatch = line.match(/href="([^"]+)"/);
-    if (hrefMatch && hrefMatch[1].startsWith('/azur_blog/')) {
+    if (hrefMatch && hrefMatch[1].startsWith(SITE_ROOT)) {
       css.push(hrefMatch[1].split('?')[0]);
     }
-    // src="/azur_blog/js/xxx.js?v=1.2"
+    // src="<root>js/xxx.js?v=1.2"
     const srcMatch = line.match(/src="([^"]+)"/);
-    if (srcMatch && srcMatch[1].startsWith('/azur_blog/')) {
+    if (srcMatch && srcMatch[1].startsWith(SITE_ROOT)) {
       js.push(srcMatch[1].split('?')[0]);
     }
   }
