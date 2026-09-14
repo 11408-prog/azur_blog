@@ -24,7 +24,7 @@
 #weather-panel .weather-temp {
   font-size: 2rem;
   font-weight: 700;
-  color: #2d3748;
+  color: var(--text-primary);
   letter-spacing: -1px;
 }
 
@@ -32,7 +32,7 @@
   content: 'C';
   font-size: 0.9rem;
   font-weight: 500;
-  color: #718096;
+  color: var(--text-muted);
   margin-left: 1px;
 }
 
@@ -47,7 +47,7 @@
 
 #weather-panel .weather-place {
   text-align: center;
-  color: #a0aec0;
+  color: var(--text-faint);
   font-size: 0.8rem;
   margin-top: 2px;
 }
@@ -58,7 +58,7 @@
 }
 
 [data-theme="dark"] #weather-panel .weather-temp::after {
-  color: #a0aec0;
+  color: var(--text-faint);
 }
 
 [data-theme="dark"] #weather-panel .weather-desc {
@@ -71,7 +71,7 @@
 }
 
 [data-theme="dark"] #weather-panel .weather-place {
-  color: #718096;
+  color: var(--text-muted);
 }
 
 /* ========== 新增：日期 + 时间 ========== */
@@ -86,7 +86,7 @@
 #weather-panel .weather-date {
   font-size: 0.85rem;
   font-weight: 500;
-  color: #4a5568;
+  color: var(--text-secondary);
   letter-spacing: 0.3px;
 }
 
@@ -108,23 +108,23 @@
   padding-top: 6px;
   border-top: 1px solid rgba(0, 0, 0, 0.06);
   font-size: 0.8rem;
-  color: #a0aec0;
+  color: var(--text-faint);
 }
 
 #weather-panel .weather-humidity {
   display: flex;
   align-items: center;
   gap: 4px;
-  color: #718096;
+  color: var(--text-muted);
 }
 
 /* 暗色模式适配 */
 [data-theme="dark"] #weather-panel .weather-date {
-  color: #cbd5e0;
+  color: var(--text-faint-2);
 }
 
 [data-theme="dark"] #weather-panel .weather-time {
-  color: #718096;
+  color: var(--text-muted);
 }
 
 [data-theme="dark"] #weather-panel .weather-details {
@@ -132,5 +132,5 @@
 }
 
 [data-theme="dark"] #weather-panel .weather-humidity {
-  color: #a0aec0;
+  color: var(--text-faint);
 }

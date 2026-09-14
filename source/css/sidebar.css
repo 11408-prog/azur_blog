@@ -20,7 +20,7 @@
   border-left: 4px solid var(--gold);
   padding-left: 10px;
   font-weight: 600;
-  color: #2d3748;
+  color: var(--text-primary);
   margin-bottom: 12px;
 }
 
@@ -56,7 +56,7 @@
 }
 
 #aside-content .card-recent-post .aside-list-item .content a {
-  color: #2d3748;
+  color: var(--text-primary);
   font-weight: 500;
   transition: color 0.3s;
 }
@@ -66,7 +66,7 @@
 }
 
 #aside-content .card-recent-post .aside-list-item .content time {
-  color: #a0aec0;
+  color: var(--text-faint);
   font-size: 0.8rem;
 }
 
@@ -99,15 +99,15 @@
 }
 
 #aside-content .card-recent-post .aside-list-item .content a {
-  color: #2d3748 !important;
+  color: var(--text-primary) !important;
 }
 
 #aside-content .card-recent-post .aside-list-item .content time {
-  color: #4a5568 !important;
+  color: var(--text-secondary) !important;
 }
 
 #aside-content .card-tag-cloud a {
-  color: #2d3748 !important;
+  color: var(--text-primary) !important;
   background: rgba(43, 90, 143, 0.15) !important;
 }
 
@@ -120,11 +120,11 @@
 }
 
 #aside-content .card-info .author-info__description {
-  color: #4a5568 !important;
+  color: var(--text-secondary) !important;
 }
 
 #aside-content .card-info .author-info__num-name {
-  color: #718096 !important;
+  color: var(--text-muted) !important;
 }
 
 /* ==================== 暗色模式 ==================== */
@@ -152,5 +152,5 @@
 [data-theme="dark"] #aside-content .card-recent-post .aside-list-item .content time,
 [data-theme="dark"] #aside-content .card-info .author-info__description,
 [data-theme="dark"] #aside-content .card-info .author-info__num-name {
-  color: #a0aec0 !important;
+  color: var(--text-faint) !important;
 }

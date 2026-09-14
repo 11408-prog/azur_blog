@@ -19,4 +19,14 @@
   display: block;
   border-radius: var(--radius-sm);
   background: rgba(30, 58, 95, 0.05); /* 加载中的占位底色 */
+  cursor: pointer;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 0.35s ease;
+}
+
+#masonry-gallery .mg-col img:hover {
+  transform: scale(1.03);
+  box-shadow: 0 8px 24px var(--navy-deep-18);
+  position: relative;
+  z-index: 1;
 }
