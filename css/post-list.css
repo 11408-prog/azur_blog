@@ -28,14 +28,15 @@
   box-shadow: 0 12px 32px rgba(30, 58, 95, 0.14);
 }
 
-/* 封面：比例跟随图片（3:2 横图），高度自适应，不裁切 */
 #recent-posts .recent-post-item .recent-post-cover {
-  width: 100%;
-  aspect-ratio: 3 / 2;
+  height: 100%;        /* 让封面永远撑满卡片实际高度，不管这个高度是多少 */
+  aspect-ratio: unset; /* 不再固定比例，改交给 object-fit: cover 去裁切填满 */
 }
 
-#recent-posts .recent-post-item.no-cover .recent-post-info {
-  padding-top: 20px;
+#recent-posts .recent-post-item .recent-post-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;  /* 文字在实际可用高度内居中；想靠上就改成 flex-start */
 }
 
 #recent-posts .recent-post-item .recent-post-cover a {
