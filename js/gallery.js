@@ -5,7 +5,10 @@
 (function () {
   'use strict';
 
-  var DATA_URL = '/azur_blog/gallery.json';
+  // 路径统一由 BlogConfig 派生（见 blog-config.js），不硬编码 /azur_blog/
+  var DATA_URL = window.BlogConfig
+    ? window.BlogConfig.url('gallery.json')
+    : '/azur_blog/gallery.json';
 
   function shuffle(arr) {
     for (var i = arr.length - 1; i > 0; i--) {

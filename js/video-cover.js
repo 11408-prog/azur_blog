@@ -2,7 +2,11 @@
   'use strict';
 
   // 手机端（<=768px）：不挂视频，改用竖版封面图
-  var PHONE_COVER = '/azur_blog/img/phone_cover.jpg';
+  // 路径统一由 BlogConfig 派生（见 blog-config.js），不硬编码 /azur_blog/
+  function u(p) {
+    return window.BlogConfig ? window.BlogConfig.url(p) : '/azur_blog/' + p;
+  }
+  var PHONE_COVER = u('img/phone_cover.jpg');
   var mq = window.matchMedia('(max-width: 768px)');
 
   function mountVideo() {
@@ -34,7 +38,7 @@
     video.setAttribute('disablePictureInPicture', '');
     video.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;object-position:center 20%;z-index:0;opacity:0.9;';
 
-    var src = '/azur_blog/videos/cover.mp4';
+    var src = u('videos/cover.mp4');
     video.innerHTML = '<source src="' + src + '" type="video/mp4">';
 
     // 错误捕获：视频文件不存在、格式不支持、网络失败等
