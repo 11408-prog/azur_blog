@@ -123,7 +123,17 @@ mathjax:
   single_dollars: true # 启用单美元符号作为行内公式分隔符
   cjk_width: 0.9 # 相对 CJK 字符宽度
   normal_width: 0.6 # 相对正常（等宽）宽度
-  append_css: true # 为每个页面添加 CSS
-  every_page: false # 如果为 true，则每个页面都会渲染 MathJax，无论文章前的 mathjax 设置如何
+  append_css: true # 服务端渲染自带 CSS（本地生成，非 CDN）
+  every_page: true # 所有页面都走服务端 MathJax 渲染（无需逐篇加 mathjax: true）
   packages: # 额外加载的包
   extension_options: {}
+
+markdown:
+  render:
+    html: true
+    xhtmlOut: false
+    breaks: true
+    linkify: true
+    typographer: true
+  plugins:
+    # 公式改由 hexo-filter-mathjax 服务端渲染（SVG），不再用 markdown-it-katex
