@@ -1,3 +1,12 @@
+/* 目录/侧栏卡片显示控制
+ * ------------------------------------------------------------
+ * 迁移到 BlogLifecycle（见《需要解决的问题.md》P1-3）：
+ *   本模块没有定时器/监听器/动态 DOM，init() 本身是幂等的，
+ *   纯粹根据当前页面重新计算并覆盖 class/style，重复调用无副作用。
+ *   迁移的意义主要是让全站只有一个 pjax:complete 监听入口，
+ *   而不是每个模块各自绑定一份。
+ * 页面级模块（非 persistent）：PJAX 后 destroy（无需清理）→ mount 重新计算。
+ */
 (function () {
   'use strict';
 
@@ -36,12 +45,25 @@
     });
   }
 
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
-  } else {
-    init();
+  function register() {
+    if (!window.BlogLifecycle) {
+      // 兜底：生命周期管理器缺失时退回原有行为，保证功能不丢
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+      } else {
+        init();
+      }
+      document.addEventListener('pjax:complete', init);
+      return;
+    }
+
+    window.BlogLifecycle.register('toc-check', {
+      mount: function () {
+        init();
+      }
+      // 无 destroy：没有需要清理的资源，PJAX 后直接重新 mount 即可
+    });
   }
 
-  // PJAX 切换后重新执行
-  document.addEventListener('pjax:complete', init);
+  register();
 })();

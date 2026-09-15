@@ -120,30 +120,45 @@ echo ========================================
 echo [5/6] Pushing source code to GitHub...
 echo ========================================
 
+set "COMMIT_OK=1"
+
 git add .
 
-git diff --cached --quiet
-
 if errorlevel 1 (
-    git commit -m "Auto deploy: %date% %time%"
+    echo [WARNING] git add failed.
+    set "COMMIT_OK=0"
+) else (
+    git diff --cached --quiet
 
     if errorlevel 1 (
-        echo [WARNING] Git commit failed.
-        set "GITHUB_SOURCE=FAILED"
-    ) else (
-        git push origin main
+        git commit -m "Auto deploy: %date% %time%"
 
         if errorlevel 1 (
-            echo [WARNING] Git push failed.
-            set "GITHUB_SOURCE=FAILED"
+            echo [WARNING] Git commit failed.
+            set "COMMIT_OK=0"
         ) else (
-            echo [OK] Source code pushed successfully.
-            set "GITHUB_SOURCE=SUCCESS"
+            echo [OK] Changes committed.
         )
+    ) else (
+        echo [INFO] No new changes to commit.
+    )
+)
+
+REM Push even when there are no new changes, because an earlier
+REM commit may have succeeded while its push failed.
+if "%COMMIT_OK%"=="1" (
+    git push origin main
+
+    if errorlevel 1 (
+        echo [WARNING] Git push failed. Make sure git is configured.
+        set "GITHUB_SOURCE=FAILED"
+    ) else (
+        echo [OK] Source code pushed successfully.
+        set "GITHUB_SOURCE=SUCCESS"
     )
 ) else (
-    echo [INFO] No source changes to commit.
-    set "GITHUB_SOURCE=NO CHANGES"
+    echo [WARNING] Skipped push because a Git operation failed.
+    set "GITHUB_SOURCE=FAILED"
 )
 
 echo.
@@ -167,20 +182,20 @@ echo ========================================
 where wrangler >nul 2>&1
 
 if errorlevel 1 (
-    echo [ERROR] Wrangler was not found.
+    echo [WARNING] Wrangler was not found. Skipping Cloudflare Pages deploy.
     echo.
     echo Install it with:
-    echo npm install -g wrangler
+    echo   npm install -g wrangler
     echo.
     echo Then login with:
-    echo wrangler login
+    echo   wrangler login
     echo.
     set "CLOUDFLARE=FAILED"
 ) else (
     call wrangler pages deploy ./public --project-name=azurlane-enterprise --branch=main
 
     if errorlevel 1 (
-        echo [ERROR] Cloudflare Pages deployment failed.
+        echo [WARNING] Cloudflare Pages deployment failed.
         echo [INFO] Make sure you have run: wrangler login
         set "CLOUDFLARE=FAILED"
     ) else (
@@ -239,6 +254,8 @@ echo.
 echo ========================================
 echo           Deployment Finished
 echo ========================================
+echo.
+echo You have already committed %TOTAL_COMMITS% times ^<(°O°)^>
 echo.
 
 pause
