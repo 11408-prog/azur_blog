@@ -450,22 +450,22 @@ busuanzi:
 # if you set it to true, it will load mathjax/katex script in each page
 # if you set it to false, it will load mathjax/katex script according to your setting (add the 'mathjax: true' or 'katex: true' in page's front-matter)
 math:
-  # Choose: mathjax, katex
-  # Leave it empty if you don't need math
-  use: katex
-  per_page: true
-  hide_scrollbar: false
+  use:                        # 留空：公式由 hexo-filter-mathjax 服务端渲染（SVG），不用前端渲染器
+  per_page: false
+  hide_scrollbar: true
 
+  # MathJax
   mathjax:
-    # Enable the contextual menu
-    enableMenu: true
-    # Choose: all / ams / none, This controls whether equations are numbered and how
-    tags: none
+    enable: false
+    per_page: false
 
+  # KaTeX
   katex:
-    # Enable the copy KaTeX formula
-    copy_tex: false
-
+    enable: false
+    per_page: false
+    hide_scrollbar: true
+    css: https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css
+    js: https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js
 # --------------------------------------
 # Search
 # --------------------------------------
@@ -1328,6 +1328,8 @@ CDN:
   custom_format:
 
   option:
+    katex: https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css
+    katex_copytex: https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/copy-tex.min.js
     # abcjs_basic_js:
     # activate_power_mode:
     # algolia_js:
