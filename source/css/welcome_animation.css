@@ -6,6 +6,16 @@
   display: none !important;
 }
 
+/* 隐藏主题自带的社交图标模块（#site_social_icons）
+   桌面端主题本来就是 display:none，但主题在手机端（<=768px）
+   会强制把它显示出来（替代导航栏的社交图标），位置固定在 top:43%，
+   跟下面 .welcome-wrapper 的 top:45% 幾乎重叠，
+   在手机端会跟人物立绘叠在一起显得很突兀。
+   同样的图标在侧栏作者卡片里也有一份，隐藏这里不影响链接可达性。 */
+#site_social_icons {
+  display: none !important;
+}
+
 /* 欢迎区域整体居中 */
 .welcome-wrapper {
   position: absolute;
