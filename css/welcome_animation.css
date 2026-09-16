@@ -36,6 +36,7 @@
   letter-spacing: 8px !important;
   text-transform: uppercase !important;
   margin-bottom: 20px !important;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6), 0 0 12px rgba(0, 0, 0, 0.3) !important;
   animation: welcome-reveal 6s ease-in-out infinite;
 }
 
@@ -69,6 +70,7 @@
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.65), 0 0 16px rgba(0, 0, 0, 0.35);
 }
 
 /* 光标 */
