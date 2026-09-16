@@ -96,7 +96,25 @@
   }
 
   // 首次挂载 + PJAX 完成后重建 + 屏幕尺寸变化时切换
-  mountVideo();
-  document.addEventListener('pjax:complete', mountVideo);
-  mq.addEventListener('change', mountVideo);
+  // 迁移到 BlogLifecycle（P1-3）：mountVideo 本身是幂等的（已挂载则跳过），
+  // 且 PJAX 后 #page-header 是全新节点，旧 video 会随之一起被替换，无需手动清理，
+  // 所以不需要 destroy；resize 监听改用 ctx.on 登记，自动跟随 PJAX 回收重挂。
+  function register() {
+    if (!window.BlogLifecycle) {
+      // 兜底：生命周期管理器缺失时退回原有行为
+      mountVideo();
+      document.addEventListener('pjax:complete', mountVideo);
+      mq.addEventListener('change', mountVideo);
+      return;
+    }
+
+    window.BlogLifecycle.register('video-cover', {
+      mount: function (ctx) {
+        mountVideo();
+        ctx.on(mq, 'change', mountVideo);
+      }
+    });
+  }
+
+  register();
 })();
