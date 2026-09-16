@@ -88,7 +88,7 @@
           background-position: center top;
         }
         #page-header.full_page video { display: none !important; }
-        #page-header.full_page::before { background: rgba(0,0,0,0.1); }
+        #page-header.full_page::before { background: rgba(0,0,0,0.2); }
       }
     `;
     document.head.appendChild(style);

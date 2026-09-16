@@ -1,7 +1,6 @@
 @echo off
 setlocal
-
-chcp 65001 >nul 2>&1
+chcp 936 >nul 2>&1
 
 echo ========================================
 echo        Hexo Multi-Deploy Script
@@ -17,6 +16,13 @@ set /p "DEPLOY_NETLIFY=Also deploy to Netlify? (0=No, 1=Yes, default 0): "
 if not "%DEPLOY_NETLIFY%"=="1" (
     set "DEPLOY_NETLIFY=0"
 )
+
+REM ========================================
+REM Ask for a custom commit message
+REM ========================================
+set "COMMIT_MSG="
+set /p "COMMIT_MSG=Commit message (leave blank to use default 'Auto deploy: date time'): "
+if defined COMMIT_MSG set "COMMIT_MSG=%COMMIT_MSG:"=%"
 
 echo.
 echo ========================================
@@ -131,7 +137,11 @@ if errorlevel 1 (
     git diff --cached --quiet
 
     if errorlevel 1 (
-        git commit -m "Auto deploy: %date% %time%"
+        if "%COMMIT_MSG%"=="" (
+            git commit -m "Auto deploy: %date% %time%"
+        ) else (
+            git commit -m "%COMMIT_MSG%"
+        )
 
         if errorlevel 1 (
             echo [WARNING] Git commit failed.
@@ -255,7 +265,7 @@ echo ========================================
 echo           Deployment Finished
 echo ========================================
 echo.
-echo You have already committed %TOTAL_COMMITS% times ^<(°O°)^>
+echo You have already committed %TOTAL_COMMITS% times ^<^_^>
 echo.
 
 pause
