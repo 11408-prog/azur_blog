@@ -181,10 +181,28 @@
     return grid;
   }
 
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
-  } else {
-    init();
+  // 迁移到 BlogLifecycle（P1-3）：init() 本身对重复调用是安全的
+  // （画廊页会先移除旧轮播再建新的；首页磁贴有已存在判断），
+  // 不需要 destroy，也不需要把内部的 click/transitionend 监听器接到 ctx.on——
+  // 这些监听器绑在动态创建的子元素上，元素本身会随 PJAX 整体丢弃，不会累积泄漏。
+  function register() {
+    if (!window.BlogLifecycle) {
+      // 兜底：生命周期管理器缺失时退回原有行为
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+      } else {
+        init();
+      }
+      document.addEventListener('pjax:complete', init);
+      return;
+    }
+
+    window.BlogLifecycle.register('carousel', {
+      mount: function () {
+        init();
+      }
+    });
   }
-  document.addEventListener('pjax:complete', init);
+
+  register();
 })();

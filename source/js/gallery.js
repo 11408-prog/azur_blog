@@ -109,17 +109,39 @@
       });
   }
 
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', mount);
-  } else {
-    mount();
-  }
-  document.addEventListener('pjax:complete', mount);
+  // 迁移到 BlogLifecycle（P1-3）：mount() 本身对多次调用是安全的
+  // （无 #masonry-gallery 容器时直接跳过；lastList 缓存避免重复请求 gallery.json）。
+  // resize 防抖监听改用 ctx.on/ctx.timeout 登记，PJAX 切换时随旧模块一起清理重挂，
+  // 避免"刚 resize 还没等 200ms 防抖跑完，页面就切走了"这种边缘情况下
+  // 定时器残留、引用到已经不在文档里的旧容器。
+  function register() {
+    if (!window.BlogLifecycle) {
+      // 兜底：生命周期管理器缺失时退回原有行为
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', mount);
+      } else {
+        mount();
+      }
+      document.addEventListener('pjax:complete', mount);
+      var resizeTimer;
+      window.addEventListener('resize', function () {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(mount, 200);
+      });
+      return;
+    }
 
-  // resize 防抖：停止调整 200ms 后再重建，避免拖动时疯狂闪烁
-  let resizeTimer;
-  window.addEventListener('resize', function() {
-      clearTimeout(resizeTimer);
-      resizeTimer = setTimeout(mount, 200);
-  });
+    window.BlogLifecycle.register('gallery', {
+      mount: function (ctx) {
+        mount();
+        var resizeTimeoutId = null;
+        ctx.on(window, 'resize', function () {
+          if (resizeTimeoutId) clearTimeout(resizeTimeoutId);
+          resizeTimeoutId = ctx.timeout(mount, 200);
+        });
+      }
+    });
+  }
+
+  register();
 })();

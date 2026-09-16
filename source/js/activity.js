@@ -34,10 +34,18 @@
     return new Date(d.getFullYear(), d.getMonth(), d.getDate());
   }
 
+  // 从活跃度数据里取最早的日期作为统计起点，不再硬编码具体日期（见《需要解决的问题.md》P1-6）
+  function getEarliestDate(data) {
+    var keys = Object.keys(data);
+    if (!keys.length) return null;
+    keys.sort();
+    return normalizeDate(new Date(keys[0]));
+  }
+
   function getStats(data) {
     var today = normalizeDate(new Date());
-    // 统计起始日期（博客首次提交日）
-    var startDate = normalizeDate(new Date('2026-08-11'));
+    // 统计起始日期：数据里最早的一天（博客首次提交日），数据为空时兜底用今天
+    var startDate = getEarliestDate(data) || today;
     var oneMonthAgo = new Date(today);
     oneMonthAgo.setDate(today.getDate() - 30);
     var oneWeekAgo = new Date(today);
@@ -64,7 +72,7 @@
       totalCount: totalCount,
       monthCount: monthCount,
       weekCount: weekCount,
-      totalRange: '2026-08-11 - ' + fmt(today),
+      totalRange: fmt(startDate) + ' - ' + fmt(today),
       monthRange: fmt(oneMonthAgo) + ' - ' + fmt(today),
       weekRange: fmt(oneWeekAgo) + ' - ' + fmt(today)
     };
@@ -196,11 +204,26 @@
       });
   }
 
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
-  } else {
-    init();
+  // 迁移到 BlogLifecycle（P1-3）：init() 本身对重复调用是安全的
+  // （复用已存在的 #home-heatmap 容器，非首页直接跳过），不需要 destroy。
+  function register() {
+    if (!window.BlogLifecycle) {
+      // 兜底：生命周期管理器缺失时退回原有行为
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+      } else {
+        init();
+      }
+      document.addEventListener('pjax:complete', init);
+      return;
+    }
+
+    window.BlogLifecycle.register('activity', {
+      mount: function () {
+        init();
+      }
+    });
   }
 
-  document.addEventListener('pjax:complete', init);
+  register();
 })();
