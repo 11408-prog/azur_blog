@@ -17,7 +17,7 @@
   width: calc(50% - 8px);
   border-radius: var(--radius-lg);
   overflow: hidden;
-  background: rgba(255, 255, 255, 0.8);
+  background: var(--card-bg-light);
   border: 1px solid rgba(43, 90, 143, 0.08);
   box-shadow: 0 4px 16px rgba(30, 58, 95, 0.06);
   transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
@@ -118,7 +118,7 @@
 
 /* 暗色模式 */
 [data-theme="dark"] #recent-posts .recent-post-item {
-  background: rgba(40, 40, 45, 0.7);
+  background: var(--card-bg-dark);
   border-color: rgba(255, 255, 255, 0.05);
 }
 

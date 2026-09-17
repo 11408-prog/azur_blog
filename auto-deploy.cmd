@@ -265,7 +265,7 @@ echo ========================================
 echo           Deployment Finished
 echo ========================================
 echo.
-echo You have already committed %TOTAL_COMMITS% times ^<^_^>
+echo You have already committed %TOTAL_COMMITS% times ^^v^^
 echo.
 
 pause

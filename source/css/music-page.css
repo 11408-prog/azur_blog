@@ -8,7 +8,7 @@
 .page.music .aplayer {
   border-radius: var(--radius-lg);
   box-shadow: 0 4px 20px rgba(30, 58, 95, 0.1);
-  background: rgba(255, 255, 255, 0.95);
+  background: var(--card-bg-light);
 }
 
 .aplayer .aplayer-bar-wrap .aplayer-bar .aplayer-played,

@@ -125,7 +125,7 @@ mathjax:
   normal_width: 0.6 # 相对正常（等宽）宽度
   append_css: true # 服务端渲染自带 CSS（本地生成，非 CDN）
   every_page: true # 所有页面都走服务端 MathJax 渲染（无需逐篇加 mathjax: true）
-  packages: # 额外加载的包
+  packages: [ams] # 显式加载 amsmath 扩展，支持 \begin{cases}/\begin{aligned} 等环境
   extension_options: {}
 
 markdown:
