@@ -13,7 +13,7 @@
 .seasons-row {
   display: flex;
   justify-content: center;
-  gap: 16px;
+  gap: clamp(6px, 1vw, 16px);
   flex-wrap: nowrap;
   margin-top: 4px;
 }
@@ -36,7 +36,7 @@
 /* 季节网格：7行，列数自动（只含当季日期） */
 .season-grid {
   display: grid;
-  grid-template-rows: repeat(7, 14px);
+  grid-template-rows: repeat(7, clamp(8px, 1vw, 14px));
   grid-auto-flow: column;
   gap: 4px;
 }
@@ -50,11 +50,10 @@
 
 /* 蓝色系（浅色模式 · 鲜艳版） */
 .heatmap-cell.level-0 { background-color: #ebedf0; border-color: rgba(27,31,35,0.06); }
-.heatmap-cell.level-1 { background-color: #60a5fa; border-color: rgba(27,31,35,0.06); }
-.heatmap-cell.level-2 { background-color: #3b82f6; border-color: rgba(27,31,35,0.06); }
-.heatmap-cell.level-3 { background-color: #2563eb; border-color: rgba(27,31,35,0.06); }
-.heatmap-cell.level-4 { background-color: #1d4ed8; border-color: rgba(27,31,35,0.06); }
-
+.heatmap-cell.level-1 { background-color: #9ecbff; border-color: rgba(27,31,35,0.06); }
+.heatmap-cell.level-2 { background-color: #5da9ff; border-color: rgba(27,31,35,0.06); }
+.heatmap-cell.level-3 { background-color: #2188ff; border-color: rgba(27,31,35,0.06); }
+.heatmap-cell.level-4 { background-color: #0969da; border-color: rgba(27,31,35,0.06); }
 /* 统计面板（三列） */
 .heatmap-stats {
   display: flex;
@@ -107,21 +106,29 @@
 }
 
 .heatmap-legend-box {
-  width: clamp(8px,1vw,14px);
-  height: clamp(8px,1vw,14px);
-}
-.season-grid{
-  grid-template-rows: repeat(7, clamp(8px, 1vw, 14px));
-}
-.seasons-row{
-  gap: clamp(6px, 1vw, 16px);
+  width: clamp(8px, 1vw, 14px);
+  height: clamp(8px, 1vw, 14px);
 }
 
-.heatmap-legend-box.level-0 { background-color: #ebedf0; }
-.heatmap-legend-box.level-1 { background-color: #60a5fa; }
-.heatmap-legend-box.level-2 { background-color: #3b82f6; }
-.heatmap-legend-box.level-3 { background-color: #2563eb; }
-.heatmap-legend-box.level-4 { background-color: #1d4ed8; }
+.heatmap-legend-box.level-0 {
+  background-color: #ebedf0;
+}
+
+.heatmap-legend-box.level-1 {
+  background-color: #60a5fa;
+}
+
+.heatmap-legend-box.level-2 {
+  background-color: #3b82f6;
+}
+
+.heatmap-legend-box.level-3 {
+  background-color: #2563eb;
+}
+
+.heatmap-legend-box.level-4 {
+  background-color: #1d4ed8;
+}
 
 .heatmap-source {
   font-size: 0.7rem;
@@ -146,11 +153,30 @@
   color: var(--blue-light);
 }
 
-[data-theme="dark"] .heatmap-cell.level-0 { background-color: #0d1117; border-color: rgba(255,255,255,0.05); }
-[data-theme="dark"] .heatmap-cell.level-1 { background-color: #1e3a8a; border-color: rgba(255,255,255,0.05); }
-[data-theme="dark"] .heatmap-cell.level-2 { background-color: #3b82f6; border-color: rgba(255,255,255,0.05); }
-[data-theme="dark"] .heatmap-cell.level-3 { background-color: #60a5fa; border-color: rgba(255,255,255,0.05); }
-[data-theme="dark"] .heatmap-cell.level-4 { background-color: #93c5fd; border-color: rgba(255,255,255,0.05); }
+[data-theme="dark"] .heatmap-cell.level-0 {
+  background-color: #0d1117;
+  border-color: rgba(255, 255, 255, 0.05);
+}
+
+[data-theme="dark"] .heatmap-cell.level-1 {
+  background-color: #1e3a8a;
+  border-color: rgba(255, 255, 255, 0.05);
+}
+
+[data-theme="dark"] .heatmap-cell.level-2 {
+  background-color: #3b82f6;
+  border-color: rgba(255, 255, 255, 0.05);
+}
+
+[data-theme="dark"] .heatmap-cell.level-3 {
+  background-color: #60a5fa;
+  border-color: rgba(255, 255, 255, 0.05);
+}
+
+[data-theme="dark"] .heatmap-cell.level-4 {
+  background-color: #93c5fd;
+  border-color: rgba(255, 255, 255, 0.05);
+}
 
 [data-theme="dark"] .heatmap-stats {
   border-color: rgba(255, 255, 255, 0.05);
@@ -172,11 +198,25 @@
   color: #8b949e;
 }
 
-[data-theme="dark"] .heatmap-legend-box.level-0 { background-color: #0d1117; }
-[data-theme="dark"] .heatmap-legend-box.level-1 { background-color: #1e3a8a; }
-[data-theme="dark"] .heatmap-legend-box.level-2 { background-color: #3b82f6; }
-[data-theme="dark"] .heatmap-legend-box.level-3 { background-color: #60a5fa; }
-[data-theme="dark"] .heatmap-legend-box.level-4 { background-color: #93c5fd; }
+[data-theme="dark"] .heatmap-legend-box.level-0 {
+  background-color: #0d1117;
+}
+
+[data-theme="dark"] .heatmap-legend-box.level-1 {
+  background-color: #1e3a8a;
+}
+
+[data-theme="dark"] .heatmap-legend-box.level-2 {
+  background-color: #3b82f6;
+}
+
+[data-theme="dark"] .heatmap-legend-box.level-3 {
+  background-color: #60a5fa;
+}
+
+[data-theme="dark"] .heatmap-legend-box.level-4 {
+  background-color: #93c5fd;
+}
 
 [data-theme="dark"] .heatmap-source {
   color: #6e7681;
