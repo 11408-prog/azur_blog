@@ -35,43 +35,6 @@
   max-width: 900px;
 }
 
-/* ========== 圆角清零 ========== 
-#aside-content .card-widget {
-  border-top-left-radius: 0 !important;
-  border-bottom-left-radius: 0 !important;
-  border-top-right-radius: 0 !important;
-  border-bottom-right-radius: 0 !important;
-}
-
-.carousel-container,
-.carousel-slide,
-.carousel-slide img,
-#carousel,
-.carousel-item,
-.carousel-inner,
-.carousel-item img {
-  border-radius: 0 !important;
-}
-
-.feature-card,
-.feature-card .feature-img,
-.feature-card .feature-content,
-.magnetic-tile,
-.home-card,
-.card-magnet {
-  border-radius: 0 !important;
-}
-.card-widget,
-#aside-content .card-widget,
-.post-content img,
-figure.highlight,
-#pagination .page-number,
-#pagination .space,
-#pagination .extend {
-  border-radius: 0 !important;
-}
-暂时先不使用*/
-
 /* ========== 画廊页：无侧栏 + 全宽 + 去掉容器底板，只显示图片 ========== */
 .page.type-gallery #page {
   width: 100% !important;            /* 覆盖 hide-aside 的 80% */
