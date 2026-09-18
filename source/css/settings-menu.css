@@ -1,0 +1,458 @@
+/* ==========================================
+   Azur Blog - Settings Panel
+   ========================================== */
+
+#settings-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 99998;
+
+  background: rgba(15, 23, 42, 0.18);
+  backdrop-filter: blur(4px);
+
+  opacity: 0;
+  visibility: hidden;
+
+  transition:
+    opacity 0.25s ease,
+    visibility 0.25s ease;
+}
+
+#settings-overlay.is-open {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* 设置面板 */
+
+#settings-panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+
+  width: 380px;
+  max-width: 92vw;
+  height: 100vh;
+
+  background: rgba(255, 255, 255, 0.9);
+
+  border-left: 1px solid rgba(255, 255, 255, 0.45);
+
+  box-shadow:
+    -12px 0 40px rgba(30, 58, 95, 0.16);
+
+  backdrop-filter: blur(20px);
+
+  transform: translateX(100%);
+  transition: transform 0.3s ease;
+
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+#settings-overlay.is-open #settings-panel {
+  transform: translateX(0);
+}
+
+/* 暗色模式 */
+
+[data-theme="dark"] #settings-panel {
+  background: rgba(20, 28, 40, 0.94);
+
+  border-color: rgba(255, 255, 255, 0.08);
+
+  box-shadow:
+    -12px 0 40px rgba(0, 0, 0, 0.35);
+}
+
+/* ==========================================
+   Header
+   ========================================== */
+
+.settings-header {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 18px 20px;
+
+  background: inherit;
+  backdrop-filter: blur(20px);
+
+  border-bottom: 1px solid rgba(43, 90, 143, 0.08);
+}
+
+[data-theme="dark"] .settings-header {
+  border-color: rgba(255, 255, 255, 0.06);
+}
+
+.settings-title {
+  font-size: 18px;
+  font-weight: 600;
+
+  color: var(--navy-deep);
+}
+
+[data-theme="dark"] .settings-title {
+  color: var(--blue-light);
+}
+
+.settings-close {
+  width: 34px;
+  height: 34px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0;
+
+  border: 0;
+  border-radius: 50%;
+
+  background: transparent;
+  color: var(--font-color);
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.settings-close:hover {
+  background: rgba(43, 90, 143, 0.1);
+  transform: rotate(90deg);
+}
+
+/* ==========================================
+   Content
+   ========================================== */
+
+.settings-content {
+  padding: 20px;
+}
+
+.settings-section {
+  margin-bottom: 28px;
+}
+
+.settings-section-title {
+  margin-bottom: 10px;
+
+  font-size: 13px;
+  font-weight: 600;
+
+  color: var(--theme-color);
+
+  letter-spacing: 0.04em;
+}
+
+/* ==========================================
+   Setting Item
+   ========================================== */
+
+.settings-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  min-height: 56px;
+  padding: 10px 0;
+
+  border-bottom: 1px solid rgba(43, 90, 143, 0.06);
+}
+
+[data-theme="dark"] .settings-item {
+  border-color: rgba(255, 255, 255, 0.06);
+}
+
+.settings-item-info {
+  display: flex;
+  flex-direction: column;
+
+  gap: 3px;
+}
+
+.settings-item-title {
+  font-size: 14px;
+  color: var(--font-color);
+}
+
+.settings-item-desc {
+  font-size: 12px;
+  line-height: 1.5;
+
+  color: var(--text-faint);
+}
+
+/* ==========================================
+   Switch
+   ========================================== */
+
+.settings-switch {
+  position: relative;
+
+  width: 42px;
+  height: 24px;
+
+  flex-shrink: 0;
+}
+
+.settings-switch input {
+  position: absolute;
+
+  width: 0;
+  height: 0;
+
+  opacity: 0;
+}
+
+.settings-switch-track {
+  position: absolute;
+  inset: 0;
+
+  border-radius: 999px;
+
+  background: #cfd5dd;
+
+  cursor: pointer;
+
+  transition: background 0.2s ease;
+}
+
+.settings-switch-track::after {
+  content: "";
+
+  position: absolute;
+
+  top: 3px;
+  left: 3px;
+
+  width: 18px;
+  height: 18px;
+
+  border-radius: 50%;
+
+  background: #ffffff;
+
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+
+  transition: transform 0.2s ease;
+}
+
+.settings-switch input:checked + .settings-switch-track {
+  background: var(--theme-color);
+}
+
+.settings-switch input:checked + .settings-switch-track::after {
+  transform: translateX(18px);
+}
+
+/* ==========================================
+   Background Grid
+   ========================================== */
+
+.settings-background-grid {
+  display: grid;
+
+  grid-template-columns: repeat(2, 1fr);
+
+  gap: 10px;
+}
+
+.settings-background {
+  position: relative;
+
+  height: 92px;
+
+  padding: 0;
+
+  overflow: hidden;
+
+  border: 2px solid transparent;
+  border-radius: 10px;
+
+  background-size: cover;
+  background-position: center;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.settings-background:hover {
+  transform: translateY(-2px);
+}
+
+.settings-background.is-active {
+  border-color: var(--theme-color);
+
+  box-shadow:
+    0 0 0 2px rgba(43, 90, 143, 0.12);
+}
+
+/* 背景名称 */
+
+.settings-background-label {
+  position: absolute;
+  left: 8px;
+  bottom: 8px;
+
+  padding: 3px 7px;
+
+  border-radius: 6px;
+
+  background: rgba(0, 0, 0, 0.42);
+
+  color: #fff;
+
+  font-size: 11px;
+}
+
+/* ==========================================
+   Reset Button
+   ========================================== */
+
+.settings-reset {
+  width: 100%;
+  height: 42px;
+
+  border: 0;
+  border-radius: 10px;
+
+  background: var(--theme-color);
+  color: #fff;
+
+  font-size: 14px;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.2s ease,
+    opacity 0.2s ease;
+}
+
+.settings-reset:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+/* ==========================================
+   Mobile
+   ========================================== */
+
+@media (max-width: 768px) {
+
+  #settings-panel {
+    width: 100%;
+    max-width: none;
+  }
+
+  .settings-content {
+    padding: 18px 16px;
+  }
+
+}
+
+/* ==========================================
+   Reduced Motion
+   ========================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+  #settings-overlay,
+  #settings-panel,
+  .settings-close,
+  .settings-switch-track,
+  .settings-switch-track::after,
+  .settings-background,
+  .settings-reset {
+    transition: none !important;
+  }
+
+}
+
+/* 设置：背景模糊 */
+
+#web_bg.settings-blur {
+  filter: blur(6px);
+  transform: scale(1.02);
+}
+
+
+/* 设置：关闭动画 */
+
+html.settings-disable-animation *,
+html.settings-disable-animation *::before,
+html.settings-disable-animation *::after {
+  animation-duration: 0.001ms !important;
+  animation-iteration-count: 1 !important;
+
+  transition-duration: 0.001ms !important;
+  scroll-behavior: auto !important;
+}
+
+/* ==========================================
+   Navigation Settings Button
+   ========================================== */
+
+#nav-settings-wrapper {
+  position: relative;
+
+  display: inline-flex;
+  align-items: center;
+
+  margin-left: 10px;
+}
+
+#nav-settings-toggle {
+  width: 34px;
+  height: 34px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0;
+
+  border: 0;
+  background: transparent;
+
+  color: inherit;
+
+  font-size: 17px;
+
+  cursor: pointer;
+
+  transition:
+    color 0.2s ease,
+    transform 0.3s ease;
+}
+
+#nav-settings-toggle:hover {
+  color: var(--theme-color);
+  transform: rotate(60deg);
+}
+
+@media (max-width: 768px) {
+
+  #nav-settings-wrapper {
+    margin-left: 4px;
+  }
+
+  #nav-settings-toggle {
+    width: 30px;
+    height: 30px;
+
+    font-size: 16px;
+  }
+
+}
