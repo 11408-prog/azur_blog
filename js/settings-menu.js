@@ -732,6 +732,13 @@
       return;
     }
 
+    /* 深色模式/BGM 状态可能在 mount 之后才发生变化
+     * （比如 music.js 在 settings-menu.js 之后才创建播放器实例，
+     *   或用户通过主题自带按钮切换了深色模式），
+     * 每次真正打开面板前重新同步一次，避免显示过期状态。 */
+    syncDarkMode();
+    syncBGM();
+
     overlay.classList.add(
       'is-open'
     );
@@ -768,9 +775,11 @@
       return;
     }
 
-    overlay.classList.toggle(
-      'is-open'
-    );
+    if (overlay.classList.contains('is-open')) {
+      closePanel();
+    } else {
+      openPanel();
+    }
 
   }
 
