@@ -316,7 +316,7 @@
 }
 
 /* ==========================================
-   Opacity Group（卡片透明度：不透明/低/高三档）
+   Opacity Group（卡片透明度：低/高两档）
    ========================================== */
 
 .settings-opacity-group {
@@ -428,11 +428,17 @@
 
 
 /* 设置：卡片透明度（纯色 rgba，不叠加 backdrop-filter 模糊）
+ * 三种状态，由 <html data-card-opacity="…"> 决定：
+ *   low（默认）  没有属性 / 属性不是 high|custom（含旧版本存的 'default'）都落在这一档
+ *   high         预设：更透
+ *   custom       滑块拖出来的任意值，alpha 来自 <html style="--card-alpha:…">
+ * 默认档用两个 :not() 表示，不依赖 JS 是否已经设置了属性（首屏前 / 没保存过设置都能正确落到默认档）。
+ *
  * $card-bg 默认是 #FFFFFF（浅色）/ #121212（暗色），这里用同色号
  * 换算出的 rgba 覆盖 --card-bg，让 Butterfly 主题里所有用
  * var(--card-bg) 的卡片（文章卡片、侧栏卡片等）统一生效。 */
 
-html[data-card-opacity="low"] {
+html:not([data-card-opacity="high"]):not([data-card-opacity="custom"]) {
   --card-bg: rgba(255, 255, 255, 0.92);
 }
 
@@ -440,12 +446,41 @@ html[data-card-opacity="high"] {
   --card-bg: rgba(255, 255, 255, 0.65);
 }
 
-html[data-theme="dark"][data-card-opacity="low"] {
+html[data-theme="dark"]:not([data-card-opacity="high"]):not([data-card-opacity="custom"]) {
   --card-bg: rgba(18, 18, 18, 0.92);
 }
 
 html[data-theme="dark"][data-card-opacity="high"] {
   --card-bg: rgba(18, 18, 18, 0.65);
+}
+
+
+/* 设置：卡片透明度 —— 站点自定义卡片
+ * 首页文章卡片 / 热力图 / 音乐页 / 侧栏用的是 variables.css 里的 --card-bg-light / --card-bg-dark，
+ * 侧栏暗色用 --card-bg-aside-dark，都不是 Butterfly 的 --card-bg，
+ * 所以上面那组 --card-bg 覆盖对它们不起作用，这里要单独覆盖一遍。
+ * 默认档（low）不写规则，直接沿用 variables.css 里的原始值
+ * （浅色 0.92 / 暗色 0.7 / 侧栏暗色 #28282d），外观和加这个设置之前一致；
+ * 只有 high / custom 才覆盖。html[data-card-opacity] 的优先级高于 :root，不用 !important。 */
+
+html[data-card-opacity="high"] {
+  --card-bg-light: rgba(255, 255, 255, 0.65);
+  --card-bg-dark: rgba(40, 40, 45, 0.5);
+  --card-bg-aside-dark: rgba(40, 40, 45, 0.5);
+}
+
+/* custom：所有卡片统一用滑块的 alpha。
+ * var(--card-alpha, 0.92) 的回退值很重要：属性是 custom 但变量缺失/无效时，
+ * 没有回退会让整条 rgba() 失效，卡片背景直接消失。 */
+html[data-card-opacity="custom"] {
+  --card-bg: rgba(255, 255, 255, var(--card-alpha, 0.92));
+  --card-bg-light: rgba(255, 255, 255, var(--card-alpha, 0.92));
+  --card-bg-dark: rgba(40, 40, 45, var(--card-alpha, 0.92));
+  --card-bg-aside-dark: rgba(40, 40, 45, var(--card-alpha, 0.92));
+}
+
+html[data-theme="dark"][data-card-opacity="custom"] {
+  --card-bg: rgba(18, 18, 18, var(--card-alpha, 0.92));
 }
 
 
@@ -516,4 +551,150 @@ html.settings-disable-animation *::after {
     font-size: 16px;
   }
 
+}
+
+
+/* ==========================================
+   Keyboard Focus（键盘可见焦点）
+   ========================================== */
+
+/* 开关的 <input> 是 0 尺寸且透明，聚焦时要在轨道上显示焦点环 */
+.settings-switch input:focus-visible + .settings-switch-track {
+  outline: 2px solid var(--theme-color);
+  outline-offset: 2px;
+}
+
+.settings-close:focus-visible,
+.settings-opacity-option:focus-visible,
+.settings-background:focus-visible,
+.settings-reset:focus-visible,
+#nav-settings-toggle:focus-visible {
+  outline: 2px solid var(--theme-color);
+  outline-offset: 2px;
+}
+
+
+/* ==========================================
+   Slider（自定义透明度）
+   ========================================== */
+
+.settings-item-stack {
+  flex-direction: column;
+  align-items: stretch;
+  gap: 8px;
+}
+
+.settings-slider-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.settings-slider-value {
+  flex-shrink: 0;
+  min-width: 3em;
+  text-align: right;
+
+  font-size: 13px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+
+  color: var(--theme-color);
+}
+
+.settings-slider {
+  --pct: 0%;                                  /* 已填充比例，由 JS 写入 */
+  --slider-track: rgba(43, 90, 143, 0.18);
+
+  -webkit-appearance: none;
+  appearance: none;
+
+  width: 100%;
+  height: 24px;
+  margin: 0;
+  padding: 0;
+
+  background: transparent;
+  cursor: pointer;
+}
+
+[data-theme="dark"] .settings-slider {
+  --slider-track: rgba(255, 255, 255, 0.18);
+}
+
+.settings-slider:focus {
+  outline: none;
+}
+
+/* WebKit / Blink：轨道（用渐变画出"已填充"部分）+ 滑块 */
+.settings-slider::-webkit-slider-runnable-track {
+  height: 4px;
+  border-radius: 999px;
+  background: linear-gradient(
+    to right,
+    var(--theme-color) var(--pct),
+    var(--slider-track) var(--pct)
+  );
+}
+
+.settings-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+
+  width: 18px;
+  height: 18px;
+  margin-top: -7px;                           /* (轨道 4px - 滑块 18px) / 2，让滑块垂直居中 */
+
+  border: 2px solid var(--theme-color);
+  border-radius: 50%;
+  background: #ffffff;
+
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
+
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.settings-slider:active::-webkit-slider-thumb {
+  transform: scale(1.12);
+}
+
+/* Firefox：原生支持 progress，不需要渐变 */
+.settings-slider::-moz-range-track {
+  height: 4px;
+  border-radius: 999px;
+  background: var(--slider-track);
+}
+
+.settings-slider::-moz-range-progress {
+  height: 4px;
+  border-radius: 999px;
+  background: var(--theme-color);
+}
+
+.settings-slider::-moz-range-thumb {
+  box-sizing: border-box;
+
+  width: 18px;
+  height: 18px;
+
+  border: 2px solid var(--theme-color);
+  border-radius: 50%;
+  background: #ffffff;
+
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
+}
+
+.settings-slider:focus-visible::-webkit-slider-thumb {
+  box-shadow: 0 0 0 4px rgba(43, 90, 143, 0.28);
+}
+
+.settings-slider:focus-visible::-moz-range-thumb {
+  box-shadow: 0 0 0 4px rgba(43, 90, 143, 0.28);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .settings-slider::-webkit-slider-thumb {
+    transition: none !important;
+  }
 }

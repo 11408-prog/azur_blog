@@ -65,9 +65,13 @@
         return id;
       },
 
-      // 延时器：登记后自动 clearTimeout（已触发的清除无副作用）
+      // 延时器：登记后自动 clearTimeout
+      // 触发后立即从登记表移除：打字机这类每几十毫秒递归调用一次的用法，
+      // 否则 ID 会在 timeouts 里一直累积到下次 destroy
       timeout: function (fn, ms) {
         var id = setTimeout(function () {
+          var k = timeouts.indexOf(id);
+          if (k > -1) timeouts.splice(k, 1);
           fn();
         }, ms);
         timeouts.push(id);
@@ -76,7 +80,11 @@
 
       // 动画帧：登记后自动 cancelAnimationFrame
       raf: function (fn) {
-        var id = requestAnimationFrame(fn);
+        var id = requestAnimationFrame(function (t) {
+          var k = rafIds.indexOf(id);
+          if (k > -1) rafIds.splice(k, 1);
+          fn(t);
+        });
         rafIds.push(id);
         return id;
       },

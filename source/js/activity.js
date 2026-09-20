@@ -6,12 +6,23 @@
   var DATA_URL = window.BlogConfig
     ? window.BlogConfig.url('data/activity.json')
     : '/azur_blog/data/activity.json';
+
+  // 每块是一个季度（按自然月切，1–3 / 4–6 / 7–9 / 10–12），不是气象意义上的春夏秋冬，
+  // 所以直接标月份范围，避免 1 月被标成「春」。想换回原来的叫法，改 name 即可。
   var SEASONS = [
-    { name: '春', startMonth: 0, endMonth: 2 },
-    { name: '夏', startMonth: 3, endMonth: 5 },
-    { name: '秋', startMonth: 6, endMonth: 8 },
-    { name: '冬', startMonth: 9, endMonth: 11 }
+    { name: '1–3月', startMonth: 0, endMonth: 2 },
+    { name: '4–6月', startMonth: 3, endMonth: 5 },
+    { name: '7–9月', startMonth: 6, endMonth: 8 },
+    { name: '10–12月', startMonth: 9, endMonth: 11 }
   ];
+
+  // 与 activity.css 里 `@media (max-width: 1024px) { #home-heatmap { display: none } }` 保持一致。
+  // 手机/平板上热力图是隐藏的，没必要再去请求数据、建几百个格子。
+  var DESKTOP_MQ = window.matchMedia ? window.matchMedia('(min-width: 1025px)') : null;
+
+  function isDesktop() {
+    return !DESKTOP_MQ || DESKTOP_MQ.matches;
+  }
 
   function pad(n) { return n < 10 ? '0' + n : '' + n; }
 
@@ -34,30 +45,41 @@
     return new Date(d.getFullYear(), d.getMonth(), d.getDate());
   }
 
+  // 'YYYY-MM-DD' → 本地时区当天 0 点。
+  // 不能用 new Date('YYYY-MM-DD')：它按 UTC 解析，西半球的访客会得到前一天。
+  function parseKey(key) {
+    var m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(key);
+    return m ? new Date(+m[1], +m[2] - 1, +m[3]) : null;
+  }
+
   // 从活跃度数据里取最早的日期作为统计起点，不再硬编码具体日期（见《需要解决的问题.md》P1-6）
   function getEarliestDate(data) {
-    var keys = Object.keys(data);
+    var keys = Object.keys(data).filter(function (k) { return parseKey(k); });
     if (!keys.length) return null;
     keys.sort();
-    return normalizeDate(new Date(keys[0]));
+    return parseKey(keys[0]);
   }
 
   function getStats(data) {
     var today = normalizeDate(new Date());
     // 统计起始日期：数据里最早的一天（博客首次提交日），数据为空时兜底用今天
     var startDate = getEarliestDate(data) || today;
+
+    // 「最近 N 天」含今天：一周 = 今天往前 6 天，一月（30 天）= 往前 29 天。
+    // 之前写成 -7 / -30 并且两端都算，实际是 8 天 / 31 天。
     var oneMonthAgo = new Date(today);
-    oneMonthAgo.setDate(today.getDate() - 30);
+    oneMonthAgo.setDate(today.getDate() - 29);
     var oneWeekAgo = new Date(today);
-    oneWeekAgo.setDate(today.getDate() - 7);
+    oneWeekAgo.setDate(today.getDate() - 6);
 
     var totalCount = 0;
     var monthCount = 0;
     var weekCount = 0;
 
     for (var key in data) {
-      if (!data.hasOwnProperty(key)) continue;
-      var d = normalizeDate(new Date(key));
+      if (!Object.prototype.hasOwnProperty.call(data, key)) continue;
+      var d = parseKey(key);
+      if (!d) continue;
       var count = data[key];
       if (d >= startDate && d <= today) totalCount += count;
       if (d >= oneMonthAgo && d <= today) monthCount += count;
@@ -103,11 +125,11 @@
       cursor.setDate(cursor.getDate() + 1);
     }
 
-    for (var i = lastDayIdx; i < 6; i++) {
-      var empty = document.createElement('div');
-      empty.className = 'heatmap-cell';
-      empty.style.visibility = 'hidden';
-      grid.appendChild(empty);
+    for (var j = lastDayIdx; j < 6; j++) {
+      var tail = document.createElement('div');
+      tail.className = 'heatmap-cell';
+      tail.style.visibility = 'hidden';
+      grid.appendChild(tail);
     }
 
     var block = document.createElement('div');
@@ -181,6 +203,13 @@
     var recentPosts = document.getElementById('recent-posts');
     if (!recentPosts) return;
 
+    // 手机/平板：热力图被 CSS 隐藏，不请求数据也不建 DOM。
+    // 之后如果窗口拉宽到桌面尺寸，mount() 里登记的 change 监听会再调用 init()。
+    if (!isDesktop()) {
+      DSLog.debug('Activity', '非桌面宽度，跳过热力图');
+      return;
+    }
+
     var container = document.getElementById('home-heatmap');
     if (!container) {
       container = document.createElement('div');
@@ -188,24 +217,32 @@
       recentPosts.insertBefore(container, recentPosts.firstChild);
     }
 
+    // 已经渲染过或正在加载：不重复请求（窗口宽度在断点两侧来回变化时会重复调用 init）
+    if (container.getAttribute('data-state')) return;
+    container.setAttribute('data-state', 'loading');
+
     DSLog.info('Activity', '开始加载活跃度数据', DATA_URL);
     fetch(DATA_URL)
-      .then(function (r) { 
+      .then(function (r) {
         if (!r.ok) throw new Error('HTTP ' + r.status);
-        return r.json(); 
+        return r.json();
       })
       .then(function (data) {
-        DSLog.info('Activity', '数据加载成功', data);
+        DSLog.info('Activity', '数据加载成功', { days: Object.keys(data).length });
         render(container, data);
+        container.setAttribute('data-state', 'ready');
       })
       .catch(function (err) {
         DSLog.warn('Activity', '数据加载失败: ' + err.message);
         container.innerHTML = '<div class="heatmap-fallback">活跃度数据加载失败 (' + err.message + ')</div>';
+        // 失败不锁死状态，下次 init（PJAX 回首页、窗口拉宽）可以重试
+        container.removeAttribute('data-state');
       });
   }
 
   // 迁移到 BlogLifecycle（P1-3）：init() 本身对重复调用是安全的
   // （复用已存在的 #home-heatmap 容器，非首页直接跳过），不需要 destroy。
+  // 断点 change 监听用 ctx.on 登记，PJAX 时随模块一起回收重挂。
   function register() {
     if (!window.BlogLifecycle) {
       // 兜底：生命周期管理器缺失时退回原有行为
@@ -215,12 +252,20 @@
         init();
       }
       document.addEventListener('pjax:complete', init);
+      if (DESKTOP_MQ) {
+        DESKTOP_MQ.addEventListener('change', function (e) { if (e.matches) init(); });
+      }
       return;
     }
 
     window.BlogLifecycle.register('activity', {
-      mount: function () {
+      mount: function (ctx) {
         init();
+        if (DESKTOP_MQ) {
+          ctx.on(DESKTOP_MQ, 'change', function (e) {
+            if (e.matches) init();
+          });
+        }
       }
     });
   }

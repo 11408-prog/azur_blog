@@ -6,14 +6,47 @@
   'use strict';
 
   var STORAGE_KEY = 'azur-blog-settings';
+  var BG_KEY = 'azur-blog-background';
+  var BG_STYLE_ID = 'azur-bg-override';   // 与 inject.head 里的内联脚本共用同一个 <style>
+
+  /* 卡片透明度：
+   *   预设 'low' / 'high'，或 'custom'（滑块拖出来的任意值，存在 cardAlpha 里）。
+   *   cardAlpha 是卡片背景的 alpha（1 = 完全不透明）；滑块显示的「透明度%」= (1 - alpha) × 100。
+   *   最多允许 60% 透明（alpha 不低于 0.4），再低正文会被背景图淹没。 */
+  var ALPHA_MIN = 0.4;
+  var SLIDER_MAX = Math.round((1 - ALPHA_MIN) * 100);    // 60
+  var PRESET_ALPHA = { low: 0.92, high: 0.65 };          // 与 settings-menu.css 里两档的数值保持一致
 
   var defaultSettings = {
     blur: false,
     animation: true,
-    cardOpacity: 'default'
+    cardOpacity: 'low',    // 'low' | 'high' | 'custom'；默认档即「低透明度」
+    cardAlpha: 0.92        // 仅 cardOpacity === 'custom' 时生效
   };
 
-  var settings = loadSettings();
+  /* 其余任何值（包括旧版本存进 localStorage 的 'default'）一律按 'low' 处理；cardAlpha 限制在有效范围内 */
+  function normalizeSettings(s) {
+    if (s.cardOpacity !== 'high' && s.cardOpacity !== 'custom') s.cardOpacity = 'low';
+    /* 只接受有限数字：Number(null) / Number('') 都是 0，会被误当成"0 透明度"夹到下限 */
+    var a = (typeof s.cardAlpha === 'number' && isFinite(s.cardAlpha)) ? s.cardAlpha : defaultSettings.cardAlpha;
+    s.cardAlpha = Math.min(1, Math.max(ALPHA_MIN, Math.round(a * 100) / 100));
+    return s;
+  }
+
+  function effectiveAlpha() {
+    return settings.cardOpacity === 'custom' ? settings.cardAlpha : PRESET_ALPHA[settings.cardOpacity];
+  }
+
+  function sliderFromAlpha(a) {
+    return Math.round((1 - a) * 100);
+  }
+
+  function alphaFromSlider(v) {
+    v = Math.min(SLIDER_MAX, Math.max(0, Number(v) || 0));
+    return Math.round((1 - v / 100) * 100) / 100;
+  }
+
+  var settings = normalizeSettings(loadSettings());
 
   /* 路径统一由 BlogConfig 派生（见 blog-config.js），不硬编码 /azur_blog/
    * BlogConfig 理论上一定会先于本文件加载，这里加个降级只是为了防御性写法，
@@ -46,11 +79,22 @@
     }
   }
 
+  /* localStorage 在隐私模式 / 被禁用 / 配额满时会抛异常，
+   * 所有读写统一走这几个函数，失败时静默降级（设置仅本次页面有效）。 */
+  function storageGet(key) {
+    try { return localStorage.getItem(key); } catch (error) { return null; }
+  }
+
+  function storageSet(key, value) {
+    try { localStorage.setItem(key, value); return true; } catch (error) { return false; }
+  }
+
+  function storageRemove(key) {
+    try { localStorage.removeItem(key); } catch (error) { /* 忽略 */ }
+  }
+
   function saveSettings() {
-    localStorage.setItem(
-      STORAGE_KEY,
-      JSON.stringify(settings)
-    );
+    storageSet(STORAGE_KEY, JSON.stringify(settings));
   }
 
   function createGearButton() {
@@ -185,7 +229,7 @@
             </div>
 
 
-            <div class="settings-item" style="flex-direction: column; align-items: stretch; gap: 8px;">
+            <div class="settings-item settings-item-stack">
 
               <div class="settings-item-info">
 
@@ -194,20 +238,12 @@
                 </div>
 
                 <div class="settings-item-desc">
-                  调低透明度可以透出背景图，不使用毛玻璃效果
+                  选择「高透明度」可以透出背景图，不使用毛玻璃效果
                 </div>
 
               </div>
 
               <div class="settings-opacity-group">
-
-                <button
-                  class="settings-opacity-option"
-                  type="button"
-                  data-opacity="default"
-                >
-                  不透明
-                </button>
 
                 <button
                   class="settings-opacity-option"
@@ -226,6 +262,46 @@
                 </button>
 
               </div>
+
+            </div>
+
+
+            <div class="settings-item settings-item-stack">
+
+              <div class="settings-slider-head">
+
+                <div class="settings-item-info">
+
+                  <div class="settings-item-title">
+                    自定义透明度
+                  </div>
+
+                  <div class="settings-item-desc">
+                    拖动滑块精确调节，0% 为完全不透明；选上面的预设会同步到对应数值
+                  </div>
+
+                </div>
+
+                <output
+                  class="settings-slider-value"
+                  id="setting-card-alpha-value"
+                  for="setting-card-alpha"
+                >
+                  8%
+                </output>
+
+              </div>
+
+              <input
+                class="settings-slider"
+                type="range"
+                id="setting-card-alpha"
+                min="0"
+                max="60"
+                step="1"
+                value="8"
+                aria-label="自定义卡片透明度"
+              >
 
             </div>
 
@@ -574,6 +650,44 @@
     );
 
 
+    /* 自定义透明度滑块 */
+
+    var alphaSlider =
+      document.getElementById('setting-card-alpha');
+
+    if (alphaSlider) {
+
+      alphaSlider.min = '0';
+      alphaSlider.max = String(SLIDER_MAX);
+
+      /* 拖动过程中实时预览，只改内存和 <html> 上的变量，不写存储 */
+      ctx.on(
+        alphaSlider,
+        'input',
+        function () {
+
+          settings.cardOpacity = 'custom';
+          settings.cardAlpha = alphaFromSlider(alphaSlider.value);
+
+          applySettings();
+
+        }
+      );
+
+      /* 松手（或键盘调完）后再保存，避免拖动时每一帧都写 localStorage */
+      ctx.on(
+        alphaSlider,
+        'change',
+        function () {
+
+          saveSettings();
+
+        }
+      );
+
+    }
+
+
     /* BGM */
 
     var bgm =
@@ -621,13 +735,9 @@
           'click',
           function () {
 
-            changeBackground(
-              button.dataset.bg
-            );
-
-            syncActiveBackground(
-              button.dataset.bg
-            );
+            if (changeBackground(button.dataset.bg)) {
+              syncActiveBackground(button.dataset.bg);
+            }
 
           }
         );
@@ -683,6 +793,12 @@
       settings.cardOpacity
     );
 
+    /* 只有 data-card-opacity="custom" 时 CSS 才会读这个变量；其余档位下它存在但不起作用 */
+    document.documentElement.style.setProperty(
+      '--card-alpha',
+      String(settings.cardAlpha)
+    );
+
     syncOpacityButtons();
 
   }
@@ -714,6 +830,34 @@
 
       }
     );
+
+    /* 滑块和数值跟着当前生效的 alpha 走：选预设 → 滑块跳到该预设对应的位置；
+     * 拖动时 slider.value 本来就等于 t，不会打断拖动 */
+    var t = sliderFromAlpha(effectiveAlpha());
+
+    var slider =
+      overlay.querySelector('#setting-card-alpha');
+
+    var label =
+      overlay.querySelector('#setting-card-alpha-value');
+
+    if (slider) {
+
+      if (String(slider.value) !== String(t)) {
+        slider.value = String(t);
+      }
+
+      /* WebKit 的轨道不能只给"已填充部分"上色，靠这个变量画渐变 */
+      slider.style.setProperty(
+        '--pct',
+        (t / SLIDER_MAX * 100) + '%'
+      );
+
+    }
+
+    if (label) {
+      label.textContent = t + '%';
+    }
 
   }
 
@@ -788,22 +932,38 @@
    * Background
    * ---------------------------------------- */
 
-  function changeBackground(path) {
+  /* 背景通过 <style id="azur-bg-override"> 覆盖 #web_bg，而不是直接写行内 style：
+   * inject.head 里的内联脚本在首次绘制前就能创建同一个 <style>，页面加载时不会先闪一下默认背景。
+   * !important 可以压过主题写在 #web_bg 上的行内背景图。 */
+  function applyBackgroundStyle(path) {
 
-    var webBg =
-      document.getElementById('web_bg');
+    var safe = String(path).replace(/["\\\n\r]/g, '');
 
-    if (!webBg) {
-      return;
+    var style = document.getElementById(BG_STYLE_ID);
+
+    if (!style) {
+      style = document.createElement('style');
+      style.id = BG_STYLE_ID;
+      document.head.appendChild(style);
     }
 
-    webBg.style.backgroundImage =
-      'url("' + path + '")';
+    style.textContent =
+      '#web_bg{background-image:url("' + safe + '")!important}';
 
-    localStorage.setItem(
-      'azur-blog-background',
-      path
-    );
+  }
+
+
+  function changeBackground(path) {
+
+    if (!document.getElementById('web_bg')) {
+      return false;
+    }
+
+    applyBackgroundStyle(path);
+
+    storageSet(BG_KEY, path);
+
+    return true;
 
   }
 
@@ -842,17 +1002,7 @@
 
   function restoreBackground() {
 
-    var webBg =
-      document.getElementById('web_bg');
-
-    if (!webBg) {
-      return;
-    }
-
-    var saved =
-      localStorage.getItem(
-        'azur-blog-background'
-      );
+    var saved = storageGet(BG_KEY);
 
     /* 没有保存过自定义背景时，当前生效的就是主题配置里的默认背景，
      * 这里统一按 bgUrl('img/background.jpg') 计算，保证和面板里
@@ -860,16 +1010,17 @@
     var currentPath =
       saved || bgUrl('img/background.jpg');
 
-    if (saved) {
-      webBg.style.backgroundImage =
-        'url("' + saved + '")';
+    /* 正常情况下 inject.head 的内联脚本已经处理过；
+     * 这里兜底（比如内联脚本没配置），保证背景一定被恢复。 */
+    if (saved && document.getElementById('web_bg')) {
+      applyBackgroundStyle(saved);
     }
 
     syncActiveBackground(currentPath);
 
   }
 
-  /* ----------------------------------------
+    /* ----------------------------------------
    * Panel control
    * ---------------------------------------- */
 
@@ -947,19 +1098,20 @@
         defaultSettings
       );
 
-    localStorage.removeItem(
-      'azur-blog-background'
-    );
+    storageRemove(BG_KEY);
 
-    localStorage.removeItem(
-      'theme'
-    );
+    storageRemove('theme');
 
     saveSettings();
 
     window.location.reload();
 
   }
+
+  /* 脚本一执行就先把已保存的设置应用到 <html>，
+   * 不必等到 DOMContentLoaded 之后 mount → createPanel → syncUI 才生效
+   * （更早的一层由 inject.head 里的内联脚本负责，见 themes/butterfly/_config.yml）。 */
+  applySettings();
 
   /* ----------------------------------------
    * Lifecycle

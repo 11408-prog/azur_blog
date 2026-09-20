@@ -129,7 +129,9 @@
 
 /* ==================== 暗色模式 ==================== */
 [data-theme="dark"] #aside-content .card-widget {
-  background: #28282d !important;
+  /* --card-bg-aside-dark 只在设置面板选了「低/高透明度」时才会被定义（见 settings-menu.css），
+     没定义时回退到原来的 #28282d，默认外观不变 */
+  background: var(--card-bg-aside-dark, #28282d) !important;
   border-color: rgba(255, 255, 255, 0.05);
 }
 
