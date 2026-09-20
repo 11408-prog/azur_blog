@@ -265,7 +265,12 @@ echo ========================================
 echo           Deployment Finished
 echo ========================================
 echo.
-echo You have already committed %TOTAL_COMMITS% times ^^v^^
+set /a "COMMIT_IS_EVEN=%TOTAL_COMMITS% %% 2"
+if "%COMMIT_IS_EVEN%"=="0" (
+    echo You have already committed %TOTAL_COMMITS% times QwQ
+) else (
+    echo You have already committed %TOTAL_COMMITS% times ^^v^^
+)
 echo.
 
 pause
