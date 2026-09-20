@@ -7,8 +7,8 @@
   inset: 0;
   z-index: 99998;
 
-  background: rgba(15, 23, 42, 0.18);
-  backdrop-filter: blur(4px);
+  /* 不用 backdrop-filter 做磨砂，靠更深一点的纯色遮罩区分层次 */
+  background: rgba(15, 23, 42, 0.35);
 
   opacity: 0;
   visibility: hidden;
@@ -34,14 +34,13 @@
   max-width: 92vw;
   height: 100vh;
 
-  background: rgba(255, 255, 255, 0.9);
+  /* 不加 backdrop-filter，靠接近不透明的纯色背景保证内容清晰可读 */
+  background: rgba(255, 255, 255, 0.98);
 
   border-left: 1px solid rgba(255, 255, 255, 0.45);
 
   box-shadow:
     -12px 0 40px rgba(30, 58, 95, 0.16);
-
-  backdrop-filter: blur(20px);
 
   transform: translateX(100%);
   transition: transform 0.3s ease;
@@ -57,7 +56,7 @@
 /* 暗色模式 */
 
 [data-theme="dark"] #settings-panel {
-  background: rgba(20, 28, 40, 0.94);
+  background: rgba(20, 28, 40, 0.98);
 
   border-color: rgba(255, 255, 255, 0.08);
 
@@ -81,7 +80,6 @@
   padding: 18px 20px;
 
   background: inherit;
-  backdrop-filter: blur(20px);
 
   border-bottom: 1px solid rgba(43, 90, 143, 0.08);
 }
@@ -318,6 +316,47 @@
 }
 
 /* ==========================================
+   Opacity Group（卡片透明度：不透明/低/高三档）
+   ========================================== */
+
+.settings-opacity-group {
+  display: flex;
+
+  gap: 8px;
+}
+
+.settings-opacity-option {
+  flex: 1;
+
+  padding: 8px 0;
+
+  border: 1px solid rgba(43, 90, 143, 0.16);
+  border-radius: 8px;
+
+  background: transparent;
+  color: var(--font-color);
+
+  font-size: 13px;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease;
+}
+
+[data-theme="dark"] .settings-opacity-option {
+  border-color: rgba(255, 255, 255, 0.14);
+}
+
+.settings-opacity-option.is-active {
+  border-color: var(--theme-color);
+  background: var(--theme-color);
+  color: #fff;
+}
+
+/* ==========================================
    Reset Button
    ========================================== */
 
@@ -385,6 +424,28 @@
 #web_bg.settings-blur {
   filter: blur(6px);
   transform: scale(1.02);
+}
+
+
+/* 设置：卡片透明度（纯色 rgba，不叠加 backdrop-filter 模糊）
+ * $card-bg 默认是 #FFFFFF（浅色）/ #121212（暗色），这里用同色号
+ * 换算出的 rgba 覆盖 --card-bg，让 Butterfly 主题里所有用
+ * var(--card-bg) 的卡片（文章卡片、侧栏卡片等）统一生效。 */
+
+html[data-card-opacity="low"] {
+  --card-bg: rgba(255, 255, 255, 0.92);
+}
+
+html[data-card-opacity="high"] {
+  --card-bg: rgba(255, 255, 255, 0.65);
+}
+
+html[data-theme="dark"][data-card-opacity="low"] {
+  --card-bg: rgba(18, 18, 18, 0.92);
+}
+
+html[data-theme="dark"][data-card-opacity="high"] {
+  --card-bg: rgba(18, 18, 18, 0.65);
 }
 
 
