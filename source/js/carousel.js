@@ -2,6 +2,15 @@
 (function () {
   'use strict';
 
+  // 轮播最多用多少张图。
+  // carousel-list.json 是构建时对 source/carousel/ 全量扫描并随机打乱的（scripts/carousel.js），
+  // 图库有上千张时不能全塞进轮播：每张图一个 slide + 一个圆点，DOM 和圆点条都会失控。
+  // 因为列表每次构建都重新洗牌，取前 N 张就是"每次部署换一批"。想恢复全量可改成 Infinity。
+  var MAX_SLIDES = 12;
+
+  // transitionend 没触发时的兜底解锁时间（略大于 CSS 里的 0.6s 过渡）
+  var TRANSITION_FALLBACK_MS = 900;
+
   // 路径统一由 BlogConfig 派生（见 blog-config.js），不硬编码 /azur_blog/
   function u(p) {
     return window.BlogConfig ? window.BlogConfig.url(p) : '/azur_blog/' + p;
@@ -29,8 +38,9 @@
     fetch(u('carousel-list.json'))
       .then(function (r) { return r.json(); })
       .then(function (data) {
-        var imgs = (data && data.images) || [];
-        DSLog.info('Carousel', '轮播数据加载成功，共 ' + imgs.length + ' 张');
+        var all = (data && data.images) || [];
+        var imgs = all.slice(0, MAX_SLIDES);
+        DSLog.info('Carousel', '轮播数据加载成功，共 ' + all.length + ' 张，使用 ' + imgs.length + ' 张');
         if (imgs.length) {
           container.appendChild(buildCarousel(imgs));
         }
@@ -45,6 +55,7 @@
     var cur = 0;
     var pos = 1;
     var isTransitioning = false;
+    var unlockTimer = null;
 
     var wrap = document.createElement('div');
     wrap.className = 'carousel';
@@ -73,7 +84,7 @@
     var dotEls = imgs.map(function (_, i) {
       var d = document.createElement('span');
       d.className = 'carousel-dot' + (i === 0 ? ' active' : '');
-      d.addEventListener('click', function () { if (!isTransitioning) go(i); });
+      d.addEventListener('click', function () { go(i); });
       dots.appendChild(d);
       return d;
     });
@@ -83,14 +94,14 @@
     prev.className = 'carousel-arrow prev';
     prev.setAttribute('aria-label', '上一张');
     prev.innerHTML = '&#10094;';
-    prev.addEventListener('click', function () { if (!isTransitioning) go((cur - 1 + imgs.length) % imgs.length); });
+    prev.addEventListener('click', function () { go((cur - 1 + imgs.length) % imgs.length); });
     wrap.appendChild(prev);
 
     var next = document.createElement('button');
     next.className = 'carousel-arrow next';
     next.setAttribute('aria-label', '下一张');
     next.innerHTML = '&#10095;';
-    next.addEventListener('click', function () { if (!isTransitioning) go((cur + 1) % imgs.length); });
+    next.addEventListener('click', function () { go((cur + 1) % imgs.length); });
     wrap.appendChild(next);
 
     function setTrackPosition(index, animate) {
@@ -103,32 +114,49 @@
       track.style.transform = 'translateX(-' + (pos * 100) + '%)';
     }
 
-    function go(i) {
-      if (isTransitioning) return;
-      var oldCur = cur;
-      cur = i;
-
-      if (oldCur === imgs.length - 1 && cur === 0) {
-        isTransitioning = true;
-        setTrackPosition(imgs.length + 1, true);
-      } else if (oldCur === 0 && cur === imgs.length - 1) {
-        isTransitioning = true;
-        setTrackPosition(0, true);
-      } else {
-        isTransitioning = true;
-        setTrackPosition(cur + 1, true);
-      }
-
-      dotEls.forEach(function (d, k) { d.classList.toggle('active', k === cur); });
-    }
-
-    track.addEventListener('transitionend', function () {
+    // 一次切换结束：解锁，并在首尾克隆页上无动画地跳回真实位置。
+    // 幂等——transitionend 与兜底定时器谁先到都行，后到的直接忽略。
+    function finishTransition() {
+      if (!isTransitioning) return;
       isTransitioning = false;
+      if (unlockTimer) {
+        clearTimeout(unlockTimer);
+        unlockTimer = null;
+      }
       if (pos === imgs.length + 1) {
         setTrackPosition(1, false);
       } else if (pos === 0) {
         setTrackPosition(imgs.length, false);
       }
+    }
+
+    function go(i) {
+      // 目标就是当前这一张：不会产生位移，也就永远等不到 transitionend，
+      // 若不在这里拦掉，isTransitioning 会一直是 true，轮播整个锁死
+      if (isTransitioning || i === cur) return;
+
+      var oldCur = cur;
+      cur = i;
+      isTransitioning = true;
+
+      if (oldCur === imgs.length - 1 && cur === 0) {
+        setTrackPosition(imgs.length + 1, true);
+      } else if (oldCur === 0 && cur === imgs.length - 1) {
+        setTrackPosition(0, true);
+      } else {
+        setTrackPosition(cur + 1, true);
+      }
+
+      dotEls.forEach(function (d, k) { d.classList.toggle('active', k === cur); });
+
+      // 兜底：transitionend 在标签页被切到后台、样式被覆盖等情况下可能不触发，
+      // 超时后强制解锁，避免任何边缘情况把轮播永久锁住
+      unlockTimer = setTimeout(finishTransition, TRANSITION_FALLBACK_MS);
+    }
+
+    track.addEventListener('transitionend', function (e) {
+      if (e.target !== track) return;
+      finishTransition();
     });
 
     return wrap;
@@ -153,8 +181,9 @@
     grid.className = 'tiles-grid';
 
     var items = [
-{ title: '学习', bg: u('img/study.jpg'), link: u('categories/学习/') },
-{ title: '热爱', bg: u('img/love.jpg'), link: u('categories/热爱/') }    ];
+      { title: '学习', bg: u('img/study.jpg'), link: u('categories/学习/') },
+      { title: '热爱', bg: u('img/love.jpg'), link: u('categories/热爱/') }
+    ];
 
     items.forEach(function (item) {
       var el = document.createElement('a');
