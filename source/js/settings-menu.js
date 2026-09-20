@@ -9,10 +9,20 @@
 
   var defaultSettings = {
     blur: false,
-    animation: true
+    animation: true,
+    cardOpacity: 'default'
   };
 
   var settings = loadSettings();
+
+  /* 路径统一由 BlogConfig 派生（见 blog-config.js），不硬编码 /azur_blog/
+   * BlogConfig 理论上一定会先于本文件加载，这里加个降级只是为了防御性写法，
+   * 和 gallery.js 里 DATA_URL 的处理方式保持一致。 */
+  function bgUrl(path) {
+    return window.BlogConfig ?
+      window.BlogConfig.url(path) :
+      path;
+  }
 
   /* ----------------------------------------
    * Storage
@@ -175,6 +185,51 @@
             </div>
 
 
+            <div class="settings-item" style="flex-direction: column; align-items: stretch; gap: 8px;">
+
+              <div class="settings-item-info">
+
+                <div class="settings-item-title">
+                  卡片透明度
+                </div>
+
+                <div class="settings-item-desc">
+                  调低透明度可以透出背景图，不使用毛玻璃效果
+                </div>
+
+              </div>
+
+              <div class="settings-opacity-group">
+
+                <button
+                  class="settings-opacity-option"
+                  type="button"
+                  data-opacity="default"
+                >
+                  不透明
+                </button>
+
+                <button
+                  class="settings-opacity-option"
+                  type="button"
+                  data-opacity="low"
+                >
+                  低透明度
+                </button>
+
+                <button
+                  class="settings-opacity-option"
+                  type="button"
+                  data-opacity="high"
+                >
+                  高透明度
+                </button>
+
+              </div>
+
+            </div>
+
+
             <div class="settings-item">
 
               <div class="settings-item-info">
@@ -257,8 +312,8 @@
 
               <button
                 class="settings-background"
-                data-bg="/azur_blog/img/background.jpg"
-                style="background-image:url('/azur_blog/img/background.jpg')"
+                data-bg="${bgUrl('img/background.jpg')}"
+                style="background-image:url('${bgUrl('img/background.jpg')}')"
               >
                 <span class="settings-background-label">
                   默认背景
@@ -268,8 +323,8 @@
 
               <button
                 class="settings-background"
-                data-bg="/azur_blog/img/covers/enterprise_2.jpg"
-                style="background-image:url('/azur_blog/img/covers/enterprise_2.jpg')"
+                data-bg="${bgUrl('img/covers/enterprise_2.jpg')}"
+                style="background-image:url('${bgUrl('img/covers/enterprise_2.jpg')}')"
               >
                 <span class="settings-background-label">
                   Enterprise 02
@@ -279,8 +334,8 @@
 
               <button
                 class="settings-background"
-                data-bg="/azur_blog/img/phone_cover.jpg"
-                style="background-image:url('/azur_blog/img/phone_cover.jpg')"
+                data-bg="${bgUrl('img/phone_cover.jpg')}"
+                style="background-image:url('${bgUrl('img/phone_cover.jpg')}')"
               >
                 <span class="settings-background-label">
                   手机背景
@@ -290,8 +345,8 @@
 
               <button
                 class="settings-background"
-                data-bg="/azur_blog/img/love.jpg"
-                style="background-image:url('/azur_blog/img/love.jpg')"
+                data-bg="${bgUrl('img/love.jpg')}"
+                style="background-image:url('${bgUrl('img/love.jpg')}')"
               >
                 <span class="settings-background-label">
                   Love
@@ -489,6 +544,36 @@
     }
 
 
+    /* 卡片透明度 */
+
+    var opacityButtons =
+      overlay.querySelectorAll(
+        '.settings-opacity-option'
+      );
+
+    Array.prototype.forEach.call(
+      opacityButtons,
+      function (button) {
+
+        ctx.on(
+          button,
+          'click',
+          function () {
+
+            settings.cardOpacity =
+              button.dataset.opacity;
+
+            saveSettings();
+
+            applySettings();
+
+          }
+        );
+
+      }
+    );
+
+
     /* BGM */
 
     var bgm =
@@ -540,16 +625,8 @@
               button.dataset.bg
             );
 
-            backgrounds.forEach(
-              function (item) {
-                item.classList.remove(
-                  'is-active'
-                );
-              }
-            );
-
-            button.classList.add(
-              'is-active'
+            syncActiveBackground(
+              button.dataset.bg
             );
 
           }
@@ -599,6 +676,43 @@
     document.documentElement.classList.toggle(
       'settings-disable-animation',
       !settings.animation
+    );
+
+    document.documentElement.setAttribute(
+      'data-card-opacity',
+      settings.cardOpacity
+    );
+
+    syncOpacityButtons();
+
+  }
+
+
+  /* 给当前生效档位的按钮加 is-active，其余去掉 */
+  function syncOpacityButtons() {
+
+    var overlay =
+      document.getElementById('settings-overlay');
+
+    if (!overlay) {
+      return;
+    }
+
+    var buttons =
+      overlay.querySelectorAll(
+        '.settings-opacity-option'
+      );
+
+    Array.prototype.forEach.call(
+      buttons,
+      function (button) {
+
+        button.classList.toggle(
+          'is-active',
+          button.dataset.opacity === settings.cardOpacity
+        );
+
+      }
     );
 
   }
@@ -694,6 +808,38 @@
   }
 
 
+  /* 根据当前生效的背景路径，给对应按钮加 is-active，
+   * 其余按钮去掉——用于页面刷新/PJAX 后恢复视觉状态，
+   * 避免"背景是对的，但面板里看不出选中的是哪张"。 */
+  function syncActiveBackground(path) {
+
+    var overlay =
+      document.getElementById('settings-overlay');
+
+    if (!overlay) {
+      return;
+    }
+
+    var backgrounds =
+      overlay.querySelectorAll(
+        '.settings-background'
+      );
+
+    Array.prototype.forEach.call(
+      backgrounds,
+      function (button) {
+
+        button.classList.toggle(
+          'is-active',
+          button.dataset.bg === path
+        );
+
+      }
+    );
+
+  }
+
+
   function restoreBackground() {
 
     var webBg =
@@ -708,12 +854,18 @@
         'azur-blog-background'
       );
 
-    if (!saved) {
-      return;
+    /* 没有保存过自定义背景时，当前生效的就是主题配置里的默认背景，
+     * 这里统一按 bgUrl('img/background.jpg') 计算，保证和面板里
+     * "默认背景"按钮的 data-bg 是同一个值，才能正确高亮上。 */
+    var currentPath =
+      saved || bgUrl('img/background.jpg');
+
+    if (saved) {
+      webBg.style.backgroundImage =
+        'url("' + saved + '")';
     }
 
-    webBg.style.backgroundImage =
-      'url("' + saved + '")';
+    syncActiveBackground(currentPath);
 
   }
 
