@@ -149,22 +149,89 @@ var quotes = [
   "不是我独占指挥官，而是作为情人节礼物，让指挥官独占我一整天吗……虽说我本来就已经完全属于指挥官了，不过如果指挥官的意思是，让我今天只能思考关于你的事的话……为了完成这一目标，所选用的手段可以由我来决定吗？"
 ];
 
+  // 是否应当减少动效：设置面板里关了「页面动画」，或系统开启了「减少动态效果」
+  // 打字机是 JS 定时器驱动的，CSS 里的 animation/transition 覆盖管不到它，所以要单独判断
+  function motionReduced() {
+    if (document.documentElement.classList.contains('settings-disable-animation')) return true;
+    return !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+  }
+
+  function pickIndex() {
+    return Math.floor(Math.random() * quotes.length);
+  }
+
+  function pickDifferent(current) {
+    if (quotes.length < 2) return current;
+    var i;
+    do { i = pickIndex(); } while (i === current);
+    return i;
+  }
+
+  // 动效关闭（静态模式）时：直接显示完整台词，之后每隔这么久换一句（直接替换，不打字）。
+  // 只是"停在那里不动"看起来像卡死，所以静态模式下仍然要定时换句。
+  var STATIC_ROTATE_MS = 8000;
+
   function startTypewriter(ctx) {
-    var quoteIndex = Math.floor(Math.random() * quotes.length);
+    var quoteIndex = pickIndex();
     var charIndex = 0;
     var isDeleting = false;
+    var timer = null;
+    var reduced = motionReduced();
+
+    // 任何时刻只保留一个待执行的定时器。
+    // 打字 ↔ 静态 切换时会先取消旧的，避免两条定时器链同时运行。
+    function later(fn, ms) {
+      if (timer !== null) clearTimeout(timer);
+      timer = ctx.timeout(fn, ms);
+    }
+
+    function lineEl() {
+      return document.querySelector('.typewriter-line');
+    }
+
+    // ----- 静态模式 -----
+    function showStatic() {
+      var el = lineEl();
+      if (!el) return;
+      el.textContent = quotes[quoteIndex];   // 打了一半的也直接补全
+      later(nextStatic, STATIC_ROTATE_MS);
+    }
+
+    function nextStatic() {
+      if (!motionReduced()) {                // 期间动效被重新打开（比如系统设置变了）
+        reduced = false;
+        resumeTyping();
+        return;
+      }
+      quoteIndex = pickDifferent(quoteIndex);
+      showStatic();
+    }
+
+    // ----- 打字模式 -----
+    function resumeTyping() {
+      charIndex = 0;
+      isDeleting = false;
+      quoteIndex = pickDifferent(quoteIndex);
+      typeWriter();
+    }
 
     function typeWriter() {
-      var current = quotes[quoteIndex];
-      var el = document.querySelector('.typewriter-line');
+      var el = lineEl();
       if (!el) return;
+      if (motionReduced()) {                 // 兜底：观察器没来得及触发时，下一拍也能切到静态
+        reduced = true;
+        showStatic();
+        return;
+      }
+
+      var current = quotes[quoteIndex];
 
       if (!isDeleting) {
         el.textContent = current.substring(0, charIndex + 1);
         charIndex++;
         if (charIndex === current.length) {
           isDeleting = true;
-          ctx.timeout(typeWriter, 2500);
+          later(typeWriter, 2500);
           return;
         }
       } else {
@@ -172,13 +239,36 @@ var quotes = [
         charIndex--;
         if (charIndex === 0) {
           isDeleting = false;
-          quoteIndex = Math.floor(Math.random() * quotes.length);
-          ctx.timeout(typeWriter, 600);
+          quoteIndex = pickIndex();
+          later(typeWriter, 600);
           return;
         }
       }
 
-      ctx.timeout(typeWriter, isDeleting ? 60 : 120);
+      later(typeWriter, isDeleting ? 60 : 120);
+    }
+
+    // 动效设置变化时立即响应：
+    //   关闭 → 马上补全当前这句并进入静态模式
+    //   重新打开 → 马上换一句重新打字
+    // <html> 上任何 class 变化都会进到这里（比如 no-toc），所以要先判断状态有没有真的变。
+    function onMotionChange() {
+      var now = motionReduced();
+      if (now === reduced) return;
+      reduced = now;
+      if (now) showStatic();
+      else resumeTyping();
+    }
+
+    // 降级模式（BlogLifecycle 缺失）下不做联动，避免每次 PJAX 累积观察器
+    if (!ctx.legacy) {
+      var mo = new MutationObserver(onMotionChange);
+      mo.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+      ctx.observer(mo);
+
+      if (window.matchMedia) {
+        ctx.on(window.matchMedia('(prefers-reduced-motion: reduce)'), 'change', onMotionChange);
+      }
     }
 
     typeWriter();
@@ -204,7 +294,13 @@ var quotes = [
     wrapper.appendChild(line);
 
     ctx.append(siteInfo, wrapper);
-    ctx.timeout(function () { startTypewriter(ctx); }, 800);
+
+    // 动效被关闭时不需要 800ms 的等待，直接显示一句静态台词
+    if (motionReduced()) {
+      startTypewriter(ctx);
+    } else {
+      ctx.timeout(function () { startTypewriter(ctx); }, 800);
+    }
   }
 
   // 迁移到 BlogLifecycle（P1-3）：ctx.timeout 登记的每一级 setTimeout
@@ -215,6 +311,7 @@ var quotes = [
       // 兜底：生命周期管理器缺失时退回原有行为（保留 generation 计数器防串场）
       var generation = 0;
       var legacyCtx = {
+        legacy: true,
         append: function (parent, node) { parent.appendChild(node); return node; },
         timeout: function (fn, ms) {
           var gen = generation;
@@ -222,7 +319,9 @@ var quotes = [
             if (gen !== generation) return;
             fn();
           }, ms);
-        }
+        },
+        on: function () {},
+        observer: function (o) { return o; }
       };
       function legacyInit() {
         generation++;

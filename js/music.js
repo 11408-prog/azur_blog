@@ -10,6 +10,7 @@
 //   因此实例与音频状态可以跨页面切换完整保留。
 //
 // 注意：APlayer 1.x 的 play()/pause() 不返回 Promise，所有调用都不能用 .then/.catch
+//       且 play() 内部吞掉了自动播放被拦截的错误，不会抛异常——判断是否在播只能看 audio.paused
 (function () {
   'use strict';
 
@@ -89,33 +90,76 @@
     });
   }
 
-  // ---------- 自动播放：先直接尝试；被浏览器策略阻止则等首次用户交互 ----------
-  function registerInteractionListeners(ap) {
-    function playOnInteraction() {
-      try {
-        ap.play();
-        DSLog.info('BGM', '首次交互后开始播放');
-      } catch (e) {
-        DSLog.warn('BGM', '交互后播放仍失败', { message: e.message, name: e.name });
-      }
-    }
-    ['click', 'touchstart', 'keydown'].forEach(function (evt) {
-      document.addEventListener(evt, playOnInteraction, { once: true });
+  // ---------- 自动播放：先直接尝试；被浏览器策略拦截则等用户手势 ----------
+  // 注意：APlayer 1.x 的 play() 内部自己 catch 了 audio.play() 的 rejection
+  // （NotAllowedError 时会自行 pause），不会向外抛异常。
+  // 所以不能靠 try/catch 判断"是否被拦截"，只能调用后检查 audio.paused 的真实状态。
+  var INTERACTION_EVENTS = ['pointerdown', 'pointerup', 'touchend', 'keydown', 'click'];
+  var MAX_INTERACTION_ATTEMPTS = 10;
+  var _armed = false;
+  var _attempts = 0;
+  var _verifyTimer = null;
+
+  function disarmInteractionListeners() {
+    if (!_armed) return;
+    _armed = false;
+    INTERACTION_EVENTS.forEach(function (evt) {
+      document.removeEventListener(evt, onUserGesture, true);
     });
-    DSLog.debug('BGM', '已注册交互监听器', { events: ['click', 'touchstart', 'keydown'] });
+    DSLog.debug('BGM', '已移除交互监听器');
+  }
+
+  // 每个手势都尝试播放，直到确认真的播起来了才整体卸载监听：
+  //   - 不同浏览器把不同事件算作"用户激活"（触屏是 touchend/pointerup，键盘 Esc 不算），
+  //     所以监听多个事件、失败就保持监听，等下一个手势
+  //   - 成功后 5 个事件一起移除，避免之后用户手动暂停又被 keydown 等事件"复活"
+  function onUserGesture() {
+    var ap = window._aplayer_instance;
+    if (!ap || !ap.audio) return;
+    if (!ap.audio.paused) {
+      disarmInteractionListeners();
+      return;
+    }
+    _attempts++;
+    ap.play();
+    clearTimeout(_verifyTimer);
+    _verifyTimer = setTimeout(function () {
+      if (ap.audio && !ap.audio.paused) {
+        DSLog.info('BGM', '首次交互后开始播放', { attempts: _attempts });
+        disarmInteractionListeners();
+      } else if (_attempts >= MAX_INTERACTION_ATTEMPTS) {
+        DSLog.warn('BGM', '多次交互后仍无法播放，放弃自动播放', { attempts: _attempts });
+        disarmInteractionListeners();
+      }
+    }, 300);
+  }
+
+  function registerInteractionListeners() {
+    if (_armed) return;
+    _armed = true;
+    _attempts = 0;
+    INTERACTION_EVENTS.forEach(function (evt) {
+      document.addEventListener(evt, onUserGesture, { capture: true, passive: true });
+    });
+    DSLog.debug('BGM', '已注册交互监听器', { events: INTERACTION_EVENTS });
   }
 
   function tryAutoplay(ap) {
     try {
       ap.play();
-      DSLog.info('BGM', '自动播放成功');
     } catch (e) {
-      DSLog.warn('BGM', '自动播放被阻止，等待首次交互后播放', {
-        message: e.message, name: e.name
-      });
-      notifyStateChange();
-      registerInteractionListeners(ap);
+      DSLog.warn('BGM', 'play() 抛出异常', { message: e.message, name: e.name });
     }
+    // 给浏览器一点时间给出结果：被拦截时 APlayer 会在 rejection 里把自己 pause 掉
+    setTimeout(function () {
+      if (ap.audio && !ap.audio.paused) {
+        DSLog.info('BGM', '自动播放成功');
+        return;
+      }
+      DSLog.warn('BGM', '自动播放被浏览器拦截，等待首次用户手势后播放');
+      notifyStateChange();
+      registerInteractionListeners();
+    }, 500);
   }
 
   // ---------- 实例创建（全局只成功执行一次） ----------
