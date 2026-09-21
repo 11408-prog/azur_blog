@@ -1,0 +1,11 @@
+# 忽略所有文件
+/*
+# 但允许 public 目录
+!public
+# 只允许 public 下的静态资源文件
+!public/**
+# 排除 public 下常见的非必要文件
+public/**.map
+public/**.log
+public/node_modules
+public/.git
