@@ -26,7 +26,7 @@ if defined COMMIT_MSG set "COMMIT_MSG=%COMMIT_MSG:"=%"
 
 echo.
 echo ========================================
-echo [1/6] Cleaning Hexo build files...
+echo [1/7] Cleaning Hexo build files...
 echo ========================================
 
 call hexo clean
@@ -43,10 +43,31 @@ echo [OK] Hexo clean completed.
 echo.
 
 REM ========================================
+REM Build React islands (web/ -> source/js/dist)
+REM ========================================
+echo ========================================
+echo [2/7] Building web bundle (React islands)...
+echo ========================================
+
+call npm run build:web
+
+if errorlevel 1 (
+    echo.
+    echo [ERROR] Web bundle build failed.
+    echo.
+    pause
+    exit /b 1
+)
+
+echo.
+echo [OK] Web bundle built.
+echo.
+
+REM ========================================
 REM Generate
 REM ========================================
 echo ========================================
-echo [2/6] Generating Hexo site...
+echo [3/7] Generating Hexo site...
 echo ========================================
 
 call hexo generate -c 4
@@ -76,7 +97,7 @@ REM ========================================
 REM Validate
 REM ========================================
 echo ========================================
-echo [3/6] Validating build...
+echo [4/7] Validating build...
 echo ========================================
 
 if not exist "test\validate-build.js" (
@@ -103,7 +124,7 @@ REM ========================================
 REM GitHub Pages
 REM ========================================
 echo ========================================
-echo [4/6] Deploying to GitHub Pages...
+echo [5/7] Deploying to GitHub Pages...
 echo ========================================
 
 call hexo deploy
@@ -123,7 +144,7 @@ REM ========================================
 REM Git source repository
 REM ========================================
 echo ========================================
-echo [5/6] Pushing source code to GitHub...
+echo [6/7] Pushing source code to GitHub...
 echo ========================================
 
 set "COMMIT_OK=1"
@@ -186,7 +207,7 @@ REM ========================================
 REM Cloudflare Pages
 REM ========================================
 echo ========================================
-echo [6/6] Deploying to Cloudflare Pages...
+echo [7/7] Deploying to Cloudflare Pages...
 echo ========================================
 
 where wrangler >nul 2>&1

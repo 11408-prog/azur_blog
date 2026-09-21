@@ -390,6 +390,41 @@ function checkCarousel() {
   pass(`carousel-list.json 检查通过（${data.images.length} 张）`);
 }
 
+// ── J. tags.json（标签页数据，供 React 岛做多标签筛选）──
+
+function checkTagsData() {
+  const file = path.join(PUBLIC, 'data', 'tags.json');
+  if (!fs.existsSync(file)) {
+    error('data/tags.json 不存在（标签页的 React 岛没有数据，会回退为静态标签云）');
+    return;
+  }
+  const data = readJson(file);
+  if (!data) return;
+  if (!data || !Array.isArray(data.tags) || !Array.isArray(data.posts)) {
+    error('tags.json 必须是 { "tags": [], "posts": [] } 结构');
+    return;
+  }
+
+  const n = data.tags.length;
+  const bad = [];
+  data.tags.forEach((t, i) => {
+    if (!t || !t.name || !t.path || !(t.count > 0)) bad.push(`tags[${i}]`);
+  });
+  data.posts.forEach((p, i) => {
+    const ok = p && p.title && p.path && p.date && Array.isArray(p.tags) && p.tags.length > 0 &&
+      p.tags.every((x) => Number.isInteger(x) && x >= 0 && x < n);
+    if (!ok) bad.push(`posts[${i}]`);
+  });
+
+  if (bad.length) {
+    error(`tags.json 有 ${bad.length} 处结构错误（下标越界 / 缺字段）: ${bad.slice(0, 5).join(', ')}`);
+  } else if (n === 0) {
+    warn('tags.json 没有任何标签（标签页将回退为静态标签云）');
+  } else {
+    pass(`tags.json 检查通过（${n} 个标签 / ${data.posts.length} 篇带标签的文章）`);
+  }
+}
+
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 //  报告输出
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -464,10 +499,11 @@ checkKeyPages();
 // E. 文章（--quick 跳过）
 checkPostFrontMatter();
 
-// F-I. 构建产物
+// F-J. 构建产物
 checkImageFormats();
 checkGallery();
 checkActivity();
 checkCarousel();
+checkTagsData();
 
 printReport();

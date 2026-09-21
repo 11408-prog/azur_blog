@@ -29,6 +29,9 @@ source/_img_backup/
 # 画廊原图（这些图不入 git，只留本机；线上用构建产物）
 source/carousel/
 
+# React 岛的打包产物（npm run build:web 生成；auto-deploy.cmd 部署前会自动构建）
+source/js/dist/
+
 # 每日日志（本地诊断用，不入库）
 daily_log/
 
@@ -47,3 +50,7 @@ daily_log/
 
 .vercel
 .env*
+
+# Claude 生成的补丁与副本（已应用，无需入库）
+claude生成的文件/
+react-tags.patch
