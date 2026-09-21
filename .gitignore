@@ -44,3 +44,6 @@ daily_log/
 # 测试模块（已放行，validate-build.js 需入库）
 # Local Netlify folder
 .netlify
+
+.vercel
+.env*
