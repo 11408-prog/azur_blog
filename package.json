@@ -3,10 +3,12 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "build": "hexo generate",
+    "build": "npm run build:web && hexo generate",
+    "build:web": "node web/build.mjs",
+    "dev:web": "node web/build.mjs --watch",
     "clean": "hexo clean",
     "deploy": "hexo deploy",
-    "server": "hexo server",
+    "server": "npm run build:web && hexo server",
     "test": "node test/validate-build.js",
     "test:build": "npm run clean && npm run build && npm test",
     "test:quick": "node test/validate-build.js --quick"
@@ -32,6 +34,9 @@
     "hexo-tag-aplayer": "^3.0.4"
   },
   "devDependencies": {
+    "esbuild": "^0.25.12",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
     "sharp": "^0.35.3"
   }
 }

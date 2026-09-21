@@ -1,0 +1,303 @@
+/* ========== 标签页（React 岛：多标签筛选 + 排序） ==========
+ * 对应 web/islands/TagsExplorer.jsx。颜色、圆角全部取自 variables.css，
+ * 暗色模式跟随 [data-theme="dark"]。Hexo 生成的静态标签云（.tag-cloud-list）
+ * 仍在 HTML 里作为兜底，React 渲染成功后才会被隐藏。 */
+
+#tags-app {
+  text-align: left;
+}
+
+.tags-explorer {
+  color: var(--text-primary);
+}
+
+/* 工具栏：匹配方式 + 两个排序下拉 */
+.tags-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 22px;
+  margin-bottom: 16px;
+  padding: 12px 16px;
+  border-radius: var(--radius-lg);
+  background: var(--navy-mid-06);
+  border: 1px solid var(--navy-mid-10);
+}
+
+.tags-field {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+.tags-field select {
+  padding: 4px 8px;
+  border: 1px solid var(--navy-mid-15);
+  border-radius: var(--radius-md);
+  background: var(--card-bg-light);
+  color: var(--text-primary);
+  font: inherit;
+  cursor: pointer;
+}
+
+/* 分段按钮（匹配方式） */
+.tags-segmented {
+  display: inline-flex;
+  border: 1px solid var(--navy-mid-15);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.tags-segment {
+  padding: 4px 12px;
+  border: 0;
+  background: var(--card-bg-light);
+  color: var(--text-primary);
+  font: inherit;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.tags-segment + .tags-segment {
+  border-left: 1px solid var(--navy-mid-15);
+}
+
+.tags-segment[aria-checked="true"] {
+  background: var(--navy-deep);
+  color: #fff;
+}
+
+/* 标签 */
+.tags-cloud {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.tags-chip {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 6px;
+  padding: 4px 12px;
+  border: 1px solid var(--navy-mid-15);
+  border-radius: 999px;
+  background: var(--navy-mid-08);
+  color: var(--navy-deep);
+  font: inherit;
+  line-height: 1.7;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+}
+
+.tags-chip:hover:not(:disabled) {
+  background: var(--navy-mid-15);
+}
+
+.tags-chip[aria-pressed="true"] {
+  background: var(--navy-deep);
+  border-color: var(--gold);
+  color: #fff;
+  box-shadow: 0 0 0 2px rgba(201, 162, 39, 0.35);
+}
+
+.tags-chip:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.tags-chip-count {
+  font-size: 0.8em;
+  opacity: 0.75;
+  font-variant-numeric: tabular-nums;
+}
+
+/* 键盘焦点 */
+.tags-chip:focus-visible,
+.tags-segment:focus-visible,
+.tags-clear:focus-visible,
+.tags-field select:focus-visible,
+.tags-result-title:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+
+/* 摘要行 + 清除按钮 */
+.tags-summary-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 16px;
+  margin: 16px 0 8px;
+}
+
+.tags-summary {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.tags-clear {
+  padding: 2px 10px;
+  border: 1px solid var(--navy-mid-15);
+  border-radius: var(--radius-md);
+  background: transparent;
+  color: var(--navy-mid);
+  font: inherit;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.tags-clear:hover {
+  background: var(--navy-mid-08);
+}
+
+.tags-empty {
+  margin: 12px 0;
+  color: var(--text-muted);
+}
+
+/* 结果列表 */
+.tags-results {
+  margin: 8px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tags-result {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 12px;
+  padding: 10px 4px;
+  border-bottom: 1px solid var(--navy-mid-08);
+}
+
+.tags-result:last-child {
+  border-bottom: 0;
+}
+
+.tags-result-title {
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.tags-result-title:hover {
+  color: var(--navy-mid);
+}
+
+.tags-result-date {
+  font-size: 0.85rem;
+  color: var(--text-faint);
+  font-variant-numeric: tabular-nums;
+}
+
+.tags-result-tags {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.tags-mini {
+  padding: 0 8px;
+  border-radius: 999px;
+  background: var(--navy-mid-08);
+  color: var(--navy-mid);
+  font-size: 0.78rem;
+}
+
+.tags-mini.is-selected {
+  background: var(--navy-deep);
+  color: #fff;
+}
+
+/* 暗色模式 */
+[data-theme="dark"] .tags-explorer {
+  color: #e2e8f0;
+}
+
+[data-theme="dark"] .tags-toolbar {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+[data-theme="dark"] .tags-field,
+[data-theme="dark"] .tags-summary {
+  color: var(--text-faint);
+}
+
+[data-theme="dark"] .tags-field select,
+[data-theme="dark"] .tags-segment {
+  background: var(--card-bg-dark);
+  color: #e2e8f0;
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+[data-theme="dark"] .tags-segmented,
+[data-theme="dark"] .tags-segment + .tags-segment {
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+[data-theme="dark"] .tags-segment[aria-checked="true"] {
+  background: var(--navy-mid);
+  color: #fff;
+}
+
+[data-theme="dark"] .tags-chip {
+  background: rgba(144, 205, 244, 0.08);
+  border-color: rgba(144, 205, 244, 0.2);
+  color: var(--blue-light);
+}
+
+[data-theme="dark"] .tags-chip:hover:not(:disabled) {
+  background: rgba(144, 205, 244, 0.16);
+}
+
+[data-theme="dark"] .tags-chip[aria-pressed="true"] {
+  background: var(--navy-mid);
+  border-color: var(--gold);
+  color: #fff;
+}
+
+[data-theme="dark"] .tags-clear {
+  color: var(--blue-light);
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+[data-theme="dark"] .tags-result {
+  border-bottom-color: rgba(255, 255, 255, 0.06);
+}
+
+[data-theme="dark"] .tags-result-title {
+  color: #e2e8f0;
+}
+
+[data-theme="dark"] .tags-result-title:hover {
+  color: var(--blue-light);
+}
+
+[data-theme="dark"] .tags-mini {
+  background: rgba(144, 205, 244, 0.1);
+  color: var(--blue-light);
+}
+
+[data-theme="dark"] .tags-mini.is-selected {
+  background: var(--navy-mid);
+  color: #fff;
+}
+
+/* 手机：工具栏纵向排布，标签略紧凑 */
+@media (max-width: 768px) {
+  .tags-toolbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .tags-field {
+    justify-content: space-between;
+  }
+
+  .tags-chip {
+    padding: 3px 10px;
+  }
+}
