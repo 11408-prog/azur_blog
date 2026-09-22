@@ -1081,7 +1081,6 @@ inject:
     - <script src="/azur_blog/js/welcome_animation.js?v=1.4"></script>
     - <script src="/azur_blog/js/weather.js?v=1.2"></script>
     - <script src="/azur_blog/js/carousel.js?v=1.3"></script>
-    - <script src="/azur_blog/js/activity.js?v=1.4"></script>
     - <script src="/azur_blog/js/random_posts.js?v=1.2"></script>
     - <script type="module" async src="/azur_blog/js/dist/app.js?v=1.0"></script>
     - <script src="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.js"></script>
