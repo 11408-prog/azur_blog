@@ -1,12 +1,12 @@
-/* ========== 画廊瀑布流（flex 列 + 最短列贪心插入） ========== */
+/* ========== 画廊瀑布流（React Island） ========== */
 
-#masonry-gallery {
+.gallery-grid {
   display: flex;
   gap: 12px;
   align-items: flex-start;
 }
 
-#masonry-gallery .mg-col {
+.gallery-grid .mg-col {
   flex: 1;
   min-width: 0;
   display: flex;
@@ -14,19 +14,33 @@
   gap: 12px;
 }
 
-#masonry-gallery .mg-col img {
-  width: 100%;
+.gallery-grid .gallery-item {
   display: block;
-  border-radius: var(--radius-sm);
-  background: rgba(30, 58, 95, 0.05); /* 加载中的占位底色 */
-  cursor: pointer;
-  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
-              box-shadow 0.35s ease;
+  width: 100%;
 }
 
-#masonry-gallery .mg-col img:hover {
+.gallery-grid .gallery-item img {
+  width: 100%;
+  height: auto !important;
+  max-width: 100%;
+  display: block;
+  border-radius: var(--radius-sm);
+  background: rgba(30, 58, 95, 0.05);
+  cursor: pointer;
+  object-fit: contain;
+  transition:
+    transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+    box-shadow 0.35s ease;
+}
+
+.gallery-grid .gallery-item img:hover {
   transform: scale(1.03);
   box-shadow: 0 8px 24px var(--navy-deep-18);
   position: relative;
   z-index: 1;
+}
+.gallery-status {
+  padding: 40px 20px;
+  text-align: center;
+  opacity: 0.7;
 }
