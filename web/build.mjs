@@ -1,11 +1,4 @@
 // web/build.mjs — 打包 React 岛（esbuild）
-//   node web/build.mjs            一次性打包
-//   node web/build.mjs --watch    监听变化持续打包
-//
-// 输出：source/js/dist/
-//   app.js
-//   islands/<name>-<hash>.js
-//   shared/<name>-<hash>.js
 
 import { build, context } from 'esbuild';
 import {
@@ -20,10 +13,10 @@ import { join, relative } from 'node:path';
 const OUT = 'source/js/dist';
 const watch = process.argv.includes('--watch');
 
-// React Island：名字必须与 web/main.js 中的 islandUrl('xxx') 对应。
 const ISLANDS = {
   tags: 'web/islands/tags.mount.jsx',
   gallery: 'web/islands/gallery.mount.jsx',
+  activity: 'web/islands/activity.mount.jsx',
 };
 
 const common = {
@@ -52,7 +45,9 @@ const islandOptions = {
 function islandMap(metafile) {
   const map = {};
 
-  for (const [file, info] of Object.entries(metafile.outputs)) {
+  for (const [file, info] of Object.entries(
+    metafile.outputs
+  )) {
     if (!info.entryPoint) continue;
 
     const name = Object.keys(ISLANDS).find(
@@ -60,13 +55,18 @@ function islandMap(metafile) {
     );
 
     if (name) {
-      map[name] = relative(OUT, file).replace(/\\/g, '/');
+      map[name] = relative(OUT, file).replace(
+        /\\/g,
+        '/'
+      );
     }
   }
 
   for (const name of Object.keys(ISLANDS)) {
     if (!map[name]) {
-      throw new Error('没有找到岛的输出: ' + name);
+      throw new Error(
+        '没有找到岛的输出: ' + name
+      );
     }
   }
 
@@ -76,9 +76,7 @@ function islandMap(metafile) {
 function entryOptions(map) {
   return {
     ...common,
-    entryPoints: {
-      app: 'web/main.js',
-    },
+    entryPoints: { app: 'web/main.js' },
     outdir: OUT,
     define: {
       ...common.define,
@@ -100,9 +98,7 @@ function walk(dir, out = []) {
 }
 
 function report() {
-  const files = walk(OUT).filter((f) =>
-    f.endsWith('.js')
-  );
+  const files = walk(OUT).filter((f) => f.endsWith('.js'));
 
   console.log('\n打包产物（' + OUT + '）：');
 
@@ -118,9 +114,7 @@ function report() {
 
     console.log(
       '  ' +
-        relative(OUT, f)
-          .replace(/\\/g, '/')
-          .padEnd(34) +
+        relative(OUT, f).replace(/\\/g, '/').padEnd(34) +
         String(buf.length).padStart(8) +
         ' B   gzip ' +
         String(gz).padStart(6) +
@@ -156,7 +150,6 @@ if (watch) {
     );
 
     await entryCtx.rebuild();
-
     console.log('[web] 已重新打包入口');
   };
 
@@ -178,14 +171,13 @@ if (watch) {
   });
 
   await islandCtx.watch();
-
   console.log('监听中…（Ctrl+C 退出）');
 } else {
   const islands = await build(islandOptions);
-
   await build(
-    entryOptions(islandMap(islands.metafile))
+    entryOptions(
+      islandMap(islands.metafile)
+    )
   );
-
   report();
 }
