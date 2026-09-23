@@ -17,16 +17,21 @@
 .gallery-grid .gallery-item {
   display: block;
   width: 100%;
+  /* aspect-ratio 由组件内联 style 按图片宽高比设置，撑开占位高度：
+     还没被 IntersectionObserver 揭开、真正渲染 <img> 之前，
+     这个包装元素本身就要占好最终图片的大小，画廊高度才不会跳动。
+     背景色和圆角也放在这里（而不只是 img 上），
+     这样「还没揭开的占位」和「揭开了但图片还在下载」看起来完全一样。 */
+  border-radius: var(--radius-sm);
+  background: rgba(30, 58, 95, 0.05);
+  cursor: pointer;
+  overflow: hidden;
 }
 
 .gallery-grid .gallery-item img {
   width: 100%;
-  height: auto !important;
-  max-width: 100%;
+  height: 100%;
   display: block;
-  border-radius: var(--radius-sm);
-  background: rgba(30, 58, 95, 0.05);
-  cursor: pointer;
   object-fit: contain;
   transition:
     transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),

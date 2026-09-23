@@ -28,6 +28,7 @@
   margin-right: auto;
 }
 
+/* 普通页面宽度限制 */
 #page,
 #archive,
 #tag,
@@ -35,9 +36,57 @@
   max-width: 900px;
 }
 
+/* ========== 标签页：动态宽屏布局 ========== */
+/*
+ * 仅匹配包含 React 标签应用的页面。
+ * 不影响首页、文章页、归档页及其他页面。
+ *
+ * 宽度随可用空间动态变化，不设置固定最大宽度，
+ * 同时使用响应式内边距，适配手机、平板和桌面端。
+ */
+#page:has(#tags-app) {
+  width: 100% !important;
+  max-width: none !important;
+
+  margin-left: auto;
+  margin-right: auto;
+
+  /* 根据视口宽度动态调整左右留白 */
+  padding-left: clamp(12px, 2.5vw, 32px);
+  padding-right: clamp(12px, 2.5vw, 32px);
+
+  box-sizing: border-box;
+}
+
+/* 标签页内容容器跟随主容器扩展 */
+#page:has(#tags-app) #article-container {
+  width: 100%;
+  max-width: none;
+
+  box-sizing: border-box;
+}
+
+/* React 标签应用占满可用宽度 */
+#page:has(#tags-app) #tags-app,
+#page:has(#tags-app) .tags-explorer {
+  width: 100%;
+  max-width: none;
+  min-width: 0;
+
+  box-sizing: border-box;
+}
+
+/* 手机端：减少左右留白 */
+@media screen and (max-width: 768px) {
+  #page:has(#tags-app) {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+}
+
 /* ========== 画廊页：无侧栏 + 全宽 + 去掉容器底板，只显示图片 ========== */
 .page.type-gallery #page {
-  width: 100% !important;            /* 覆盖 hide-aside 的 80% */
+  width: 100% !important; /* 覆盖 hide-aside 的 80% */
   max-width: 1400px;
   background: transparent !important;
   box-shadow: none !important;
@@ -58,7 +107,8 @@
   border-radius: var(--radius-sm);
 }
 
-/* 隐藏 Netlify Drop 注入的广告角标 iframe（正式站点/其他平台无此元素，无害） */
+/* 隐藏 Netlify Drop 注入的广告角标 iframe
+   正式站点/其他平台无此元素，无害 */
 #nl-badge-frame {
   display: none !important;
 }
