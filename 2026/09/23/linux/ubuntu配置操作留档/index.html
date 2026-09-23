@@ -1,0 +1,520 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>ubuntu配置操作留档 | </title><meta name="author" content="灰色幽灵"><meta name="copyright" content="灰色幽灵"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Ubuntu 配置操作留档 1. 系统信息  虚拟机软件：VirtualBox 7.2.6 Ubuntu 版本：Ubuntu 26.04 (开发版，代号 resolute) 用户名：vboxuser 主机名：lyh 终端提示符：vboxuser@lyh 当前会话类型：Wayland（echo $XDG_SESSION_TYPE 输出 wayland，但剪贴板已正常工作）   2. 修复 APT 源">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ubuntu配置操作留档">
+<meta property="og:url" content="https://11408-prog.github.io/azur_blog/2026/09/23/linux/ubuntu%E9%85%8D%E7%BD%AE%E6%93%8D%E4%BD%9C%E7%95%99%E6%A1%A3/index.html">
+<meta property="og:site_name">
+<meta property="og:description" content="Ubuntu 配置操作留档 1. 系统信息  虚拟机软件：VirtualBox 7.2.6 Ubuntu 版本：Ubuntu 26.04 (开发版，代号 resolute) 用户名：vboxuser 主机名：lyh 终端提示符：vboxuser@lyh 当前会话类型：Wayland（echo $XDG_SESSION_TYPE 输出 wayland，但剪贴板已正常工作）   2. 修复 APT 源">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://11408-prog.github.io/azur_blog/img/avatar.png">
+<meta property="article:published_time" content="2026-09-23T14:12:04.000Z">
+<meta property="article:modified_time" content="2026-09-23T14:15:09.255Z">
+<meta property="article:author" content="灰色幽灵">
+<meta property="article:tag" content="ubuntu">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://11408-prog.github.io/azur_blog/img/avatar.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "ubuntu配置操作留档",
+  "url": "https://11408-prog.github.io/azur_blog/2026/09/23/linux/ubuntu%E9%85%8D%E7%BD%AE%E6%93%8D%E4%BD%9C%E7%95%99%E6%A1%A3/",
+  "image": "https://11408-prog.github.io/azur_blog/img/avatar.png",
+  "datePublished": "2026-09-23T14:12:04.000Z",
+  "dateModified": "2026-09-23T14:15:09.255Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "灰色幽灵",
+      "url": "https://11408-prog.github.io/azur_blog"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/azur_blog/img/favicon.png"><link rel="canonical" href="https://11408-prog.github.io/azur_blog/2026/09/23/linux/ubuntu%E9%85%8D%E7%BD%AE%E6%93%8D%E4%BD%9C%E7%95%99%E6%A1%A3/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/azur_blog/css/index.css?v=5.7.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.3.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@6.1.14/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        const data = { value }
+
+        if (ttl != null) {
+          data.expiry = Date.now() + ttl * 86400000
+        }
+
+        localStorage.setItem(key, JSON.stringify(data))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return
+
+        try {
+          const data = JSON.parse(itemStr)
+
+          if (data.expiry && Date.now() > data.expiry) {
+            localStorage.removeItem(key)
+            return
+          }
+
+          return data.value
+        } catch {
+          localStorage.removeItem(key)
+        }
+      }
+    }
+
+    const scriptCache = new Map()
+    const cssCache = new Map()
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => {
+        if (scriptCache.has(url)) {
+          return scriptCache.get(url)
+        }
+
+        const promise = new Promise((resolve, reject) => {
+          const script = document.createElement('script')
+
+          script.src = url
+          script.async = true
+
+          for (const key in attr) {
+            script.setAttribute(key, attr[key])
+          }
+
+          script.onload = resolve
+          script.onerror = reject
+
+          document.head.appendChild(script)
+        })
+
+        scriptCache.set(url, promise)
+
+        return promise
+      },
+      getCSS: (url, id) => {
+        if (cssCache.has(url)) {
+          return cssCache.get(url)
+        }
+
+        const promise = new Promise((resolve, reject) => {
+          const link = document.createElement('link')
+
+          link.rel = 'stylesheet'
+          link.href = url
+
+          if (id) {
+            link.id = id
+          }
+
+          link.onload = resolve
+          link.onerror = reject
+
+          document.head.appendChild(link)
+        })
+
+        cssCache.set(url, promise)
+
+        return promise
+      },
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!true && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const metaThemeColor = document.querySelector('meta[name="theme-color"]')
+      const activateDarkMode = () => {
+        document.documentElement.dataset.theme = 'dark'
+        if (metaThemeColor !== null) {
+          metaThemeColor.setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.dataset.theme = 'light'
+        if (metaThemeColor !== null) {
+          metaThemeColor.setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/azur_blog/',
+  algolia: undefined,
+  localSearch: {"path":"/azur_blog/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"pagination":{"enable":false,"hitsPerPage":8},"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":false},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.13.0/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: true,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'ubuntu配置操作留档',
+  isHighlightShrink: false,
+  isToc: true,
+  pageType: 'post'
+}</script><script>try{var s=JSON.parse(localStorage.getItem("azur-blog-settings")||"{}"),r=document.documentElement;if(s.cardOpacity)r.setAttribute("data-card-opacity",s.cardOpacity);var a=s.cardAlpha;if(typeof a==="number"&&isFinite(a))r.style.setProperty("--card-alpha",Math.min(1,Math.max(0.4,Math.round(a*100)/100)));if(s.animation===false)r.classList.add("settings-disable-animation");var b=localStorage.getItem("azur-blog-background");if(b&&b.charAt(0)==="/"){var t=document.createElement("style");t.id="azur-bg-override";t.textContent="#web_bg{background-image:url(\""+b.replace(/["\\\n\r]/g,"")+"\")!important}";document.head.appendChild(t)}}catch(e){}</script><link rel="stylesheet" href="https://fonts.loli.net/css2?family=Noto+Serif+SC:wght@500;600;700&display=swap"><link rel="stylesheet" href="/azur_blog/css/variables.css?v=1.6"><link rel="stylesheet" href="/azur_blog/css/layout-fix.css?v=1.5"><link rel="stylesheet" href="/azur_blog/css/weather.css?v=1.2"><link rel="stylesheet" href="/azur_blog/css/carousel.css?v=1.4"><link rel="stylesheet" href="/azur_blog/css/tiles.css?v=1.4"><link rel="stylesheet" href="/azur_blog/css/activity.css?v=1.5"><link rel="stylesheet" href="/azur_blog/css/post-list.css?v=1.5"><link rel="stylesheet" href="/azur_blog/css/sidebar.css?v=1.7"><link rel="stylesheet" href="/azur_blog/css/reading-mode.css?v=1.2"><link rel="stylesheet" href="/azur_blog/css/welcome_animation.css?v=1.4"><link rel="stylesheet" href="/azur_blog/css/settings-menu.css?v=1.3"><link rel="stylesheet" href="/azur_blog/css/custom.css?v=1.2"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.css"><link rel="stylesheet" href="/azur_blog/css/music-page.css?v=1.5"><link rel="stylesheet" href="/azur_blog/css/gallery.css?v=1.4"><link rel="stylesheet" href="/azur_blog/css/tags-page.css?v=1.0"><meta name="generator" content="Hexo 8.1.2"><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style></head><body><div class="bg-animation" id="web_bg" style="background-image: url(/azur_blog/img/background.jpg);"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/azur_blog/img/avatar.png" onerror="this.onerror=null;this.src='/azur_blog/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/azur_blog/archives/"><div class="headline">文章</div><div class="length-num">32</div></a><a href="/azur_blog/tags/"><div class="headline">标签</div><div class="length-num">62</div></a><a href="/azur_blog/categories/"><div class="headline">分类</div><div class="length-num">2</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/azur_blog/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/azur_blog/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/azur_blog/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></div><div class="menus_item"><a class="site-page" href="/azur_blog/gallery/"><i class="fa-fw fas fa-images"></i><span> 画廊</span></a></div><div class="menus_item"><a class="site-page" href="/azur_blog/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/azur_blog/img/covers/enterprise_2.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/azur_blog/"><span class="site-name"></span></a><a class="nav-page-title" href="/azur_blog/"><span class="site-name">ubuntu配置操作留档</span><span class="site-name"><i class="fa-solid fa-circle-arrow-left"></i><span>  返回首页</span></span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/azur_blog/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/azur_blog/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/azur_blog/music/"><i class="fa-fw fas fa-music"></i><span> 音乐</span></a></div><div class="menus_item"><a class="site-page" href="/azur_blog/gallery/"><i class="fa-fw fas fa-images"></i><span> 画廊</span></a></div><div class="menus_item"><a class="site-page" href="/azur_blog/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">ubuntu配置操作留档</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2026-09-23T14:12:04.000Z" title="发表于 2026-09-23 22:12:04">2026-09-23</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2026-09-23T14:15:09.255Z" title="更新于 2026-09-23 22:15:09">2026-09-23</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/azur_blog/categories/%E5%AD%A6%E4%B9%A0/">学习</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1>Ubuntu 配置操作留档</h1>
+<h2 id="1-系统信息">1. 系统信息</h2>
+<ul>
+<li><strong>虚拟机软件</strong>：VirtualBox 7.2.6</li>
+<li><strong>Ubuntu 版本</strong>：Ubuntu 26.04 (开发版，代号 resolute)</li>
+<li><strong>用户名</strong>：<code>vboxuser</code></li>
+<li><strong>主机名</strong>：<code>lyh</code></li>
+<li><strong>终端提示符</strong>：<code>vboxuser@lyh</code></li>
+<li><strong>当前会话类型</strong>：Wayland（<code>echo $XDG_SESSION_TYPE</code> 输出 <code>wayland</code>，但剪贴板已正常工作）</li>
+</ul>
+<hr>
+<h2 id="2-修复-APT-源-403-错误">2. 修复 APT 源 403 错误</h2>
+<p>国内镜像 <code>cn.archive.ubuntu.com</code> 的 IPv6 节点不可用，导致 <code>apt update</code> 报 <code>403 Forbidden</code> 和签名错误。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 强制使用 IPv4 更新</span></span><br><span class="line"><span class="built_in">sudo</span> apt -o Acquire::ForceIPv4=<span class="literal">true</span> update</span><br><span class="line"></span><br><span class="line"><span class="comment"># 永久设置 IPv4 优先</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">'Acquire::ForceIPv4 "true";'</span> | <span class="built_in">sudo</span> <span class="built_in">tee</span> /etc/apt/apt.conf.d/99force-ipv4</span><br><span class="line"></span><br><span class="line"><span class="comment"># 如果仍失败，替换为官方主源或阿里云镜像</span></span><br><span class="line"><span class="built_in">sudo</span> sed -i <span class="string">'s/cn.archive.ubuntu.com/archive.ubuntu.com/g'</span> /etc/apt/sources.list /etc/apt/sources.list.d/*.sources 2&gt;/dev/null</span><br><span class="line"><span class="comment"># 或使用阿里云：</span></span><br><span class="line"><span class="comment"># sudo sed -i 's/cn.archive.ubuntu.com/mirrors.aliyun.com/g' /etc/apt/sources.list /etc/apt/sources.list.d/*.sources 2&gt;/dev/null</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">sudo</span> apt update</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="3-安装-VirtualBox-增强功能">3. 安装 VirtualBox 增强功能</h2>
+<h3 id="3-1-通过-APT-安装发行版增强功能">3.1 通过 APT 安装发行版增强功能</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt install build-essential dkms linux-headers-$(<span class="built_in">uname</span> -r) virtualbox-guest-utils virtualbox-guest-x11</span><br></pre></td></tr></table></figure>
+<h3 id="3-2-尝试通过官方-ISO-安装（失败记录）">3.2 尝试通过官方 ISO 安装（失败记录）</h3>
+<ul>
+<li>挂载官方增强功能 ISO 后执行 <code>sudo ./VBoxLinuxAdditions.run</code>，出现 <code>Decompression failed</code> 错误。</li>
+<li><strong>原因</strong>：已安装的 <code>virtualbox-guest-utils</code> 版本为 7.2.6，而官方 ISO 为 7.2.4，版本冲突。</li>
+<li>后续执行了 <code>sudo /sbin/rcvboxadd setup</code> 重新编译内核模块。</li>
+</ul>
+<h3 id="3-3-结果">3.3 结果</h3>
+<ul>
+<li>重启后，主机与虚拟机之间的<strong>双向剪贴板已可正常使用</strong>（尽管会话仍为 Wayland）。</li>
+<li>若剪贴板失效，可手动执行：<code>VBoxClient --clipboard</code></li>
+</ul>
+<hr>
+<h2 id="4-共享文件夹配置">4. 共享文件夹配置</h2>
+<h3 id="4-1-VirtualBox-设置">4.1 VirtualBox 设置</h3>
+<ul>
+<li>添加共享文件夹，名称设为 <code>share</code>，勾选“自动挂载”和“固定分配”。</li>
+</ul>
+<h3 id="4-2-Ubuntu-端操作">4.2 Ubuntu 端操作</h3>
+<ul>
+<li>错误命令：<code>sudo usermod -aG vboxsf lyh</code>（<code>lyh</code> 是主机名，不是用户名）</li>
+<li><strong>正确命令</strong>：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> usermod -aG vboxsf vboxuser</span><br><span class="line"><span class="built_in">sudo</span> reboot</span><br></pre></td></tr></table></figure>
+</li>
+<li>重启后检查：<code>ls /media/sf_share</code>，确认共享文件夹内容可见。</li>
+</ul>
+<hr>
+<h2 id="5-安装-JDK-与-Hadoop">5. 安装 JDK 与 Hadoop</h2>
+<h3 id="5-1-准备安装包">5.1 准备安装包</h3>
+<p>从 Windows 主机将以下安装包放入共享文件夹 <code>/media/sf_share</code>：</p>
+<ul>
+<li><code>jdk-8u371-linux-x64.tar.gz</code></li>
+<li><code>hadoop-3.3.5.tar.gz</code></li>
+</ul>
+<blockquote>
+<p>注意：主机上文件名可能带有 <code>(1)</code> 后缀，复制时需重命名。</p>
+</blockquote>
+<h3 id="5-2-创建安装目录">5.2 创建安装目录</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> <span class="built_in">mkdir</span> -p /apps /data</span><br><span class="line"><span class="built_in">sudo</span> <span class="built_in">chown</span> -R vboxuser:vboxuser /apps /data</span><br></pre></td></tr></table></figure>
+<h3 id="5-3-复制安装包到-apps">5.3 复制安装包到 /apps</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cp</span> <span class="string">"/media/sf_share/jdk-8u371-linux-x64.tar(1).gz"</span> /apps/jdk-8u371-linux-x64.tar.gz</span><br><span class="line"><span class="built_in">cp</span> <span class="string">"/media/sf_share/hadoop-3.3.5.tar(1).gz"</span> /apps/hadoop-3.3.5.tar.gz</span><br></pre></td></tr></table></figure>
+<h3 id="5-4-解压并重命名">5.4 解压并重命名</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /apps</span><br><span class="line">tar zxvf jdk-8u371-linux-x64.tar.gz</span><br><span class="line"><span class="built_in">mv</span> jdk1.8.0_371 java</span><br><span class="line"><span class="built_in">rm</span> jdk-8u371-linux-x64.tar.gz</span><br><span class="line"></span><br><span class="line">tar zxvf hadoop-3.3.5.tar.gz</span><br><span class="line"><span class="built_in">mv</span> hadoop-3.3.5 hadoop</span><br><span class="line"><span class="built_in">rm</span> hadoop-3.3.5.tar.gz</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="6-配置环境变量（含-PATH-修复）">6. 配置环境变量（含 PATH 修复）</h2>
+<p>编辑 <code>~/.bashrc</code>，在末尾添加：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Java</span></span><br><span class="line"><span class="built_in">export</span> JAVA_HOME=/apps/java</span><br><span class="line"><span class="built_in">export</span> PATH=<span class="variable">$JAVA_HOME</span>/bin:<span class="variable">$PATH</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Hadoop</span></span><br><span class="line"><span class="built_in">export</span> HADOOP_HOME=/apps/hadoop</span><br><span class="line"><span class="built_in">export</span> PATH=<span class="variable">$HADOOP_HOME</span>/bin:<span class="variable">$PATH</span></span><br></pre></td></tr></table></figure>
+<p>使配置生效：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">source</span> ~/.bashrc</span><br></pre></td></tr></table></figure>
+<h3 id="6-1-问题记录：PATH-被字面字符串覆盖">6.1 问题记录：PATH 被字面字符串覆盖</h3>
+<ul>
+<li>错误现象：<code>echo $PATH</code> 输出 <code>/apps/hadoop/bin:/apps/java/bin:PATH</code>，导致系统命令（如 <code>which</code>、<code>vim</code>）无法找到。</li>
+<li><strong>原因</strong>：在 <code>~/.bashrc</code> 中误写为 <code>export PATH=$JAVA_HOME/bin:PATH</code>（缺少 <code>$</code>）。</li>
+<li><strong>修复</strong>：<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 临时修复</span></span><br><span class="line"><span class="built_in">export</span> PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin</span><br><span class="line"></span><br><span class="line"><span class="comment"># 永久修复：编辑 ~/.bashrc，确保为 $PATH</span></span><br><span class="line">sed -i <span class="string">'s|:PATH$|:$PATH|g'</span> ~/.bashrc</span><br><span class="line"><span class="built_in">source</span> ~/.bashrc</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="6-2-验证">6.2 验证</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">java -version   <span class="comment"># 显示 1.8.0_371</span></span><br><span class="line">hadoop version  <span class="comment"># 显示 Hadoop 3.3.5</span></span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="7-SSH-免密登录配置">7. SSH 免密登录配置</h2>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">sudo</span> apt install -y openssh-server</span><br><span class="line">ssh-keygen -t rsa -P <span class="string">""</span> -f ~/.ssh/id_rsa</span><br><span class="line"><span class="built_in">cat</span> ~/.ssh/id_rsa.pub &gt;&gt; ~/.ssh/authorized_keys</span><br><span class="line"><span class="built_in">chmod</span> 700 ~/.ssh</span><br><span class="line"><span class="built_in">chmod</span> 600 ~/.ssh/authorized_keys</span><br><span class="line">ssh localhost   <span class="comment"># 首次输入 yes，之后免密</span></span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="8-Hadoop-伪分布式配置">8. Hadoop 伪分布式配置</h2>
+<p>进入配置目录：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /apps/hadoop/etc/hadoop</span><br></pre></td></tr></table></figure>
+<h3 id="8-1-hadoop-env-sh">8.1 <a target="_blank" rel="noopener" href="http://hadoop-env.sh">hadoop-env.sh</a></h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sed -i <span class="string">'s|.*export JAVA_HOME=.*|export JAVA_HOME=/apps/java|'</span> hadoop-env.sh</span><br></pre></td></tr></table></figure>
+<h3 id="8-2-core-site-xml">8.2 core-site.xml</h3>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=<span class="string">"1.0"</span> encoding=<span class="string">"UTF-8"</span>?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>hadoop.tmp.dir<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>/data/tmp/hadoop/tmp<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>fs.defaultFS<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>hdfs://localhost:9000<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="8-3-hdfs-site-xml">8.3 hdfs-site.xml</h3>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=<span class="string">"1.0"</span> encoding=<span class="string">"UTF-8"</span>?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>dfs.namenode.name.dir<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>/data/tmp/hadoop/hdfs/name<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>dfs.datanode.data.dir<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>/data/tmp/hadoop/hdfs/data<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>dfs.replication<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>1<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>dfs.permissions.enabled<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>false<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="8-4-workers">8.4 workers</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">"localhost"</span> &gt; workers</span><br></pre></td></tr></table></figure>
+<h3 id="8-5-mapred-site-xml">8.5 mapred-site.xml</h3>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=<span class="string">"1.0"</span> encoding=<span class="string">"UTF-8"</span>?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>mapreduce.framework.name<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>yarn<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>yarn.application.classpath<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>/apps/hadoop/etc/hadoop:/apps/hadoop/share/hadoop/common/lib/*:/apps/hadoop/share/hadoop/common/*:/apps/hadoop/share/hadoop/hdfs:/apps/hadoop/share/hadoop/hdfs/lib/*:/apps/hadoop/share/hadoop/hdfs/*:/apps/hadoop/share/hadoop/mapreduce/*:/apps/hadoop/share/hadoop/yarn:/apps/hadoop/share/hadoop/yarn/lib/*:/apps/hadoop/share/hadoop/yarn/*<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>mapreduce.map.memory.mb<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>2048<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="8-6-yarn-site-xml">8.6 yarn-site.xml</h3>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=<span class="string">"1.0"</span> encoding=<span class="string">"UTF-8"</span>?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>yarn.nodemanager.aux-services<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>mapreduce_shuffle<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>yarn.nodemanager.pmem-check-enabled<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>false<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>yarn.nodemanager.vmem-check-enabled<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>false<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">property</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>yarn.nodemanager.vmem-pmem-ratio<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">value</span>&gt;</span>4<span class="tag">&lt;/<span class="name">value</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">property</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="8-7-创建数据目录">8.7 创建数据目录</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> -p /data/tmp/hadoop/tmp</span><br><span class="line"><span class="built_in">mkdir</span> -p /data/tmp/hadoop/hdfs/name</span><br><span class="line"><span class="built_in">mkdir</span> -p /data/tmp/hadoop/hdfs/data</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="9-格式化与启动集群">9. 格式化与启动集群</h2>
+<h3 id="9-1-格式化-HDFS（仅一次）">9.1 格式化 HDFS（仅一次）</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hadoop namenode -format</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>⚠️ 不要重复执行。若误操作，清空 <code>/data/tmp/*</code> 后重新创建目录再格式化。</p>
+</blockquote>
+<h3 id="9-2-启动-HDFS-和-YARN">9.2 启动 HDFS 和 YARN</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/apps/hadoop/sbin/start-dfs.sh</span><br><span class="line">/apps/hadoop/sbin/start-yarn.sh</span><br></pre></td></tr></table></figure>
+<h3 id="9-3-检查进程">9.3 检查进程</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jps</span><br></pre></td></tr></table></figure>
+<p>应看到：NameNode、DataNode、SecondaryNameNode、ResourceManager、NodeManager。</p>
+<hr>
+<h2 id="10-运行-MapReduce-测试">10. 运行 MapReduce 测试</h2>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /apps/hadoop/share/hadoop/mapreduce/</span><br><span class="line">hadoop jar hadoop-mapreduce-examples-3.3.5.jar pi 3 3</span><br></pre></td></tr></table></figure>
+<p>日志显示 <code>Job job_xxx completed successfully</code>，并输出 <code>Estimated value of Pi is 3.55555555555555555556</code>，验证成功。</p>
+<hr>
+<h2 id="11-Web-界面">11. Web 界面</h2>
+<ul>
+<li>HDFS：<code>http://localhost:9870</code></li>
+<li>YARN：<code>http://localhost:8088</code></li>
+</ul>
+<hr>
+<h2 id="12-常用启停命令">12. 常用启停命令</h2>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 启动</span></span><br><span class="line">/apps/hadoop/sbin/start-dfs.sh</span><br><span class="line">/apps/hadoop/sbin/start-yarn.sh</span><br><span class="line"></span><br><span class="line"><span class="comment"># 停止</span></span><br><span class="line">/apps/hadoop/sbin/stop-dfs.sh</span><br><span class="line">/apps/hadoop/sbin/stop-yarn.sh</span><br><span class="line"></span><br><span class="line"><span class="comment"># 一键启停</span></span><br><span class="line">/apps/hadoop/sbin/start-all.sh</span><br><span class="line">/apps/hadoop/sbin/stop-all.sh</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="13-注意事项">13. 注意事项</h2>
+<ul>
+<li>修改 Hadoop 配置文件后，必须先停止集群，再重新启动，配置才会生效。</li>
+<li>共享文件夹路径为 <code>/media/sf_share</code>，不能直接修改其权限，需复制到本地目录后再 <code>chown</code>。</li>
+<li>建议为虚拟机创建快照，以便环境损坏时快速恢复。</li>
+<li>遇到内存不足导致容器被杀，可在 <code>yarn-site.xml</code> 中关闭内存检查（已配置）。</li>
+</ul>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://11408-prog.github.io/azur_blog">灰色幽灵</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://11408-prog.github.io/azur_blog/2026/09/23/linux/ubuntu%E9%85%8D%E7%BD%AE%E6%93%8D%E4%BD%9C%E7%95%99%E6%A1%A3/">https://11408-prog.github.io/azur_blog/2026/09/23/linux/ubuntu%E9%85%8D%E7%BD%AE%E6%93%8D%E4%BD%9C%E7%95%99%E6%A1%A3/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://11408-prog.github.io/azur_blog" target="_blank"></a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/azur_blog/tags/ubuntu/">ubuntu</a></div><div class="post-share"><div class="social-share" data-image="/azur_blog/img/avatar.png" data-sites="facebook,x,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.6/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related full-width" href="/azur_blog/2026/09/20/%E5%B0%91%E5%A5%B3%E4%B9%90%E9%98%9F%E5%90%8C%E4%BA%BA%E6%96%87/%E7%86%8A%E7%8C%AB%E5%A5%B6%E5%86%BB%E4%B8%8E%E6%9C%AA%E8%AF%B4%E5%87%BA%E5%8F%A3%E7%9A%84%E8%AF%9D/" title="熊猫奶冻与未说出口的话"><div class="cover" style="background: var(--default-bg-color)"></div><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">熊猫奶冻与未说出口的话</div></div><div class="info-2"><div class="info-item-1">八幡海铃推开教室门的时候，午后的阳光正斜斜地铺在靠窗第三排的桌面上。 那里没有人。 她站在原地，目光从空荡荡的课桌移向窗外的操场，又移回自己手里拎着的两盒奶冻。熊猫图案的包装，一只印着棕色的“巧克力”，一只印着橙色的“蜜柑”。 “又不在啊。” 她的语气很平，没什么起伏，就像在报天气预报说今天多...</div></div></div></a></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/azur_blog/img/avatar.png" onerror="this.onerror=null;this.src='/azur_blog/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">灰色幽灵</div><div class="author-info-description">活着的话，就会有不如意。但是死的话，一定要不留遗憾</div><div class="site-data"><a href="/azur_blog/archives/"><div class="headline">文章</div><div class="length-num">32</div></a><a href="/azur_blog/tags/"><div class="headline">标签</div><div class="length-num">62</div></a><a href="/azur_blog/categories/"><div class="headline">分类</div><div class="length-num">2</div></a></div><div class="card-info-social-icons"><a class="social-icon" href="https://github.com/11408-prog" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="https://space.bilibili.com/1376082770" target="_blank" title="B站"><i class="fab fa-bilibili"></i></a><a class="social-icon" href="/azur_blog/img/qq.jpg" target="_blank" title="QQ"><i class="fab fa-qq"></i></a><a class="social-icon" href="/azur_blog/img/wechat.jpg" target="_blank" title="微信"><i class="fab fa-weixin"></i></a><a class="social-icon" href="https://music.163.com/#/user/home?id=5189228438" target="_blank" title="网易云"><i class="fas fa-music"></i></a></div></div><div class="card-widget card-weather" id="weather"><div class="item-headline"><i class="fas fa-cloud-sun"></i><span>天气</span></div><div class="item-content"><div id="weather-panel">
+  <div class="weather-main">
+    <i class="weather-icon fa-solid fa-cloud-sun" id="weather-icon"></i>
+    <span class="weather-temp" id="weather-temp">--°</span>
+    <span class="weather-desc" id="weather-desc">加载中…</span>
+  </div>
+  <div class="weather-place" id="weather-place"></div>
+</div>
+</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-text">Ubuntu 配置操作留档</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E7%B3%BB%E7%BB%9F%E4%BF%A1%E6%81%AF"><span class="toc-text">1. 系统信息</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E4%BF%AE%E5%A4%8D-APT-%E6%BA%90-403-%E9%94%99%E8%AF%AF"><span class="toc-text">2. 修复 APT 源 403 错误</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E5%AE%89%E8%A3%85-VirtualBox-%E5%A2%9E%E5%BC%BA%E5%8A%9F%E8%83%BD"><span class="toc-text">3. 安装 VirtualBox 增强功能</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-%E9%80%9A%E8%BF%87-APT-%E5%AE%89%E8%A3%85%E5%8F%91%E8%A1%8C%E7%89%88%E5%A2%9E%E5%BC%BA%E5%8A%9F%E8%83%BD"><span class="toc-text">3.1 通过 APT 安装发行版增强功能</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-%E5%B0%9D%E8%AF%95%E9%80%9A%E8%BF%87%E5%AE%98%E6%96%B9-ISO-%E5%AE%89%E8%A3%85%EF%BC%88%E5%A4%B1%E8%B4%A5%E8%AE%B0%E5%BD%95%EF%BC%89"><span class="toc-text">3.2 尝试通过官方 ISO 安装（失败记录）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-%E7%BB%93%E6%9E%9C"><span class="toc-text">3.3 结果</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E5%85%B1%E4%BA%AB%E6%96%87%E4%BB%B6%E5%A4%B9%E9%85%8D%E7%BD%AE"><span class="toc-text">4. 共享文件夹配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-VirtualBox-%E8%AE%BE%E7%BD%AE"><span class="toc-text">4.1 VirtualBox 设置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-Ubuntu-%E7%AB%AF%E6%93%8D%E4%BD%9C"><span class="toc-text">4.2 Ubuntu 端操作</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-%E5%AE%89%E8%A3%85-JDK-%E4%B8%8E-Hadoop"><span class="toc-text">5. 安装 JDK 与 Hadoop</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1-%E5%87%86%E5%A4%87%E5%AE%89%E8%A3%85%E5%8C%85"><span class="toc-text">5.1 准备安装包</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-2-%E5%88%9B%E5%BB%BA%E5%AE%89%E8%A3%85%E7%9B%AE%E5%BD%95"><span class="toc-text">5.2 创建安装目录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-3-%E5%A4%8D%E5%88%B6%E5%AE%89%E8%A3%85%E5%8C%85%E5%88%B0-apps"><span class="toc-text">5.3 复制安装包到 &#x2F;apps</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-4-%E8%A7%A3%E5%8E%8B%E5%B9%B6%E9%87%8D%E5%91%BD%E5%90%8D"><span class="toc-text">5.4 解压并重命名</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-%E9%85%8D%E7%BD%AE%E7%8E%AF%E5%A2%83%E5%8F%98%E9%87%8F%EF%BC%88%E5%90%AB-PATH-%E4%BF%AE%E5%A4%8D%EF%BC%89"><span class="toc-text">6. 配置环境变量（含 PATH 修复）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#6-1-%E9%97%AE%E9%A2%98%E8%AE%B0%E5%BD%95%EF%BC%9APATH-%E8%A2%AB%E5%AD%97%E9%9D%A2%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%A6%86%E7%9B%96"><span class="toc-text">6.1 问题记录：PATH 被字面字符串覆盖</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-2-%E9%AA%8C%E8%AF%81"><span class="toc-text">6.2 验证</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-SSH-%E5%85%8D%E5%AF%86%E7%99%BB%E5%BD%95%E9%85%8D%E7%BD%AE"><span class="toc-text">7. SSH 免密登录配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-Hadoop-%E4%BC%AA%E5%88%86%E5%B8%83%E5%BC%8F%E9%85%8D%E7%BD%AE"><span class="toc-text">8. Hadoop 伪分布式配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#8-1-hadoop-env-sh"><span class="toc-text">8.1 hadoop-env.sh</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-2-core-site-xml"><span class="toc-text">8.2 core-site.xml</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-3-hdfs-site-xml"><span class="toc-text">8.3 hdfs-site.xml</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-4-workers"><span class="toc-text">8.4 workers</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-5-mapred-site-xml"><span class="toc-text">8.5 mapred-site.xml</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-6-yarn-site-xml"><span class="toc-text">8.6 yarn-site.xml</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-7-%E5%88%9B%E5%BB%BA%E6%95%B0%E6%8D%AE%E7%9B%AE%E5%BD%95"><span class="toc-text">8.7 创建数据目录</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-%E6%A0%BC%E5%BC%8F%E5%8C%96%E4%B8%8E%E5%90%AF%E5%8A%A8%E9%9B%86%E7%BE%A4"><span class="toc-text">9. 格式化与启动集群</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#9-1-%E6%A0%BC%E5%BC%8F%E5%8C%96-HDFS%EF%BC%88%E4%BB%85%E4%B8%80%E6%AC%A1%EF%BC%89"><span class="toc-text">9.1 格式化 HDFS（仅一次）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-2-%E5%90%AF%E5%8A%A8-HDFS-%E5%92%8C-YARN"><span class="toc-text">9.2 启动 HDFS 和 YARN</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-3-%E6%A3%80%E6%9F%A5%E8%BF%9B%E7%A8%8B"><span class="toc-text">9.3 检查进程</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10-%E8%BF%90%E8%A1%8C-MapReduce-%E6%B5%8B%E8%AF%95"><span class="toc-text">10. 运行 MapReduce 测试</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#11-Web-%E7%95%8C%E9%9D%A2"><span class="toc-text">11. Web 界面</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#12-%E5%B8%B8%E7%94%A8%E5%90%AF%E5%81%9C%E5%91%BD%E4%BB%A4"><span class="toc-text">12. 常用启停命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#13-%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="toc-text">13. 注意事项</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/azur_blog/2026/09/23/linux/ubuntu%E9%85%8D%E7%BD%AE%E6%93%8D%E4%BD%9C%E7%95%99%E6%A1%A3/" title="ubuntu配置操作留档">ubuntu配置操作留档</a><time datetime="2026-09-23T14:12:04.000Z" title="发表于 2026-09-23 22:12:04">2026-09-23</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/azur_blog/2026/09/20/%E5%B0%91%E5%A5%B3%E4%B9%90%E9%98%9F%E5%90%8C%E4%BA%BA%E6%96%87/%E7%86%8A%E7%8C%AB%E5%A5%B6%E5%86%BB%E4%B8%8E%E6%9C%AA%E8%AF%B4%E5%87%BA%E5%8F%A3%E7%9A%84%E8%AF%9D/" title="熊猫奶冻与未说出口的话">熊猫奶冻与未说出口的话</a><time datetime="2026-09-20T13:59:22.000Z" title="发表于 2026-09-20 21:59:22">2026-09-20</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/azur_blog/2026/09/20/408/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E7%8E%8B%E9%81%93%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%AC%AC%E4%BA%8C%E7%AB%A0%E7%AC%94%E8%AE%B0/" title="王道计算机网络第二章笔记">王道计算机网络第二章笔记</a><time datetime="2026-09-20T07:27:05.000Z" title="发表于 2026-09-20 15:27:05">2026-09-20</time></div></div></div></div></div></div></main><footer id="footer"><div class="footer-other"><div class="footer-copyright"><span class="copyright">&copy;&nbsp;2026 By 灰色幽灵</span><span class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 8.1.2</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.7.0</a></span></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/azur_blog/js/utils.js?v=5.7.0"></script><script src="/azur_blog/js/main.js?v=5.7.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@6.1.14/dist/fancybox/fancybox.umd.min.js"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload@19.1.3/dist/lazyload.iife.min.js"></script><div class="js-pjax"></div><script src="/azur_blog/js/logger.js?v=1.2"></script><script src="/azur_blog/js/blog-config.js?v=1.0"></script><script src="/azur_blog/js/lifecycle.js?v=1.1"></script><script src="/azur_blog/js/settings-menu.js?v=1.3"></script><script src="/azur_blog/js/toc-check.js?v=1.3"></script><script src="/azur_blog/js/welcome_animation.js?v=1.4"></script><script src="/azur_blog/js/weather.js?v=1.2"></script><script src="/azur_blog/js/carousel.js?v=1.3"></script><script src="/azur_blog/js/random_posts.js?v=1.2"></script><script type="module" async src="/azur_blog/js/dist/app.js?v=1.1"></script><script src="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.js"></script><script>window.meting_api="https://api.injahow.cn/meting/?server=:server&type=:type&id=:id&auth=:auth&r=:r";</script><script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script><script src="/azur_blog/js/video-cover.js?v=1.2"></script><script src="/azur_blog/js/music.js?v=1.2"></script><script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js" defer="defer"></script><script>document.addEventListener('DOMContentLoaded', () => {
+  const pjaxSelectors = ["head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+  window.pjax = new Pjax({
+    elements: 'a:not([target="_blank"]):not([data-fancybox]):not([href="/music/"])',
+    selectors: pjaxSelectors,
+    cacheBust: false,
+    analytics: false,
+    scrollRestoration: false,
+    scrollTo: false
+  })
+
+  const triggerPjaxFn = (val) => {
+    if (!val) return
+    Object.values(val).forEach(fn => {
+      try {
+        fn()
+      } catch (err) {
+        console.debug('Pjax callback failed:', err)
+      }
+    })
+  }
+
+  document.addEventListener('pjax:send', () => {
+    // removeEventListener
+    btf.removeGlobalFnEvent('pjaxSendOnce')
+    btf.removeGlobalFnEvent('themeChange')
+
+    // reset readmode
+    const $bodyClassList = document.body.classList
+    if ($bodyClassList.contains('read-mode')) $bodyClassList.remove('read-mode')
+
+    triggerPjaxFn(window.globalFn.pjaxSend)
+  })
+
+  document.addEventListener('pjax:complete', () => {
+    btf.removeGlobalFnEvent('pjaxCompleteOnce')
+    document.querySelectorAll('script[data-pjax]').forEach(item => {
+      if (!item.parentNode) return
+      const newScript = document.createElement('script')
+      const content = item.text || item.textContent || ''
+      Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+      newScript.appendChild(document.createTextNode(content))
+      item.parentNode.replaceChild(newScript, item)
+    })
+
+    triggerPjaxFn(window.globalFn.pjaxComplete)
+
+    // Scroll to content-inner after PJAX navigation (scrollTo:false disables PJAX auto-scroll)
+    const el = document.getElementById('content-inner')
+    if (el) {
+      const top = el.getBoundingClientRect().top + window.scrollY - 70
+      window.scrollTo(0, top)
+    } else {
+      window.scrollTo(0, 0)
+    }
+  })
+
+  document.addEventListener('pjax:error', e => {
+    const responseURL = e.request && e.request.responseURL
+    if (e.request && e.request.status === 404) {
+      true
+        ? pjax.loadUrl('/azur_blog/404.html')
+        : responseURL && (window.location.href = responseURL)
+    } else if (responseURL) {
+      window.location.href = responseURL
+    }
+  })
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><i class="fas fa-spinner fa-pulse" id="loading-status" hidden="hidden"></i><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="local-search-input"><input placeholder="搜索文章" type="text"/></div><hr/><div id="local-search-results"></div><div class="ais-Pagination" id="local-search-pagination" style="display:none;"><ul class="ais-Pagination-list"></ul></div><div id="local-search-stats"></div></div><div id="search-mask"></div><script src="/azur_blog/js/search/local-search.js?v=5.7.0"></script></div></div></body></html>
