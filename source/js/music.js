@@ -162,6 +162,14 @@
     }, 500);
   }
 
+  // ---------- 自动播放策略 ----------
+  // 默认【不自动播放】：不主动打扰访客，想听由用户通过齿轮菜单手动开启。
+  // 唯一的例外是音乐页（/music/）——访问它说明用户明确想听歌。
+  function shouldAutoplay() {
+    return /\/music\/?$/.test(window.location.pathname) ||
+      /\/music\/index\.html$/.test(window.location.pathname);
+  }
+
   // ---------- 实例创建（全局只成功执行一次） ----------
   function createPlayer() {
     if (typeof APlayer !== 'function') {
@@ -191,7 +199,16 @@
     window.__debug_bgm = ap;   // 调试接口
     bindAudioEvents(ap);
     wrapControls(ap);
-    tryAutoplay(ap);
+
+    // 默认不自动播放；只有音乐页例外（用户明确来访）
+    if (shouldAutoplay()) {
+      DSLog.info('BGM', '音乐页：尝试自动播放');
+      tryAutoplay(ap);
+    } else {
+      DSLog.info('BGM', '默认不自动播放（需要时用齿轮菜单开启）');
+      notifyStateChange();
+    }
+
     DSLog.info('BGM', '已就绪，可通过 window._aplayer_instance 控制');
     return ap;
   }
@@ -254,7 +271,14 @@
       // 同时做一次健康检查，异常时才重建实例。
       refresh: function () {
         var ap = initPlayer();   // 幂等：健康则原样返回
-        if (ap) notifyStateChange();
+        if (ap) {
+          // 通过 PJAX 进入音乐页时也尝试播放（用户意图明确；仍可能被浏览器拦截）
+          if (shouldAutoplay() && ap.audio && ap.audio.paused) {
+            DSLog.info('BGM', '进入音乐页，尝试播放');
+            tryAutoplay(ap);
+          }
+          notifyStateChange();
+        }
         DSLog.info('BGM', 'PJAX 完成，播放器状态已同步', {
           playing: !!(ap && ap.audio && !ap.audio.paused)
         });
