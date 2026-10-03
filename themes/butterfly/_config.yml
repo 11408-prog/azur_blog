@@ -1086,7 +1086,7 @@ inject:
     - <script>window.meting_api="https://api.injahow.cn/meting/?server=:server&type=:type&id=:id&auth=:auth&r=:r";</script>
     - <script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
     - <script src="/azur_blog/js/video-cover.js?v=1.2"></script>
-    - <script src="/azur_blog/js/music.js?v=1.2"></script>
+    - <script src="/azur_blog/js/music.js?v=1.3"></script>
 
 # CDN Settings
 # Don't modify the following settings unless you know how they work
