@@ -19,6 +19,7 @@
 
   var defaultSettings = {
     blur: false,
+    showBackground: true,
     animation: true,
     cardOpacity: 'low',    // 'low' | 'high' | 'custom'；默认档即「低透明度」
     cardAlpha: 0.92        // 仅 cardOpacity === 'custom' 时生效
@@ -192,6 +193,34 @@
                 <input
                   type="checkbox"
                   id="setting-darkmode"
+                >
+
+                <span class="settings-switch-track"></span>
+
+              </label>
+
+            </div>
+
+
+            <div class="settings-item">
+
+              <div class="settings-item-info">
+
+                <div class="settings-item-title">
+                  全站背景图
+                </div>
+
+                <div class="settings-item-desc">
+                  显示或隐藏页面背景图片
+                </div>
+
+              </div>
+
+              <label class="settings-switch">
+
+                <input
+                  type="checkbox"
+                  id="setting-background-visible"
                 >
 
                 <span class="settings-switch-track"></span>
@@ -568,6 +597,24 @@
     }
 
 
+    /* 全站背景图显示/隐藏 */
+
+    var backgroundVisible =
+      document.getElementById('setting-background-visible');
+
+    if (backgroundVisible) {
+      ctx.on(
+        backgroundVisible,
+        'change',
+        function () {
+          settings.showBackground = backgroundVisible.checked;
+          saveSettings();
+          applyBackgroundVisibility();
+        }
+      );
+    }
+
+
     /* 背景模糊 */
 
     var blur =
@@ -801,6 +848,8 @@
 
     syncOpacityButtons();
 
+    applyBackgroundVisibility();
+
   }
 
 
@@ -872,6 +921,13 @@
         'setting-animation'
       );
 
+    var backgroundVisible =
+      document.getElementById('setting-background-visible');
+
+    if (backgroundVisible) {
+      backgroundVisible.checked = settings.showBackground;
+    }
+
     if (blur) {
       blur.checked = settings.blur;
     }
@@ -937,8 +993,6 @@
    * !important 可以压过主题写在 #web_bg 上的行内背景图。 */
   function applyBackgroundStyle(path) {
 
-    var safe = String(path).replace(/["\\\n\r]/g, '');
-
     var style = document.getElementById(BG_STYLE_ID);
 
     if (!style) {
@@ -947,8 +1001,33 @@
       document.head.appendChild(style);
     }
 
+    if (!settings.showBackground) {
+      style.textContent = '#web_bg{background-image:none!important}';
+      return;
+    }
+
+    if (!path) {
+      style.remove();
+      return;
+    }
+
+    var safe = String(path).replace(/["\\\n\r]/g, '');
+
     style.textContent =
       '#web_bg{background-image:url("' + safe + '")!important}';
+
+  }
+
+
+  function applyBackgroundVisibility() {
+
+    if (!settings.showBackground) {
+      applyBackgroundStyle(null);
+      return;
+    }
+
+    /* 有自定义背景时恢复它；没有时移除覆盖，使用主题配置的默认背景。 */
+    applyBackgroundStyle(storageGet(BG_KEY));
 
   }
 
@@ -1012,8 +1091,8 @@
 
     /* 正常情况下 inject.head 的内联脚本已经处理过；
      * 这里兜底（比如内联脚本没配置），保证背景一定被恢复。 */
-    if (saved && document.getElementById('web_bg')) {
-      applyBackgroundStyle(saved);
+    if (document.getElementById('web_bg')) {
+      applyBackgroundVisibility();
     }
 
     syncActiveBackground(currentPath);
