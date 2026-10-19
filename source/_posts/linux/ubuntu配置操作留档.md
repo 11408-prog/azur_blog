@@ -346,7 +346,12 @@ hadoop jar hadoop-mapreduce-examples-3.3.5.jar pi 3 3
 # 一键启停
 /apps/hadoop/sbin/start-all.sh
 /apps/hadoop/sbin/stop-all.sh
+
+#连接虚拟机
+lyh@127.0.0.1 -p 2222
 ```
+
+
 
 ---
 
