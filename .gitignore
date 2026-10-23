@@ -54,3 +54,7 @@ daily_log/
 # Claude 生成的补丁与副本（已应用，无需入库）
 claude生成的文件/
 react-tags.patch
+
+# Temporary caches
+.tmp-cache/
+cache_tmp/
