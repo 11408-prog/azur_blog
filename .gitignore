@@ -58,4 +58,8 @@ react-tags.patch
 # Temporary caches
 .tmp-cache/
 .wrangler/
+
+# npm update-notifier 标记与误生成的 true/ 目录（见开发守则第 7、13 节）
+/_update-notifier-last-checked
+/true/
 cache_tmp/
