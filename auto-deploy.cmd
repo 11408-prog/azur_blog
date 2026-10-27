@@ -178,14 +178,27 @@ if errorlevel 1 (
 REM Push even when there are no new changes, because an earlier
 REM commit may have succeeded while its push failed.
 if "%COMMIT_OK%"=="1" (
-    git push origin main
+    REM Sync with remote first to avoid silent divergence
+    REM (see 2026-10 divergence incident: pushes were rejected
+    REM non-fast-forward for weeks while the script only warned).
+    git fetch origin main
+    git rebase origin/main
 
     if errorlevel 1 (
-        echo [WARNING] Git push failed. Make sure git is configured.
+        echo [ERROR] Rebase onto origin/main failed. Aborting rebase.
+        echo [ERROR] Resolve conflicts manually with: git pull --rebase
+        git rebase --abort
         set "GITHUB_SOURCE=FAILED"
     ) else (
-        echo [OK] Source code pushed successfully.
-        set "GITHUB_SOURCE=SUCCESS"
+        git push origin main
+
+        if errorlevel 1 (
+            echo [ERROR] Git push failed. Run "git pull --rebase" manually.
+            set "GITHUB_SOURCE=FAILED"
+        ) else (
+            echo [OK] Source code pushed successfully.
+            set "GITHUB_SOURCE=SUCCESS"
+        )
     )
 ) else (
     echo [WARNING] Skipped push because a Git operation failed.
@@ -295,4 +308,5 @@ if "%COMMIT_IS_EVEN%"=="0" (
 echo.
 
 pause
+if "%GITHUB_SOURCE%"=="FAILED" exit /b 1
 exit /b 0
