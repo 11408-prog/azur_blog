@@ -34,13 +34,6 @@ if %PS1SIZE% LSS 8000 (
 )
 
 REM ========================================
-REM Ask whether to deploy to Cloudflare Pages
-REM ========================================
-set "DEPLOY_CLOUDFLARE=0"
-set /p "DEPLOY_CLOUDFLARE=Also deploy to Cloudflare Pages? (0=No, 1=Yes, default 0): "
-if not "%DEPLOY_CLOUDFLARE%"=="1" set "DEPLOY_CLOUDFLARE=0"
-
-REM ========================================
 REM Ask whether to skip the rebuild
 REM ========================================
 set "SKIP_BUILD=0"
@@ -56,7 +49,7 @@ if defined COMMIT_MSG set "COMMIT_MSG=%COMMIT_MSG:"=%"
 
 echo.
 echo ========================================
-echo [1/5] Building site and pushing gh-pages
+echo [1/4] Building site and pushing gh-pages
 echo ========================================
 echo.
 
@@ -82,7 +75,7 @@ REM ========================================
 REM Git source repository
 REM ========================================
 echo ========================================
-echo [2/5] Committing source code
+echo [2/4] Committing source code
 echo ========================================
 echo.
 
@@ -120,7 +113,7 @@ REM ========================================
 REM Push source to main
 REM ========================================
 echo ========================================
-echo [3/5] Pushing source code to GitHub
+echo [3/4] Pushing source code to GitHub
 echo ========================================
 echo.
 
@@ -182,55 +175,19 @@ set "TOTAL_COMMITS=0"
 for /f %%c in ('git rev-list --count HEAD 2^>nul') do set "TOTAL_COMMITS=%%c"
 
 REM ========================================
-REM Cloudflare Pages
-REM ========================================
-echo ========================================
-echo [4/5] Cloudflare Pages
-echo ========================================
-echo.
-
-if not "%DEPLOY_CLOUDFLARE%"=="1" (
-    echo [INFO] Not requested. Skipping.
-    set "CLOUDFLARE=NOT REQUESTED"
-) else (
-    where wrangler >nul 2>&1
-
-    if errorlevel 1 (
-        echo [WARNING] Wrangler was not found. Skipping.
-        echo [INFO] Install it with: npm install -g wrangler
-        echo [INFO] Then login with: wrangler login
-        set "CLOUDFLARE=FAILED"
-    ) else (
-        call wrangler pages deploy ./dist --project-name=azurlane-enterprise --branch=main
-
-        if errorlevel 1 (
-            echo [WARNING] Cloudflare Pages deployment failed.
-            echo [INFO] Make sure you have run: wrangler login
-            set "CLOUDFLARE=FAILED"
-        ) else (
-            echo [OK] Cloudflare Pages deployed successfully.
-            set "CLOUDFLARE=SUCCESS"
-        )
-    )
-)
-
-echo.
-
-REM ========================================
 REM Summary
 REM ========================================
 echo ========================================
-echo [5/5] Deployment Summary
+echo [4/4] Deployment Summary
 echo ========================================
 echo.
-echo GitHub Pages     : %GITHUB_PAGES%
-echo GitHub Source    : %GITHUB_SOURCE%
-echo Cloudflare Pages : %CLOUDFLARE%
+echo GitHub Pages  : %GITHUB_PAGES%
+echo GitHub Source : %GITHUB_SOURCE%
 echo.
-echo Total commits    : %TOTAL_COMMITS%
+echo Total commits : %TOTAL_COMMITS%
 echo.
-echo Live site        : https://11408-prog.github.io/azur_blog/
-echo Build log        : build.log
+echo Live site     : https://11408-prog.github.io/azur_blog/
+echo Build log     : build.log
 echo ========================================
 echo           Deployment Finished
 echo ========================================
