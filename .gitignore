@@ -1,65 +1,68 @@
-# Node.js 依赖
+# build output
+dist/
+
+# generated types
+.astro/
+demo
+plans
+
+# dependencies
 node_modules/
 
-# Hexo 生成文件
-public/
-.deploy_git/
+# logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
 
-# Hexo 缓存
-db.json
-
-# 日志文件
-*.log
-
-# 操作系统文件
-.DS_Store
-Thumbs.db
-
-# 编辑器配置
-.vscode/
-.idea/
-
-# 临时文件
-*.tmp
-*.temp
-
-# 图片备份（原图备份，不入库）
-source/_img_backup/
-
-# 画廊原图（这些图不入 git，只留本机；线上用构建产物）
-source/carousel/
-
-# React 岛的打包产物（npm run build:web 生成；auto-deploy.cmd 部署前会自动构建）
-source/js/dist/
-
-# 每日日志（本地诊断用，不入库）
-daily_log/
-
-# 环境变量（防止泄露）
+# environment variables
 .env
-.env.*
+.env.production
 
-# Claude 配置（如果不想上传）
-.claude/
+# GitHub token for deploy-pages.ps1 - NEVER commit this
+.deploy-token
+.publish/
 
-指令.txt
+# content repository (independent mode)
+/content/
+*.backup
 
-# 测试模块（已放行，validate-build.js 需入库）
-# Local Netlify folder
-.netlify
+# Large zip files
+*.zip
+
+# macOS-specific files
+.DS_Store
 
 .vercel
-.env*
 
-# Claude 生成的补丁与副本（已应用，无需入库）
-claude生成的文件/
-react-tags.patch
+package-lock.json
+bun.lockb
+yarn.lock
 
-# Temporary caches
-.tmp-cache/
-.wrangler/
+# ide
+.idea
+*.iml
+.claude
 
-# npm update-notifier 标记与误生成的 true/ 目录（见开发守则第 7、13 节）
-/_update-notifier-last-checked
-/true/
-cache_tmp/
+cache/
+fuwari/
+src/data/myself.ts
+src/pages/myself.astro
+
+# Bangumi generated data
+src/data/bangumi-data.json
+
+# Bilibili generated data
+src/data/bilibili-data.json
+
+# Lighthouse CI
+.lighthouseci/
+
+# Live2D editor source files
+*.psd
+*.psd~
+*.cmo3
+*.vtube.json
+
+# 音乐文件：不入库，用 pnpm sync-music 重建（本地脚本 + 联网下载）
+public/music/

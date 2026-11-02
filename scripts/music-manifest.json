@@ -1,0 +1,324 @@
+{
+  "songs": [
+    {
+      "hash": "C38238DFF2253FFE8C05722D311D5FD6",
+      "title": "はじまりの未来 (The Future of Beginning)",
+      "artist": "初音ミク / 40mP / sasakure.UK",
+      "file": "C38238DFF2253FFE8C05722D311D5FD6.mp3",
+      "cover": "/music/cover/C38238DFF2253FFE8C05722D311D5FD6.jpg",
+      "duration": 256
+    },
+    {
+      "hash": "E89A65C84CF6B85C8408CB1489ACB773",
+      "title": "深海少女",
+      "artist": "初音ミク",
+      "file": "E89A65C84CF6B85C8408CB1489ACB773.mp3",
+      "cover": "/music/cover/E89A65C84CF6B85C8408CB1489ACB773.jpg",
+      "duration": 206
+    },
+    {
+      "hash": "E2996E045DF9DED64E7A36F76AD222AD",
+      "title": "空の箱 (VOID)(Vo.河原木桃香)",
+      "artist": "トゲナシトゲアリ",
+      "file": "E2996E045DF9DED64E7A36F76AD222AD.mp3",
+      "cover": "/music/cover/E2996E045DF9DED64E7A36F76AD222AD.jpg",
+      "duration": 162
+    },
+    {
+      "hash": "D952BB5033484891F70E02CC8E9883A8",
+      "title": "Lost the Way",
+      "artist": "DiVA",
+      "file": "D952BB5033484891F70E02CC8E9883A8.mp3",
+      "cover": "/music/cover/D952BB5033484891F70E02CC8E9883A8.jpg",
+      "duration": 250
+    },
+    {
+      "hash": "D9EEBD162404474C9214C36172A86C6E",
+      "title": "那个女孩",
+      "artist": "陶喆 / 卢广仲",
+      "file": "D9EEBD162404474C9214C36172A86C6E.mp3",
+      "cover": "/music/cover/D9EEBD162404474C9214C36172A86C6E.jpg",
+      "duration": 267
+    },
+    {
+      "hash": "CB3B4BF555A8A193C38676E5244B26B1",
+      "title": "Secret Illumination",
+      "artist": "Yoohsic Roomz",
+      "file": "CB3B4BF555A8A193C38676E5244B26B1.mp3",
+      "cover": "/music/cover/CB3B4BF555A8A193C38676E5244B26B1.jpg",
+      "duration": 315
+    },
+    {
+      "hash": "CF9C561C40186013CEA38A98FA7B2989",
+      "title": "Distorted Fate",
+      "artist": "Glitched Universe",
+      "file": "CF9C561C40186013CEA38A98FA7B2989.mp3",
+      "cover": "/music/cover/CF9C561C40186013CEA38A98FA7B2989.jpg",
+      "duration": 214
+    },
+    {
+      "hash": "2561CBEBDBE8E2ED61AC8349736B131A",
+      "title": "Operation Fake Waves",
+      "artist": "Erik Castro / David Lin / Skylar Funk",
+      "file": "2561CBEBDBE8E2ED61AC8349736B131A.mp3",
+      "cover": "/music/cover/2561CBEBDBE8E2ED61AC8349736B131A.jpg",
+      "duration": 216
+    },
+    {
+      "hash": "1646A4DB9195FD7D36297123F08F7950",
+      "title": "Operation Dawnseeker",
+      "artist": "Terry Zhong 钟天利",
+      "file": "1646A4DB9195FD7D36297123F08F7950.mp3",
+      "cover": "/music/cover/1646A4DB9195FD7D36297123F08F7950.jpg",
+      "duration": 260
+    },
+    {
+      "hash": "51ABC8CF6D25ED868B989EEF7632F975",
+      "title": "醉赤壁",
+      "artist": "林俊杰",
+      "file": "51ABC8CF6D25ED868B989EEF7632F975.mp3",
+      "cover": "/music/cover/51ABC8CF6D25ED868B989EEF7632F975.jpg",
+      "duration": 282
+    },
+    {
+      "hash": "4947D4F6D5788014D55960B40B229A74",
+      "title": "Operation Wild Scales",
+      "artist": "塞壬唱片-MSR",
+      "file": "4947D4F6D5788014D55960B40B229A74.mp3",
+      "cover": "/music/cover/4947D4F6D5788014D55960B40B229A74.jpg",
+      "duration": 244
+    },
+    {
+      "hash": "B83DBB8E3DD3FCF86BF32690B91547F5",
+      "title": "江南",
+      "artist": "林俊杰",
+      "file": "B83DBB8E3DD3FCF86BF32690B91547F5.mp3",
+      "cover": "/music/cover/B83DBB8E3DD3FCF86BF32690B91547F5.jpg",
+      "duration": 268
+    },
+    {
+      "hash": "386CF9020959CFBAD540EC912EC704F3",
+      "title": "Infinity Heaven",
+      "artist": "HyuN",
+      "file": "386CF9020959CFBAD540EC912EC704F3.mp3",
+      "cover": "/music/cover/386CF9020959CFBAD540EC912EC704F3.jpg",
+      "duration": 154
+    },
+    {
+      "hash": "D5B6F4AC869CC036122A58469A883509",
+      "title": "すすめ!ウルトラマンゼロ (前进吧!赛罗奥特曼)",
+      "artist": "ボイジャー",
+      "file": "D5B6F4AC869CC036122A58469A883509.mp3",
+      "cover": "/music/cover/D5B6F4AC869CC036122A58469A883509.jpg",
+      "duration": 271
+    },
+    {
+      "hash": "5945159A8C78CF380819AE864929AEBF",
+      "title": "Chronicle A (English Ver.)",
+      "artist": "Empty old City",
+      "file": "5945159A8C78CF380819AE864929AEBF.mp3",
+      "cover": "/music/cover/5945159A8C78CF380819AE864929AEBF.jpg",
+      "duration": 181
+    },
+    {
+      "hash": "F56BECBB99BE34DE37973904CE3E7D0A",
+      "title": "TAKE ME HIGHER",
+      "artist": "V6",
+      "file": "F56BECBB99BE34DE37973904CE3E7D0A.mp3",
+      "cover": "/music/cover/F56BECBB99BE34DE37973904CE3E7D0A.jpg",
+      "duration": 319
+    },
+    {
+      "hash": "35759D60803AF0F5B736FE5794D9E53F",
+      "title": "君だけを守りたい (只想守护你)",
+      "artist": "中島文明",
+      "file": "35759D60803AF0F5B736FE5794D9E53F.mp3",
+      "cover": "/music/cover/35759D60803AF0F5B736FE5794D9E53F.jpg",
+      "duration": 270
+    },
+    {
+      "hash": "D33E912E170C4A7409B8A50AE4733C13",
+      "title": "オーブニカ",
+      "artist": "小西贵雄",
+      "file": "D33E912E170C4A7409B8A50AE4733C13.mp3",
+      "cover": "/music/cover/D33E912E170C4A7409B8A50AE4733C13.jpg",
+      "duration": 197
+    },
+    {
+      "hash": "099518E22D68EFECC3C63A989B1C8C8E",
+      "title": "室内系的TrackMaker (法修散打)",
+      "artist": "hanser",
+      "file": "099518E22D68EFECC3C63A989B1C8C8E.mp3",
+      "cover": "/music/cover/099518E22D68EFECC3C63A989B1C8C8E.jpg",
+      "duration": 139
+    },
+    {
+      "hash": "1A435F247AC260185A00AAB3AD9898A3",
+      "title": "Altale",
+      "artist": "削除",
+      "file": "1A435F247AC260185A00AAB3AD9898A3.mp3",
+      "cover": "/music/cover/1A435F247AC260185A00AAB3AD9898A3.jpg",
+      "duration": 152
+    },
+    {
+      "hash": "C9722A2A72542E6EF3A52A4A56A3D1CC",
+      "title": "Your Star",
+      "artist": "DJ OKAWARI / Stephanie",
+      "file": "C9722A2A72542E6EF3A52A4A56A3D1CC.mp3",
+      "cover": "/music/cover/C9722A2A72542E6EF3A52A4A56A3D1CC.jpg",
+      "duration": 249
+    },
+    {
+      "hash": "803C6B02B2B1F7EABA5F6E6B02316671",
+      "title": "壱雫空",
+      "artist": "MyGO!!!!!",
+      "file": "803C6B02B2B1F7EABA5F6E6B02316671.mp3",
+      "cover": "/music/cover/803C6B02B2B1F7EABA5F6E6B02316671.jpg",
+      "duration": 190
+    },
+    {
+      "hash": "CC26AC2D601A2721EBF40D1B48D9FA95",
+      "title": "戴拿奥特曼  只想守护你 (女生版)",
+      "artist": "krinny柚子",
+      "file": "CC26AC2D601A2721EBF40D1B48D9FA95.mp3",
+      "cover": "/music/cover/CC26AC2D601A2721EBF40D1B48D9FA95.jpg",
+      "duration": 234
+    },
+    {
+      "hash": "CFDA92A752393474819D22121ECC88C0",
+      "title": "找自己",
+      "artist": "陶喆",
+      "file": "CFDA92A752393474819D22121ECC88C0.mp3",
+      "cover": "/music/cover/CFDA92A752393474819D22121ECC88C0.jpg",
+      "duration": 305
+    },
+    {
+      "hash": "B8D34CDF5D08B4E909AE76AD8ECFAB88",
+      "title": "不死之身",
+      "artist": "林俊杰",
+      "file": "B8D34CDF5D08B4E909AE76AD8ECFAB88.mp3",
+      "cover": "/music/cover/B8D34CDF5D08B4E909AE76AD8ECFAB88.jpg",
+      "duration": 227
+    },
+    {
+      "hash": "83E502B36B494969CBD49A4D2AAB96AC",
+      "title": "Legends Never Die (传奇永不熄)",
+      "artist": "英雄联盟 / Against The Current",
+      "file": "83E502B36B494969CBD49A4D2AAB96AC.mp3",
+      "cover": "/music/cover/83E502B36B494969CBD49A4D2AAB96AC.jpg",
+      "duration": 235
+    },
+    {
+      "hash": "1F9A98EE2421E28ADB8BF9C2E5ECE75B",
+      "title": "Miss You",
+      "artist": "Erik Castro / David Lin / 左乙",
+      "file": "1F9A98EE2421E28ADB8BF9C2E5ECE75B.mp3",
+      "cover": "/music/cover/1F9A98EE2421E28ADB8BF9C2E5ECE75B.jpg",
+      "duration": 234
+    },
+    {
+      "hash": "7A3F9ECC73C46EAC591BAC593941682A",
+      "title": "小镇姑娘",
+      "artist": "陶喆",
+      "file": "7A3F9ECC73C46EAC591BAC593941682A.mp3",
+      "cover": "/music/cover/7A3F9ECC73C46EAC591BAC593941682A.jpg",
+      "duration": 296
+    },
+    {
+      "hash": "64538365F58B20C757D77A67C8796C39",
+      "title": "Beat on Dream on",
+      "artist": "菊田知彦",
+      "file": "64538365F58B20C757D77A67C8796C39.mp3",
+      "cover": "/music/cover/64538365F58B20C757D77A67C8796C39.jpg",
+      "duration": 238
+    },
+    {
+      "hash": "0FC4B54A42D5631654EB6DCFD6B99BAC",
+      "title": "ガイアノチカラ (盖亚的力量)",
+      "artist": "田中昌之",
+      "file": "0FC4B54A42D5631654EB6DCFD6B99BAC.mp3",
+      "cover": "/music/cover/0FC4B54A42D5631654EB6DCFD6B99BAC.jpg",
+      "duration": 199
+    },
+    {
+      "hash": "6144F6EE3A4F951B3ACAB948A973A8D6",
+      "title": "Gone Angels",
+      "artist": "Mili",
+      "file": "6144F6EE3A4F951B3ACAB948A973A8D6.mp3",
+      "cover": "/music/cover/6144F6EE3A4F951B3ACAB948A973A8D6.jpg",
+      "duration": 145
+    },
+    {
+      "hash": "C4A397F2DD270BE4EA7988B798755CCA",
+      "title": "ダイゴとレナ",
+      "artist": "矢野立美",
+      "file": "C4A397F2DD270BE4EA7988B798755CCA.mp3",
+      "cover": "/music/cover/C4A397F2DD270BE4EA7988B798755CCA.jpg",
+      "duration": 191
+    },
+    {
+      "hash": "201C2D800D7AE35BDCAF833AE20D4144",
+      "title": "远き呼び声の彼方へ (那来自远方的呼唤)(<M-41,M-62A>)",
+      "artist": "矢野立美",
+      "file": "201C2D800D7AE35BDCAF833AE20D4144.mp3",
+      "cover": "/music/cover/201C2D800D7AE35BDCAF833AE20D4144.jpg",
+      "duration": 223
+    },
+    {
+      "hash": "430F040404091A639359126D0822B9A7",
+      "title": "愛のテーマ (爱的主题)",
+      "artist": "矢野立美",
+      "file": "430F040404091A639359126D0822B9A7.mp3",
+      "cover": "/music/cover/430F040404091A639359126D0822B9A7.jpg",
+      "duration": 119
+    },
+    {
+      "hash": "972E1C6872F4DFFEFA4655D520C7C893",
+      "title": "風見鶏",
+      "artist": "DEPAPEPE",
+      "file": "972E1C6872F4DFFEFA4655D520C7C893.mp3",
+      "cover": "/music/cover/972E1C6872F4DFFEFA4655D520C7C893.jpg",
+      "duration": 276
+    },
+    {
+      "hash": "3F2943382212F1582659FD8122A872D8",
+      "title": "Heavy Is the Crown",
+      "artist": "Linkin Park",
+      "file": "3F2943382212F1582659FD8122A872D8.mp3",
+      "cover": "/music/cover/3F2943382212F1582659FD8122A872D8.jpg",
+      "duration": 167
+    },
+    {
+      "hash": "383F504EEFD0A42698B7F9063A85FC19",
+      "title": "Last words",
+      "artist": "Imy",
+      "file": "383F504EEFD0A42698B7F9063A85FC19.mp3",
+      "cover": "/music/cover/383F504EEFD0A42698B7F9063A85FC19.jpg",
+      "duration": 305
+    },
+    {
+      "hash": "965A163FE7ECBAE2741752A9E76BD90B",
+      "title": "Straight into the lights",
+      "artist": "Cosmograph",
+      "file": "965A163FE7ECBAE2741752A9E76BD90B.mp3",
+      "cover": "/music/cover/965A163FE7ECBAE2741752A9E76BD90B.jpg",
+      "duration": 153
+    },
+    {
+      "hash": "D57F043D8CB4C2D3518D4E2760EAE1D2",
+      "title": "彼方へ、名もなき海辺より",
+      "artist": "打打だいず / 月乃",
+      "file": "D57F043D8CB4C2D3518D4E2760EAE1D2.mp3",
+      "cover": "/music/cover/D57F043D8CB4C2D3518D4E2760EAE1D2.jpg",
+      "duration": 276
+    },
+    {
+      "hash": "2843A19805A8436BD6AD2472439D216C",
+      "title": "Starlight",
+      "artist": "超特急",
+      "file": "2843A19805A8436BD6AD2472439D216C.mp3",
+      "cover": "/music/cover/2843A19805A8436BD6AD2472439D216C.jpg",
+      "duration": 278
+    }
+  ]
+}
