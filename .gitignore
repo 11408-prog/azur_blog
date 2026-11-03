@@ -66,3 +66,9 @@ src/data/bilibili-data.json
 
 # 音乐文件：不入库，用 pnpm sync-music 重建（本地脚本 + 联网下载）
 public/music/
+
+# 构建日志与一次性排查脚本：不入库
+build.log
+publish.log
+_*.mjs
+_*.log
