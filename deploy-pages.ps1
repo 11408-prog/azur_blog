@@ -18,10 +18,10 @@
        -c http.sslBackend=openssl plus an explicit CA bundle on every call.
 
     2. The git credential helper is unusable here: git shells out to sh.exe to
-       run it, and sh.exe cannot create its signal pipe. We therefore read the
-       token straight from git-credential-manager.exe and hand it to git as an
-       Authorization header. The token stays in memory only - never printed,
-       never written to disk.
+       run it, and sh.exe cannot create its signal pipe. We therefore skip the
+       helper: the token is read from -Token or from the .deploy-token file next
+       to this script, and handed to git as an Authorization header. It stays in
+       memory only - never printed, never written anywhere else.
 
     3. GitHub Pages builds this repository with Jekyll in legacy mode, and
        Jekyll silently drops every directory whose name starts with an

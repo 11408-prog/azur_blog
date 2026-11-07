@@ -7,15 +7,16 @@ import PasswordProtection from "./PasswordProtection.astro";
 
 export interface Props {
 	password: string | number;
-	slug: string;
+	/** 已弃用：加密不再依赖 slug，保留该属性只是为了兼容已有调用 */
+	slug?: string;
 	hint?: string;
 }
 
-const { password, slug, hint = "" } = Astro.props;
+const { password, hint = "" } = Astro.props;
 
 const htmlContent = await Astro.slots.render("default");
 
-const encryptedContent = encryptContent(htmlContent, String(password), slug);
+const encryptedContent = encryptContent(htmlContent, String(password));
 ---
 
 <PasswordProtection encryptedContent={encryptedContent} hint={hint} />

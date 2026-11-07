@@ -43,11 +43,7 @@ if (isEncrypted) {
 		)
 		.join("");
 	const wrappedHtml = `<div class="gallery-masonry">${photoHtml}</div>`;
-	encryptedPhotoData = encryptContent(
-		wrappedHtml,
-		String(album.password),
-		`album:${album.id}`,
-	);
+	encryptedPhotoData = encryptContent(wrappedHtml, String(album.password));
 }
 ---
 

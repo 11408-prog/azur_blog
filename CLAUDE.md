@@ -4,6 +4,12 @@ Behavioral guidelines to reduce common LLM coding mistakes. Merge with project-s
 
 **Tradeoff:** These guidelines bias toward caution over speed. For trivial tasks, use judgment.
 
+## Project documentation
+
+Before changing this repo, read `文档/13-给AI协作者.md`, then the document that matches your task (index: `文档/README.md`).
+When you change source code, configuration or a workflow, update the matching document in `文档/` in the same change.
+Do not run builds, previews, deployments or bulk deletions on the user's behalf; ask them to run these in their own terminal.
+
 ## 1. Think Before Coding
 
 **Don't assume. Don't hide confusion. Surface tradeoffs.**

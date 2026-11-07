@@ -1,4 +1,4 @@
-import { execSync } from "child_process";
+import { execFileSync } from "child_process";
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
@@ -12,7 +12,8 @@ loadEnv();
 console.log("已加载 .env 配置文件\n");
 
 // 从环境变量读取配置
-const ENABLE_CONTENT_SYNC = process.env.ENABLE_CONTENT_SYNC !== "false"; // 默认启用
+// 默认关闭，只有显式设置 ENABLE_CONTENT_SYNC=true 才会同步（与 .env.example 的说明一致）
+const ENABLE_CONTENT_SYNC = process.env.ENABLE_CONTENT_SYNC === "true";
 const CONTENT_REPO_URL = process.env.CONTENT_REPO_URL || "";
 const CONTENT_DIR = process.env.CONTENT_DIR || path.join(rootDir, "content");
 
@@ -43,10 +44,11 @@ if (!fs.existsSync(CONTENT_DIR)) {
 
 	try {
 		console.log(`正在克隆内容仓库：${CONTENT_REPO_URL}`);
-		execSync(`git clone --depth 1 ${CONTENT_REPO_URL} ${CONTENT_DIR}`, {
-			stdio: "inherit",
-			cwd: rootDir,
-		});
+		execFileSync(
+			"git",
+			["clone", "--depth", "1", "--", CONTENT_REPO_URL, CONTENT_DIR],
+			{ stdio: "inherit", cwd: rootDir },
+		);
 		console.log("内容仓库克隆成功");
 	} catch (error) {
 		console.error("克隆失败：", error.message);
@@ -60,13 +62,14 @@ if (!fs.existsSync(CONTENT_DIR)) {
 			console.log("正在同步远程内容（强制模式）...");
 
 			// 1. 防止本地修改丢失
-			execSync("git stash push --include-untracked -m 'auto-sync'", {
-				stdio: "inherit",
-				cwd: CONTENT_DIR,
-			});
+			execFileSync(
+				"git",
+				["stash", "push", "--include-untracked", "-m", "auto-sync"],
+				{ stdio: "inherit", cwd: CONTENT_DIR },
+			);
 
 			// 2. 更新远程引用
-			execSync("git fetch --all --prune", {
+			execFileSync("git", ["fetch", "--all", "--prune"], {
 				stdio: "inherit",
 				cwd: CONTENT_DIR,
 			});
@@ -74,14 +77,18 @@ if (!fs.existsSync(CONTENT_DIR)) {
 			// 3. 判断分支
 			let branch = "main";
 			try {
-				execSync("git rev-parse --verify origin/main", { cwd: CONTENT_DIR });
+				execFileSync("git", ["rev-parse", "--verify", "origin/main"], {
+					cwd: CONTENT_DIR,
+				});
 			} catch {
 				branch = "master";
 			}
 
 			// 4. 强制同步
-		execSync(`git checkout ${branch}`, { cwd: CONTENT_DIR });
-		execSync(`git reset --hard origin/${branch}`, { cwd: CONTENT_DIR });
+		execFileSync("git", ["checkout", branch], { cwd: CONTENT_DIR });
+		execFileSync("git", ["reset", "--hard", `origin/${branch}`], {
+			cwd: CONTENT_DIR,
+		});
 
 		console.log(`内容同步成功（分支：${branch}）`);
 		} catch (error) {
@@ -140,24 +147,29 @@ for (const mapping of contentMappings) {
 console.log("\n内容同步完成\n");
 try {
 	// 1. 获取 content 分支名
-	const branch = execSync("git rev-parse --abbrev-ref HEAD", {
+	const branch = execFileSync("git", ["rev-parse", "--abbrev-ref", "HEAD"], {
 		cwd: CONTENT_DIR,
 	})
 		.toString()
 		.trim();
 
 	// 2. 获取 content commit hash（短）
-	const hash = execSync("git rev-parse --short HEAD", {
+	const hash = execFileSync("git", ["rev-parse", "--short", "HEAD"], {
 		cwd: CONTENT_DIR,
 	})
 		.toString()
 		.trim();
 
-	// 3. 提交主仓库
-	execSync("git add .", { cwd: rootDir });
+	// 3. 提交主仓库：只添加内容目录，避免把其他未跟踪文件（例如密钥）误提交
+	execFileSync(
+		"git",
+		["add", "--", ...contentMappings.map((mapping) => mapping.dest)],
+		{ cwd: rootDir },
+	);
 
-	execSync(
-		`git commit -m "chore(content): sync ${branch}@${hash}"`,
+	execFileSync(
+		"git",
+		["commit", "-m", `chore(content): sync ${branch}@${hash}`],
 		{ cwd: rootDir },
 	);
 

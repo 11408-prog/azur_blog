@@ -1,0 +1,776 @@
+diff --git a/.github/workflows/lint.yml b/.github/workflows/lint.yml
+index 1c40dac..0f6ba58 100644
+--- a/.github/workflows/lint.yml
++++ b/.github/workflows/lint.yml
+@@ -2,9 +2,9 @@ name: Lint
+ 
+ on:
+   push:
+-    branches: [ master ]
++    branches: [ main ]
+   pull_request:
+-    branches: [ master ]
++    branches: [ main ]
+   workflow_dispatch:
+ 
+ concurrency:
+diff --git a/.gitignore b/.gitignore
+index 31b9467..e7368cd 100644
+--- a/.gitignore
++++ b/.gitignore
+@@ -72,3 +72,10 @@ build.log
+ publish.log
+ _*.mjs
+ _*.log
++
++# 模板自带的示例音乐（站点未引用，体积大且有版权风险）：不入库
++public/assets/music/url/
++
++# 一次性脚本：不入库（以下划线开头的 .cjs / .ps1）
++_*.cjs
++_*.ps1
+diff --git a/migrate-images.ps1 b/migrate-images.ps1
+deleted file mode 100644
+index 58c3a31..0000000
+--- a/migrate-images.ps1
++++ /dev/null
+@@ -1,29 +0,0 @@
+-# 图片迁移：旧站 source/img → blog-v2/public/img
+-# 用 PowerShell 完成，因为 Node v25 在本机中文路径下 fs.cpSync 复制子目录会报 EIO。
+-$ErrorActionPreference = 'Stop'
+-
+-$Src = 'C:\Users\ASUS\Desktop\blog\source\img'
+-$Dst = 'C:\Users\ASUS\Desktop\博客迁移\blog-v2\public\img'
+-
+-if (-not (Test-Path -LiteralPath $Src)) {
+-    Write-Error "源图片目录不存在: $Src"
+-    exit 1
+-}
+-
+-# 清空目标（幂等）
+-if (Test-Path -LiteralPath $Dst) {
+-    Get-ChildItem -LiteralPath $Dst -Force | Remove-Item -Recurse -Force
+-} else {
+-    New-Item -ItemType Directory -Path $Dst -Force | Out-Null
+-}
+-
+-Copy-Item -LiteralPath $Src -Destination $Dst -Recurse -Force
+-# Copy-Item 复制目录时会多套一层 img，拍平
+-$nested = Join-Path $Dst 'img'
+-if (Test-Path -LiteralPath $nested) {
+-    Get-ChildItem -LiteralPath $nested -Force | Move-Item -Destination $Dst -Force
+-    Remove-Item -LiteralPath $nested -Recurse -Force
+-}
+-
+-$count = (Get-ChildItem -LiteralPath $Dst -Recurse -File).Count
+-Write-Host "图片迁移完成: $count 个文件 -> $Dst"
+diff --git a/migrate.cjs b/migrate.cjs
+deleted file mode 100644
+index e3412a7..0000000
+--- a/migrate.cjs
++++ /dev/null
+@@ -1,164 +0,0 @@
+-// 迁移脚本：旧站 Hexo → blog-v2 (Mizuki/Astro)
+-// 幂等：每次运行先清空目标目录，再全量生成。
+-// 用法：node migrate.js [--dry]
+-"use strict";
+-
+-const fs = require("fs");
+-const path = require("path");
+-
+-const SRC_SITE = "C:/Users/ASUS/Desktop/blog";
+-const SRC_POSTS = path.join(SRC_SITE, "source/_posts");
+-const SRC_IMG = path.join(SRC_SITE, "source/img");
+-
+-const DST_ROOT = path.resolve(__dirname);
+-const DST_POSTS = path.join(DST_ROOT, "src/content/posts");
+-const DST_IMG = path.join(DST_ROOT, "public/img");
+-
+-const DRY = process.argv.includes("--dry");
+-const warnings = [];
+-
+-function walk(dir, out = []) {
+-	if (!fs.existsSync(dir)) return out;
+-	for (const e of fs.readdirSync(dir, { withFileTypes: true })) {
+-		const full = path.join(dir, e.name);
+-		if (e.isDirectory()) walk(full, out);
+-		else if (/\.mdx?$/i.test(e.name)) out.push(full);
+-	}
+-	return out;
+-}
+-
+-function countFiles(dir) {
+-	if (!fs.existsSync(dir)) return 0;
+-	let n = 0;
+-	for (const e of fs.readdirSync(dir, { withFileTypes: true })) {
+-		n += e.isDirectory() ? countFiles(path.join(dir, e.name)) : 1;
+-	}
+-	return n;
+-}
+-
+-// 去掉 YAML 值两端的引号
+-function unquote(s) {
+-	if (s == null) return "";
+-	let v = String(s).trim();
+-	if (
+-		(v.startsWith('"') && v.endsWith('"')) ||
+-		(v.startsWith("'") && v.endsWith("'"))
+-	) {
+-		v = v.slice(1, -1);
+-	}
+-	return v.trim();
+-}
+-
+-// 解析 Hexo front matter（只处理本项目实际出现的形态）
+-function convert(file, rel) {
+-	const raw = fs.readFileSync(file, "utf8");
+-	const m = raw.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n?([\s\S]*)$/);
+-	if (!m) {
+-		warnings.push(`无 front matter，按标题兜底: ${rel}`);
+-		const base = path.basename(rel, path.extname(rel));
+-		return {
+-			fm: `title: ${JSON.stringify(base)}\npublished: 2026-01-01\n`,
+-			body: raw,
+-		};
+-	}
+-	const yaml = m[1];
+-	const body = m[2];
+-
+-	const pick = (key) => {
+-		const mm = yaml.match(new RegExp(`^${key}:\\s*(.*)$`, "m"));
+-		return mm ? mm[1].trim() : "";
+-	};
+-
+-	const title = pick("title") || path.basename(rel, path.extname(rel));
+-
+-	// date: 2026-10-24 10:52:04 → published: 2026-10-24
+-	const dateRaw = pick("date");
+-	const dm = dateRaw.match(/^(\d{4}-\d{2}-\d{2})/);
+-	const published = dm ? dm[1] : "2026-01-01";
+-	if (!dm && dateRaw) warnings.push(`日期无法解析，用默认值: ${rel} (${dateRaw})`);
+-
+-	// categories → category（Mizuki 只支持单值）
+-	const catRaw = pick("categories");
+-	const category = unquote(catRaw.replace(/^\[|\]$/g, "").split(",")[0] || "");
+-
+-	// tags: [a,b] → ["a","b"]  —— 数字必须加引号，否则 YAML 解析成 number 违反 schema
+-	let tags = [];
+-	const tagsRaw = pick("tags");
+-	const inline = tagsRaw.match(/^\[(.*)\]$/);
+-	if (inline) {
+-		tags = inline[1]
+-			.split(/[,，]/) // 中英文逗号都拆
+-			.map((s) => unquote(s))
+-			.filter(Boolean);
+-	} else if (tagsRaw) {
+-		tags = [unquote(tagsRaw)];
+-	}
+-
+-	// cover → image
+-	const cover = unquote(pick("cover"));
+-
+-	const lines = ["---", `title: ${JSON.stringify(title)}`, `published: ${published}`];
+-	if (category) lines.push(`category: ${JSON.stringify(category)}`);
+-	if (tags.length) lines.push(`tags: [${tags.map((t) => JSON.stringify(t)).join(", ")}]`);
+-	if (cover) lines.push(`image: ${JSON.stringify(cover)}`);
+-	lines.push("---", "");
+-
+-	return { fm: `${lines.join("\n")}\n`, body };
+-}
+-
+-// 递归删除目录。
+-// 注意：Node v25 在本机中文路径下用 fs.rmSync 会在删除时崩溃 (0xC0000409)，
+-// 因此改用 unlinkSync + rmdirSync，走不同代码路径，实测正常。
+-function rmAll(dir) {
+-	if (!fs.existsSync(dir)) return;
+-	for (const e of fs.readdirSync(dir, { withFileTypes: true })) {
+-		const full = path.join(dir, e.name);
+-		if (e.isDirectory()) rmAll(full);
+-		else fs.unlinkSync(full);
+-	}
+-	fs.rmdirSync(dir);
+-}
+-
+-// 清空目标目录（幂等前提），并确保目录本身存在
+-function emptyDir(dir) {
+-	rmAll(dir);
+-	fs.mkdirSync(dir, { recursive: true });
+-}
+-
+-// ---- 主流程 ----
+-const files = walk(SRC_POSTS).sort();
+-if (!files.length) {
+-	console.error(`!! 源文章目录为空或不存在: ${SRC_POSTS}`);
+-	process.exit(1);
+-}
+-
+-if (!DRY) emptyDir(DST_POSTS);
+-
+-let count = 0;
+-for (const file of files) {
+-	const rel = path.relative(SRC_POSTS, file);
+-	const dst = path.join(DST_POSTS, rel);
+-	if (!DRY) {
+-		fs.mkdirSync(path.dirname(dst), { recursive: true });
+-		const { fm, body } = convert(file, rel);
+-		fs.writeFileSync(dst, fm + body, "utf8");
+-	}
+-	count++;
+-}
+-
+-// 图片：source/img → public/img（文章里的 /img/x 引用对应 public/img/x）
+-// 注意：Node v25 在本机中文路径下 fs.cpSync 复制子目录会报 EIO，
+-// 因此图片由 PowerShell 完成（见 migrate-images.ps1），这里只统计。
+-let imgCount = countFiles(DST_IMG);
+-if (imgCount === 0) {
+-	warnings.push(`图片未复制，请运行 migrate-images.ps1（目标: ${DST_IMG}）`);
+-}
+-
+-console.log(`${DRY ? "[DRY] " : ""}文章 ${count} 篇 → ${DST_POSTS}`);
+-console.log(`图片 ${imgCount} 个 → ${DST_IMG}`);
+-if (warnings.length) {
+-	console.log(`\n需要人工检查 ${warnings.length} 处:`);
+-	warnings.forEach((w) => console.log(`  - ${w}`));
+-} else {
+-	console.log("无警告");
+-}
+diff --git a/package.json b/package.json
+index aed19e1..3deb9d1 100644
+--- a/package.json
++++ b/package.json
+@@ -18,7 +18,7 @@
+     "preview": "astro preview",
+     "astro": "astro",
+     "type-check": "tsc --noEmit",
+-    "test": "node --experimental-strip-types --test tests/markdown-enhancements.test.mjs tests/layout-regressions.test.mjs tests/image-loading.test.mjs tests/music-player-loading.test.mjs && node tests/crypto.test.mjs",
++    "test": "node --experimental-strip-types --test tests/markdown-enhancements.test.mjs tests/layout-regressions.test.mjs tests/image-loading.test.mjs tests/music-player-loading.test.mjs && node --experimental-strip-types tests/crypto.test.mjs",
+     "prepare-fonts": "node scripts/prepare-fonts.mjs",
+     "check-fonts": "node scripts/check-font-loading.mjs",
+     "prepare-images": "node scripts/prepare-default-images.mjs",
+diff --git a/scripts/check-global-style-loading.mjs b/scripts/check-global-style-loading.mjs
+index 26d82c8..eb88f94 100644
+--- a/scripts/check-global-style-loading.mjs
++++ b/scripts/check-global-style-loading.mjs
+@@ -1,3 +1,4 @@
++import { existsSync } from "node:fs";
+ import { readFile } from "node:fs/promises";
+ import path from "node:path";
+ import { fileURLToPath } from "node:url";
+@@ -15,6 +16,20 @@ function getAttribute(tag, name) {
+ 	return match?.[1] ?? match?.[2] ?? match?.[3];
+ }
+ 
++// 站点部署在子路径（例如 /azur_blog/）时，HTML 里的链接带有 base 前缀，
++// 但构建产物直接放在 dist/ 根目录，所以要逐级去掉开头的路径段来定位真实文件。
++// 一直找不到时返回原始路径，让后面的 readFile 照常报出缺失文件的错误。
++function resolveStylesheetPath(pathname) {
++	const segments = (pathname.startsWith("/") ? pathname.slice(1) : pathname)
++		.split("/")
++		.filter(Boolean);
++	for (let skip = 0; skip < segments.length; skip++) {
++		const candidate = path.resolve(distDirectory, ...segments.slice(skip));
++		if (existsSync(candidate)) return candidate;
++	}
++	return path.resolve(distDirectory, ...segments);
++}
++
+ async function loadPageStyles(htmlPath) {
+ 	const html = await readFile(path.join(distDirectory, htmlPath), "utf8");
+ 	const stylesheetUrls = [...html.matchAll(/<link\b[^>]*>/gi)]
+@@ -44,10 +59,7 @@ async function loadPageStyles(htmlPath) {
+ 				return "";
+ 			}
+ 
+-			const assetPath = path.resolve(
+-				distDirectory,
+-				pathname.startsWith("/") ? pathname.slice(1) : pathname,
+-			);
++			const assetPath = resolveStylesheetPath(pathname);
+ 			const relativePath = path.relative(distDirectory, assetPath);
+ 			if (relativePath.startsWith("..") || path.isAbsolute(relativePath)) {
+ 				throw new Error(
+@@ -66,6 +78,14 @@ async function loadPageStyles(htmlPath) {
+ 	};
+ }
+ 
++// 关于页只有在源文件里真的写了 ::github{repo="..."} 卡片时，才要求渲染出卡片标记。
++// 否则换掉模板示例内容的站点会被这条检查误伤。样式规则仍然始终要求加载。
++const aboutSource = await readFile(
++	path.join(projectRoot, "src/content/spec/about.md"),
++	"utf8",
++).catch(() => "");
++const aboutHasGithubCard = /^::github\{/m.test(aboutSource);
++
+ const pages = [
+ 	{
+ 		name: "Homepage",
+@@ -82,7 +102,9 @@ const pages = [
+ 	{
+ 		name: "About page",
+ 		htmlPath: "about/index.html",
+-		requiredMarkup: [["card-github", "rendered GitHub repository card"]],
++		requiredMarkup: aboutHasGithubCard
++			? [["card-github", "rendered GitHub repository card"]]
++			: [],
+ 		requiredRules: [
+ 			[".card-github", "GitHub repository card styles"],
+ 			[".custom-md .image-grid", "extended Markdown layout styles"],
+diff --git a/scripts/sync-content.js b/scripts/sync-content.js
+index 7fe630f..dbe1342 100644
+--- a/scripts/sync-content.js
++++ b/scripts/sync-content.js
+@@ -1,4 +1,4 @@
+-import { execSync } from "child_process";
++import { execFileSync } from "child_process";
+ import fs from "fs";
+ import path from "path";
+ import { fileURLToPath } from "url";
+@@ -12,7 +12,8 @@ loadEnv();
+ console.log("已加载 .env 配置文件\n");
+ 
+ // 从环境变量读取配置
+-const ENABLE_CONTENT_SYNC = process.env.ENABLE_CONTENT_SYNC !== "false"; // 默认启用
++// 默认关闭，只有显式设置 ENABLE_CONTENT_SYNC=true 才会同步（与 .env.example 的说明一致）
++const ENABLE_CONTENT_SYNC = process.env.ENABLE_CONTENT_SYNC === "true";
+ const CONTENT_REPO_URL = process.env.CONTENT_REPO_URL || "";
+ const CONTENT_DIR = process.env.CONTENT_DIR || path.join(rootDir, "content");
+ 
+@@ -43,10 +44,11 @@ if (!fs.existsSync(CONTENT_DIR)) {
+ 
+ 	try {
+ 		console.log(`正在克隆内容仓库：${CONTENT_REPO_URL}`);
+-		execSync(`git clone --depth 1 ${CONTENT_REPO_URL} ${CONTENT_DIR}`, {
+-			stdio: "inherit",
+-			cwd: rootDir,
+-		});
++		execFileSync(
++			"git",
++			["clone", "--depth", "1", "--", CONTENT_REPO_URL, CONTENT_DIR],
++			{ stdio: "inherit", cwd: rootDir },
++		);
+ 		console.log("内容仓库克隆成功");
+ 	} catch (error) {
+ 		console.error("克隆失败：", error.message);
+@@ -60,13 +62,14 @@ if (!fs.existsSync(CONTENT_DIR)) {
+ 			console.log("正在同步远程内容（强制模式）...");
+ 
+ 			// 1. 防止本地修改丢失
+-			execSync("git stash push --include-untracked -m 'auto-sync'", {
+-				stdio: "inherit",
+-				cwd: CONTENT_DIR,
+-			});
++			execFileSync(
++				"git",
++				["stash", "push", "--include-untracked", "-m", "auto-sync"],
++				{ stdio: "inherit", cwd: CONTENT_DIR },
++			);
+ 
+ 			// 2. 更新远程引用
+-			execSync("git fetch --all --prune", {
++			execFileSync("git", ["fetch", "--all", "--prune"], {
+ 				stdio: "inherit",
+ 				cwd: CONTENT_DIR,
+ 			});
+@@ -74,14 +77,18 @@ if (!fs.existsSync(CONTENT_DIR)) {
+ 			// 3. 判断分支
+ 			let branch = "main";
+ 			try {
+-				execSync("git rev-parse --verify origin/main", { cwd: CONTENT_DIR });
++				execFileSync("git", ["rev-parse", "--verify", "origin/main"], {
++					cwd: CONTENT_DIR,
++				});
+ 			} catch {
+ 				branch = "master";
+ 			}
+ 
+ 			// 4. 强制同步
+-		execSync(`git checkout ${branch}`, { cwd: CONTENT_DIR });
+-		execSync(`git reset --hard origin/${branch}`, { cwd: CONTENT_DIR });
++		execFileSync("git", ["checkout", branch], { cwd: CONTENT_DIR });
++		execFileSync("git", ["reset", "--hard", `origin/${branch}`], {
++			cwd: CONTENT_DIR,
++		});
+ 
+ 		console.log(`内容同步成功（分支：${branch}）`);
+ 		} catch (error) {
+@@ -140,24 +147,29 @@ for (const mapping of contentMappings) {
+ console.log("\n内容同步完成\n");
+ try {
+ 	// 1. 获取 content 分支名
+-	const branch = execSync("git rev-parse --abbrev-ref HEAD", {
++	const branch = execFileSync("git", ["rev-parse", "--abbrev-ref", "HEAD"], {
+ 		cwd: CONTENT_DIR,
+ 	})
+ 		.toString()
+ 		.trim();
+ 
+ 	// 2. 获取 content commit hash（短）
+-	const hash = execSync("git rev-parse --short HEAD", {
++	const hash = execFileSync("git", ["rev-parse", "--short", "HEAD"], {
+ 		cwd: CONTENT_DIR,
+ 	})
+ 		.toString()
+ 		.trim();
+ 
+-	// 3. 提交主仓库
+-	execSync("git add .", { cwd: rootDir });
++	// 3. 提交主仓库：只添加内容目录，避免把其他未跟踪文件（例如密钥）误提交
++	execFileSync(
++		"git",
++		["add", "--", ...contentMappings.map((mapping) => mapping.dest)],
++		{ cwd: rootDir },
++	);
+ 
+-	execSync(
+-		`git commit -m "chore(content): sync ${branch}@${hash}"`,
++	execFileSync(
++		"git",
++		["commit", "-m", `chore(content): sync ${branch}@${hash}`],
+ 		{ cwd: rootDir },
+ 	);
+ 
+diff --git a/src/components/features/auth/Encryptor.astro b/src/components/features/auth/Encryptor.astro
+index abd6b0e..f2f48b6 100644
+--- a/src/components/features/auth/Encryptor.astro
++++ b/src/components/features/auth/Encryptor.astro
+@@ -7,15 +7,16 @@ import PasswordProtection from "./PasswordProtection.astro";
+ 
+ export interface Props {
+ 	password: string | number;
+-	slug: string;
++	/** 已弃用：加密不再依赖 slug，保留该属性只是为了兼容已有调用 */
++	slug?: string;
+ 	hint?: string;
+ }
+ 
+-const { password, slug, hint = "" } = Astro.props;
++const { password, hint = "" } = Astro.props;
+ 
+ const htmlContent = await Astro.slots.render("default");
+ 
+-const encryptedContent = encryptContent(htmlContent, String(password), slug);
++const encryptedContent = encryptContent(htmlContent, String(password));
+ ---
+ 
+ <PasswordProtection encryptedContent={encryptedContent} hint={hint} />
+diff --git a/src/components/features/auth/PasswordProtection.astro b/src/components/features/auth/PasswordProtection.astro
+index 03da6d1..e8936df 100644
+--- a/src/components/features/auth/PasswordProtection.astro
++++ b/src/components/features/auth/PasswordProtection.astro
+@@ -1,6 +1,7 @@
+ ---
+ import I18nKey from "@i18n/i18nKey";
+ import { i18n } from "@i18n/translation";
++import { CRYPTO_CONSTANTS } from "@utils/crypto-utils";
+ 
+ import PasswordModal from "./PasswordModal.svelte";
+ 
+@@ -11,6 +12,14 @@ export interface Props {
+ 
+ const { encryptedContent, hint = "" } = Astro.props;
+ 
++const {
++	PBKDF2_ITERATIONS,
++	SALT_LENGTH,
++	IV_LENGTH,
++	AUTH_TAG_LENGTH,
++	VERIFY_PREFIX,
++} = CRYPTO_CONSTANTS;
++
+ const i18nUnlocking = i18n(I18nKey.passwordUnlocking);
+ const i18nIncorrect = i18n(I18nKey.passwordIncorrect);
+ const i18nDecryptionError = i18n(I18nKey.decryptionError);
+@@ -70,6 +79,11 @@ const i18nPasswordDecryptRetry = i18n(I18nKey.passwordDecryptRetry);
+ 	is:inline
+ 	define:vars={{
+ 		encryptedContent,
++		PBKDF2_ITERATIONS,
++		SALT_LENGTH,
++		IV_LENGTH,
++		AUTH_TAG_LENGTH,
++		VERIFY_PREFIX,
+ 		i18nUnlocking,
+ 		i18nIncorrect,
+ 		i18nDecryptionError,
+@@ -93,12 +107,6 @@ const i18nPasswordDecryptRetry = i18n(I18nKey.passwordDecryptRetry);
+ 		document.dispatchEvent(event);
+ 	}
+ 
+-	var PBKDF2_ITERATIONS = 100000;
+-	var SALT_LENGTH = 16;
+-	var IV_LENGTH = 12;
+-	var AUTH_TAG_LENGTH = 16;
+-	var VERIFY_PREFIX = "MIZUKI-VERIFY:";
+-
+ 	function base64ToUint8Array(b64) {
+ 		var bin = atob(b64);
+ 		var arr = new Uint8Array(bin.length);
+diff --git a/src/pages/albums/[id]/index.astro b/src/pages/albums/[id]/index.astro
+index b29f8a5..fd95a3c 100644
+--- a/src/pages/albums/[id]/index.astro
++++ b/src/pages/albums/[id]/index.astro
+@@ -43,11 +43,7 @@ if (isEncrypted) {
+ 		)
+ 		.join("");
+ 	const wrappedHtml = `<div class="gallery-masonry">${photoHtml}</div>`;
+-	encryptedPhotoData = encryptContent(
+-		wrappedHtml,
+-		String(album.password),
+-		`album:${album.id}`,
+-	);
++	encryptedPhotoData = encryptContent(wrappedHtml, String(album.password));
+ }
+ ---
+ 
+diff --git a/src/utils/crypto-utils.ts b/src/utils/crypto-utils.ts
+index bb7f380..8971870 100644
+--- a/src/utils/crypto-utils.ts
++++ b/src/utils/crypto-utils.ts
+@@ -1,8 +1,11 @@
+-import { createCipheriv, createHmac, pbkdf2Sync } from "node:crypto";
++import { createCipheriv, pbkdf2Sync, randomBytes } from "node:crypto";
+ 
+-// 共享加密常量 — 客户端 PasswordProtection.astro 中的内联脚本必须保持同步
++// 共享加密常量 — 客户端解密脚本（PasswordProtection.astro）通过 define:vars
++// 直接使用这里的值，不需要再手动同步。
+ export const CRYPTO_CONSTANTS = {
+-	PBKDF2_ITERATIONS: 100000,
++	// OWASP 对 PBKDF2-HMAC-SHA256 的建议值约为 60 万次。
++	// 加密页面是公开的静态文件，攻击者可以离线无限次尝试，迭代次数越高越安全。
++	PBKDF2_ITERATIONS: 600000,
+ 	SALT_LENGTH: 16,
+ 	IV_LENGTH: 12,
+ 	AUTH_TAG_LENGTH: 16,
+@@ -10,27 +13,20 @@ export const CRYPTO_CONSTANTS = {
+ 	VERIFY_PREFIX: "MIZUKI-VERIFY:", // 验证前缀：正确解密后内容以此开头
+ } as const;
+ 
+-/**
+- * 使用 HMAC-SHA256 派生确定性字节
+- */
+-function deriveBytes(key: string, context: string, length: number): Buffer {
+-	return createHmac("sha256", key).update(context).digest().subarray(0, length);
+-}
+-
+ /**
+  * 加密 HTML 内容
+  *
+- * 协议 v2：在明文前添加验证前缀，使客户端可以快速验证密码是否正确，
+- * 无需等待完整 AES-GCM 解密失败。
++ * 协议 v3：每次加密都使用随机的 salt 和 IV。
++ * 旧版本用 HMAC(password, slug) 确定性地派生 salt 和 IV，
++ * 文章修改后重新构建会用同一个密钥和 IV 加密不同的明文，
++ * 这在 AES-GCM 下会泄露明文信息并允许伪造密文，所以必须随机化。
+  *
+  * 输出格式：base64(salt[16] + iv[12] + authTag[16] + ciphertext)
+  * 其中 ciphertext = AES-256-GCM-encrypt("MIZUKI-VERIFY:" + html)
++ *
++ * 随机化之后同一篇文章每次构建的密文都不同，属于预期行为。
+  */
+-export function encryptContent(
+-	html: string,
+-	password: string,
+-	slug: string,
+-): string {
++export function encryptContent(html: string, password: string): string {
+ 	const {
+ 		PBKDF2_ITERATIONS,
+ 		SALT_LENGTH,
+@@ -41,8 +37,8 @@ export function encryptContent(
+ 
+ 	const plaintext = VERIFY_PREFIX + html;
+ 
+-	const salt = deriveBytes(password, `salt:${slug}`, SALT_LENGTH);
+-	const iv = deriveBytes(password, `iv:${slug}`, IV_LENGTH);
++	const salt = randomBytes(SALT_LENGTH);
++	const iv = randomBytes(IV_LENGTH);
+ 	const key = pbkdf2Sync(
+ 		password,
+ 		salt,
+diff --git a/t2.cjs b/t2.cjs
+deleted file mode 100644
+index dca37d6..0000000
+--- a/t2.cjs
++++ /dev/null
+@@ -1,10 +0,0 @@
+-const fs=require("fs");
+-const dir="src/content/posts";
+-const items=fs.readdirSync(dir,{withFileTypes:true});
+-console.log("items:",items.length);
+-let n=0;
+-for(const e of items){
+-  try{ fs.rmSync("src/content/posts/"+e.name,{recursive:true,force:true}); n++; }
+-  catch(err){ console.log("ERR on",e.name,err.code); }
+-}
+-console.log("removed:",n);
+diff --git a/tests/crypto.test.mjs b/tests/crypto.test.mjs
+index 717255f..e6d8ef0 100644
+--- a/tests/crypto.test.mjs
++++ b/tests/crypto.test.mjs
+@@ -1,36 +1,14 @@
+ /**
+  * 加密系统端到端测试
+- * 运行方式: node tests/crypto.test.mjs
++ * 运行方式: node --experimental-strip-types tests/crypto.test.mjs
+  * 无需任何测试框架依赖
++ *
++ * 服务端加密直接导入真实的 src/utils/crypto-utils.ts，
++ * 这样修改加密实现时测试会同步失败，而不是测一份过期的拷贝。
++ * 客户端解密对应 PasswordProtection.astro 里的内联脚本，
++ * 常量同样取自 CRYPTO_CONSTANTS（页面里也是通过 define:vars 取的）。
+  */
+-import { createCipheriv, createHmac, pbkdf2Sync } from "node:crypto";
+-
+-// 从源文件复制的常量（必须与 crypto-utils.ts 保持同步）
+-const CRYPTO_CONSTANTS = {
+-	PBKDF2_ITERATIONS: 100000,
+-	SALT_LENGTH: 16,
+-	IV_LENGTH: 12,
+-	AUTH_TAG_LENGTH: 16,
+-	KEY_LENGTH: 32,
+-	VERIFY_PREFIX: "MIZUKI-VERIFY:",
+-};
+-
+-// === 服务端加密（复刻 crypto-utils.ts） ===
+-function deriveBytes(key, context, length) {
+-	return createHmac("sha256", key).update(context).digest().subarray(0, length);
+-}
+-
+-function encryptContent(html, password, slug) {
+-	const { PBKDF2_ITERATIONS, SALT_LENGTH, IV_LENGTH, KEY_LENGTH, VERIFY_PREFIX } = CRYPTO_CONSTANTS;
+-	const plaintext = VERIFY_PREFIX + html;
+-	const salt = deriveBytes(password, `salt:${slug}`, SALT_LENGTH);
+-	const iv = deriveBytes(password, `iv:${slug}`, IV_LENGTH);
+-	const key = pbkdf2Sync(password, salt, PBKDF2_ITERATIONS, KEY_LENGTH, "sha256");
+-	const cipher = createCipheriv("aes-256-gcm", key, iv);
+-	const encrypted = Buffer.concat([cipher.update(plaintext, "utf8"), cipher.final()]);
+-	const authTag = cipher.getAuthTag();
+-	return Buffer.concat([salt, iv, authTag, encrypted]).toString("base64");
+-}
++import { CRYPTO_CONSTANTS, encryptContent } from "../src/utils/crypto-utils.ts";
+ 
+ // === 客户端解密（复刻 PasswordProtection.astro inline script） ===
+ async function clientDecrypt(encData, password) {
+@@ -61,7 +39,6 @@ async function clientDecrypt(encData, password) {
+ // === 测试用例 ===
+ const testHtml = "<h1>Hello World</h1><p>这是一篇加密文章的内容</p>";
+ const testPassword = "test-password-123";
+-const testSlug = "encrypted-test-post";
+ 
+ let passed = 0;
+ let failed = 0;
+@@ -85,20 +62,46 @@ async function test(name, fn) {
+ console.log("Encryption System Tests\n");
+ 
+ await test("encrypt and decrypt with correct password", async () => {
+-	const encrypted = encryptContent(testHtml, testPassword, testSlug);
++	const encrypted = encryptContent(testHtml, testPassword);
+ 	assert(encrypted.length > 0, "ciphertext should not be empty");
+ 	const decrypted = await clientDecrypt(encrypted, testPassword);
+ 	assert(decrypted === testHtml, `decrypted content mismatch: got "${decrypted.slice(0, 30)}..."`);
+ });
+ 
+-await test("deterministic ciphertext for same inputs", () => {
+-	const a = encryptContent(testHtml, testPassword, testSlug);
+-	const b = encryptContent(testHtml, testPassword, testSlug);
+-	assert(a === b, "same inputs should produce same ciphertext");
++await test("ciphertext is randomized for same inputs", () => {
++	const a = encryptContent(testHtml, testPassword);
++	const b = encryptContent(testHtml, testPassword);
++	assert(a !== b, "same inputs must NOT produce the same ciphertext");
++	const rawA = Buffer.from(a, "base64");
++	const rawB = Buffer.from(b, "base64");
++	const { SALT_LENGTH, IV_LENGTH } = CRYPTO_CONSTANTS;
++	assert(
++		!rawA.subarray(0, SALT_LENGTH).equals(rawB.subarray(0, SALT_LENGTH)),
++		"salt must be random",
++	);
++	assert(
++		!rawA
++			.subarray(SALT_LENGTH, SALT_LENGTH + IV_LENGTH)
++			.equals(rawB.subarray(SALT_LENGTH, SALT_LENGTH + IV_LENGTH)),
++		"IV must be random (reusing an IV breaks AES-GCM)",
++	);
++});
++
++await test("editing a post never reuses the key/IV pair", () => {
++	const { SALT_LENGTH, IV_LENGTH } = CRYPTO_CONSTANTS;
++	const seen = new Set();
++	for (let i = 0; i < 20; i++) {
++		const raw = Buffer.from(
++			encryptContent(`<p>version ${i}</p>`, testPassword),
++			"base64",
++		);
++		seen.add(raw.subarray(0, SALT_LENGTH + IV_LENGTH).toString("hex"));
++	}
++	assert(seen.size === 20, "salt+IV must be unique for every encryption");
+ });
+ 
+ await test("reject wrong password", async () => {
+-	const encrypted = encryptContent(testHtml, testPassword, testSlug);
++	const encrypted = encryptContent(testHtml, testPassword);
+ 	let threw = false;
+ 	try {
+ 		await clientDecrypt(encrypted, "wrong-password");
+@@ -108,34 +111,40 @@ await test("reject wrong password", async () => {
+ 	assert(threw, "wrong password should throw");
+ });
+ 
+-await test("different slugs produce different ciphertext", () => {
+-	const a = encryptContent(testHtml, testPassword, "slug-a");
+-	const b = encryptContent(testHtml, testPassword, "slug-b");
+-	assert(a !== b, "different slugs should produce different ciphertext");
++await test("reject tampered ciphertext", async () => {
++	const raw = Buffer.from(encryptContent(testHtml, testPassword), "base64");
++	raw[raw.length - 1] ^= 0x01;
++	let threw = false;
++	try {
++		await clientDecrypt(raw.toString("base64"), testPassword);
++	} catch {
++		threw = true;
++	}
++	assert(threw, "tampered ciphertext should fail GCM authentication");
+ });
+ 
+ await test("CJK content round-trip", async () => {
+ 	const cjk = "<p>日本語テスト 中文测试 한국어 테스트</p>";
+-	const encrypted = encryptContent(cjk, testPassword, testSlug);
++	const encrypted = encryptContent(cjk, testPassword);
+ 	const decrypted = await clientDecrypt(encrypted, testPassword);
+ 	assert(decrypted === cjk, "CJK content mismatch");
+ });
+ 
+ await test("empty content round-trip", async () => {
+-	const encrypted = encryptContent("", testPassword, testSlug);
++	const encrypted = encryptContent("", testPassword);
+ 	const decrypted = await clientDecrypt(encrypted, testPassword);
+ 	assert(decrypted === "", "empty content mismatch");
+ });
+ 
+ await test("special HTML characters round-trip", async () => {
+ 	const special = '<div class="test">&amp; &lt; &gt; "quotes" \'single\'</div>';
+-	const encrypted = encryptContent(special, testPassword, testSlug);
++	const encrypted = encryptContent(special, testPassword);
+ 	const decrypted = await clientDecrypt(encrypted, testPassword);
+ 	assert(decrypted === special, "special HTML mismatch");
+ });
+ 
+ await test("CRYPTO_CONSTANTS have required fields", () => {
+-	assert(CRYPTO_CONSTANTS.PBKDF2_ITERATIONS === 100000, "PBKDF2_ITERATIONS");
++	assert(CRYPTO_CONSTANTS.PBKDF2_ITERATIONS >= 600000, "PBKDF2_ITERATIONS should be >= 600000");
+ 	assert(CRYPTO_CONSTANTS.SALT_LENGTH === 16, "SALT_LENGTH");
+ 	assert(CRYPTO_CONSTANTS.IV_LENGTH === 12, "IV_LENGTH");
+ 	assert(CRYPTO_CONSTANTS.AUTH_TAG_LENGTH === 16, "AUTH_TAG_LENGTH");
+diff --git a/开发守则.md b/开发守则.md
+index 8eeb60a..634dab3 100644
+--- a/开发守则.md
++++ b/开发守则.md
+@@ -176,8 +176,6 @@ blog-v2/
+ ├── package.json
+ ├── pnpm-workspace.yaml       # 含 nodeLinker: hoisted 补丁（见 6.3）
+ ├── pagefind.yml              # 搜索索引配置
+-├── migrate.cjs               # 文章迁移脚本（一次性，已用完）
+-├── migrate-images.ps1        # 图片迁移脚本（一次性，已用完）
+ ├── public/                   # 静态资源，原样拷贝到 dist 根
+ │   └── img/                  # 从旧站迁来的图片（avatar/qq/wechat/favicon/covers…）
+ ├── src/

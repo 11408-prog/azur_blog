@@ -1,3 +1,4 @@
+import { existsSync } from "node:fs";
 import { readFile } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
@@ -13,6 +14,20 @@ function getAttribute(tag, name) {
 		new RegExp(`\\b${name}\\s*=\\s*(?:"([^"]*)"|'([^']*)'|([^\\s>]+))`, "i"),
 	);
 	return match?.[1] ?? match?.[2] ?? match?.[3];
+}
+
+// 站点部署在子路径（例如 /azur_blog/）时，HTML 里的链接带有 base 前缀，
+// 但构建产物直接放在 dist/ 根目录，所以要逐级去掉开头的路径段来定位真实文件。
+// 一直找不到时返回原始路径，让后面的 readFile 照常报出缺失文件的错误。
+function resolveStylesheetPath(pathname) {
+	const segments = (pathname.startsWith("/") ? pathname.slice(1) : pathname)
+		.split("/")
+		.filter(Boolean);
+	for (let skip = 0; skip < segments.length; skip++) {
+		const candidate = path.resolve(distDirectory, ...segments.slice(skip));
+		if (existsSync(candidate)) return candidate;
+	}
+	return path.resolve(distDirectory, ...segments);
 }
 
 async function loadPageStyles(htmlPath) {
@@ -44,10 +59,7 @@ async function loadPageStyles(htmlPath) {
 				return "";
 			}
 
-			const assetPath = path.resolve(
-				distDirectory,
-				pathname.startsWith("/") ? pathname.slice(1) : pathname,
-			);
+			const assetPath = resolveStylesheetPath(pathname);
 			const relativePath = path.relative(distDirectory, assetPath);
 			if (relativePath.startsWith("..") || path.isAbsolute(relativePath)) {
 				throw new Error(
@@ -66,6 +78,14 @@ async function loadPageStyles(htmlPath) {
 	};
 }
 
+// 关于页只有在源文件里真的写了 ::github{repo="..."} 卡片时，才要求渲染出卡片标记。
+// 否则换掉模板示例内容的站点会被这条检查误伤。样式规则仍然始终要求加载。
+const aboutSource = await readFile(
+	path.join(projectRoot, "src/content/spec/about.md"),
+	"utf8",
+).catch(() => "");
+const aboutHasGithubCard = /^::github\{/m.test(aboutSource);
+
 const pages = [
 	{
 		name: "Homepage",
@@ -82,7 +102,9 @@ const pages = [
 	{
 		name: "About page",
 		htmlPath: "about/index.html",
-		requiredMarkup: [["card-github", "rendered GitHub repository card"]],
+		requiredMarkup: aboutHasGithubCard
+			? [["card-github", "rendered GitHub repository card"]]
+			: [],
 		requiredRules: [
 			[".card-github", "GitHub repository card styles"],
 			[".custom-md .image-grid", "extended Markdown layout styles"],
