@@ -9,6 +9,7 @@ import {
 	getSortedPosts,
 	getTagList,
 } from "../../../utils/content-utils";
+import { getCommitCount } from "../../../utils/git-stats";
 import WidgetLayout from "../common/WidgetLayout.astro";
 
 interface Props {
@@ -73,6 +74,9 @@ const lastPostDate = latestPost
 	? latestPost.data.published.toISOString()
 	: null;
 
+// 提交次数：构建时从 git 读取；拿不到可信数字（非 git 仓库、浅克隆）时为 null，此时隐藏该项
+const commitCount = getCommitCount();
+
 const stats = [
 	{
 		icon: "material-symbols:article-outline",
@@ -95,6 +99,16 @@ const stats = [
 		value: totalWords,
 		formatted: true,
 	},
+	...(commitCount !== null
+		? [
+				{
+					icon: "material-symbols:commit",
+					label: i18n(I18nKey.siteStatsCommitCount),
+					value: commitCount,
+					formatted: true,
+				},
+			]
+		: []),
 	{
 		icon: "material-symbols:calendar-clock-outline",
 		label: i18n(I18nKey.siteStatsRunningDays),

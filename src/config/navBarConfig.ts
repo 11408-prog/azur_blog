@@ -186,23 +186,11 @@ export const navBarConfig: NavBarConfig = {
 			],
 		},
 
-		// 自定义一级下拉菜单示例：关于相关
+		// 关于页（友链页已关闭，所以这里是单级链接，不再是下拉菜单）
 		{
 			name: "About",
-			url: "/content/",
-			icon: "material-symbols:info",
-			children: [
-				{
-					name: "About",
-					url: withBase("/about/"),
-					icon: "material-symbols:person",
-				},
-				{
-					name: "Friends",
-					url: "/friends/",
-					icon: "material-symbols:group",
-				},
-			],
+			url: withBase("/about/"),
+			icon: "material-symbols:person",
 		},
 
 		// 自定义一级下拉菜单示例：其他页面

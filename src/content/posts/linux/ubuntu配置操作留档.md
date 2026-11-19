@@ -350,6 +350,9 @@ hadoop jar hadoop-mapreduce-examples-3.3.5.jar pi 3 3
 
 #连接虚拟机
 lyh@127.0.0.1 -p 2222
+
+#启动Jupyter
+jupyter lab --ip=0.0.0.0 --allow-root --no-browser
 ```
 
 
@@ -362,3 +365,4 @@ lyh@127.0.0.1 -p 2222
 - 共享文件夹路径为 `/media/sf_share`，不能直接修改其权限，需复制到本地目录后再 `chown`。
 - 建议为虚拟机创建快照，以便环境损坏时快速恢复。
 - 遇到内存不足导致容器被杀，可在 `yarn-site.xml` 中关闭内存检查（已配置）。
+- 想查看spark查看http://localhost:4040

@@ -57,7 +57,7 @@ grep -rnE '(href|src|action)="/[a-zA-Z]' src --include=*.astro | grep -v withBas
 
 ## 当前还没改的地方
 
-2026-11-05 自查，下面 4 个页面里的 `<script is:inline src="/js/...">` 还是手写的根路径：
+2026-11-05 自查，下面 4 个页面（外加已关闭的 `friends.astro` 里的 `/js/friends-page-handler.js`）里的 `<script is:inline src="/js/...">` 还是手写的根路径：
 
 | 文件 | 脚本 |
 | --- | --- |
