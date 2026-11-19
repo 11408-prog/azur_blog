@@ -22,6 +22,8 @@ pnpm-debug.log*
 # GitHub token for deploy-pages.ps1 - NEVER commit this
 .deploy-token
 .publish/
+# 发布历史（让 gh-pages 增量推送）：体积大，绝不能进主仓库。注意不要加结尾斜杠
+.publish-git
 
 # content repository (independent mode)
 /content/

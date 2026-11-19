@@ -8,6 +8,11 @@
         -> verify output -> stage publish tree -> drop template junk
         -> git commit -> push to gh-pages of the azur_blog repo -> confirm
 
+    Publishing is incremental. The history of what was uploaded last time is kept
+    in .publish-git (next to this script, git-ignored), so a normal deploy only
+    uploads the files that changed - usually a few MB instead of the whole site.
+    Use -Fresh to throw that history away and start over.
+
     Every message is plain ASCII English on purpose, so no code page can turn
     it into mojibake.
 
@@ -40,6 +45,11 @@
 .PARAMETER Force
     Skip the confirmation prompt before the push.
 
+.PARAMETER Fresh
+    Discard the saved publish history (.publish-git) and upload the whole site
+    again as a single new commit. Slow on a weak uplink, but it squashes the
+    gh-pages history. Run it now and then, not every time.
+
 .PARAMETER Repo
     Override the target repository URL.
 
@@ -61,6 +71,7 @@ param(
 	[switch]$KeepCache,
 	[switch]$DryRun,
 	[switch]$Force,
+	[switch]$Fresh,
 	[string]$Repo = "https://github.com/11408-prog/azur_blog.git",
 	[string]$Branch = "gh-pages",
 	[string]$Token = ""
@@ -94,6 +105,9 @@ catch { }
 
 $DistDir = Join-Path $PSScriptRoot "dist"
 $PubDir = Join-Path $PSScriptRoot ".publish"
+# Publish history. Kept outside .publish because .publish is wiped on every run.
+$GitDir = Join-Path $PSScriptRoot ".publish-git"
+$HeartbeatSeconds = 10
 
 function Step($msg) {
 	Write-Host "  "
@@ -122,6 +136,81 @@ function Exit-With($code, $msg) {
 	Rule
 	Write-Host "  "
 	exit $code
+}
+
+# ------------------------------------------------------------------
+# Push helpers
+# ------------------------------------------------------------------
+
+# Bytes sent by all network adapters so far. Windows has no cheap per-process
+# counter, so the heartbeat reports the difference over time; that includes
+# other programs. Returns $null when the statistics are not available.
+function Get-NetSentBytes {
+	try {
+		$m = Get-NetAdapterStatistics -ErrorAction Stop | Measure-Object -Property SentBytes -Sum
+		if ($null -eq $m.Sum) { return $null }
+		return [int64]$m.Sum
+	}
+	catch { return $null }
+}
+
+# Runs git in a background job and prints a status line every few seconds.
+# git itself only shows progress while it writes the pack into a local buffer.
+# The network upload that follows is silent, and on a slow uplink it is the
+# longest part of a deploy, so without this the script looks frozen.
+# Returns git's exit code.
+function Invoke-GitPush([string[]]$GitArgs) {
+	$job = Start-Job -ScriptBlock {
+		param($a)
+		& git @a 2>&1 | ForEach-Object { "$_" }
+		"@@EXIT@@" + $LASTEXITCODE
+	} -ArgumentList (, $GitArgs)
+
+	$code = 1
+	$sw = [Diagnostics.Stopwatch]::StartNew()
+	$lastBeat = 0.0
+	$firstSent = Get-NetSentBytes
+	$lastSent = $firstSent
+	$lastSentAt = 0.0
+
+	Info "git prints nothing while the upload itself runs; a status line follows every $HeartbeatSeconds s"
+	try {
+		while ($true) {
+			# Read the state first, then drain output: anything written before the job
+			# finished is still collected by the drain that follows.
+			$running = ($job.State -eq "Running")
+			foreach ($line in @(Receive-Job -Job $job -ErrorAction SilentlyContinue)) {
+				$text = "$line"
+				if ($text -like "@@EXIT@@*") { $code = [int]$text.Substring(8); continue }
+				if ($text -match "AUTHORIZATION|basic ") { continue }
+				Write-Host "             $text" -ForegroundColor $C.Dim
+				$lastBeat = $sw.Elapsed.TotalSeconds
+			}
+			if (-not $running) { break }
+
+			$now = $sw.Elapsed.TotalSeconds
+			if (($now - $lastBeat) -ge $HeartbeatSeconds) {
+				$msg = "uploading... {0:00}:{1:00} elapsed" -f [int][math]::Floor($now / 60), [int]($now % 60)
+				$sent = Get-NetSentBytes
+				if ($null -ne $sent -and $null -ne $firstSent) {
+					$msg += ", {0} sent" -f (Format-MB ($sent - $firstSent))
+					if ($null -ne $lastSent -and $now -gt $lastSentAt) {
+						$mbps = (($sent - $lastSent) * 8 / 1000000) / ($now - $lastSentAt)
+						$msg += ", {0:N1} Mbps" -f $mbps
+					}
+					$lastSent = $sent
+					$lastSentAt = $now
+				}
+				Info $msg
+				$lastBeat = $now
+			}
+			Start-Sleep -Milliseconds 500
+		}
+	}
+	finally {
+		Remove-Job -Job $job -Force -ErrorAction SilentlyContinue
+	}
+	return $code
 }
 
 Clear-Host
@@ -223,6 +312,7 @@ $authHeader = "AUTHORIZATION: basic " + [Convert]::ToBase64String(
 	[Text.Encoding]::UTF8.GetBytes("${credUser}:${credToken}"))
 
 # Every git call that touches the network needs these four overrides.
+$remoteTip = ""
 $GitNet = @(
 	"-c", "http.sslBackend=openssl",
 	"-c", "http.sslVerify=true",
@@ -236,6 +326,10 @@ $remote = & git @GitNet ls-remote --heads $Repo 2>&1
 if ($LASTEXITCODE -eq 0) {
 	Write-Host "  ok" -ForegroundColor $C.Ok
 	$remoteBranches = @($remote | ForEach-Object { ($_ -split "\s+")[1] })
+	$remoteTip = ""
+	foreach ($ln in @($remote)) {
+		if ("$ln" -match "^([0-9a-f]{40})\s+refs/heads/$([regex]::Escape($Branch))$") { $remoteTip = $Matches[1] }
+	}
 	if ($remoteBranches -contains "refs/heads/$Branch") { Ok "Remote branch $Branch exists, it will be replaced" }
 	else { Ok "Remote branch $Branch does not exist, it will be created" }
 }
@@ -397,6 +491,27 @@ else {
 # ------------------------------------------------------------------
 Step "Staging the publish tree"
 
+# .publish-git holds hundreds of MB of history. If git did not ignore it, the
+# 'git add -A' in auto-deploy.cmd would pull all of it into the source repo.
+& git check-ignore -q ".publish-git" 2>$null
+if ($LASTEXITCODE -eq 1) {
+	Exit-With 1 ".publish-git is not git-ignored. Add a line '.publish-git' to .gitignore, then run again."
+}
+
+# Publish history lives in .publish-git, outside .publish, so .publish can be
+# wiped and rebuilt on every run while git still remembers what it uploaded last
+# time. That memory is what makes later pushes incremental.
+$legacyGit = Join-Path $PubDir ".git"
+if (-not (Test-Path (Join-Path $GitDir "HEAD")) -and (Test-Path (Join-Path $legacyGit "HEAD"))) {
+	if (Test-Path $GitDir) { Remove-Item -Recurse -Force $GitDir -ErrorAction SilentlyContinue }
+	Move-Item $legacyGit $GitDir
+	Ok "Adopted the publish history left behind by the previous script version"
+}
+if ($Fresh -and (Test-Path $GitDir)) {
+	Remove-Item -Recurse -Force $GitDir -ErrorAction SilentlyContinue
+	Info "-Fresh: saved publish history discarded"
+}
+
 if (Test-Path $PubDir) {
 	Remove-Item -Recurse -Force $PubDir -ErrorAction SilentlyContinue
 }
@@ -454,21 +569,62 @@ if ($biggest) {
 # ------------------------------------------------------------------
 Step "Creating the deployment commit"
 
-Push-Location $PubDir
-try {
-	& git init -q -b $Branch 2>&1 | Out-Null
-	& git -c user.name="11408-prog" -c user.email="3036248429@qq.com" add -A 2>&1 | Out-Null
-	# Jekyll config is irrelevant here and can only confuse the build.
-	$stamp = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
-	& git -c user.name="11408-prog" -c user.email="3036248429@qq.com" `
-		commit -q -m "Deploy: $stamp" 2>&1 | Out-Null
+# Every call that touches the publish history. Line endings and file modes are
+# pinned so a file that did not change always hashes to the same object.
+$GitLocal = @(
+	"-c", "core.autocrlf=false",
+	"-c", "core.safecrlf=false",
+	"-c", "core.filemode=false",
+	"-c", "user.name=11408-prog",
+	"-c", "user.email=3036248429@qq.com",
+	"--git-dir=$GitDir",
+	"--work-tree=$PubDir"
+)
 
-	$head = (& git rev-parse --short HEAD) 2>&1
-	$tracked = (& git ls-files) 2>&1
-	Ok "Commit $head, $((($tracked | Measure-Object).Count)) files tracked"
+$firstDeploy = -not (Test-Path (Join-Path $GitDir "HEAD"))
+if ($firstDeploy) {
+	& git @GitLocal init -q 2>&1 | Out-Null
 }
-finally {
-	Pop-Location
+# Works on an empty repository too, unlike 'git checkout -B'.
+& git @GitLocal symbolic-ref HEAD "refs/heads/$Branch" 2>&1 | Out-Null
+
+& git @GitLocal add -A 2>&1 | Out-Null
+$pending = @(& git @GitLocal status --porcelain 2>&1)
+& git @GitLocal rev-parse --verify -q HEAD 2>&1 | Out-Null
+$hasHead = ($LASTEXITCODE -eq 0)
+
+$nothingToPush = $false
+if ($hasHead -and $pending.Count -eq 0) {
+	$headSha = ("" + (& git @GitLocal rev-parse HEAD 2>&1)).Trim()
+	if ($headSha -eq $remoteTip) {
+		$nothingToPush = $true
+		Ok "Nothing changed since the last deploy"
+	}
+	else {
+		Info "No new changes, but the remote differs from the saved history; the saved commit will be pushed"
+	}
+}
+else {
+	$stamp = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
+	& git @GitLocal commit -q -m "Deploy: $stamp" 2>&1 | Out-Null
+}
+
+$head = ("" + (& git @GitLocal rev-parse --short HEAD 2>&1)).Trim()
+$tracked = @(& git @GitLocal ls-files 2>&1)
+$commitCount = ("" + (& git @GitLocal rev-list --count HEAD 2>&1)).Trim()
+Ok "Commit $head, $($tracked.Count) files tracked, $commitCount commit(s) of history"
+
+# Say up front how much this push will really upload.
+if ($firstDeploy) {
+	Info "No saved history yet: this push uploads the whole site once ($(Format-MB $pubSize))"
+}
+elseif ($remoteTip) {
+	& git @GitLocal cat-file -e "$($remoteTip)^{commit}" 2>&1 | Out-Null
+	if ($LASTEXITCODE -eq 0) { Ok "Incremental push: only changed files will be uploaded" }
+	else { Warn "The remote $Branch was changed outside this machine: the whole site will be uploaded once" }
+}
+if ([int]$commitCount -gt 100) {
+	Info "History is $commitCount commits long. Run with -Fresh once in a while to squash it."
 }
 
 # ------------------------------------------------------------------
@@ -481,6 +637,16 @@ if ($DryRun) {
 	Write-Host "  "
 	Rule
 	Write-Host "    NOTHING WAS PUSHED" -ForegroundColor $C.Warn
+	Rule
+	Write-Host "  "
+	exit 0
+}
+
+if ($nothingToPush) {
+	Write-Host "  "
+	Rule
+	Write-Host "    NOTHING TO PUSH" -ForegroundColor $C.Ok
+	Write-Host "    The live site already matches this build." -ForegroundColor $C.Dim
 	Rule
 	Write-Host "  "
 	exit 0
@@ -500,33 +666,18 @@ if (-not $Force) {
 
 Step "Pushing to $Branch"
 
-Push-Location $PubDir
-try {
-	# --force because this branch is rebuilt from scratch every time.
-	& git @GitNet push --force --progress $Repo "HEAD:refs/heads/$Branch" 2>&1 |
-		Where-Object { $_ -notmatch "AUTHORIZATION|basic " }
-	$pushCode = $LASTEXITCODE
-}
-finally {
-	Pop-Location
+# --force because this branch is owned by this script alone.
+$pushArgs = @($GitNet) + @("--git-dir=$GitDir", "push", "--force", "--progress", $Repo, "HEAD:refs/heads/$Branch")
+$pushCode = Invoke-GitPush $pushArgs
+
+if ($pushCode -ne 0) {
+	Info "Retrying with a bigger buffer and no compression in case the transfer timed out"
+	$retryArgs = @($GitNet) + @("-c", "http.postBuffer=524288000", "-c", "core.compression=0", "--git-dir=$GitDir", "push", "--force", $Repo, "HEAD:refs/heads/$Branch")
+	$pushCode = Invoke-GitPush $retryArgs
 }
 
 if ($pushCode -ne 0) {
-	Info "Retrying with a smaller pack in case the transfer timed out"
-	Push-Location $PubDir
-	try {
-		& git @GitNet -c http.postBuffer=524288000 -c core.compression=0 `
-			push --force $Repo "HEAD:refs/heads/$Branch" 2>&1 |
-			Where-Object { $_ -notmatch "AUTHORIZATION|basic " }
-		$pushCode = $LASTEXITCODE
-	}
-	finally {
-		Pop-Location
-	}
-}
-
-if ($pushCode -ne 0) {
-	Exit-With 1 "Push failed. The publish tree is still in .publish if you want to retry by hand."
+	Exit-With 1 "Push failed. Run again with -NoBuild -Force to retry; files that are already live on GitHub are not uploaded again."
 }
 
 Ok "Pushed"
