@@ -24,6 +24,8 @@ pnpm-debug.log*
 .publish/
 # 发布历史（让 gh-pages 增量推送）：体积大，绝不能进主仓库。注意不要加结尾斜杠
 .publish-git
+# 补丁文件不要进仓库（auto-deploy 会 git add -A）
+*.patch
 
 # content repository (independent mode)
 /content/

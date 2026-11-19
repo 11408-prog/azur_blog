@@ -154,6 +154,14 @@ function Get-NetSentBytes {
 	catch { return $null }
 }
 
+# git redraws "Counting objects: 37% (102/275)" in place with carriage returns.
+# Here every redraw arrives as a line of its own, so one push would print
+# hundreds of them. Keep only the last line of each phase (the one that ends in
+# "done." or "completed with") and drop the intermediate percentages.
+function Test-GitProgressNoise([string]$Line) {
+	return ($Line -match ":\s+\d+% \(\d+/\d+\)" -and $Line -notmatch ",\s+done\.|completed with")
+}
+
 # Runs git in a background job and prints a status line every few seconds.
 # git itself only shows progress while it writes the pack into a local buffer.
 # The network upload that follows is silent, and on a slow uplink it is the
@@ -183,6 +191,7 @@ function Invoke-GitPush([string[]]$GitArgs) {
 				$text = "$line"
 				if ($text -like "@@EXIT@@*") { $code = [int]$text.Substring(8); continue }
 				if ($text -match "AUTHORIZATION|basic ") { continue }
+				if (Test-GitProgressNoise $text) { continue }
 				Write-Host "             $text" -ForegroundColor $C.Dim
 				$lastBeat = $sw.Elapsed.TotalSeconds
 			}
@@ -407,8 +416,8 @@ if (-not $NoBuild) {
 	$logText = ""
 	if (Test-Path $logFile) { $logText = Get-Content $logFile -Raw }
 	$reused = ([regex]::Matches($logText, "reused cache entry")).Count
-	$fresh = ([regex]::Matches($logText, "after:")).Count
-	if ($fresh -gt 0) { Ok "Images regenerated: $fresh" }
+	$regenerated = ([regex]::Matches($logText, "after:")).Count
+	if ($regenerated -gt 0) { Ok "Images regenerated: $regenerated" }
 	if ($reused -gt 0) { Warn "$reused image(s) came from the old cache - rerun without -KeepCache if you swapped a picture" }
 }
 else {
